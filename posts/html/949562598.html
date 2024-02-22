@@ -1,0 +1,39 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Start Your Mirrors!</h1>
+                    <p>Work has finally started. We now have <a href="http://pgxn.org/mirroring.html">mirroring</a>. This was the first task for the project, and it&rsquo;s now checked off on the <a href="http://pgxn.org/status.html">status</a> page. Hurrah!</p>
+
+<p>This turned out to be a pretty simple task, of course. For now I&rsquo;m using the <a href="http://www.kineticode.com/">Kineticode</a> (my other employer) server to host both the <a href="http://www.pgxn.org/">PGXN site</a> and the master mirror. This is temporary, just a way to get things up and going as quickly as possible. The master mirror runs <code>rsyncd</code> with read-only access to the <code>pgxn</code> path. So all you have to do to mirror it is set up a <code>cron</code> job like:</p>
+
+<pre><code>rsync -az --delete rsync://master.pgxn.org/pgxn /path/to/pgxn
+</code></pre>
+
+<p>If the destination directory is under an HTTP root, you&rsquo;re done. Otherwise, throw a web server over it and <em>then</em> you&rsquo;re done.</p>
+
+<p>Of course, the web server isn&rsquo;t really necessary yet. Soon it will be the interface for downloading distributions and metadata from the mirrors. Right now, the mirrors just have two files in them (a <code>README</code> and an <code>index.html</code>). This is just the start of things. The next step is to figure out the directory structure for the mirrors. I&rsquo;m working on that right now and will soon be asking for feedback. Watch this space for details!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> August 13th, 2010 7:45pm </span>
+                                                          <span class="tag">getting started</span>
+                                          <span class="tag">jfdi</span>
+                                          <span class="tag">mirror</span>
+                                          <span class="tag">progress</span>
+                                          <span class="tag">rsync</span>
+                                          <span class="tag">httpd</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

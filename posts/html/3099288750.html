@@ -1,0 +1,104 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN API RFC</h1>
+                    <p>Things slowed up a bit over the last couple of months, I admit. There are any number of reasons for that, not the least were the intrusion of the holidays and a <a href="http://www.designsceneapp.com/">little side project</a> I&rsquo;ve been hacking on after-hours (and sometimes during-hours). But I&rsquo;m ramping things up again now and need <em>your</em> feedback on my current plans. Here&rsquo;s what I&rsquo;m working on: the search site.</p>
+
+<h2>Search Sites and APIs</h2>
+
+<p>Well, sort of. First of all, I&rsquo;ve decided that the &ldquo;search site&rdquo; should not be a separate thing. The <a href="http://pgxn.org/">main site</a> will be the search site. This is following the example of <a href="http://openjsan.org">JSAN</a>, as well as feedback from <a href="http://search.cpan.org/~gbarr/">Graham Barr</a>, who created and maintains <a href="http://search.cpan.org/">CPAN Search</a>. Apparently people are often confused that <a href="http://search.cpan.org/">search.cpan.org</a> is separate from <a href="http://www.cpan.org">www.cpan.org</a>. No point in adding in confusion from the beginning. And besides, now that the PGXN fund-raising <a href="http://blog.pgxn.org/post/2063677299/goooooooaaaal">is over</a>, I don&rsquo;t know what else would go on the home page.</p>
+
+<p>The other thing that&rsquo;s happened is, just as I was getting my butt in gear on this stuff, a new CPAN search site came to my attention, <a href="http://search.metacpan.org/">μετα CPAN</a>. This is an interesting project. What they did instead of creating a monolithic HTML search site is to create a <a href="https://github.com/CPAN-API/cpan-api/wiki/API-docs">simple API</a> that serves nothing but JSON. It has search and displays metadata for CPAN objects (distributions, maintainers, modules, etc.). The search site, then, is not really a site at all, but a pure JavaScript application. Once you load it, it just uses the API server to get all the data. There are a few tricks server-side to proxy the API server so as to avoid cross-site scripting issues. But otherwise it just works in the browser.</p>
+
+<p>Now I&rsquo;m not sure I&rsquo;ll do the same thing, exactly, but there&rsquo;s a lot of appeal in creating a RESTful API server that&rsquo;s independent of the search site, and then building the search site to use it. It also has the advantage of being useful for other projects to just use. Want to create a PGXN search widget for your blog? Yeah, there&rsquo;s an API for that.</p>
+
+<h2>A Super RESTful Directory</h2>
+
+<p>Of course, thanks to the &ldquo;RESTful Directory&rdquo; design for the mirrors (described <a href="http://blog.pgxn.org/post/988613682/restful-directory" title="A RESTful Directory">here</a> and revised <a href="http://blog.pgxn.org/post/1138292188/arch-and-extension-json" title="Architecture, New Extension JSON Format">here</a>), any mirror is a lightweight API already. There&rsquo;s a <em>lot</em> of metadata one can get just from the static JSON files it generates. The design is flexible&ndash;but designed with a command-line client in mind. As such, many commands executed in a command-line client would likely requires multiple requests to a mirror. For example:</p>
+
+<pre><code>&gt; install pgtap
+</code></pre>
+
+<p>This would request <code>/by/extension/pgtap.json</code> from the server. It would then parse that file and see that the latest stable version of pgTAP is in the distribution &ldquo;pgTAP&rdquo; at version &ldquo;0.25.0&rdquo;. So it would then download <code>/dist/pgTAP-0.25.0.pgz</code> to install.</p>
+
+<p>This is great for a command-line client, but wouldn&rsquo;t be so great for a search site to be responsive. Ideally, a site should send a single request to get all the data it needs for a particular page.</p>
+
+<p>So here&rsquo;s what I&rsquo;m thinking for a PGXN API server: It will offer a superset of the functionality of any other PGXN mirror. That is, all the JSON files in a mirror will be present, but many of them will have more information than they would on other mirrors. And then, of course, there will be other URIs to offer additional API calls.</p>
+
+<h3>Details</h3>
+
+<p>So what does that look like? Let&rsquo;s take the pgTAP distribution, which I released on PGXN earlier this week. To find the pgTAP distribution, one requests:</p>
+
+<blockquote>
+  <p><a href="http://master.pgxn.org/by/dist/pgTAP.json"><code>/by/dist/pgTAP.json</code></a></p>
+</blockquote>
+
+<p>From that, one can see that the latest table release is 0.25.0, and so one can then request</p>
+
+<blockquote>
+  <p><a href="http://master.pgxn.org/dist/pgTAP/pgTAP-0.25.0.json"><code>/dist/pgTAP/pgTAP-0.25.0.json</code></a></p>
+</blockquote>
+
+<p>to get all the metadata for that particular release. What I propose, to avoid the two requests, is to include the contents of the second file in the first. That would then have all the data necessary to generate the <a href="http://theory.github.com/pgxn/pgtapdist.html">pgTAP distribution page</a> on the PGXN site.</p>
+
+<p>The API would offer similar supersets of data for the <a href="http://master.pgxn.org/by/extension/pgtap.json">extension </a>, <a href="http://master.pgxn.org/by/owner/theory.json">owner </a>, and <a href="http://master.pgxn.org/by/tag/testing.json">tag </a> metadata files, to have the data necessary for the design of the corresponding <a href="http://theory.github.com/pgxn/pgtap.html">extension</a>, <a href="http://theory.github.com/pgxn/theory.html">owner</a> and tag layouts of the site.</p>
+
+<h3>Additional Resources</h3>
+
+<p>In addition to adding metadata to the existing mirrored JSON files, there would be other resources available for request from the API server. They would include:</p>
+
+<ul>
+<li><p>Extension Documentation. Each distribution may include documentation for included extensions in the <code>doc</code> subdirectory. These will go under the directory for a specific distribution such as <code>/dist/pgTAP/pgTAP-0.35.0/doc/pgtap.html</code>. The latest version of each document would also be available under <code>/by/extension</code>, as in <code>/by/extension/pgtap.html</code>. This requires that the documentation file have the same base name as the extension file itself.</p></li>
+<li><p>Other documentation. I&rsquo;d like to support arbitrary documentation, such as for included binary executables, HOWTOs, etc. The canonical copies will go under the versioned distribution URL, of course, but I&rsquo;m not sure about permalinks. That might require an extension of the <a href="http://pgxn.org/meta/spec.txt">Meta Spec</a>; I haven&rsquo;t quite figured that out, yet.</p></li>
+<li><p>Source code. There will be an interface to browse an unpacked copy of any distribution as plain text. This will be under <code>/src</code>, as in <code>/src/pgTAP/pgTAP-0.35.0/</code>.</p></li>
+</ul>
+
+<h3>Search API</h3>
+
+<p>Of course. This is the big one, really. I think it makes sense to have the <code>/by</code> URI respond to search requests. Thus, a request for</p>
+
+<pre><code>/by?q=testing
+</code></pre>
+
+<p>would search everything. If you only want to search a certain category of object, you&rsquo;d hit the appropriate URI:</p>
+
+<pre><code>/by/dist?q=tap
+/by/owner?q=clochard
+/by/tag?q=test
+/by/extension?q=gis
+</code></pre>
+
+<p>The nice thing about this is that it retains the existing entity URLs. The directory level determines which entities you get.</p>
+
+<h2>Your Thoughts?</h2>
+
+<p>So that&rsquo;s my thinking on the search API. I&rsquo;m going to start hacking on it in earnest tomorrow, and perhaps next week I can get a very early version out (basically just another mirror to start with).</p>
+
+<p>But what do you think? Seem like a sane approach? Am I missing anything obvious or doing anything clearly stupid? Please let me know in the commments!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> February 3rd, 2011 11:05pm </span>
+                                                          <span class="tag">search</span>
+                                          <span class="tag">api</span>
+                                          <span class="tag">mirror</span>
+                                          <span class="tag">json</span>
+                                          <span class="tag">cpan</span>
+                                          <span class="tag">metacpan</span>
+                                          <span class="tag">javascript</span>
+                                          <span class="tag">application</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

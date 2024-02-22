@@ -1,0 +1,141 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>pgxn-utils 0.1.4 is out!</h1>
+                    <p><em>by Dickson S. Guedes</em></p>
+
+<p>Hi everybody!</p>
+
+<p>I&rsquo;m proud to tell you that a new version of <a href="https://github.com/guedes/pgxn-utils">PGXN Utils</a> was released with this new features:</p>
+
+<ul>
+<li>Git support</li>
+<li>Templates and custom templates</li>
+<li><a href="http://pgxnclient.projects.postgresql.org/">PGXN Client</a> integration</li>
+</ul>
+
+<h2>Git support</h2>
+
+<p>You can start a new extension with or without version control. By default <code>pgxn-utils</code>
+supports <a href="http://git-scm.org">git</a> but it will not create a repository unless you
+use <code>--git</code> option in the skeleton task.</p>
+
+<p>You can try:</p>
+
+<pre><code>$ pgxn-utils skeleton my_cool_versioned_extension --git
+</code></pre>
+
+<p>When you create a new extension with git support in addition to creating the skeleton,
+<code>pgxn-utils</code> will initialize a git repository and create the initial commit.</p>
+
+<p>Once you have your extension in a git repository your <code>bundle</code> will use only the
+committed files to create the archive, but if your repository is dirty then <code>pgxn-utils</code>
+will suggest that you to commit or stash your changes before bundling.</p>
+
+<p>You must be careful with new files not added to repository, because they will <strong>not</strong>
+be archived.</p>
+
+<h2>Default templates</h2>
+
+<p>There are three default templates: <code>sql</code>, <code>c</code> and <code>fdw</code>. If you call <code>skeleton</code> without
+specifying a template, <code>sql</code> is the default. But if your extension will supply some C
+modules or you will create a FDW, you can create the extension calling <code>skeleton</code> with a
+<code>--template</code> option.</p>
+
+<p>Try:</p>
+
+<pre><code>$ pgxn-utils skeleton my_cool_c_extension --template=c
+$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw
+</code></pre>
+
+<p>The templates contain example code and some links to PostgreSQL documentation
+that will try to help you to start coding. SQL and C templates contains some test
+examples, and the example code will compile and pass <code>make installcheck</code>.
+However, this code is intended to be an example, and you must write your own
+tests and code.</p>
+
+<h2>Custom templates</h2>
+
+<p>If you don&rsquo;t like the templates provided by <code>pgxn-utils</code> you can create you own.
+Just create a directory with at least a <code>META.json</code> or
+<code>META.json.tt</code> file and then use your directory as argument to the <code>--template</code>
+option.</p>
+
+<p>To know how create your own template, see the examples in the
+<a href="https://github.com/guedes/pgxn-utils/tree/master/lib/pgxn_utils/templates">templates directory</a>.</p>
+
+<h2>PGXN Client integration</h2>
+
+<p>If you have <a href="http://pgxnclient.projects.postgresql.org/">PGXN client</a> installed you
+can change the command line from <code>pgxn-utils some_task</code> to <code>pgxn some_task</code> and this
+will save you some typing.</p>
+
+<p>See:</p>
+
+<pre><code>$ cd /tmp
+$ pgxn skeleton --help
+PGXN Utils version: 0.1.4
+Usage:
+  pgxn skeleton extension_name
+
+Options:
+      [--git]                            # Initialize a git repository after create the extension
+  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract
+  -p, [--target=TARGET]                  # Define the target directory
+                                         # Default: .
+      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw
+                                         # Default: sql
+  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status
+  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension
+  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator
+  -l, [--license=LICENSE]                # The extension license
+  -t, [--tags=one two three]             # Defines extension's tags
+  -v, [--version=VERSION]                # Initial version
+  -m, [--maintainer=MAINTAINER]          # Maintainer's name &lt;maintainer@email&gt;
+
+Creates an extension skeleton in current directory
+
+$ pgxn skeleton test
+      create  test
+      create  test/test.control
+      create  test/.gitignore
+      create  test/.template
+      create  test/META.json
+      create  test/Makefile
+      create  test/README.md
+      create  test/doc/test.md
+      create  test/sql/test.sql
+      create  test/sql/uninstall_test.sql
+      create  test/test/expected/base.out
+      create  test/test/sql/base.sql
+
+$ cd test/
+$ pgxn bundle
+         run  make distclean from "."
+      create  /tmp/test-0.0.1.zip
+</code></pre>
+
+<p>I hope you enjoy this version. &ldquo;:)</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 15th, 2012 5:44pm </span>
+                                                          <span class="tag">pgxn</span>
+                                          <span class="tag">utils</span>
+                                          <span class="tag">automation</span>
+                                          <span class="tag">release</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

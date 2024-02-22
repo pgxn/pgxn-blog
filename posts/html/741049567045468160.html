@@ -1,0 +1,30 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1></h1>
+                    <h1>PGXN Tools Docker Image Updated</h1><p>Just a quick note to highlight some bug fixes and improvements in the <a href="https://github.com/pgxn/docker-pgxn-tools/">pgxn/pgxn-tools Docker image</a> in the last few weeks.</p><p><small>v1.4.0</small> adds the <small>GIT_BUNDLE_OPTS</small> and <small>ZIP_BUNDLE_OPTS</small> environment variables. The former is passed to <small>git archive</small> and the latter to <small>zip</small>, and let additional options be passed to those commands. For example, the <a href="https://pgxn.org/dist/vectorize/">vectorize extension</a>&rsquo;s <a href="https://github.com/tembo-io/pg_vectorize/blob/v0.9.0/.github/workflows/pgxn-release.yml">release workflow</a> sets <small>GIT_BUNDLE_OPTS: &ndash;add-file META.json</small> because git archive archives only checked-in files, and <small>META.json</small> is not checked in but <a href="https://github.com/tembo-io/pg_vectorize/blob/v0.9.0/Makefile#L17-L18">generated from </a><small><a href="https://github.com/tembo-io/pg_vectorize/blob/v0.9.0/Makefile#L17-L18">META.json.in</a></small>.</p><p><small>v1.4.1</small> <a href="https://github.com/pgxn/docker-pgxn-tools/commit/1114aed">fixes an issue</a> where <small>git archive</small> was never actually used to build a release zip archive. This changed at some point without noticing due to the introduction of the <small>safe.directory</small> configuration in recent versions of Git. Inside the container the directory was never trusted, and the <small>pgxn-bundle</small> command caught the error, decided it wasn&rsquo;t working with a Git repository, and used the zip command, instead.</p><p>As a result, a number of recent releases have included files they shouldn&rsquo;t, such as the contents of the <small>.git</small> directory. <a href="https://github.com/pgxn/docker-pgxn-tools/commit/1114aed">The fix</a> <a href="https://stackoverflow.com/a/73100228/79202">disables </a><small><a href="https://stackoverflow.com/a/73100228/79202">safe.directory</a></small> so that the repository directory is always trusted inside the container, as needed in GitHub actions.</p><p>If you use <small>pgxn-bundle</small> in a GitHub workflow, be aware that recent releases (since November 2021 at least) include stuff that it should not, including the .git directory (here&rsquo;s <a href="https://gist.github.com/theory/93c93571200aad02e93170c6d2c93cbe">a list</a>) and patterns excluded in .gitattributes. Your next release should be cleaner.</p><p><small>v1.4.1</small> also allows the setting of the <small>PROFILE</small> environment variable, so that the default <small>PROFILE=&ndash;Werror</small> can be overridden.</p><p>v1.4.2 adds (and v1.4.3 improves, see below) <small><a href="https://github.com/Kentzo/git-archive-all">git-archive-all</a></small> to the image, and the <small>GIT_ARCHIVE_CMD</small> environment variable to tell <small>pgxn-bundle</small> which archive command to use, either <small>archive</small> or <small>archive-all</small>. The latter is useful for repositories that use Git submodules and need to include their contents in the release, as demonstrated in <a href="https://github.com/plv8/plv8/pull/570/files#diff-4e4745c3f39dff4c307faf79bfa1242cc5ba2eb5947bebdcddc8d97eeb40685fR15">this plv8 pull request</a>.</p><p>v1.4.2 also adds <a href="https://cmake.org/">cmake</a> and the <small>libarchive-tools</small> package to the image. The latter bundles in <a href="http://libarchive.org/">libarchive</a> tools like <small>bsdtar</small> and <small>bsdcpio</small>, which might be useful for editing Zip files in place.</p><p>v1.4.3 passes the <small>&ndash;force-submodules</small> option to <small>git-archive-all</small>, because otherwise submodules weren&rsquo;t included in the bundle.</p><p>All of this should just start showing up in your GitHub workflows as long as they use <small>container: pgxn/pgxn-tools</small> or <small>container: pgxn/pgxn-tools@v1</small>.</p><p>Questions? Post em in the <a href="https://postgresteam.slack.com/archives/C056ZA93H1A">#extensions</a> channel on the <a href="https://pgtreats.info/slack-invite">Postgres Slack</a> or to the attention of the <a href="https://botsin.space/@pgxn">PGXN Mastodon bot</a>.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> January 31st, 2024 11:52am </span>
+                                                          <span class="tag">pgxn</span>
+                                          <span class="tag">docker</span>
+                                          <span class="tag">GitHub Actions</span>
+                                          <span class="tag">GitHub Workflows</span>
+                                          <span class="tag">release</span>
+                                          <span class="tag">bundle</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

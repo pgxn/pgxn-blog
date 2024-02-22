@@ -1,0 +1,132 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Creating Distributions</h1>
+                    <p>Following the <a href="http://blog.pgxn.org/post/1352326020/first-upload">upload of <code>pair</code></a> to PGXN, I wanted to take a few minutes to write about how to structure a PGXN distribution.</p>
+
+<h2>OMG Distribution WTF?</h2>
+
+<p>First of all, what is a &ldquo;distribution&rdquo; in the PGXN sense? Basically, it&rsquo;s a collection of one or more PostgreSQL extensions. That&rsquo;s it.</p>
+
+<p>So why allow more than one extension? Maybe no PGXN distribution will ever have more than one extension. After all, the goal should be many focused, minimalist tools that folks can combine in their apps. But sometimes it doesn&rsquo;t work out that way.</p>
+
+<p>As an example, I&rsquo;ve been planning to break <a href="http://pgtap.org/">pgTAP</a> up into two parts for a while: one for scalar and relational testing, the other for schema testing. Often one needs only the scalar and relational testing, while the schema testing is more often needed only for testing replication and whatnot. Whether or not I choose to distribute both parts in one package I have yet to determine, but it could well make sense to keep them in one distribution.</p>
+
+<p>Besides, I&rsquo;ve tried to write <a href="http://github.com/theory/pgxn-manager">PGXN::Manager</a> in such a way that it&rsquo;s not specific to PostgreSQL. So that if someone wanted to create a Drupal XN with it or something, they could. Or PyXN. Or, hell, even if <a href="http://cpan/org/">CPAN</a> wanted to switch someday, they could. (Note that I&rsquo;ve registered myxn.org for fun. I may or may not do anything with that, but see <a href="http://theory.github.com/mytap/">MyTAP</a>. Yes, I am insane.)</p>
+
+<h2>That&rsquo;s So Meta</h2>
+
+<p>Anyway, back to the structure of distributions. At its simplest, the only thing PGXN requires is a single file, <code>META.json</code>, which describes the package. This is (currently) the only file that PGXN Manager uses to index a distribution, so it&rsquo;s important to get it right. The <a href="http://pgxn.org/meta/spec.html">PGXN Meta Spec</a> has a rather complete example of a hypothetical pgTAP distribution <code>META.json</code>.</p>
+
+<p>If you have only one .sql file for your extension and it&rsquo;s the same name as the distribution (and I expect this would be common), then you can make it pretty simple. For example, the <code>pair</code> distribution has only one SQL file. So the <code>META.json</code> could be:</p>
+
+<pre><code>{
+   "name": "pair",
+   "abstract": "A key/value pair data type",
+   "version": "0.1.0",
+   "maintainer": "David E. Wheeler &lt;david@justatheory.com&gt;",
+   "license": "postgresql",
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+}
+</code></pre>
+
+<p>That&rsquo;s it. The only thing that may not be obvious from this example is that all version numbers in a <code>META.json</code> <em>must</em> be <a href="http://semver.org/">semantic versions</a>. If they&rsquo;re not, PGXN will make them so. So &ldquo;1.2&rdquo; will become &ldquo;1.2.0&rdquo;, and so would &ldquo;1.02&rdquo;. So do try to use semantic versions and not worry about it.</p>
+
+<p>In the short run, you won&rsquo;t need anything more in your <code>META.json</code> file. But once I get to creating the search site and the command-line client for PGXN, you&rsquo;re probably going to want to do more. Other useful keys to include are:</p>
+
+<ul>
+<li><a href="http://pgxn.org/meta/spec.html#tags"><code>tags</code></a>: An array of tags to associate with a distribution. Will help with searching.</li>
+<li><a href="http://pgxn.org/meta/spec.html#prereqs"><code>prereqs</code></a>: A list of prerequisite extensions or PostgreSQL contrib moules (or PostgreSQL itself).</li>
+<li><a href="http://pgxn.org/meta/spec.html#provides"><code>provides</code></a>: A list of included extensions. Useful if you have more than one or the one has a different name that the distribution (silly, but it happens). It also will index such extension names such that you are the owner, if you&rsquo;re the first to update one with that name.</li>
+<li><a href="http://pgxn.org/meta/spec.html#release_status"><code>release_status</code></a>: To label a distribution as &ldquo;stable,&rdquo; &ldquo;unstable,&rdquo; or &ldquo;testing.&rdquo; Useful for uploading distributions for people to test but that clients won&rsquo;t install by default.</li>
+<li><a href="http://pgxn.org/meta/spec.html#resources"><code>resources</code></a>: A list of related links, such as to an SCM repository or bug tracker. The search site will output these links.</li>
+</ul>
+
+<p>Have a look at <a href="http://github.com/theory/kv-pair/blob/master/META.json">the <code>META.json</code> in the <code>pair</code> distribution</a> for a more extended example.</p>
+
+<h2>New Order</h2>
+
+<p>For PGXN, the general idea is that you&rsquo;ll use <a href="http://www.postgresql.org/docs/9/static/xfunc-c.html#XFUNC-C-PGXS">PGXS</a> to create your PostgreSQL extensions. I&rsquo;m hoping to encourage a slight modification of the directory layout for PGXN distributions, but as I hope I&rsquo;ve made clear so far, PGXN itself doesn&rsquo;t really care how you structure things, or if you use PGXS. That said, the proposed <a href="http://wiki.postgresql.org/wiki/PGXN#PGXN_Client">download and installation client</a> will assume the use of PGXS (unless and until the PostgreSQL core adds some other kind of extension-building support), so it&rsquo;s probably the best choice.</p>
+
+<p>Most PGXS-powered distributions have the code files in the main directory, with documentation in a <code>README.extension_name</code> file. What I&rsquo;d like to see instead, and will encourage via the forthcoming <a href="http://wiki.postgresql.org/wiki/PGXN#Search_Site">search site</a>, is that things be organized into subdirectories:</p>
+
+<ul>
+<li><code>src</code> for any C source code files</li>
+<li><code>sql</code> for SQL source files. These usually are responsible for installing an extension into a database</li>
+<li><code>doc</code> for documentation files (the search site will likely look there for Markdown, Textile, HTML, and other document formats)</li>
+<li><code>test</code> for tests</li>
+</ul>
+
+<p>I&rsquo;ve tried to make the <code>pair</code> distribution a good <a href="http://github.com/theory/kv-pair/blob/">example of this</a>.  To make it all work, The <a href="http://github.com/theory/kv-pair/blob/master/Makefile">Makefile</a> is written like so:</p>
+
+<pre><code>DATA = sql/pair.sql sql/uninstall_pair.sql
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test
+DOCS = doc/pair.txt
+
+ifdef NO_PGXS
+top_builddir = ../..
+include $(top_builddir)/src/Makefile.global
+include $(top_srcdir)/contrib/contrib-global.mk
+else
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+endif
+</code></pre>
+
+<p>The <code>DATA</code> variable identifies the files containing the extension, while <code>TESTS</code> loads a list of all the tests, which are in the <code>test/sql</code> directory. Note that I&rsquo;m using <code>pg_regress</code> for tests. It expects that tests be named and that there be corresponding &ldquo;expected&rdquo; files to compare against. With the <code>REGRESS_OPTS = --inputdir=test</code> line, I&rsquo;m telling <code>pg_regess</code> to find the test files in <a href="http://github.com/theory/kv-pair/tree/master/test/sql/"><code>test/sql</code></a> and the expected output files in <a href="http://github.com/theory/kv-pair/tree/master/test/expected/"><code>test/expected</code></a>. And finally, the <code>DOCS</code> variable points to a single file with the documentation, <a href="http://github.com/theory/kv-pair/blob/master/doc/pair.txt"><code>doc/pair.txt</code></a>. If this extension had required any C code (like <a href="http://pgtap.org/">pgTAP</a> or <a href="http://postgis.org/">PostGIS</a> do), I would have pointed the <code>MODULES</code> variable at files in a <code>src</code> directory.</p>
+
+<p>After that we just have build instructions. If called with <code>make NO_PGXS=1</code>, it assumes that the unzipped distribution directory has been put in the &ldquo;contrib&rdquo; directory of the PostgreSQL source tree used to build PostgreSQL. That&rsquo;s probably only important if one is installing on PostgreSQL 8.1 or lower. Otherwise, it assumes a plain <code>make</code> and uses the <a href="http://www.postgresql.org/docs/current/static/app-pgconfig.html"><code>pg_config</code></a> in your path to find PGXS to do the build.</p>
+
+<p>For more on PostgreSQL extension building support, please consult <a href="http://www.postgresql.org/docs/9/static/xfunc-c.html#XFUNC-C-PGXS">the documentation</a>.</p>
+
+<h2>Zip Me Up</h2>
+
+<p>Once you&rsquo;ve got your extension developed and well-tested, and your distribution just right and the <code>META.json</code> file all proof-read and solid, it&rsquo;s time to upload the distribution to PGXN. What you want to do is to zip it up to create a distribution archive. Here&rsquo;s what I did for <code>pair</code>, exporting it from Git:</p>
+
+<pre><code>git checkout-index -af --prefix ~/Desktop/pair-0.1.0/
+cd ~/Desktop/
+rm pair-0.1.0/.gitignore
+zip -r pair-0.1.0.zip pair-0.1.0
+</code></pre>
+
+<p>Then the <code>pair-0.1.0.zip</code> file was ready to upload. Simple, eh?</p>
+
+<p>Now, one can upload any kind of archive file to PGXN, including a tarball, or bzip2…um…ball? Basically, any kind of archive format recognized by <a href="http://search.cpan.org/perldoc?Archive::Extract">Archive::Extract</a>. You can upload a <code>.pgz</code> if you like, in which case PGXN will assume that it&rsquo;s a zip file. A zip file is best because then PGXN::Manager won&rsquo;t have to rewrite it. It&rsquo;s also preferable that everything be unpacked from an archive into a directory with the name <code>$distribution-$version</code>. If not, PGXN will rewrite it to do so. But it saves the server some effort if all it has to do is move a .zip file that&rsquo;s properly formatted, so it would be appreciated if you would upload stuff that&rsquo;s already nicely formatted for distribution in a zip archive.</p>
+
+<h2>Release It!</h2>
+
+<p>And that&rsquo;s it! Not too bad, eh? Just please do be very careful cutting and pasting examples; I initially uploaded the <code>pair</code> distribution thinking that it contained pgTAP. It was kind of a PITA to fix. Hopefully we&rsquo;ll be able to build things up to the point where a lot of this stuff can be automated (especially the creation of the <code>META.json</code>), but for now it&rsquo;s done by hand. So be careful out there, and good luck!</p>
+
+<p>Oh, and if you have an extension that you&rsquo;d like to release on PGXN now, I am running a limited beta for interested extension developers. Please hit the <a href="http://groups.google.com/group/pgxn-users/">mail list</a> for the details to be posted shortly.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> October 19th, 2010 6:28pm </span>
+                                                          <span class="tag">distribution</span>
+                                          <span class="tag">Makefile</span>
+                                          <span class="tag">PGXN</span>
+                                          <span class="tag">PGXS</span>
+                                          <span class="tag">pg_config</span>
+                                          <span class="tag">pg_regress</span>
+                                          <span class="tag">directory structure</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

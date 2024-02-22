@@ -1,0 +1,123 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Extension Makefiles for PostgreSQL 9.1</h1>
+                    <p>In order to keep distribution packaging as simple as possible, I worked up this <code>Makefile</code> some time ago:</p>
+
+<pre><code>DATA = $(wildcard sql/*.sql)
+DOCS = $(wildcard doc/*.txt)
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test --load-language=plpgsql
+MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
+
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+</code></pre>
+
+<p>The nice thing about this code is that it has nothing specific to a distribution in it. It figures out what SQL files there are, what doc files there are, and what C files need compiling by just looking in the <code>sql</code>, <code>doc</code>, and <code>src</code> directories, respectively. It also specifies that tests are in the <code>test</code> directory. About the only thing I&rsquo;ve customized here is adding <code>--load-language=plpgsql</code> to <code>REGRESS_OPTS</code>, as the tests for the distribution I&rsquo;ve copied this from require PL/pgSQL to run. Simple, and anyone can use it with very little need to tweak it, as long as they don&rsquo;t mind storing their files in the specified directories.</p>
+
+<p>Today, I&rsquo;m updating my distributions to support PostgreSQL 9.1&rsquo;s new <code>CREATE EXTENSION</code> syntax, but I want to continue supporting older versions of PostgreSQL, as well. Basically, this means that the files listed in the <code>DATA</code> variable vary based on the version of PostgreSQL you&rsquo;re installing against. Here are the additional things the <code>Makefile</code> needs to do:</p>
+
+<ul>
+<li>If installing against PostgreSQL less than version 9.1, exclude files in <code>DATA</code> that contain <code>--</code>. Such files are are migration scripts, which aren&rsquo;t supported before 9.1.</li>
+<li>If installing against PostgreSQL greater than or equal to 9.1:
+
+<ul>
+<li>Copy the files <code>sql/$EXTENSION.sql</code> and <code>sql/$EXTENSION--unpackaged.sql</code> to <code>sql/$EXTENSION--$EXTVERSION.sql</code> and <code>sql/$EXTENSION--npackated--$EXTVERSION.sql</code>, respectively. <code>CREATE EXTENSION</code> requires that the version string be in migration file name. I&rsquo;d rather not have to rename the file in my repository before every release (and I&rsquo;d rather keep it without the version for &lt; 9.1 anyway), so it needs to be copied.</li>
+<li>Add the new <code>sql/$EXTENSION--$VERSION.sql</code> file to <code>EXTRA_CLEAN</code>.</li>
+<li>Include only files in <code>DATA</code> that contain <code>--</code>. There&rsquo;s no need to install the original file without the version number, or any uninstall file, either, since it&rsquo;s not needed on 9.1 anymore.</li>
+</ul></li>
+</ul>
+
+<p>I&rsquo;ve been trying to figure out how to modify my standard <code>Makefile</code> to support these changes, without requiring a lot of tweaking, so that other folks can easily use it in the future. Thanks to help from <a href="http://people.planetpostgresql.org/andrew/">Andrew Dunstan</a>, this is what I&rsquo;ve come up with:</p>
+
+<pre><code>EXTENSION=semver
+EXTVERSION=0.2.2
+
+DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
+DOCS = $(wildcard doc/*.txt)
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test --load-language=plpgsql
+MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
+
+PG_CONFIG = pg_config
+
+VERSION     = $(shell $(PG_CONFIG) --version | awk '{print $$2}')
+PGVER_MAJOR = $(shell echo $(VERSION) | awk -F. '{ print ($$1 + 0) }')
+PGVER_MINOR = $(shell echo $(VERSION) | awk -F. '{ print ($$2 + 0) }')
+
+ifeq ($(PGVER_MAJOR), 9)
+ifneq ($(PGVER_MINOR), 0)
+all: sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
+
+sql/$(EXTENSION)--$(EXTVERSION).sql: sql/$(EXTENSION).sql
+    cp $&lt; $@
+
+sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql: sql/$(EXTENSION)--unpackaged.sql
+    cp $&lt; $@
+
+DATA = $(filter-out sql/$(EXTENSION)--unpackaged.sql,$(wildcard sql/*--*.sql)) sql/$(EXTENSION)--$(EXTVERSION).sql
+EXTRA_CLEAN = sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
+endif
+endif
+
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+</code></pre>
+
+<p>This is not exactly ideal, but not <em>too</em> bad. It&rsquo;s not quite the drop-in version we had before, because now the first line needs to name the extension we&rsquo;re distributing, and the second needs to specify the version (and would then need to be updated for every release). Maybe they could be read from the control file somehow? Other than that, you should be able to just forget the rest of the file (mostly). Here&rsquo;s how it addresses the above requirements:</p>
+
+<ul>
+<li><p>To exclude files with <code>--</code> in them on &lt; 9.1, the first <code>DATA</code> line filters them out:</p>
+
+<pre><code>DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
+</code></pre></li>
+<li><p>Next, we need to know if we&rsquo;re on 9.1 or higher. So we use <code>pg_config --version</code> to get the version number and some <code>awk</code> stuff to get the major and minor parts. Then, if the major version is 9 and the minor is <em>not</em> 0, we:</p>
+
+<ul>
+<li>Add <code>sql/$(EXTENSION)--$(EXTVERSION).sql</code> and <code>sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql</code> as dependencies of the <code>all</code> rule (which is the default PGXS rule).</li>
+<li>Add the <code>sql/$(EXTENSION)--$(EXTVERSION).sql</code> and  <code>sql/$(EXTENSION)--unpackated--$(EXTVERSION).sql</code> rules, which copy <code>sql/$(EXTVERVERSION).sql</code> and <code>sql/$(EXTVERVERSION)--unpackaged.sql</code> files. Of course this assumes that such files exist.</li>
+<li>Add <code>sql/$(EXTENSION)--$(EXTVERSION).sql</code> and <code>sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql</code> to <code>EXTRA_CLEAN</code>, so that they&rsquo;ll be deleted by <code>make clean</code>.</li>
+<li>Set <code>DATA</code> again, this time to include <em>only</em> files with <code>--</code> in them, except for <code>sql/$(EXTENSION)--unpackaged.sql</code>.</li>
+</ul></li>
+</ul>
+
+<p>And with that, it works. But it has some disadvantages over the previous, very simple <code>Makefile</code> I&rsquo;ve been using up to now:</p>
+
+<ul>
+<li>One must modify it for every release, if only to set <code>EXTVERSION</code>.</li>
+<li>It relies more on Unix tools than previously, specifically <code>awk</code>. I&rsquo;m not sure how big a deal this is in practice; the <a href="https://github.com/theory/pgtap/blob/master/Makefile">pgTAP Makefile</a> has been relying on <code>awk</code> an even worse gymnastics for some time and no one has complained.</li>
+<li>It&rsquo;s not perfectly future-proof. It will need to be modified when PostgreSQL 10.0.0 is released, and again when 11.0.0 is released.</li>
+<li>It won&rsquo;t handle a distribution with multiple extension in it. I don&rsquo;t even want to think about that.</li>
+</ul>
+
+<p>Suggestions for ways to eliminate these shortcomings would be greatly appreciated, especially if it allows use extension authors to get back to something as simple as the first example at the top of this post.</p>
+
+<p><strong>UPDATE:</strong> Added the <code>unpackaged</code> bits I didn&rsquo;t realize I needed until after I&rsquo;d released a new version of <a href="http://pgxn.org/dist/semver/">semver</a> and discovered that the &ldquo;unpackaged&rdquo; script needs to always be tied to the default version.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 20th, 2011 3:29pm </span>
+                                                          <span class="tag">extension</span>
+                                          <span class="tag">Makefile</span>
+                                          <span class="tag">make</span>
+                                          <span class="tag">PGXS</span>
+                                          <span class="tag">pg_config</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

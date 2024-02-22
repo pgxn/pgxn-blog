@@ -1,0 +1,78 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Lose USE_PGXS in your Makefiles</h1>
+                    <p>Traditionally, folks have created extensions for PostgreSQL by copying one of the <a href="http://www.postgresql.org/docs/current/static/contrib.html">contrib modules</a> and hacking it into something new. One of the things that comes along for the ride is the <code>Makefile</code> (<a href="http://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD">example</a>). As a result, there are a lot of third-party extensions that use the <code>USE_PGXS</code> variable.</p>
+
+<p>A bit of background. The core contrib extensions generally rely on a relative path to include the core <code>Makefile</code>s needed to build the extension. Because they ship with the core distribution, they can generally expect that the core has already been compiled, the necessary <code>Makefile</code>s have been created, and that they should be built against them. All the assumptions are that the extensions should be built against the source tree in which they are distributed. So there is no need to use <a href="http://www.postgresql.org/docs/current/static/app-pgconfig.html"><code>pg_config</code></a> to find  <a href="http://www.postgresql.org/docs/current/static/extend-pgxs.html">PGXS</a>; it already knows where to find what it needs.</p>
+
+<p>But as extensions, there is still the possibility that one might want to build them against an existing installation of PostgreSQL, or an older version than the source with which they&rsquo;re distributed. So the core hackers provided the <code>USE_PGXS</code> variable so that one can in effect tell <code>make</code>, &ldquo;Don&rsquo;t build against the local source tree, but find PGXS for some other install and build against that, instead.&rdquo; It was expected to be exceptional, since most folks would build against the local source tree, and not a big deal to make anyone else build it with:</p>
+
+<pre><code>make USE_PGXS=1
+</code></pre>
+
+<p>Today things are different. There is a growing ecosystem of third party extensions on <a href="http://pgxn.org/">PGXN</a>, <a href="http://pgfoundry.org/">pgFoundry</a>, <a href="http://github.com/">GitHub</a>, and <a href="https://bitbucket.org/">Bitbucket</a>, and obviously they&rsquo;re not distributed with the PostgreSQL core. For these extensions, there is no surrounding PostgreSQL source code to automatically include, so they <em>must</em> use <code>pg_config</code> to find PGXS in order build.</p>
+
+<p>Yet, there are quite a few third-party extensions that nevertheless assume that they are in the <code>contrib</code> directory of the PostgreSQL source code distribution, and so still have the <code>USE_PGXS</code> variable. The <a href="http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.0/Makefile">twitter_ftw 1.0.0 <code>Makefile</code></a> is a recent example. Just like core extensions, it has this code:</p>
+
+<pre><code>ifdef USE_PGXS
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+else
+subdir = contrib/twitter_fdw
+top_builddir = ../..
+include $(top_builddir)/src/Makefile.global
+include $(top_srcdir)/contrib/contrib-global.mk
+endif
+</code></pre>
+
+<p>Because Hitoshi-san originally copied the <code>Makefile</code> from a core extension, it still assumes it will be distributed in core by default. And as I said, there are quite a few third-party extensions that exhibit this pattern.</p>
+
+<p>And now the <a href="http://en.wikipedia.org/wiki/Public_service_announcement">PSA</a>: <strong>Please don&rsquo;t use <code>USE_PGXS</code> in PostgreSQL extension <code>Makefile</code>s.</strong></p>
+
+<p>Not only is it unnecessary, it makes no sense for third-party extensions. They should <em>always</em> assume that they need to use <code>pg_config</code> to find PGXS. If you have an extension <code>Makefile</code> with <code>USE_PGXS</code> like twitter_ftw 1.0.0 did, you should change it to something like this (as Hitoshi-san did in the <a href="http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.1/Makefile">twitter_ftw 1.0.1 <code>Makefile</code></a>):</p>
+
+<pre><code>PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+</code></pre>
+
+<p>That&rsquo;s it. I am asking you to <em>make your <code>Makefile</code> simpler.</em></p>
+
+<hr>
+
+<p><em>An Aside</em></p>
+
+<p>There is <em>one</em> situation in which you might need to include the core contrib <code>Makefile</code>s. And it&rsquo;s pretty unusual. If you need to support PostgreSQL 8.1 or earlier, <code>pg_config</code> will not be able to tell you where to find PGXS. So users will have to copy the exension source directory into the PostgreSQL source <code>contrib/</code> directory and build from there. They will need a way to tell <code>make</code> <em>not</em> to use PGXS. In this one unusual case, I suggest you add a <code>NO_PGXS</code> variable. <a href="http://api.pgxn.org/src/pgtap/pgtap-0.90.0/Makefile">pgTAP&rsquo;s <code>Makefile</code></a> provides an example. But honestly, very few extensions need to support PostgreSQL 8.1 (the oldest release currently supported by the core hackers is <em>8.3!</em>), so make use of this pattern only if absolutely necessary.</p>
+
+<p>Otherwise, please don&rsquo;t use <code>USE_PGXS</code>.</p>
+
+<hr>
+
+<p>If you want a complete guide to creating your extension <code>Makefile</code>, have a look at the <a href="http://manager.pgxn.org/howto">PGXN Howto</a>, which includes some detailed examples that include support for pre- and post-<a href="http://www.postgresql.org/docs/current/static/sql-createextension.html"><code>CREATE EXTENSION</code></a> support. The <a href="http://www.postgresql.org/docs/current/static/extend-pgxs.html">PGXS</a> docs contain additional details about all the <code>Makefile</code> variables you can use to simplify extension configuration and installation. Check ’em out.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 11th, 2012 12:36pm </span>
+                                                          <span class="tag">extension</span>
+                                          <span class="tag">USE_PGXS</span>
+                                          <span class="tag">Makefile</span>
+                                          <span class="tag">make</span>
+                                          <span class="tag">pg_config</span>
+                                          <span class="tag">contrib</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

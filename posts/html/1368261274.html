@@ -1,0 +1,54 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Reserved Extensions</h1>
+                    <p>I&rsquo;m thinking about how to add support for reserved extensions. These are extensions that one needs to depend on, but aren&rsquo;t distributed via PGXN. Primarily, this means stuff distributed with the PostgreSQL core, including:</p>
+
+<ul>
+<li>PostgreSQL itself</li>
+<li>Bundled procedural languages (plpgsql, plperl, etc.)</li>
+<li>All <a href="http://www.postgresql.org/docs/current/static/contrib.html">contributed modules</a></li>
+</ul>
+
+<p>Basically, anything that an extension might want to declare as a dependency, but that isn&rsquo;t on PGXN itself.</p>
+
+<p>There are a number of ways to do this. Which do you think would be the best approach?</p>
+
+<ol>
+<li>Hard-code a list into the source code</li>
+<li>Include an editable list in the runtime configuration file</li>
+<li>Add a database table reserved for them and an API to edit it</li>
+<li>Create a &ldquo;pgdev&rdquo; user and upload a distribution declaring all those extensions in a <code>META.json</code> file</li>
+<li>Same as 4, but actually upload the PostgreSQL source</li>
+</ol>
+
+<p>I&rsquo;m leaning towards #2, perhaps having it automatically maintain a list in the database and a metdata file on the mirrors.</p>
+
+<p>But what do you think? Opinions wanted!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> October 21st, 2010 4:43pm </span>
+                                                          <span class="tag">reserved words</span>
+                                          <span class="tag">reserved extensions</span>
+                                          <span class="tag">extensions</span>
+                                          <span class="tag">PostgreSQL</span>
+                                          <span class="tag">procedural languages</span>
+                                          <span class="tag">plpgsql</span>
+                                          <span class="tag">plperl</span>
+                                          <span class="tag">contributed modules</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

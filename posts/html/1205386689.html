@@ -1,0 +1,58 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Account Requests and Moderation</h1>
+                    <p>Last week I created the <a href="http://github.com/theory/pgxn-manager" title="PGXN Manager repository on GitHub">PGXN Manager</a> interface for requesting a PGXN user account. It looks like this:</p>
+
+<p><img src="../../media/1205386689_3.png" alt=""/></p>
+
+<p>I really like the placeholder support in HTML 5, here nicely rendered by Safari. I&rsquo;ve also used the jQuery <a href="http://docs.jquery.com/Plugins/Validation">Validation plugin</a> to validate the form fields. So if you try to submit an incomplete form, it will complain before submitting, like so:</p>
+
+<p><img src="../../media/1205386689_3.png" alt=""/></p>
+
+<p>The back end does similar validation if you have JavaScript disabled, so it should degrade nicely. I think I might add a Twitter field so <a href="http://twitter.com/pgxn">@pgxn</a> can credit users for their uploads, but otherwise this is done.</p>
+
+<p>As with <a href="https://pause.perl.org/" title="The [Perl programming] Authors Upload Server">PAUSE</a>, an administrator must accept it or reject an account request. Once your account is approved (likely unless you&rsquo;re a spammer), you&rsquo;ll be able to upload distributions (I&rsquo;m going to do that part today). I finished the user admin interface yesterday. Here&rsquo;s a screen snap:</p>
+
+<p><img src="../../media/1205386689_3.png" alt="PGXN User Administration"/></p>
+
+<p>Some details. PGXN Manager will be hosted at <code><a href="http://manager.pgxn.org/">http://manager.pgxn.org/</a></code>. It uses basic auth for authentication; logged-in users will access <code><a href="https://manager.pgxn.org/auth">https://manager.pgxn.org/auth</a></code>. Administrators will have an extra menu item to this screen, which will allow them to accept or reject account requests. Its URI is <code>/auth/admin/moderate</code>. The admin can click the &ldquo;Play&rdquo; button to see the requestor&rsquo;s note explaining why he should get an account. It&rsquo;s a popover enabled by some jQuery code and looks like this:</p>
+
+<p><img src="../../media/1205386689_3.png" alt=""/></p>
+
+<p>Once an admin has read the request, she can accept it by clicking the blue checkmark icon, or reject it by clicking the red minus icon. The former links to <code>/auth/admin/accept/{nickname}</code> and the latter to <code>/auth/admin/reject/{nickname}</code>. The submits are done by jQuery async requests by default, but if you have JavaScript disabled they will submit as usual and the back end will process the request and simply redirect to the moderation screen.</p>
+
+<p>This works very well, I think. It&rsquo;s an attractive interface and degrades reasonably well. (Well, you can&rsquo;t read the request details if you have JavaScript disabled, but the requests work nicely). The jQuery code fades out a row after it has been accepted or rejected, so it&rsquo;s easy for an admin to do a bunch of moderation all at once. And finally, the interface is driven by the URLs, so I think it&rsquo;s pretty restful. The only ones I&rsquo;m not sure about are the accept/reject URLs, because they have action names in them (&ldquo;accept&rdquo; and &ldquo;reject&rdquo;). Is that RESTful? Or should they use GET query strings or something?</p>
+
+<p>Okay, on to the upload interface. Wish me luck!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> September 28th, 2010 2:47pm </span>
+                                                          <span class="tag">account</span>
+                                          <span class="tag">request</span>
+                                          <span class="tag">moderation</span>
+                                          <span class="tag">accept</span>
+                                          <span class="tag">reject</span>
+                                          <span class="tag">user</span>
+                                          <span class="tag">administrator</span>
+                                          <span class="tag">jquery</span>
+                                          <span class="tag">validation</span>
+                                          <span class="tag">UE</span>
+                                          <span class="tag">UI</span>
+                                          <span class="tag">degrade</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

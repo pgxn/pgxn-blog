@@ -1,0 +1,55 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Using JSONP Callbacks</h1>
+                    <p>Using the new <a href="https://github.com/pgxn/pgxn-api/wiki/JSONP">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href="http://www.justatheory.com/" title="Just a Theory">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>
+
+<pre><code>&lt;div class="links"&gt;
+    &lt;h2&gt;PGXN Code&lt;/h2&gt;
+    &lt;script type="text/javascript"&gt;
+    function pgxn_distros(data) {
+        document.write('&lt;dl&gt;');
+        for (dist in data.releases) {
+            document.write(
+                '&lt;dt&gt;&lt;a href=http://pgxn.org/dist/' + dist +
+                '&gt;' + dist + '&lt;/a&gt;&lt;/dt&gt;' +
+                '&lt;dd&gt;' + data.releases[dist].abstract + '&lt;/dd&gt;'
+            );
+        }
+        document.write('&lt;/dl&gt;');
+    }
+  &lt;/script&gt;
+  &lt;script type="text/javascript"
+     src="http://api.pgxn.org/user/theory.json?callback=pgxn_distros"&gt;
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>And the output looks like this:</p>
+
+<p><img src="../../media/1205386689_3.png" alt="PGXN Code"/></p>
+
+<p>Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files served by the JSON API. Try that, CPAN!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> May 12th, 2011 11:58pm </span>
+                                                          <span class="tag">jsonp</span>
+                                          <span class="tag">callback</span>
+                                          <span class="tag">blog</span>
+                                          <span class="tag">JSON</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

@@ -1,0 +1,35 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Distribution Name Constraint</h1>
+                    <p>Following <a href="http://groups.google.com/group/pgxn-users/browse_thread/thread/4528b2a02e8886ff">a pgxn-users discussion</a>, I&rsquo;m looking at adding a constraint on the names distributions can have. I&rsquo;m thinking this:</p>
+
+<pre><code>CEATE DOMAIN namespace AS CITEXT
+CHECK ( VALUE ~ '^[-a-z0-9_]{2,}$' );
+</code></pre>
+
+<p>So, just ASCII numbers and letters, dash, and underscore, with a minimum length of two characters. Maybe <code>,</code> and <code>+</code> should be allowed, too? What do you think? What constraints do you expect on distribution download file names?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> May 4th, 2011 4:42pm </span>
+                                                          <span class="tag">distribution name</span>
+                                          <span class="tag">constraint</span>
+                                          <span class="tag">domain</span>
+                                          <span class="tag">ascii</span>
+                                          <span class="tag">file name</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

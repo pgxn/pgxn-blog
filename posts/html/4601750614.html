@@ -1,0 +1,61 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>It's Finally Up: The New PGXN Site!</h1>
+                    <p>I&rsquo;m pleased to announce that the new <a href="http://pgxn.org/">PGXN SITE</a> went live last night. Some of the things it does:</p>
+
+<ul>
+<li>Full text search of all documentation, distribution metadata and <code>README</code>s, extensions metadata, and users</li>
+<li>list of the 56 most recent uploads</li>
+<li>Find users by first letter of nickname (mostly so search spiders can drill down to all site content)</li>
+<li>A tag cloud with the 56 most commonly-used tags (they&rsquo;re all the same size and color right now because each one is used only once at the moment)</li>
+<li>Pages for users (<a href="http://pgxn.org/user/alexk">example</a>)</li>
+<li>Pages for distributions, with inlined <code>README</code> (<a href="http://pgxn.org/dist/explanation/">example</a>)</li>
+<li>Browse unzipped distributions (<a href="http://api.pgxn.org/src/semver/semver-0.2.0/">example</a>)</li>
+<li>Pages for documentation (<a href="http://pgxn.org/dist/explanation/doc/explanation.html">example</a>)</li>
+<li>Permalinks for extensions <a href="http://pgxn.org/extension/pair">example</a>)</li>
+</ul>
+
+<p>The entire site is backed by the <a href="http://api.pgxn.org/">API Server</a>, which is mainly composed of static JSON and HTML files read by the site back end from the local file system. So the site is quite fast. Please browse around, let me know what you think, and please <a href="https://github.com/pgxn/pgxn-site/issues">report any bugs</a> you find.</p>
+
+<p>There are a few more things left to do on my list:</p>
+
+<ul>
+<li>Add pages for users who don&rsquo;t yet have distributions on the network.</li>
+<li>Convert the localization interface to <code>gettext</code> and solicit translations.</li>
+<li>Document the API; might lead to some changes as I run across inconsistencies.</li>
+<li>Add an Atom feed of recent releases.</li>
+<li>Add aliases for <code>$nickname@pgxn.org</code> addresses, to forward to personal addresses; this way we can just publish pgxn.org addresses.</li>
+<li>Write documentation on how to optimize distributions for optimal exposure on PGXN.</li>
+<li>Consider changing the Permalink URL to something shorter. Suggestions?</li>
+</ul>
+
+<p>If you&rsquo;d liked to help out with any of these tasks, just let me know. Better yet, grab the source from <a href="http://github.org/pgxn/">GitHub</a> and just hack!</p>
+
+<p>Oh, and speaking of the source, I would <em>really</em> appreciate a code review or four. Although I have solicited advice on key questions fro people more knowledgeable than I (thanks Aristotle, Miyagawa, Andreas, Graham), the code is entirely my own. More eyes will be a huge help!</p>
+
+<p>Tomorrow I&rsquo;ll blog a bit about the architecture for the network. I&rsquo;m quite happy with it.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 14th, 2011 2:32am </span>
+                                                          <span class="tag">site</span>
+                                          <span class="tag">launch</span>
+                                          <span class="tag">final</span>
+                                          <span class="tag">awesome</span>
+                                          <span class="tag">api</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

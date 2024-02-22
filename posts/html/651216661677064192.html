@@ -1,0 +1,28 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1></h1>
+                    <h1>A Few Belated PGXN Updates</h1><p>The last couple weeks I&rsquo;ve returned to PGXN and made a few updates. Nothing huge, but all long overdue.</p><p>First up, <a href="https://manager.pgxn.org">PGXN Manager</a> is all TSL now. No public HTTP-only site. What started as a convenient division of labor (http for the public site and https for the authenticated site) turned out to be quite irksome — especially since some browsers wouldn&rsquo;t load the non-TLS site at all anymore. So I did away with it, and now it&rsquo;s all TLS, authenticated and not. (The API and search sites have been TLS for a while now.)</p><p>I also fixed a few long-standing bugs in PGXN Manager, most of which weren&rsquo;t visible to end-users, but have annoyed me over the years. A few silly server errors, some instances of uploads failing for anything other than zip files, that sort of thing.</p><p>Oh, and if you&rsquo;re a extension author, PGXN Manger now allows updates to old distribution versions to be uploaded. Previously it only allowed a new version to be greater than all previous versions. Now it will allow a new X.Y.Z version if X.Y previously existed and the new .Z is greater, and a new X.Y version if X previously existed and the new .Y is greater than any previous X.Y. To get this to work properly, I also dropped the check for versions of extensions in the uploaded files. It would just be too complicated to add a bunch of rules more likely to annoy than not. So it now only enforces patterns for distribution release versions. I trust extension authors not to then lower extension versions on new releases — that would just be silly, and not helpful to your users.</p><p>As part of this work, I also revamped the management of the PGXN server. Back in 2010 I wrote Capistrano files to manage the server, but have long ceased to use them, as they ceased to work. I&rsquo;ve now removed all that detritus from the PGXN Manager, API, and Site repositories, and replaced them all with a single new repository, <a href="https://github.com/pgxn/pgxn-ops">pgxn-ops</a>, which contains Ansible playbooks to manage all the services. They don&rsquo;t deal with a lot of the server-side stuff, which depsz handles separately, but they now make it much easier to build and deploy a new release, restart it remotely, manage passwords, etc.</p><p>And finally, I&rsquo;ve updated the <a href="https://pgxn.org/">PGXN search site</a>. In addition to fixing a few long-standing minor annoyances (borders around images linked in documentation, broken links, etc.), I also updated most of the graphics to be retina-friendly. So it should look a lot sharper on your hi-res screens now. Check it out!</p><p>Next up I think I&rsquo;d like to make the search site more mobile-friendly, and then perhaps I&rsquo;ll finally go back and attack the terrible search provided by the API. I&rsquo;ll try to do it in less than five years this time.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> May 14th, 2021 11:16pm </span>
+                                                          <span class="tag">pgxn</span>
+                                          <span class="tag">upgrade</span>
+                                          <span class="tag">tls</span>
+                                          <span class="tag">retina</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

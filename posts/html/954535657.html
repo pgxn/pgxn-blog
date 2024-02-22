@@ -1,0 +1,141 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Thoughts on the Network Directory Structure</h1>
+                    <p>I&rsquo;ve been thinking about the arrangement of stuff to be distributed to the mirrors. In doing so, I&rsquo;ve kept three goals in mind:</p>
+
+<ol>
+<li>Allow things to scale.</li>
+<li>Try to put things in intuitive locations.</li>
+<li>Allow for metadata to be stored to act as a Web API.</li>
+</ol>
+
+<p>The first two are a bit mutually-contradicting. Thinking scalability mainly means minimizing the chances that too many files can be put into a single directory. <a href="http://www.cpan.org/misc/ZCAN.html" title="Zen of Comprehensive Archive Networks (look for “Naming”)">CPAN</a> started out with all author directories in a single directory. Given the sheer number of CPAN contributors, this quickly got to be a bottleneck. To correct for that, they started &ldquo;hashing&rdquo; the first two letters of author names to create subdirectories. My CPAN directory, for example, is <a href="http://www.cpan.org/authors/id/D/DW/DWHEELER/"><code>D/DW/DWHEELER</code></a>. That doesn&rsquo;t quite make for an intuitive location, but it&rsquo;s not bad, and the tradeoff seems sufficient to keep things sane.</p>
+
+<p>The storage of metadata is important, too, as I plan to have the <a href="http://pgxn.org/status.html#client">client</a> send requests for JSON files to mirrors in order to find distributions. Basically, this came down to a naming convention, as well as a recipe for how to find metadata files for people and extensions. What I&rsquo;ve come up with is three directories:</p>
+
+<ul>
+<li><code>meta</code> will contain PGXN metadata</li>
+<li><code>dist</code> will contain distributions</li>
+<li><code>by</code> will contain query-able JSON files</li>
+</ul>
+
+<p>The <code>meta</code> directory will contain PGXN metadata (<code>mirrors.json</code>, timestamp, other detritus). If I ever create an index file that lists all distributions, it would go there, too. I&rsquo;m not going to discuss it any further here, except to note that it already has <code>mirrors.json</code>, which clients will be able to use to present users with a list of mirrors to choose from.</p>
+
+<p>The <code>dist</code> directory will be organized with directories named with &ldquo;hashes&rdquo; of the first two letters of distribution names. Let&rsquo;s say that I&rsquo;m releasing <a href="http://pgtan.org/">pgTAP</a> 0.25 on PGXN. To distribute it, the management application will create the directory (if it doesn&rsquo;t already exist):</p>
+
+<pre><code>dist/p/pg/pgtap/
+</code></pre>
+
+<p>Then, for the 0.25 release, it will add three files to that directory:</p>
+
+<pre><code>dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+</code></pre>
+
+<p>The <code>pgtap-0.25.pgz</code> file will contain the <a href="http://wiki.postgresql.org/wiki/PGXN#Distribution_Layout">zipped distribution</a> ready for download. <code>pgtap-0.25.json</code> will contain metadata about the distribution, such as the owner&rsquo;s name, the manager&rsquo;s name (more on these folks below), list of included extensions, location of the <code>.pgz</code> and <code>.readme</code>, and its SHA1. <code>pgtap-0.25.readme</code> will of course contain the <code>README</code> for the distribution (if it has one).</p>
+
+<p>Every release of pgTAP will have these three files, so after several releases, the <code>pgtap</code> directory might have these files:</p>
+
+<pre><code>dist/p/pg/pgtap/pgtap-0.23.pgz
+dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.23.readme
+dist/p/pg/pgtap/pgtap-0.24.pgz
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.24.readme
+dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+dist/p/pg/pgtap/pgtap.json
+</code></pre>
+
+<p>The last file there, <code>pgtap.json</code>, will actually be a symlink to the JSON file for latest production release of pgTAP. In this case, it would link to <code>pgtap-0.25.json</code>. The nice thing about this is that, if a client wants to find the information about the latest release of the pgtap distribution, all it will have to do is send an HTTP GET request for <code>dist/p/pg/pgtap/pgtap.json</code> to any mirror.</p>
+
+<p>The <code>by</code> directory will also contain JSON files for clients to request. The idea is that you want to find information &ldquo;by&rdquo; something. To start with, there will be three subdirectories:</p>
+
+<pre><code>by/extension/
+by/manager/
+by/owner/
+</code></pre>
+
+<p>The first directory, <code>by/extension/</code>, will contain links to JSON files for extensions. Say that the pgTAP distribution offers two extensions to PostgreSQL named &ldquo;pgtap&rdquo; and &ldquo;schematap&rdquo;. The links would be:</p>
+
+<pre><code>by/extension/p/pg/pgtap/pgtap-0.23.json
+by/extension/p/pg/pgtap/pgtap-0.24.json
+by/extension/p/pg/pgtap/pgtap-0.25.json
+by/extension/p/pg/pgtap/pgtap.json
+</code></pre>
+
+<p>Each of these will simply be symlinks pointing to the appropriate distribution files:</p>
+
+<pre><code>dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap.json
+</code></pre>
+
+<p>Yes, the last one is a symlink to a symlink. Similarly, these files for &ldquo;schematap&rdquo;:</p>
+
+<pre><code>by/extension/s/sc/schematap/schematap-0.23.json
+by/extension/s/sc/schematap/schematap-0.24.json
+by/extension/s/sc/schematap/schematap-0.25.json
+by/extension/s/sc/schematap/schematap.json
+</code></pre>
+
+<p>Point to exactly the same files. Essentially, this is a way for extensions to point to the distributions that contain them. <code>by/extension/s/sc/schematap/schematap.json</code> points to <code>dist/p/pg/pgtap/pgtap.json</code>, which contains path to the <code>.pgz</code> file to download (and lots of other metadata, too).</p>
+
+<p>The idea is that, whatever the name of the extension you want, the client will be able to easily find the metadata file that tells it where to find the distribution.</p>
+
+<p>The <code>by/manager</code> and <code>by/owner</code> directories, on the other hand, contain JSON files with information about managers and owners and their distributions. Definitions:</p>
+
+<p>An &ldquo;owner&rdquo; is someone who <em>owns</em> a distribution. This will often be the original author of an extension, but may be someone else if maintenance has been passed on. Basically, the &ldquo;owner&rdquo; is the person who should be contacted with bug reports and the like</p>
+
+<p>A &ldquo;manager&rdquo; is someone who manages the release process. This is the user who will log into the PGXN management application and upload a distribution for release.</p>
+
+<p>These two people will often be the same person, but not always. I&rsquo;ve avoided the term &ldquo;author&rdquo; (the term used by CPAN) because the author of an extension may no longer maintain it. &ldquo;Owner&rdquo; seemed like a better choice (individual distributions are free to describe their contributors however they wish).</p>
+
+<p>As the <em>owner</em> of a few extensions on PGXN, I&rsquo;d have this file:</p>
+
+<pre><code>by/owner/t/th/theory.json
+</code></pre>
+
+<p>This file would contain a list of my distributions and perhaps some other information (like my full name and blog URL).</p>
+
+<p>As the <em>manager</em> of extensions on PGXN (that is, I actually uploaded them), I would also have:</p>
+
+<pre><code>by/manager/t/th/theory.json
+</code></pre>
+
+<p>This file would contain a list of the distributions I&rsquo;ve released on PGXN. This might be exactly the same as the list in my owner file, but may not be. Perhaps for one release of pgTAP, say 0.26, <a href="http://leto.net/dukeleto.pl/">Duke Leto</a> uploaded a release. In that case, 0.26 would probably be in my owner file, but not in my manager file: it would be in Duke&rsquo;s manager file, instead.</p>
+
+<p>So these are the basics of the directory structure for the networked mirrors. Note that I haven&rsquo;t thought much about everything that will go into the JSON files (or whether or not they&rsquo;d be versioned). That will likely depend quite a lot on what the management database ends up looking like. I&rsquo;ll be working on that next.</p>
+
+<p>But other than that, comments? Questions? Criticisms? Recommendations? Leave a comment and let me know!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> August 14th, 2010 7:59pm </span>
+                                                          <span class="tag">mirror</span>
+                                          <span class="tag">directory</span>
+                                          <span class="tag">structure</span>
+                                          <span class="tag">metadata</span>
+                                          <span class="tag">json</span>
+                                          <span class="tag">api</span>
+                                          <span class="tag">scalability</span>
+                                          <span class="tag">REST</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

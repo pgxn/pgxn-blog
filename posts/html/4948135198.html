@@ -1,0 +1,45 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Case Insensitivity</h1>
+                    <p>I pushed out new versions of PGXN::Manager, PGXN::API, and PGXN::Site today, all with the aim of resolving some issues with case-sensitivity. I was alerted to this when Daniele Varrzzo released <a href="http://pgxn.org/dist/italian_fts/">italian_fts</a> with the <a href="http://pgxn.org/tag/italian/">Italian tag</a> and the API sync blew up. Oops.</p>
+
+<p>So here&rsquo;s the deal. The following objects have case-insensitive names on PGXN:</p>
+
+<ul>
+<li>Distributions</li>
+<li>Extensions</li>
+<li>Versions</li>
+<li>Users (nickname)</li>
+<li>Tags</li>
+</ul>
+
+<p>These names are case-preserving, so they should show up with the proper capitalization in JSON files and whatnot. But to avoid issues with URLs, I decided that all file names should be lowercase only. Fortunately, nearly everything was lowercase already: only a few nickname JSON files were not lowercased, plus the files for <a href="http://pgxn.org/dist/pgtap/">pgTAP</a>. So once I got the code updated, I renamed those files appropriately. In the case of the pgTAP download, I actually re-indexed it, so that the prefix in the zip file would properly be &ldquo;pgtap-0.25.0&rdquo; instead of &ldquo;pgTAP-0.25.0&rdquo;, since the file name is now <code>pgtap-0.25.0.pgz</code>.</p>
+
+<p>So why make these objects case-insensitive? Well, because I tend to think of the names of things as having <em>meaning</em>, and really, there is no difference in meaning between &ldquo;pgtap,&rdquo; &ldquo;pgTAP,&rdquo; or &ldquo;PGTap.&rdquo; I&rsquo;ve relased pgTAP; I think it would be as confusing as hell if someone else released a completely different distribution named &ldquo;PGTap.&rdquo; (And I went through a bit of hell when the <a href="http://search.cpan.org/perldoc?Apache::test">Apache::test</a> CPAN module was replaced with <a href="http://search.cpan.org/perldoc?Apache::Test">Apache::Test</a>, a completely new module. It really messed things up on the case-insensitive file system I use).</p>
+
+<p>But as I said, the case is preserved in the name I use, just not in the names of files. So if you look at the <a href="http://pgxn.org/dist/pgtap/">pgTAP distribution page</a>, you&rsquo;ll see that &ldquo;This Release&rdquo; is labeled &ldquo;pgTAP 0.25.0&rdquo; (I need to fix the <code>&lt;h1&gt;</code> element still).</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 26th, 2011 12:09am </span>
+                                                          <span class="tag">lowercase</span>
+                                          <span class="tag">case</span>
+                                          <span class="tag">case-sensitive</span>
+                                          <span class="tag">case-insensitive</span>
+                                          <span class="tag">meaning</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

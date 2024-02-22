@@ -1,0 +1,42 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Only Stable Releases are Indexed</h1>
+                    <p>I&rsquo;ve had a few reports over the last few months that folks uploaded new extensions to <a href="http://pgxn.org/">PGXN</a> but they failed to show up in search results. For example, as of right now, if you <a href="http://pgxn.org/search?q=distinct&amp;in=docs">search for &ldquo;distinct&rdquo;</a>, you get two results, <a href="http://pgxn.org/dist/omnipitr/doc/internals.html">OmniPITR</a> and <a href="http://pgxn.org/dist/pgtap/doc/pgtap.html">pgTAP</a>. This despite the fact that the recently-released <a href="http://pgxn.org/dist/adaptive_estimator/">adaptive_estimator</a> extension is <a href="http://pgxn.org/tag/distinct/">tagged &ldquo;distinct&rdquo;</a>. Author <a href="http://pgxn.org/user/tomasv">Tomas Vondra</a> reported this issue, and it took me a couple of days to realize why it wasn&rsquo;t showing up.</p>
+
+<p>Here&rsquo;s the reason: Only &ldquo;stable&rdquo; releases are indexed. The <a href="http://pgxn.org/dist/adaptive_estimator/1.0.0/">first</a> and <a href="http://pgxn.org/dist/adaptive_estimator/1.1.0/">second</a> adaptive_estimator releases both have their release status set to &ldquo;testing&rdquo;. The PGXN API only indexes stable releases. The idea behind that is that you want most folks to continue using stable releases while you work on testing new versions. So when users search the site, only the latest stable release will appear in search results. Similarly, installing an extension via the <a href="http://pgxnclient.projects.postgresql.org/">PGXN client</a>, prefers the latest stable release by default. If you want the most recent, you have to <a href="http://pgxnclient.projects.postgresql.org/usage.html#pgxn-install">specify the <code>--unstable</code> or <code>--testing</code> option</a>.</p>
+
+<p>So, the upshot is, if you want your extension to appear in the full text search results on the PGXN, site, release a stable version.</p>
+
+<p>That said, I first noticed this issue a while ago, and filed <a href="https://github.com/pgxn/pgxn-api/issues/2">an issue</a> with the idea that, if an extension is uploaded that is not stable, but there are no stable versions, then the extension should be indexed, anyway. The idea here is that, when you first upload it, you don&rsquo;t have any existing users to keep on a stable release anyway, because there <em>is no stable release.</em> So perhaps we should go ahead and index it. A non-stable release would only be omitted from the index if there was an existing stable release.</p>
+
+<p>Thoughts?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 6th, 2012 1:02pm </span>
+                                                          <span class="tag">release</span>
+                                          <span class="tag">status</span>
+                                          <span class="tag">release status</span>
+                                          <span class="tag">stable</span>
+                                          <span class="tag">testing</span>
+                                          <span class="tag">unstable</span>
+                                          <span class="tag">full text index</span>
+                                          <span class="tag">FTI</span>
+                                          <span class="tag">search results</span>
+                                          <span class="tag">adaptive_estimator</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

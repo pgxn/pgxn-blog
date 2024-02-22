@@ -1,0 +1,52 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>How Can I Detect a Proxied SSL Request?</h1>
+                    <p>I&rsquo;ve been thinking about how best to create two sections of the PGXN Manager site, one that requires authentication and is on SSL and one that&rsquo;s public. So far, I&rsquo;ve just had all the authenticated stuff go to /auth (because I&rsquo;m using basic auth), but what I want to do now is require authentication if the connection is via SSL. However, using a reverse proxy with mod_proxy to map to the PGXN Manger Plack app running on an internal port, I&rsquo;ve found no environment variables passed through that would allow me, in code, to determine whether a request is via a proxied SSL or non-SSL connection. Most irritating.</p>
+
+<p>So tell me what you think about the alternative plan I&rsquo;ve come up with.</p>
+
+<p>I&rsquo;ll have two plack apps, one mapped to /auth and one mapped to /no-auth. The former will require authentication and the latter will not. They&rsquo;ll have separate dispatch tables, of course. Then I&rsquo;ll have the SSL site proxied to /auth and the non-SSL site proxied to /no-auth. Makes sense, right?</p>
+
+<p>The only hangup I can see (though maybe you can see others?) is that my current method of generating URIs knows nothing about proxies. So If I link to /auth/account, when requests come through the proxy, it should actually create a link to /account. Does it make sense to use relative links instead of absolute links for all links to avoid this issue? I think it might be kind of annoying, because not all the code is aware of the current URI, though there are ways to deal with that.</p>
+
+<p>Thoughts?</p>
+
+<p>I guess I could stick with absolute URLs, and then have the <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Request.pm#L14"><code>uri_for</code></a> use <code>$req−&gt;uri−&gt;path</code> for a proxied request and <code>$req−&gt;path_info</code> for a non-proxied request.</p>
+
+<p>Sure would be nice if there was some way to tell from the environment that a request was forwarded from an SSL connection, though. Alas, there are only three extra environment variable set by the proxy server:</p>
+
+<ul>
+<li>HTTP_X_FORWARDED_FOR</li>
+<li>HTTP_X_FORWARDED_HOST</li>
+<li>HTTP_X_FORWARDED_SERVER</li>
+</ul>
+
+<p>No HTTP_X_FORWARDED_PORT or HTTP_X_FORWARDED_SSL or SSL_ENABLED or anything like that. Maybe I&rsquo;m missing something in my reading of the <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy.html">mod_proxy documentation</a>?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> October 11th, 2010 11:00am </span>
+                                                          <span class="tag">mod_proxy</span>
+                                          <span class="tag">mod_ssl</span>
+                                          <span class="tag">ssl</span>
+                                          <span class="tag">proxy</span>
+                                          <span class="tag">uri</span>
+                                          <span class="tag">apache</span>
+                                          <span class="tag">Plack</span>
+                                          <span class="tag">request</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

@@ -1,0 +1,51 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Has a New Home</h1>
+                    <p>Day before yesterday, I finally got all of <a href="http://pgxn.org/">PGXN</a> moved to a new server. I had been using a small server owned by my company, <a href="http://kineticode.com/">Kineticode</a>, and hosted by <a href="http://commandprompt.com/">Command Prompt</a>. That was fine for a while, but CMD was needing its rack space back, and what with my <a href="http://justatheory.com/autobiographical/iovationeering.html">new job</a>, I was shutting down Kineticode, too. It was time to move PGXN elsewhere.</p>
+
+<p>For a while, I got a lot of support and assistance towards moving PGXN to a <a href="http://www.postgresql.org/">PostgreSQL</a> community server. <a href="http://pgsnake.blogspot.com/">Dave</a>, <a href="http://blog.hagander.net/">Magnus</a>, and <a href="http://www.kaltenbrunner.cc/blog/">Stefan</a> kindly spun up a VM for me, and gave me permission to install Perl modules from <a href="http://cpan.org">CPAN</a>, provided I supply them with a script to report to Nagios when Perl modules were out of date, which of course I did. This was necessary because I built PGXN with some pretty recent versions of CPAN modules that are not yet available in Debian stable. I was looking forward to getting things running and integrating with the community authentication service.</p>
+
+<p>I got the server built, and everything was working reasonably well. Magnus and I were just working out some issues with the proxy server configuration, and I was starting to think about how to migrate the data over. But first, I decided to refactor the Perl module script to use a <a href="https://metacpan.org/module/ExtUtils::Installed">more efficient implementation</a>. I fired it off and piped its output to the <code>cpan</code> utility to just get everything updated. Unfortunately, unlike my first implementation, which reported only on CPAN-installed modules, this version of the script also reported when Debian-installed modules were out-of-date. And since I have my CPAN build configuration set up to remove previous installations, I upgraded all those modules, replacing them with new versions.</p>
+
+<p>Well, this was a major fuckup on my part. Turns out there&rsquo;s no simple way to restore Debian-distributed versions of the modules without rebuilding the entire system. Worse, this was exactly the sort of thing the community sysadmins feared. They have to maintain a <em>lot</em> of servers. So they naturally prefer that they all be as similar as possible. The new PGXN server had been <em>mostly</em> similar to what they had before, and Dave and company had been willing to compromise quite a bit to get PGXN going, but I, unfortunately, demonstrated how easy it is to ruin the whole thing.</p>
+
+<p>So we decided that a community server isn&rsquo;t the right place for PGXN. At least not yet. Perhaps in a year or two the Debian distribution will be updated to have all the prerequisites I need. Better yet, maybe someone create a PGXN debian distribution! (Volunteers welcomed.) Then I won&rsquo;t have to do anything special and we can try again (without any <code>sudo</code> privileges for me!). But in the meantime, I still needed to move things.</p>
+
+<p>Fortunately, <a href="http://depesz.com/">depesz</a> came to the rescue. He has a very nice box hosting his blog, <a href="http://explain.depesz.com/">explain.depesz.com</a>, and a few other things, and would I like to set things up there? Depesz used <a href="http://www.perlbrew.pl/">perlbrew</a> to set up a Perl install just for the PGXN system accounts, meaning I could install any Perl modules I needed without interfering with the system Perl. And each account has its own privileges to run the services it needs (<a href="http://manager.pgxn.org/">Manager</a>, <a href="http://api.pgxn.org/">API</a>, <a href="http://pgxn.org/">Site</a>) without the risk of breaking anything else. A few days after getting access, we had everything set up and ready to go. I pulled the trigger on Monday, and it went of without a hitch.</p>
+
+<p>My thanks to depesz for the server and all the assistance, not to mention his <a href="http://www.pgxn.org/donors/">donation</a>! PGXN now has a very nice home where it can mature.</p>
+
+<p>And as for the future, I have some thoughts about that, too.</p>
+
+<ul>
+<li>I&rsquo;d like to blog about the migration itself, and how easy it is (and isn&rsquo;t) to build PGXN.</li>
+<li>There are <a href="https://github.com/pgxn/pgxn-manager/issues">some</a> <a href="https://github.com/pgxn/pgxn-api/issues">bugs</a> to be fixed and <a href="https://github.com/pgxn/pgxn-manager/issues">minor improvements</a> to be had. Interested in helping out?</li>
+<li>I&rsquo;d love to hear your ideas about how to improve PGXN. What would make it better? What doesn&rsquo;t work quite right for you now?</li>
+</ul>
+
+<p>And yes, now that this migration is finally done, I expect I&rsquo;ll have more time to blog and work on PGXN going foward. Please leave your thoughts and ideas in the comments. This thing is wide open to any kind of idea, and I would greatly appreciate your feedback.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> January 11th, 2012 11:51pm </span>
+                                                          <span class="tag">server</span>
+                                          <span class="tag">postgresql</span>
+                                          <span class="tag">depesz</span>
+                                          <span class="tag">community</span>
+                                          <span class="tag">migration</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

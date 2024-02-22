@@ -1,0 +1,84 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Architecture, New Extension JSON Format</h1>
+                    <p>I&rsquo;m making good progress on <a href="http://github.com/theory/pgxn-manager">PGXN Manager</a>. Hopefully I can start alpha testing it next week. As I mentioned <a href="http://blog.pgxn.org/post/1082188310/db-status-update">previously</a>, I had estimated 40 hours of work to create it, but was hoping to get it done in around 30 (because I spent 10 extra hours on the database design). So far I&rsquo;m at 23 hours, so it&rsquo;s looking pretty good.</p>
+
+<p>Architecturally, I&rsquo;ve gone for a very minimal <a href="http://plackperl.org/">Plack</a>-based app. No <a href="http://www.catalystframework.org/">Catalyst</a>, <a href="http://jifty.org/">Jifty</a>, or even <a href="http://perldancer.org/">Dancer</a>. Just a very simple <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Router.pm">Plack app</a> that uses <a href="http://search.cpan.org/perldoc?Router::Simple::Sinatraish">Router::Simple::Sinatraish</a> to route URIs to the appropriate <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Controller.pm">controller</a> actions (which are just class methods). The controller just dispatches to <a href="http://search.cpan.org/perldoc?Template::Declare">Template::Declare</a>-based <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Templates.pm">templates</a> for the HTML rendering. I guess I&rsquo;ve kind of created my own framework here, but really, there ain&rsquo;t much to it. This app is simple enough that I couldn&rsquo;t see the use of adding all the overhead of a framework.</p>
+
+<p>Meanwhile, I&rsquo;ve been hacking on the <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Distribution.pm">distributon class</a>. This will be the core class of the app. It takes a <a href="http://search.cpan.org/perldoc?Plack::Request::Upload">Plack upload</a> object and a username and does all the rest, analyzing an uploaded archive, normalizing it if necessary, registering it with the database, and indexing it by updating all the appropriate JSON files on the mirrors. It&rsquo;s nearly finished, but I have one other thing to do in the database, first.</p>
+
+<p>In my <a href="http://blog.pgxn.org/post/1082188310/db-status-update">last update</a>, I asked for advice on whether or not PGXN should allow an extension with the same version number to appear in multiple distributions. And thanks to a <a href="http://blog.pgxn.org/post/1082188310/db-status-update#comment-75931198">comment from Aristotle</a>, I&rsquo;m changing it to allow that. But it also means that my <a href="http://blog.pgxn.org/post/988613682/restful-directory#extension-json">original extension json spec</a> needs to change.</p>
+
+<p>Here&rsquo;s an example of what I&rsquo;m thinking. Say that there are three versions of an extension named &ldquo;trip&rdquo;, and that they appear in distributions as follows:</p>
+
+<pre><code>trip 0.2.6
+  pair-0.3.0
+
+trip 0.2.5
+  trip-0.2.2
+  pair-0.2.2rc
+  pair-0.2.1
+  trip-0.1.1
+
+trip 0.2.4
+  pair-0.1.1rc
+  pair-0.1.0
+</code></pre>
+
+<p>So sometimes it&rsquo;s in the &ldquo;trip&rdquo; distribution and other times it&rsquo;s in the &ldquo;pair&rdquo; distribution. My thought is that, for a given version, it would list the distributions it&rsquo;s in in reverse chronological order (by upload date). So the format would be:</p>
+
+<pre><code>{
+    "latest": "stable",
+    "stable": { "dist": "pair", "version": "0.3.0" },
+    "testing": { "dist": "pair", "version": "0.2.2rc" },
+    "distributions": {
+       "0.2.6": [
+          { "dist": "pair", "version": "0.3.0" }
+       ],
+       "0.2.5": [
+          { "dist": "trip", "version": "0.2.2" },
+          { "dist": "pair", "version": "0.2.2rc", "status": "testing" },
+          { "dist": "pair", "version": "0.2.1" },
+          { "dist": "trip", "version": "0.1.1" }
+       ],
+       "0.2.4": [
+          { "dist": "pair", "version": "0.1.1rc", "status": "testing" },
+          { "dist": "pair", "version": "0.1.0" }
+       ]
+    }
+}
+</code></pre>
+
+<p>This way, every distribution it&rsquo;s included in is listed, and clients can quickly tell where to find the latest stable, testing, and unstable versions, and which of those is the most recent. This is a bit more convoluted than <a href="http://blog.pgxn.org/post/988613682/restful-directory#extension-json">the original</a>, but I think is a good choice, in that it&rsquo;s comprehensive but also easy to figure out what&rsquo;s the latest.</p>
+
+<p>Unless you can think of a better format, this is what I&rsquo;m going with. Comments?</p>
+
+<p>Look for a post next week announcing an alpha program!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> September 17th, 2010 1:33pm </span>
+                                                          <span class="tag">PGXN Manager</span>
+                                          <span class="tag">PGXN::Manager</span>
+                                          <span class="tag">Plack</span>
+                                          <span class="tag">Catalyst</span>
+                                          <span class="tag">Dancer</span>
+                                          <span class="tag">Jifty</span>
+                                          <span class="tag">extension</span>
+                                          <span class="tag">metadata</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

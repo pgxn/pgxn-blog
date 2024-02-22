@@ -1,0 +1,51 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Client 1.0 Released!</h1>
+                    <p>By Daniele Varrazzo</p>
+
+<p>Finally, here it is. Well tested, documented, and pampered. With the <a href="http://pgxnclient.projects.postgresql.org/">PGXN Client</a> installing extensions from the <a href="http://pgxn.org/">PGXN Network</a> is a breeze:</p>
+
+<pre><code>$ pgxn install semver
+$ pgxn load semver
+$ psql
+=# select 'foo'::semver;
+ERROR:  bad semver value 'foo': expected number at foo
+LINE 1: select 'foo'::semver;
+</code></pre>
+
+<p>Error! Meaning: success!</p>
+
+<p>The number of extensions on PGXN is steadily increasing, so we hope the client will make their adoption even easier.</p>
+
+<p>The client is now extensible: either writing in Python to reuse some of the other commands implementation or writing new self-contained scripts in any language to be invoked by the pgxn commands dispatcher. The first client extensions are already available: <a href="https://github.com/guedes/pgxn-utils">PGXN Utils</a> and <a href="https://github.com/pgxn/pgxn-meta-validator/">PGXN:Meta:Validator</a> are targeted for easier development of new extensions.</p>
+
+<p>The client is <a href="http://pypi.python.org/pypi/pgxnclient">released on PyPI</a>, so installing is just:</p>
+
+<pre><code>$ sudo easy_install pgxnclient
+</code></pre>
+
+<p>Complete documentation and further links are available from the <a href="http://pgxnclient.projects.postgresql.org/">project homepage</a>.</p>
+
+<p>Any feedback is welcome; you can contact me and all the other people behind PGXN on the <a href="https://groups.google.com/group/pgxn-users/">PGXN User Group</a>. See you there!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> November 27th, 2011 7:34pm </span>
+                                                          <span class="tag">pgxn client</span>
+                                          <span class="tag">release</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

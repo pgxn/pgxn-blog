@@ -1,0 +1,171 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>A RESTful Directory</h1>
+                    <p>Following my post outlining a possible network <a href="http://blog.pgxn.org/post/954535657/thoughts-on-the-network-directory-structure">directory structure</a>, <a href="http://plasmasturm.org/">Aristotle Pagaltzis</a> saw fit to bug me via email about a different approach. I couldn&rsquo;t understand WTF he was talking about until today. Then it lit my brain on fire. As a result, I now think that there is a much better way to organize the metadata files for the PGXN &ndash; one that happens not to include any symbolic links (which is something that <a href="http://search.cpan.org/~andk/">Andreas König</a> has been flagging, via email, as a possible bottleneck).</p>
+
+<p>First, the <code>/dist</code> directory will be the same as before. Releases of pgTAP would be in:</p>
+
+<pre><code>dist/p/pg/pgtap/pgtap-0.23.pgz
+dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.23.readme
+dist/p/pg/pgtap/pgtap-0.24.pgz
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.24.readme
+dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+</code></pre>
+
+<p>The only change is that the <code>pgtap.json</code> symlink is gone.</p>
+
+<p>Now, the new stuff. In the root directory will be a file, <code>index.json</code>, that contains templates for URIs. It will look something like this:</p>
+
+<pre><code>{
+    "dist":   "/dist/$a/$ab/$dist/$dist-$version.pgz",
+    "readme": "/dist/$a/$ab/$dist/$dist-$version.readme",
+    "meta":   "/dist/$a/$ab/$dist/$dist-$version.json",
+
+    "by-dist":      "/by/dist/$a/$ab/$dist.json",
+    "by-extension": "/by/extension/$a/$ab/$extension.json",
+    "by-owner":     "/by/owner/$a/$ab/$owner.json",
+    "by-manager":   "/by/manager/$a/$ab/$manager.json",
+}
+</code></pre>
+
+<p>The PGXN client will always fetch this file before it does anything else, because the file tells it how to find stuff. The advantage here is that the client doesn&rsquo;t have to know anything about how the directory is actually organized, just what the template variables might be. They are:</p>
+
+<ul>
+<li><code>$dist</code>: A <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec#name">distribution name</a></li>
+<li><code>$version</code>: A <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec#version">version number</a></li>
+<li><code>$extension</code>: An <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec#provides">extension name</a></li>
+<li><code>$owner</code>: An <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec#owner">owner&rsquo;s name</a></li>
+<li><code>$manager</code>: A release manager&rsquo;s name (managers are the people who upload distributions to PGXN)</li>
+<li><code>$a</code>: The first letter of a distribution, extension, owner, or manager name.</li>
+<li><code>$ab</code>: The first two letters of a distribution, extension, owner, or manager name.</li>
+</ul>
+
+<p>I&rsquo;m not thrilled about using prefix-staggering to avoid having too many files in a directory. But the truth is that this approach allows me to punt. I could also make sure the client supports, for example, <code>$bc</code> and <code>$cd</code>, so that one could stagger things differently. And then the nice thing is that I don&rsquo;t have to use those at all. The templates will tell the client exactly how to construct the URIs for things, and the templates needn&rsquo;t include those staggering variables if they&rsquo;re not appropriate. The client won&rsquo;t care because it will have no built-in knowledge of how things are organized. It will have to find out from <code>index.json</code>.</p>
+
+<p>From the URI templates, you can now see where the other metadata will be stored. For extension names, a hypothetical pgTAP distribution with two extensions will have a JSON file for each extension:</p>
+
+<pre><code>/by/extension/p/pg/pgtap.json
+/by/extension/s/sc/schematap.json
+</code></pre>
+
+<div id="extension-json"></div>
+
+<p>The <code>pgtap.json</code> file will look something like this:</p>
+
+<pre><code>"stable":   "0.25.0",
+"testing":  "0.26.0b1",
+"unstable": "0.30.0u",
+"versions": {
+    "0.26.0b1": { "dist": "pgtap", "version": "0.26.0b1", "status": "testing" },
+    "0.30.0u":  { "dist": "pgtap", "version": "0.30.0u",  "status": "unstable" },
+    "0.25.0":   { "dist": "pgtap", "version": "0.25.0",   "status": "stable" },
+    "0.24.0":   { "dist": "pgtap", "version": "0.24.0",   "status": "stable" },
+    "0.25.0":   { "dist": "pgtap", "version": "0.23.0",   "status": "stable"  }
+}
+</code></pre>
+
+<p>Right at the top, it would always list the most recent stable, testing, and unstable version number, and then it would have a list metadata for all versions. Said metadata would include the associated distribution name, version, and release status.</p>
+
+<p>Here&rsquo;s how it would work. Say I ask the client to install pgtap:</p>
+
+<pre><code>PGXN&gt; install extension pgtap
+</code></pre>
+
+<p>The client would first fetch <code>/index.json</code>, then look for the URI template for &ldquo;by-extension&rdquo;, which is <code>/by/extension/$a/$ab/$extension.json</code>. Filling in the template, it would know to request <code>/by/extension/p/pg/pgtap.json</code>. With that file, it would see that the most recent stable version is in the &ldquo;pgtap&rdquo; distribution version 0.25.0. Using the <code>dist</code> URI template, which is <code>/dist/$a/$ab/$dist-$version.pgz</code>, it would then fetch <code>/dist/p/pg/pgtap/pgtap-0.25.0.pgz</code>.</p>
+
+<p>The advantage here is that there are no symbolic links and no knowledge of the directory structure built into clients. The client just knows to fetch <code>/index.json</code> and then to use the templates in that file to fetch other information. That&rsquo;s the whole interface. Very <a href="http://en.wikipedia.org/wiki/REST">REST</a>ful.</p>
+
+<p>The structure of the other <code>/by</code> files would be similar. For</p>
+
+<pre><code>PGXN&gt; install dist pgtap
+</code></pre>
+
+<p>the client would use the &ldquo;by-dist&rdquo; URI template to construct the URL <code>/by/dist/p/pg/pgtap.json</code>. That file would have something like:</p>
+
+<pre><code>"stable":   "0.25.0",
+"testing":  "0.26.0b1",
+"unstable": "0.30.0u",
+"versions": {
+    "0.26.0b1": "testing",
+    "0.30.0u":  "unstable",
+    "0.25.0":   "stable",
+    "0.24.0":   "stable" ,
+    "0.23.0":   "stable"
+}
+</code></pre>
+
+<p>So then the client would know that &ldquo;0.25.0&rdquo; was the most recent version, and use the <code>dist</code> URI template to request <code>/dist/p/pg/pgtap/pgtap-0.25.0.pgz</code>.</p>
+
+<p>If The client command had been:</p>
+
+<pre><code>PGXN&gt; readme dist pgtap
+</code></pre>
+
+<p>It would use the <code>readme</code> URI template. And the command:</p>
+
+<pre><code>PGXN&gt; meta dist pgtap
+</code></pre>
+
+<p>Would use the <code>meta</code> URI template to fetch the metadata for the distribution.</p>
+
+<p>If the client had requested a specific version:</p>
+
+<pre><code>    PGXN&gt; install dist 0.23.0
+</code></pre>
+
+<p>It could either use the <code>by-dist</code> URI template to download the list of all versions to see if 0.23.0 was valid, or just use the <code>dist</code> URI template to try to download the distribution itself.</p>
+
+<p>And finally, the owner and manager JSON files, such as</p>
+
+<pre><code>/owner/t/th/theory.json
+</code></pre>
+
+<p>Would look something like:</p>
+
+<pre><code>"full_name": "David Wheeler",
+"email": "theory@pgxn.org",
+"uri": "http://justatheory.com",
+"distributions": {
+    "pgtap": [ "0.25.0", "0.24.0", "0.23.0" ]
+    "pair": [ "0.2.0", "0.1.0", "0.0.5" ]
+}
+</code></pre>
+
+<p>With that, the client can be asked to fetch metadata for a given owner name and use it to figure out what distributions and versions the the owner, um, owns. One could then fetch the metadata, readme, or distribution file for any of those distributions and versions.</p>
+
+<p>Overall, I think that this is a much better solution than I outlined <a href="http://blog.pgxn.org/post/954535657/thoughts-on-the-network-directory-structure">before</a>. If only I could figure out something more elegant that the prefix-staggering/hashing stuff, it would be just about perfect.</p>
+
+<p>Thoughts?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> August 21st, 2010 2:52pm </span>
+                                                          <span class="tag">mirror</span>
+                                          <span class="tag">directory</span>
+                                          <span class="tag">Structure</span>
+                                          <span class="tag">meta</span>
+                                          <span class="tag">metadata</span>
+                                          <span class="tag">json</span>
+                                          <span class="tag">api</span>
+                                          <span class="tag">scalability</span>
+                                          <span class="tag">REST</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

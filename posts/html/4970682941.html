@@ -1,0 +1,43 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN API Docs Published</h1>
+                    <p>The <a href="https://github.com/pgxn/pgxn-api/wiki">PGXN API Documentation</a> is up! I&rsquo;ve just finished writing the docs for the lightweight REST API provided by all PGXN mirrors. It also documents how the same APIs differ when provided by the <a href="http://api.pgxn.org/">API server</a>. Their are four more documents to write still, APIs provided by the API server but not the mirrors (including full-text search); I should be able to get those done tomorrow.</p>
+
+<p>So if you&rsquo;re interested in use the API for various things, please <a href="https://github.com/pgxn/pgxn-api/wiki">have a look</a>! I&rsquo;d appreciate any feedback or corrections.</p>
+
+<p>Speaking of users of the API, <a href="https://profiles.google.com/daniele.varrazzo/about">Daniele Varrazzo</a> has started writing a <a href="https://github.com/dvarrazzo/pgxn-client/">PGXN client app</a> in Python. This is so awesome! It makes me happy that people are able to just get going on this. And Daniele did it before I&rsquo;d written the docs, just from reading the PGXN source code. Nice!</p>
+
+<p>Anyway, getting these docs written was the last barrier I had to releasing various pieces of PGXN on CPAN and generally being able to get on with my life. I wanted to write these docs first so that I would have a little more freedom to change things if something struct me as especially stupid. Fortunately, as I&rsquo;ve written the <a href="http://pgxn.org/">main site</a> as a thin client for the API, most of the lameness has already been excised. I think the only change I&rsquo;d like to make is to change the <code>{char}</code> URI template variable for the <a href="https://github.com/pgxn/pgxn-api/wiki/userlist-api"><code>userlist</code> API</a> to <code>{letter}</code>, because only lowercased ASCII letters a-z are allowed. It&rsquo;s more accurate.</p>
+
+<p>Another thing I think I&rsquo;ll change is the file name suffix used for the distribution download files. Currently it&rsquo;s <code>.pgz</code>, but after <a href="http://blog.pgxn.org/post/4854707157/pgxn-manager">Daniele complained</a> about it, I <a href="http://groups.google.com/group/pgxn-users/browse_thread/thread/1209538be03be8a4">asked around</a> and the concensus seems to be to change it to <code>.zip</code>. I&rsquo;ll likely do that tomorrow, too. Fortunately it&rsquo;s pretty easy: Just edit the configuration file and rename the files on the master mirror. At least it <em>should</em> be that easy!</p>
+
+<p>There was one other thing in the APIs the felt a bit silly, but I don&rsquo;t remember what it was, so screw it.</p>
+
+<p>Anyway, feedback on the API docs would be greatly appreciated. And &ndash; <em>get hacking!</em>.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 26th, 2011 8:27pm </span>
+                                                          <span class="tag">api</span>
+                                          <span class="tag">documentation</span>
+                                          <span class="tag">docs</span>
+                                          <span class="tag">api docs</span>
+                                          <span class="tag">zip</span>
+                                          <span class="tag">client</span>
+                                          <span class="tag">Daniele Varrazzo</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

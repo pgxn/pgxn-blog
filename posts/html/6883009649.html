@@ -1,0 +1,69 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Utils 0.1.2 Released!</h1>
+                    <p>by Dickson S. Guedes</p>
+
+<p>Hello everyone!</p>
+
+<p>I&rsquo;m proud to tell you that a new version of <a href="https://github.com/guedes/pgxn-utils">pgxn_utils</a> was released!</p>
+
+<p>Now you can release a distribution to <a href="http://pgxn.org">PGXN</a> in <strong>five steps</strong>!</p>
+
+<p><strong>First</strong>, install it:</p>
+
+<pre><code>gem install pgxn_utils
+</code></pre>
+
+<p><strong>Second</strong>, create your extension, optionally overwrite some defaults:</p>
+
+<pre><code>mkdir $HOME/extensions
+cd $HOME/extensions
+pgxn_utils skeleton my_extension --maintainer "Dickson S. Guedes"
+</code></pre>
+
+<p><strong>Third</strong>, code!</p>
+
+<p><strong>Fourth</strong>, bundle it:</p>
+
+<pre><code>pgxn_utils bundle my_extension
+Extension generated at: /home/guedes/extensions/my_extension-0.0.1.zip
+</code></pre>
+
+<p><strong>Fifth</strong>, release it:</p>
+
+<pre><code>pgxn_utils release my_extension-0.0.1.zip
+Enter your PGXN username: guedes
+Enter your PGXN password: ******
+Trying to release my_cool_extension-0.0.1.zip ... released successfully!
+Visit: <a href="http://manager.pgxn.org/distributions/my_cool_extension/0.0.1">http://manager.pgxn.org/distributions/my_cool_extension/0.0.1</a>
+</code></pre>
+
+<p>Ah, you can export <code>PGXN_USER</code> and <code>PGXN_PASSWORD</code> if you are tired to type your username and password everytime.</p>
+
+<p><a href="https://github.com/guedes/pgxn-utils">Check this out!</a>.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> June 24th, 2011 7:53pm </span>
+                                                          <span class="tag">build</span>
+                                          <span class="tag">create extension</span>
+                                          <span class="tag">utils</span>
+                                          <span class="tag">meta</span>
+                                          <span class="tag">release</span>
+                                          <span class="tag">bundle</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

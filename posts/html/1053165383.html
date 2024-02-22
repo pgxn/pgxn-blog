@@ -1,0 +1,125 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>ALIAS Back in Vogue </h1>
+                    <p>I&rsquo;ve been hard at work on <a href="http://github.com/theory/pgxn-manager">PGXN Manager</a>, the app for users to upload distributions to PGXN. I am of course following my own dictum: &ldquo;the database <em>is</em> the model.&rdquo; As a result, I&rsquo;ve been creating an API for creating, updating, and deleting entities, as well as generating JSON (more on that later).</p>
+
+<p>I&rsquo;m also using PostgreSQL 9. The motivation to make the jump to 9.0 was to to try to use the <a href="https://commitfest.postgresql.org/action/patch_view?id=351">JSON data type patch</a>, but I abandoned it when I couldn&rsquo;t get it to compile. (I might come back to it later, but right now I&rsquo;m trying to practice <a href="http://en.wikipedia.org/wiki/YAGNI">YAGNI</a> and <a href="http://www.urbandictionary.com/define.php?term=JFDI">JFDI</a> so that I don&rsquo;t end up owning a yak farm). But there are other reasons to stick with 9.0, like improved <a href="http://developer.postgresql.org/pgdocs/postgres/hstore.html">hstore</a> support, the <a href="http://developer.postgresql.org/pgdocs/postgres/sql-do.html">DO</a> statement, and <a href="http://developer.postgresql.org/pgdocs/postgres/sql-syntax-calling-funcs.html#SQL-SYNTAX-CALLING-FUNCS-NAMED">named parameters</a>.</p>
+
+<p>Actually, this last one is very nice, as it allows me to use SQL syntax to specify function parameters instead of using an <code>hstore</code> value to hack it. For example, I have this function for update a user record:</p>
+
+<pre><code>CREATE OR REPLACE FUNCTION update_user(
+    nick  LABEL,
+    name  TEXT  DEFAULT NULL,
+    email EMAIL DEFAULT NULL,
+    uri   URI   DEFAULT NULL
+) RETURNS BOOLEAN LANGUAGE plpgsql SECURITY DEFINER AS $$
+DECLARE
+    _email ALIAS FOR email;
+    _uri   ALIAS FOR uri;
+BEGIN
+    UPDATE users
+       SET full_name  = COALESCE(name,   full_name),
+           email      = COALESCE(_email, users.email),
+           uri        = COALESCE(_uri,   users.uri),
+           updated_at = NOW()
+     WHERE nickname   = nick
+       AND status     = 'active';
+    RETURN FOUND;
+END;
+$$;
+</code></pre>
+
+<p>The nice thing about named parameters is that I can call this function like so:</p>
+
+<pre><code>SELECT update_user(
+    nick  := 'theory',
+    name  := 'David E. Wheeler',
+    email := 'justatheory@pgxn.org',
+    uri   := 'http://www.justatheory.com/'
+);
+</code></pre>
+
+<p>Hell, since the parameters are named, I can specify them in any order. And because there are defaults, I can omit one or more of them:</p>
+
+<pre><code>SELECT update_user(
+    name  := 'David E. Wheeler',
+    email := 'justatheory@pgxn.org',
+    nick  := 'theory'
+);
+</code></pre>
+
+<p>And it will just work. Nice!</p>
+
+<p>One thing I did discover, though: Now that I&rsquo;m using named parameters, I don&rsquo;t want to use <a href="http://en.wikipedia.org/wiki/Hungarian_notation">Hungarian notation</a> for the parameter names. Back before 9.0, when callers never saw argument names when calling a function, I could call them whatever I wanted. This was especially important when executing queries in PL/pgSQL, because one needs to be aware of parameter (and variable!) names that conflict with SQL identifiers, especially columns. (Another nice feature in 9.0 is that it will throw an exception if you create a PL/pgSQL function with conflicting parameter and identifier names.) But now that the parameter names are more likely to be exposed and <em>used</em> to the function caller, I want them to be meaningful.</p>
+
+<p>I messed with this for a while. I was okay with using &ldquo;nick&rdquo; for &ldquo;nickname&rdquo; and &ldquo;pass&rdquo; for &ldquo;password&rdquo;, but was annoyed with the alternatives for &ldquo;email&rdquo; and &ldquo;uri,&rdquo; especially since they&rsquo;re used with those names elsewhere (queries against the table, generated JSON). I really wanted to use parameter names that were the same as the columns. I tried just using the dollar variables (<code>$1</code>, <code>$2</code>, etc.), but got errors for them, too: they seem to be compiled into the parameter names.</p>
+
+<p>Then, on a guess, I tried creating aliases for the variables. From the example above, its:</p>
+
+<pre><code>    _email ALIAS FOR email;
+    _uri   ALIAS FOR uri;
+</code></pre>
+
+<p>Then I used <code>_email</code> and <code>_uri</code> in my <code>UPDATE</code> statement. And what do you know, it worked! I found this somewhat humorous, given the history of <code>ALIAS</code>.</p>
+
+<p>It used to be, long ago, that you couldn&rsquo;t use the parameter names in the body of PL/pgSQL functions, so <code>ALIAS</code> was there to let you alias the dollar variable names to other names. But somewhere around, oh, 8.0 or so, we were blessed with the ability to use the parameter names directly. Suddenly <code>ALIAS</code> seemed superfluous. I&rsquo;ve hardly ever used it myself. It&rsquo;s just been sitting there, like my appendix, waiting for another use.</p>
+
+<p>And now there is one. A really good one! I can safely use parameter names that are the same as column names in my PL/pgSQL functions as long as I alias them. And it just works!</p>
+
+<p>Well, almost. It seems that <code>ALIAS</code> means what it says: the parameter names are still around can can be used. So sometimes you might run into an error like</p>
+
+<pre><code>ERROR:  column reference "email" is ambiguous
+</code></pre>
+
+<p>Even though you&rsquo;re not using the variable. I ran into this in the update function where I was using the column names in the left-hand side of the <code>SET</code> expressions. The solution, fortunately, is simple: table-qualify the column names as appropriate:</p>
+
+<pre><code>UPDATE users
+   SET full_name  = COALESCE(name,   full_name),
+       email      = COALESCE(_email, users.email),
+       uri        = COALESCE(_uri,   users.uri),
+</code></pre>
+
+<p>Note the use of <code>users.email</code> instead of just <code>email</code> in the <code>COALESCE()</code> function. Seems like a reasonable workaround in exchange for the ability to have parameter names that match column names. I&rsquo;m sold!</p>
+
+<p>Now just to consider whether to change the <code>nick</code> and <code>pass</code> parameter names to <code>nickname</code> and <code>password</code> in order to be completely consistent. I guess it&rsquo;s a good idea.</p>
+
+<p>More next week. I&rsquo;ve been doing lots of hacking and have much to share, but have another project that will take up my time between now and Monday, so I&rsquo;ll have to come back to it.</p>
+
+<div id="update-20100907"></div>
+
+<p><strong>Update 2010-08-07:</strong> I turns out that there is a much better way to do this: Just function-name-qualify parameter names where they might conflict with database object names:</p>
+
+<pre><code>UPDATE users
+   SET full_name  = COALESCE(name,   full_name),
+       email      = COALESCE(update_users.email, users.email),
+       uri        = COALESCE(update_users.uri,   users.uri),
+</code></pre>
+
+<p>No need for the aliases at all! I had no idea about this feature. Many thanks to Colin &rsquo;t Hart for the comment below about how this is available in Oracle and to Tom Lane for <a href="http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php">smacking me upside the head</a> with <a href="http://www.postgresql.org/docs/9.0/static/plpgsql-structure.html">the fine manual</a> (look for the &ldquo;note&rdquo; at the bottom) when I asked about it.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> September 2nd, 2010 9:00am </span>
+                                                          <span class="tag">alias</span>
+                                          <span class="tag">PostgreSQL 9</span>
+                                          <span class="tag">plpgsql</span>
+                                          <span class="tag">postgresql</span>
+                                          <span class="tag">function</span>
+                                          <span class="tag">parameter</span>
+                                          <span class="tag">named parameter</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

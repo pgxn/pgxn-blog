@@ -1,0 +1,58 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Release Badges</h1>
+                    <p>Looks like it&rsquo;s been close to two years since my last post on the PGXN blog. Apologies for that. I&rsquo;ve thought for a while maybe I should organize an &ldquo;extension of the week&rdquo; series or something. Would there be interest in such a thing?</p>
+
+<p>Meanwhile, I&rsquo;m finally getting back to posting to report on a fun thing you can now do with your PGXN distributions. Thanks to the <a href="https://badge.fury.io">Version Badge</a> service from the nice folks at <a href="https://gemfury.com/">Gemfury</a>, you can badge your distributions! Badges look like this:</p>
+
+<p><a href="https://badge.fury.io/pg/semver"><img src="https://badge.fury.io/pg/semver.svg" alt="PGXN version"/></a></p>
+
+<p>You&rsquo;ve no doubt seem simlar badges for Ruby, Perl, and Python modules. Now the fun comes to PGXN. Want in? Assuming you have a disribution named <code>pgfoo</code>, just put code like this into the README file:</p>
+
+<pre><code>[![PGXN version](<a href="https://badge.fury.io/pg/pgfoo.svg">https://badge.fury.io/pg/pgfoo.svg</a>)](<a href="https://badge.fury.io/pg/pgfoo">https://badge.fury.io/pg/pgfoo</a>)
+</code></pre>
+
+<p>This is <a href="http://daringfireball.net/projects/markdown/">Markdown</a> format; use the syntax appropriate to your preferred README format to get the badg to show up on GitHub and PGXN.</p>
+
+<p>That&rsquo;s it! The badge will show the current releases version on PGXN, and the button will link through to PGXN.</p>
+
+<p>Use <a href="https://travis-ci.org">Travis CI</a>? You can badge your build status, too, as I&rsquo;ve done for <a href="http://pgxn.org/dist/pgtap">pgTAP</a>, like this:</p>
+
+<p><a href="https://travis-ci.org/theory/pgtap"><img src="https://travis-ci.org/theory/pgtap.png" alt="Build Status"/></a></p>
+
+<pre><code>[![Build Status](<a href="https://travis-ci.org/theory/pgtap.png">https://travis-ci.org/theory/pgtap.png</a>)](<a href="https://travis-ci.org/theory/pgtap">https://travis-ci.org/theory/pgtap</a>)
+</code></pre>
+
+<p><a href="https://coveralls.io">Coveralls</a> provides patches, too. I&rsquo;ve used them for <a href="https://github.com/theory/sqitch">Sqitch</a>, though I&rsquo;ve not yet taken the time figure out how to do coverage testing with PostgreSQL extensions. If you have, you can badge your current coverage like so:</p>
+
+<p><a href="https://coveralls.io/r/theory/sqitch"><img src="https://coveralls.io/repos/theory/sqitch/badge.svg" alt="Coverage Status"/></a></p>
+
+<pre><code>[![Coverage Status](<a href="https://coveralls.io/repos/theory/sqitch/badge.svg">https://coveralls.io/repos/theory/sqitch/badge.svg</a>)](<a href="https://coveralls.io/r/theory/sqitch">https://coveralls.io/r/theory/sqitch</a>)
+</code></pre>
+
+<p>So get badging, and show off your PGXN distributions GitHub and elsewhere!</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 11th, 2015 12:34am </span>
+                                                          <span class="tag">badges</span>
+                                          <span class="tag">gemfury</span>
+                                          <span class="tag">travisci</span>
+                                          <span class="tag">coveralls</span>
+                                          <span class="tag">github</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

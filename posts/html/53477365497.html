@@ -1,0 +1,35 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>How To, Example Makefile Updated</h1>
+                    <p>I deployed a new version of <a href="http://manager.pgxn.org/">Manager</a> last week, and it included a major update to the <a href="http://manager.pgxn.org/howto">How To</a>. A lot of the changes are narrative: I tried to keep things shorter and more to-the-point. But from a technical point of view, perhaps the most important improvements are in the <code>Makefile</code> example. Thanks to ongoing work by <a href="http://www.linkedin.com/in/cedricvillemain">Cédric Villemain</a>, it now tries harder to stay out of your way, while integrating better with PostgreSQL&rsquo;s own <code>make</code> targets.</p>
+
+<p>The main changes:</p>
+
+<ul>
+<li>The setting of <code>$EXTENSION</code> and <code>$EXTVERSION</code> is now done by reading the <code>META.JSON</code> file.</li>
+<li>Thanks to the <code>?=</code> operator, <code>$PG_CONFIG</code> can now be passed as a param as well as an environment variable. That is, you can do <code>PG_CONFIG=/my/pg_config make</code> or <code>make PG_CONFIG=/my/pg_config</code>.</li>
+<li>New targets are defined only after PGXS is loaded, so that targets can be overridden if necessary.</li>
+<li>A new <code>dist</code> target creates a PGXN-ready zip file, assuming that your code is maintained in Git.</li>
+</ul>
+
+<p>Have a look at the <a href="https://github.com/theory/pg-semver/compare/v0.3.0%E2%80%A6v0.4.0#diff-3">resulting diff for semver</a> to get an idea how you might want to update your own <code>Makefile</code>s.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> June 20th, 2013 8:28pm </span>
+                                </div>
+            </body>
+        </html>
+
+        

@@ -1,0 +1,42 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Conflict and Redirection on POST</h1>
+                    <p>Had an interesting discussion on <a href="irc://irc.perl.org/#plack">#plack</a>. The upload form, which takes a POST request for an upload, sends a redirect on a successful form submission. This is known as the <a href="http://en.wikipedia.org/wiki/Post/Redirect/Get">Post/Redirect/Get (RDG)</a> pattern, though I didn&rsquo;t know that before <a href="http://duckduckgo.com/?q=redirect+from+post">DuckDuckGoing it</a> it today. But I realized that the code was <em>not</em> redirecting on a failed form submission, but reloading the form. I was thinking that one should always redirect on POST, and so was looking into a Rails-like <code>flash</code> pattern to cache an error message and the form contents on the redirect. But in this discussion, I learned a few things:</p>
+
+<ol>
+<li><p>One should use <a href="http://tools.ietf.org/html/rfc2616#section-10.3.4">HTTP 1.1 status code 303</a> rather than <a href="http://tools.ietf.org/html/rfc2616#section-10.3.3">status code 302</a> for these sorts of redirects. Apparently, this status code, called &ldquo;See Other,&rdquo; is specifically designed for use redirecting from a POST. Thanks to <a href="http://blog.weftsoar.net/">counfound</a> for pointing that out.</p></li>
+<li><p>The whole point of RDG is to prevent a double form submission. But the truth is, in the case of an error, you <em>want</em> a second form submission. For errors &ndash; such as a username conflict or a malformed distribution archive &ndash; the POST failed, so you show the form again along with a message about the problem and how to fix it.</p></li>
+</ol>
+
+<p>What&rsquo;s nice about this is that it&rsquo;s already the way I was doing it! In fact, for such errors, I&rsquo;m returning <a href="http://tools.ietf.org/html/rfc2616#section-10.4.10">HTTP status code 409</a>, which indicates that the request failed due to a conflict, and the user should fix it and resubmit. So no need to redirect on failure. Yay!</p>
+
+<p>Note that for XMLHttpRequests, I&rsquo;m not redirecting at all, but simply returning the proper status code (success or conflict, generally) and a fragment to be used to show an error message (or &ldquo;success&rdquo;) (in HTML, JSON, or plain text, depending on the requestor&rsquo;s preferred type).</p>
+
+<p>I think this works pretty well, and I&rsquo;m pleased to be making good use of HTTP. Does it make sense to you?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> September 29th, 2010 5:10pm </span>
+                                                          <span class="tag">HTTP</span>
+                                          <span class="tag">POST</span>
+                                          <span class="tag">redirect</span>
+                                          <span class="tag">RDG</span>
+                                          <span class="tag">Post/Redirect/Get</span>
+                                          <span class="tag">conflict</span>
+                                          <span class="tag">HTTP status codes</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

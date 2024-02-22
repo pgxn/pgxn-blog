@@ -1,0 +1,37 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Hello Mastodon 🐘</h1>
+                    <p>Hey all you Postgres people out there! Just wanted to make a quick post regarding the PGXN <a href="https://twitter.com/pgxn">twitter bot</a>. In light of the recent announcements by Twitter to charge for API use, I udpated <a href="https://manager.pgxn.org">PGXN Manager</a> to also post to Mastodon! If youre have joined the exodus to the Fediverse, give it a follow:</p>
+
+<p><a href="https://botsin.space/@pgxn">@pgxn@botsin.space</a></p>
+
+<p>In fact, I made some time to rewrite the notification bits of the manager service. Previously there was just some code jammed into the upload controller that would make an API call to Twitter. I ripped that out, and added a trigger to the distributions table that posts a a <a href="https://www.postgresql.org/docs/current/sql-notify.html">LISTEN/NOTIFY</a> message.</p>
+
+<p>Then I wrote a little service that checks for new notifications every 5 seconds and dispatches to one mor more configured consumers. Today there are just two: Twitter and Mastodon; in the future the might be more, especially since I also added triggers to the users and mirrors tables, so we could have the bot announce new mirrors and users. Should be pretty easy to do, might put in the time in the next few weeks.</p>
+
+<p>Oh, and for fun, I also added some emoji to the Mastodon posts, as well as the abstract from new releases. Makes the messages more informative than on Twitter. Of course, we could probably do the same, there, especially since the post length was extended to 280 characters sometime after the original bot. I have in mind to make a little library that allows the customization of messages via configuration.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> February 18th, 2023 5:53pm </span>
+                                                          <span class="tag">pgxn</span>
+                                          <span class="tag">mastodon</span>
+                                          <span class="tag">twitter</span>
+                                          <span class="tag">postgresql</span>
+                                          <span class="tag">listen-notify</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

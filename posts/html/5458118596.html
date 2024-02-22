@@ -1,0 +1,50 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>New HOWTO</h1>
+                    <p>I updated the <a href="http://manager.pgxn.org/">howto</a> yesterday. This document explains how to create a PGXN distribution. If you&rsquo;re interested in releasing PostgreSQL extensions on <a href="http://pgxn.org/">PGXN</a>, this document is worth a read.</p>
+
+<p>In essence, it&rsquo;s really simple: Just create a <a href="http://pgxn.org/spec/"><code>META.json</code></a> and upload. But to get the full benefit, there are quite a few other recommendations. Already familiar with it? Here&rsquo;s the checklist:</p>
+
+<ul>
+<li>Create a <a href="http://pgxn.org/spec/"><code>META.json</code></a></li>
+<li>Create a <a href="http://www.postgresql.org/docs/9.1/static/extend-extensions.html">control file</a></li>
+<li>Create a <a href="http://www.postgresql.org/docs/current/static/xfunc-c.html#XFUNC-C-PGXS"><code>Makefile</code></a></li>
+<li>Implement the code in the <code>sql</code> and <code>src</code> directories</li>
+<li>Write tests in the <code>test</code> directory</li>
+<li>Write a <a href="http://search.cpan.org/perldoc?Text::Markup">Text::Markup</a>-recognizable <code>README</code></li>
+<li>Write <a href="http://search.cpan.org/perldoc?Text::Markup">Text::Markup</a>-recognizable documentation in the <code>doc</code> directory</li>
+<li>Consider including other files: <code>Changes</code>, <code>LICENSE</code>, <code>INSTALL</code>, <code>COPYING</code>, <code>AUTHORS</code></li>
+<li><a href="http://manager.pgxn.org/">Release it</a>!</li>
+</ul>
+
+<p>Be sure to read the <a href="http://manager.pgxn.org/">howto</a> for details. Got feedback or suggestions? Leave a comment!</p>
+
+<p>Oh, and check out <a href="https://github.com/guedes/pgxn-utils/">pgxn-utils</a> and simplify your extension-development life.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> May 13th, 2011 4:34pm </span>
+                                                          <span class="tag">howto</span>
+                                          <span class="tag">build</span>
+                                          <span class="tag">makefile</span>
+                                          <span class="tag">readme</span>
+                                          <span class="tag">changes</span>
+                                          <span class="tag">documentation</span>
+                                          <span class="tag">META.json</span>
+                                          <span class="tag">control file</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

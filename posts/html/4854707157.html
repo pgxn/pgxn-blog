@@ -1,0 +1,126 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>About the Infrastructure: PGXN Manager</h1>
+                    <p>The PGXN infrastructure is currently made up of four parts:</p>
+
+<ul>
+<li><p>The network of <a href="http://api.pgxn.org/mirror/meta/mirrors.json">mirrors</a>, derived from the <a href="http://master.pgxn.org/">master mirror</a>, and synchronized on various schedules via <code>rsync</code> (<a href="http://pgxn.org/mirroring/">host a mirror</a>).</p></li>
+<li><p><a href="http://manager.pgxn.org/">PGXN Manager</a> (<a href="http://github.com/pgxn/pgxn-manager/" title="Fork PGXN::Manager on GitHub">code</a>) is the core of the network. It provides the interface for users to upload releases, processes those releases, indexes them, and puts them on the master mirror. Details below.</p></li>
+<li><p><a href="http://api.pgxn.org">PGXN API</a> (<a href="http://github.com/pgxn/pgxn-api" title="Fork PGXN::API on GitHub">code</a>) is a mirror server with benefits. Once an hour, it <code>rsync</code>s from the master mirror, and does extra processing of new and modified files, notably full-text indexing. I&rsquo;ll write up some details next week.</p></li>
+<li><p><a href="http://pgxn.org">PGXN Site</a> (<a href="http://github.com/pgxn/pgxn-site" title="Fork PGXN::Site on GitHub">code</a>) powers the main site. It&rsquo;s a thin wrapper around the API server, using <a href="http://github.com/pgxn/www-pgxn" title="Fork WWW::PGXN on GitHub">WWW::PGXN</a> to fetch JSON files and convert them to HTML. I&rsquo;ll write more about this bit next week, too.</p></li>
+</ul>
+
+<p>Some details on Manager. This is by far the most complicated part of the system. Which is funny, because I hadn&rsquo;t anticipated that when I started work on PGXN (I&rsquo;d estimated half as many hours as for implementing the site). But as I worked through design issues and wrote the code, the need for that complexity became apparent &ndash; and not just because it&rsquo;s the only part that offers authentication. <em>The main reason it&rsquo;s complex is so that no other part needs to be.</em></p>
+
+<p>Allow me to explain. People can upload almost anything as a distribution. So long as the <code>META.json</code> adheres to <a href="http://pgxn.org/spec/">the spec</a>, the rest can be just about anything. But the upload doesn&rsquo;t necessarily end up on the network unmodified. Sure, if you follow the guidelines of the <a href="http://manager.pgxn.org/howto">HOWTO</a> what you uploaded will be exactly what ends up on the network. But I didn&rsquo;t want to be that strict about PGXN Manager would accept. So in addition to verifying the structure of your <code>META.json</code> file, <a href="https://github.com/pgxn/pgxn-manager/blob/master/lib/PGXN/Manager/Distribution.pm" title="PGXN::Manager::Distribution on GitHub">PGXN::Manager::Distribution</a> also:</p>
+
+<ul>
+<li><p>Extracts the archive. If it&rsquo;s not a zip file, a zip archive is created from the contents of the uploaded file. You can upload any kind of archive readable by <a href="http://search.cpan.org/perldoc?Archive::Extract">Archive::Extract</a>. The currently supported formats are: <code>.tar</code>, <code>.tar.gz</code>, <code>.gz</code>, <code>.Z</code>, <code>tar.bz2</code>, <code>.tbz</code>, <code>.bz2</code>, <code>.zip</code>, <code>.xz,</code>, <code>.txz</code>, <code>.tar.xz</code> and <code>.lzma</code>. By always converting to a zip file, PGXN client apps can be quite simple, not having to worry about the archive format.</p></li>
+<li><p>Validates the <code>META.json</code>. This part isn&rsquo;t perfect, yet. I fixed a bug today where it would die and return a 500 on a missing version number. It&rsquo;d probably be worthwhile to adapt <a href="http://search.cpan.org/perldoc?CPAN::Meta::Validator">CPAN::Meta::Validator</a> to validate PGXN <code>META.json</code> files at some point, both for Manager and for developers wanting to validate before uploading.</p></li>
+<li><p>Normalizes all version numbers in the <code>META.json</code> into <a href="http://semver.org/">semantic versions</a>. You can specify the distribution version, prerequisite versions, and extension versions as simple numbers and they&rsquo;ll be converted to semantic versions. A version like &ldquo;1.20&rdquo;, for example, becomes &ldquo;1.2.0&rdquo;. See the <a href="http://search.cpan.org/~dwheeler/SemVer-v0.2.0/lib/SemVer.pm#Usage">SemVer documentation</a> for details on how versions are normalized via the <code>declare()</code> method. This normalization is done so that client applications will get known valid semantic versions to compare when determining dependencies. However, it&rsquo;s best that they be semantic versions to begin with. Normalized versions will be written back to the archive <code>META.json</code> file (with the &ldquo;generated_by&rdquo; key updated to reflect that PGXN Manager regenerated the file). If no versions need validating, the archive <code>META.json</code> will be left alone.</p></li>
+<li><p>Makes sure the zip archive has a directory prefix named <code>"$dist-$version/"</code>. If the archive has no directory prefix, or if the prefix is not <code>"$dist-$version/"</code>, the archive is rewritten with that prefix. This ensures that the archive will always extract into a directory with the same name as the archive and not spray files all over your desktop when you unzip it.</p></li>
+<li><p>Copies or writes out a new zip file named <code>"$dist-$version.pgz"</code>. Think of <code>.pgz</code> as &ldquo;PostgreSQL Zip&rdquo; or, if you&rsquo;d rather, &ldquo;PGXN Zip&rdquo;. Either way, it&rsquo;s just a zip archive.</p></li>
+</ul>
+
+<p>That processing done, with a good <code>META.json</code> and zip archive, the JSON, username, and SHA1 of the zip archive are handed off to the database for more processing. The <a href="https://github.com/pgxn/pgxn-manager/wiki/DB-API#add_distribution"><code>add_distribution()</code></a> database function does all the heavy lifting here. It:</p>
+
+<ul>
+<li><p>Parses the JSON string, validates that all required keys are present, and
+normalizes version numbers. Yes, this is redundant, but I don&rsquo;t think I need
+to lecture the reads of this blog about database integrity. :-)</p></li>
+<li><p>Creates a new metadata structure and stores all the required and many of the
+optional meta spec keys, as well as the SHA1 of the distribution file, the
+date, and the user&rsquo;s nickname.</p></li>
+<li><p>Sets the &ldquo;release_status&rdquo; to &ldquo;stable&rdquo; if there was no status in the original
+JSON.</p></li>
+<li><p>Adds a &ldquo;provides&rdquo; section to the metadata if none was included in the
+original JSON. In such a case, it assumes that the distribution contains one
+extension and that it has the same name and version as the distribution
+itself.</p></li>
+<li><p>Validates that the uploading user is owner or co-owner of all provided
+extensions. If no one is listed as owner of one or more included extensions,
+the user will be assigned ownership. If the user is not owner or co-owner of
+any included extensions, an exception will be thrown.</p></li>
+<li><p>Records the distribution, extensions, and tags in the database.</p></li>
+</ul>
+
+<p>Once all this work is done, <code>add_distribution()</code> returns all the JSON that needs to be written to the mirror. These files make up the &ldquo;index&rdquo; on the network, and include:</p>
+
+<ul>
+<li>The <code>META.json</code> file (<a href="http://api.pgxn.org/mirror/dist/semver/0.2.1/META.json">example</a>). This file is derived from the <code>META.json</code> included in the archive (<a href="http://api.pgxn.org/src/semver/semver-0.2.1/META.json">example</a>), but reflects all the normalization changes and added keys outlined above.</li>
+<li>A short JSON file summarizing all releases of the distribution (<a href="http://api.pgxn.org/mirror/dist/semver.json">example</a>).</li>
+<li>JSON files describing all releases of all extensions included in the distribution (<a href="http://api.pgxn.org/mirror/extension/semver.json">example</a>).</li>
+<li>A JSON file for the user, which includes data about all releases made by that user (<a href="http://api.pgxn.org/mirror/user/theory.json">example</a>).</li>
+<li>JSON files for each tag associated with the distribution. Each of these files lists all the distributions the tag is associated with (<a href="http://api.pgxn.org/mirror/tag/datatype.json">example</a>).</li>
+</ul>
+
+<p>It also returns JSON for network statistics files. These are updated every time a new release is uploaded:</p>
+
+<ul>
+<li><a href="http://api.pgxn.org/mirror/stats/dist.json"><code>dist.json</code></a> lists the 56 most recent releases and has a count of all distributions and of releases of those distributions.</li>
+<li><a href="http://api.pgxn.org/mirror/stats/extension.json"><code>extension.json</code></a> lists the 56 most recent extension releases and a count of all extensions on the network.</li>
+<li><a href="http://api.pgxn.org/mirror/stats/user.json"><code>user.json</code></a> lists of the 56 most prolific users (based on the number of distributions) and a count of distributions and releases for each.</li>
+<li><a href="http://api.pgxn.org/mirror/stats/tag.json"><code>tag.json</code></a> lists the 56 most popular tags (measured by the number of distributions they&rsquo;re associated with) and a count of all tags on the network.</li>
+<li><a href="http://api.pgxn.org/mirror/stats/summary.json"><code>summary.json</code></a> has basic summary information about the network, which is just counts of distributions, releases, extensions, users, tags, and mirrors.</li>
+</ul>
+
+<p>If you think that&rsquo;s a lot of data to be updated, you&rsquo;re right! But since releases are relatively infrequent (a couple a day at the moment), it&rsquo;s best to generate all this stuff as static files that are <code>rsync</code>ed to all mirrors. In this way, <em>any</em> mirror can function as a very simple, lightweight REST API. And indeed, that&rsquo;s just how the planned <a href="http://github.com/pgxn/pgxn-client/" title="Fork PGXN::Client on GitHub">PGXN client</a> will behave. The <a href="http://github.com/pgxn/www-pgxn/" title="Fork WWW::PGXN on GitHub">WWW::PGXN</a> already provides the interface it will use.</p>
+
+<p>I guess that was a lot of information. Let this be a reference document for interested hackers, then. The core functionality is all there, but there&rsquo;s a <a href="https://github.com/pgxn/pgxn-manager/issues/">lot more to be done</a>:</p>
+
+<ul>
+<li>Add a UI for users to assign extensions to co-owners (when more than one user is allowed to upload an extension) and to transfer ownership (<a href="https://github.com/pgxn/pgxn-manager/issues/6">#6</a>).</li>
+<li>Add a user administration interface (<a href="https://github.com/pgxn/pgxn-manager/issues/7">#7</a>).</li>
+<li>Add a UI where admins can transfer ownership of extensions when an owner disappears (<a href="https://github.com/pgxn/pgxn-manager/issues/8">#8</a>).</li>
+<li>Add a callback architecture to trigger other actions on successful upload. These would include tweeting new releases (currently just handled in the controller) and running arbitrary command-line utilities (such as syncing the PGXN API server so it can be up-to-date as quickly as possible) (<a href="https://github.com/pgxn/pgxn-manager/issues/9">#9</a>).</li>
+<li>Add support for &ldquo;instant mirroring&rdquo; via <a href="http://search.cpan.org/perldoc?File::Rsync::Mirror::Recent"><code>rrr</code></a> (<a href="https://github.com/pgxn/pgxn-manager/issues/10">#10</a>).</li>
+<li>Add an Atom feed for recent releases (basically a dupe of the distribution stats file) (<a href="https://github.com/pgxn/pgxn-manager/issues/17">#17</a>).</li>
+<li>Add a command-line interface to the API. The HTTP server is written in such a way that it can act as an API serving JSON, but it&rsquo;s not well-tested and nothing uses it yet (that I&rsquo;m aware of) (<a href="https://github.com/pgxn/pgxn-client/issues/1">#1</a>).</li>
+<li>Add UI for re-indexing a distribution (<a href="https://github.com/pgxn/pgxn-manager/issues/11">#11</a>).</li>
+<li>Add ability to delete distributions (<a href="https://github.com/pgxn/pgxn-manager/issues/12">#12</a>)?</li>
+<li>Add an email gateway so that email addressed to <code>$nickname@pgxn.org</code> will be forwarded to a user&rsquo;s actual address. This would allow us to remove literal email addresses from the JSON files and the site (the site obfuscates them, but still…). Anyone got some good postfix chops for this? The <a href="https://github.com/pgxn/pgxn-manager/blob/master/sql/03-users.sql"><code>users</code> table</a> is quite simple (<a href="https://github.com/pgxn/pgxn-manager/issues/13">#13</a>).</li>
+</ul>
+
+<p>Want to help out? Fork <a href="http://manager.pgxn.org/" title="For PGXN::Manager on GitHub">PGXN Manager</a> and have at it. Hell, at this point I&rsquo;d really appreciate a code review, as I&rsquo;m pretty sure there&rsquo;s only been one set of eyes on this code so far.</p>
+
+<p>Next week, I plan to blog about</p>
+
+<ul>
+<li>Project status: where the hours went and where they&rsquo;re going.</li>
+<li><a href="http://tools.ietf.org/html/draft-gregorio-uritemplate-04">URI templates</a> and how they provide a method index for the mirror API</li>
+<li>Mirrors and mirroring via <code>rsync</code></li>
+<li><a href="http://api.pgxn.org/">PGXN API</a>: how it provides a superset of the mirror API, including full-text search.</li>
+<li><a href="http://pgxn.org/">PGXN Site</a>: how it&rsquo;s just a very thing wrapper over the API (but can read the API directly from the file system!)</li>
+<li>Plans for the PGXN client</li>
+</ul>
+
+<p>But given how these things go, and how I need to start writing mirror API and API server documentation, it might take me a longer to get to them all.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 22nd, 2011 10:54pm </span>
+                                                          <span class="tag">PGXN::Manager</span>
+                                          <span class="tag">infrastructure</span>
+                                          <span class="tag">code</span>
+                                          <span class="tag">Perl</span>
+                                          <span class="tag">semver</span>
+                                          <span class="tag">JSON</span>
+                                          <span class="tag">normalization</span>
+                                          <span class="tag">validation</span>
+                                          <span class="tag">zip</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

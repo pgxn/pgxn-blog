@@ -1,0 +1,117 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>RFC: The PGXN Metadata Specification</h1>
+                    <p>I&rsquo;ve posted a draft of the &ldquo;PGXN distribution metadata specification,&rdquo; or <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">PGXN Meta Spec</a>.&ldquo; This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>
+
+<p>To create it, I&rsquo;ve ported the
+<a href="http://search.cpan.org/perldoc?CPAN::Meta::Sepc">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the &quot;required&rdquo; fields &ldquo;optional.&rdquo; At its simplest, the file might look something like this:</p>
+
+<pre><code>{
+  "name": "pgTAP",
+  "abstract": "Unit testing for PostgreSQL",
+  "version": "0.25.0",
+  "owner": "David E. Wheeler &lt;theory@pgxn.org&gt;",
+  "license": "postgresql",
+  "meta-spec": {
+    "version": "1.0.0",
+    "url": "http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+  }
+}
+</code></pre>
+
+<p>Not too bad, eh? The URL for the spec might change (might move it to the main
+site and/or the mirrors), but otherwise, I think this is pretty solid. Not too
+much work to deal with, and reasonably easy to create by hand (which is likely how we&rsquo;ll all start out).</p>
+
+<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href="http://justatheory.com/computers/databases/postgresql/key-value-pairs.html">ordered pair</a> extension, it of course would include tests written with <a href="http://pgtap.org/">pgTAP</a>. So I&rsquo;d have something like:</p>
+
+<pre><code>{
+  "name": "pair",
+  "abstract": "An ordered pair data type",
+  "version": "0.1.0",
+  "owner": "David E. Wheeler &lt;theory@pgxn.org&gt;",
+  license: "postgresql",
+  "meta-spec": {
+    "version": "1.0.0",
+    "url": "http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+  },
+  "prereqs": {
+    "runtime": {
+      "requires": {
+        "PostgreSQL": "8.0.0"
+      },
+      "recommends": {
+        "PostgreSQL": "8.4.0"
+      }
+    },
+    "test": {
+      "requires": {
+        "pgTAP": 0
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>That&rsquo;s saying that the &ldquo;pair&rdquo; distribution requires PostgreSQL 8.0.0 or higher and any version of pgTAP to run the test suite. I&rsquo;ve also recommended PostgreSQL 8.4, as that&rsquo;s where it will run best.</p>
+
+<p>Of course, to get the real power of PGXN, you&rsquo;ll also want to use the <code>provides</code> key, which allows you to identify the extensions included in your distribution. Say that I finally got around to breaking out the schema testing assertions from the logical testing assertions in pgTAP. I might call the second module &ldquo;schematap.&rdquo; So to spell it out, I&rsquo;d add this to the first example above:</p>
+
+<pre><code>  "pgtap": {
+    "file": "sql/pgtap.sql.in",
+    "version": "0.25.0"
+  },
+  "schematap": {
+    "file": "sql/schematap.sql.in"
+  }
+</code></pre>
+
+<p>So now the indexer will know that the &ldquo;pgtap&rdquo; extension is in <code>sql/pgtap.sql.in</code> and the &ldquo;schematap&rdquo; extension is in <code>sql/schematap.sql.in</code>. This is important because it allows other distributions to specify &ldquo;schematap&rdquo; as a prerequisite. It also means that, in the PGXN client, you can type something like:</p>
+
+<pre><code>PGXN&gt; install schematap
+</code></pre>
+
+<p>And, because &ldquo;schematap&rdquo; will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the &ldquo;schematap&rdquo; extension.</p>
+
+<p>A final note. Version numbers in the Perl community are a <a href="http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/" title="Version numbers should be boring">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href="http://www.dagolden.com/">David Golden</a> &ndash; the current maintainer of the CPAN Meta Spec &ndash; pointed me to <a href="http://semver.org/">Semantic Versioning</a>, a version number specification by GitHub&rsquo;s <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>
+
+<ul>
+<li>It closely matches how PostgreSQL itself is versioned.</li>
+<li>It&rsquo;s very easy to compare version strings.</li>
+<li>Someone else has already dealt with the pain of writing a spec</li>
+</ul>
+
+<p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That&rsquo;s it. PGXN won&rsquo;t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>
+
+<p>Anyway, please review <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>
+
+<p><strong>Update 2010-08-24:</strong> I&rsquo;ve just updated <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> to change &ldquo;owner&rdquo; to &ldquo;maintainer.&rdquo; I think that the latter term is much better for this purpose. And then I can use &ldquo;owner&rdquo; in PGXN to identify the person who uploads a distribution.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> August 17th, 2010 9:00am </span>
+                                                          <span class="tag">meta</span>
+                                          <span class="tag">meta spec</span>
+                                          <span class="tag">metadata</span>
+                                          <span class="tag">json</span>
+                                          <span class="tag">cpan meta spec</span>
+                                          <span class="tag">david golden</span>
+                                          <span class="tag">version numbers</span>
+                                          <span class="tag">prerequisites</span>
+                                          <span class="tag">license</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

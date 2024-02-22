@@ -1,0 +1,63 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>On Legacy File Systems</h1>
+                    <p>When we last looked at the <a href="http://blog.pgxn.org/post/988613682/restful-directory">organization of the mirror</a>, I was pretty happy with the design except for one thing: The use of the letter hashing variables in the URI templates. It&rsquo;s just ugly and, damnit, is it really necessary anymore? I mean, sure, I had to <a href="http://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b">work around this issue in Bricolage</a> back in 2005, but on modern file systems like zfs and ext3, does it really matter anymore?</p>
+
+<p>I was chatting about this with <a href="http://schwern.dreamhosters.com/">Schwern</a> just now, and he thought it just didn&rsquo;t matter anymore. So I asked my fellow <a href="http://pgexperts.com/">PGX</a> associate <a href="http://www.facebook.com/frosty996">Jeff Frost</a> about this, and he said, &ldquo;Used to be anytime you went above 1000 entries in one directory, things would start to slow down. Certainly reiserfs, xfs, jfs, and zfs don&rsquo;t suffer that issue.&rdquo; But what about ext3?</p>
+
+<p>I happen to have a box with ext3, so I tested it. Here&rsquo;s what I found. To stat one file among 20,000, <code>time</code> says:</p>
+
+<pre><code>real    0m0.005s
+user    0m0.000s
+sys     0m0.000s
+</code></pre>
+
+<p>Not bad. And on file among 200?</p>
+
+<pre><code>real    0m0.009s
+user    0m0.000s
+sys     0m0.010s
+</code></pre>
+
+<p>Well, you can&rsquo;t get much closer than that. What about subdirectories? To stat a file inside one of 20,000 subdirectories, <code>time</code> tells me:</p>
+
+<pre><code>real    0m0.015s
+user    0m0.010s
+sys     0m0.000s
+</code></pre>
+
+<p>And a file inside one of 200 subdirectories:</p>
+
+<pre><code>real    0m0.005s
+user    0m0.000s
+sys     0m0.000s
+</code></pre>
+
+<p>Well, I can live with that. I suppose there are some file systems out there that still have this problem, but you know what? I&rsquo;m not going to worry about them. It&rsquo;s thinking too far in advance anyway (if PGXN has this kind of scaling problem we&rsquo;ll be lucky!), and the farther out we get, the less of a problem it is.</p>
+
+<p>So you know what? I&rsquo;m not going to use the hashing of extension, distribution, and owner names. Let the file systems worry about that performance, not me.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> September 8th, 2010 7:41pm </span>
+                                                          <span class="tag">uri templates,k</span>
+                                          <span class="tag">file systems</span>
+                                          <span class="tag">hashing</span>
+                                          <span class="tag">names</span>
+                                          <span class="tag">mirrors</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

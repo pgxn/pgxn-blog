@@ -1,0 +1,36 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Manager Upgraded</h1>
+                    <p>I took a little time this summer to finally address some nagging issues in <a href="http://manager.pgxn.org/">PGXN Manager</a>, the site to which extensions are uploaded and added to the <a href="http://master.pgxn.org/">master repository</a>. Most of the changes were internal, improving the interface through which I sometimes have to re-index a release. There are also a couple of minor changes to the sample <code>Makefile</code> in the <a href="https://manager.pgxn.org/howto">How To</a>. But the most important change for new releases going forward is that version ordering is now enforced. That means two things:</p>
+
+<ul>
+<li>Distribution versions <strong>must</strong> be greater than the version of the previous release. You can no longer release <code>v1.2.0</code> today and <code>v1.1.0</code> tomorrow.</li>
+<li>Extension versions <strong>must</strong> be greater than or equal to versions in previous releases. It&rsquo;s pretty common to have a new release version but have embedded extensions be the same version as before. But they can&rsquo;t be any less than before.</li>
+</ul>
+
+<p>The changes have been applied to the reindexing code, as well, which also prevents versions from being greater than in subsequent releases. That won&rsquo;t come up very often&mdash;most of the time, I end up reindexing something that has just been released. But in the future I expect to add an interface for release managers to <a href="https://github.com/pgxn/pgxn-manager/issues/49">reindex their own distributions</a>, so it may be that someone reindexes a release that&rsquo;s a few versions old. Or not. But just in case, it&rsquo;ll be handled.</p>
+
+<p>So what are you going to release on PGXN today? <a href="https://manager.pgxn.org/howto">Get to it!</a>.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> August 31st, 2015 5:48pm </span>
+                                                          <span class="tag">release</span>
+                                          <span class="tag">upgrade</span>
+                                          <span class="tag">versions</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

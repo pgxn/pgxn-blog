@@ -1,0 +1,49 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Thoughts on Indexing and Documentation</h1>
+                    <p>So I&rsquo;m designing the full text indexing for the PGXN search site. I&rsquo;m modeling it on <a href="http://http//search.cpan.org">CPAN Search</a>, which has been great. There are four search options:</p>
+
+<ul>
+<li>Full documentation search. This is the most common. Includes doc title and body.</li>
+<li>User search. Search on names, nicknames, email addresses, URIs, etc.</li>
+<li>Distribution search. Search on distribution name, abstract, description, tags, and the README.</li>
+<li>Extension search. Search on extension name and abstract.</li>
+<li>Tag search. Search on tag name only.</li>
+</ul>
+
+<p>The documentation search is the one I&rsquo;m perhaps least sure about. It assumes that each extension in a distribution will have documentation. But so far that has not really been the practice for PostgreSQL extensions. Most folks seem to stick the documentation in the README. And even then it can be <a href="http://master.pgxn.org/dist/countnulls/1.0.0/README.txt">almost nothing</a>. So a search for &ldquo;count nulls&rdquo; probably would not find &ldquo;countnulls&rdquo; extension, because there is no documentation. What should I do about this? I&rsquo;m thinking one of:</p>
+
+<ul>
+<li><p>Encourage folks to write documentation. I&rsquo;m going to do this anyway, because the docs will really help the visibility of an extension on the site. It looks <a href="http://theory.github.com/pgxn/pgtap.html">like this</a>. If you have no docs for an extension, your extension will not appear in the search results (or perhaps it might, but link to the distribution).</p></li>
+<li><p>If there is no documentation for an extension in a distribution, index the README as the documentation. I&rsquo;m not really keen on this idea, because the README should describe the distribution, how to install it, etc. I&rsquo;m planning to use it in the distribution-specific index. Documentation of the extension should be more about how the extension works, what it&rsquo;s interface is, etc. Or so it seems to me, at least (I&rsquo;m admittedly biased to this practice among CPAN modules). But at least with this approach there would be a link to &ldquo;documentation&rdquo; for an extension on the search site.</p></li>
+</ul>
+
+<p>Erm, not really thinking of any other options. I feel pretty strongly that folks should write docs for their extensions, as much as possible, and I&rsquo;ve set things up so that, from PGXN&rsquo;s point of view, at least, you can write documentation in whatever format you like (assuming the format is supported by or added to <a href="http://search.cpan.org/perldoc?Text::Markup">Text::Markup</a>), as long as they&rsquo;re in a <code>doc/</code> or <code>docs</code> directory. I want it to be as easy as possible. But I also want there to be decent search results ASAP.</p>
+
+<p>Comments?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> March 22nd, 2011 1:13am </span>
+                                                          <span class="tag">indexing</span>
+                                          <span class="tag">full text search</span>
+                                          <span class="tag">readme</span>
+                                          <span class="tag">documentation</span>
+                                          <span class="tag">search results</span>
+                                          <span class="tag">search</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

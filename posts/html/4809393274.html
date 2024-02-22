@@ -1,0 +1,43 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>What Media Types for Browsing?</h1>
+                    <p>Thanks to a comment from &ldquo;Anon,&rdquo; I&rsquo;m auditing the media types used to serve files from the &ldquo;Browse&rdquo; links on the site. The browse interface is managed by <a href="http://search.cpan.org/perldoc?Plack::App::Directory">Plack::App::Directory</a>, which gets its media type mapping from <a href="https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href="https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5">this commit</a>, files are served as plain text if:</p>
+
+<ul>
+<li>The strings &ldquo;html&rdquo;, &ldquo;x-c&rdquo;, &ldquo;xml&rdquo;, &ldquo;calendar&rdquo;, or &ldquo;vcard&rdquo; appear in the default media type; or</li>
+<li>The file name extension is one of <code>.bat</code>, <code>.css</code>, <code>.eml</code>, <code>.js</code>, <code>.json</code>, <code>.mime</code>, or <code>.swf</code>.</li>
+</ul>
+
+<p>Are there other <a href="https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm">media types</a> that should be disabled for safe browsing of user-submitted content?</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> April 21st, 2011 12:56pm </span>
+                                                          <span class="tag">mime</span>
+                                          <span class="tag">media type</span>
+                                          <span class="tag">mime type</span>
+                                          <span class="tag">browse</span>
+                                          <span class="tag">source</span>
+                                          <span class="tag">user-submitted</span>
+                                          <span class="tag">content</span>
+                                          <span class="tag">text</span>
+                                          <span class="tag">plain text</span>
+                                          <span class="tag">html</span>
+                                          <span class="tag">c</span>
+                                          <span class="tag">json</span>
+                                                    </div>
+            </body>
+        </html>
+
+        

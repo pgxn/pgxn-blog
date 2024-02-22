@@ -1,0 +1,48 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>PGXN Distribution Prerelease Versions Fixed</h1>
+                    <p>A couple years ago, the <a href="http://semver.org/">Semantic Version</a> specification was <a href="https://github.com/mojombo/semver/commit/05a00df02db3d4ba83e0caaff6b31c10c77f7d3d">updated</a> to require a hyphen between the &ldquo;patch version&rdquo; and the &ldquo;prerelease version.&rdquo; This despite the fact that v1.0.0 of the spec had been published on the site for a while (see all the gory issues <a href="https://github.com/mojombo/semver/issues/49#issuecomment-19705479">here</a>). Naturally, I had already implemented that format for PGXN in a <a href="https://metacpan.org/module/SemVer">Perl module</a> and <a href="http://pgxn.org/extension/semver/">Postgres data type</a>. Since we already had some PGXN extensions with the non-hyphenated format, and I knew supporting the hyphen would break them, I held off updating those implementations for a year or so.</p>
+
+<p>I finally broke down and updated them, though, to be fully compliant with the official v1.0.0 spec, and pushed the changes to the PGXN server a few months ago. And I was right: it <em>did</em> break things. Links broke, downloads failed, and my mailbox filled up with error messages. I triaged the worst of the issues, but since then, accessing PGXN distributions with prerelease versions has not worked so well.</p>
+
+<p>Until last night. I finally got some tuits in the last month to dig into this issue and figure out how to fix it. As a result, there are new releases of <a href="http://manager.pgxn.org/">PGXN Manager</a>, <a href="http://api.pgxn.org/">the API</a>, and <a href="http://pgxn.org/">the site</a>, as well as <a href="https://metacpan.org/module/PGXN::Meta::Validator">the <code>META.json</code> validator</a> that should keep things consistent and working well going forward. Assuming there are no more backwards-incompatible changes to semantic versions, of course.</p>
+
+<p>But that still didn&rsquo;t solve the problem of existing distributions with the old format of semantic version. Alas, I had to download them all, modify them, and re-index them. This means that, if you had URLs to prerelease versions laying around, they won&rsquo;t work anymore. Fortunately, they&rsquo;re prerelease versions, so I wouldn&rsquo;t expect many to have them lying around anyway.</p>
+
+<p>Still in the interest of disclosure (and because their SHA1s have changed), here&rsquo;s a list of the changed distributions:</p>
+
+<ul>
+<li>pgmp 1.0.0-b2 changed to <a href="http://pgxn.org/dist/pgmp/1.0.0-b2/">1.0.0-b2</a></li>
+<li>pgmp 1.0.0-b3 changed to <a href="http://pgxn.org/dist/pgmp/1.0.0-b3/">1.0.0-b3</a></li>
+<li>plv8 1.1.0beta1 changed to <a href="http://pgxn.org/dist/plv8/1.1.0-beta1/">1.1.0-beta1</a></li>
+<li>pgvihash 1.0.0dirty changed to <a href="http://pgxn.org/dist/pgvihash/1.0.0-dirty/">1.0.0-dirty</a></li>
+<li>madlib 0.3.0alpha1 changed to <a href="http://pgxn.org/dist/madlib/0.3.0-alpha1/">0.3.0-alpha1</a></li>
+<li>madlib 0.5.0release1 changed to <a href="http://pgxn.org/dist/madlib/0.5.0-release1/">0.5.0-release1</a></li>
+<li>madlib 0.6.0release1 changed to <a href="http://pgxn.org/dist/madlib/0.6.0-release1/">0.6.0-release1</a></li>
+<li>multicorn 1.0.0beta1 changed to <a href="http://pgxn.org/dist/multicorn/1.0.0-beta1/">1.0.0-beta1</a></li>
+<li>pg_repack 1.1.8alpha1 changed to <a href="http://pgxn.org/dist/pg_repack/1.1.8-alpha1/">1.1.8-alpha1</a></li>
+<li>pg_repack 1.1.8beta1 changed to <a href="http://pgxn.org/dist/pg_repack/1.1.8-beta1/">1.1.8-beta1</a></li>
+<li>pg_repack 1.1.8beta2 changed to <a href="http://pgxn.org/dist/pg_repack/1.1.8-beta2/">1.1.8-beta2</a></li>
+</ul>
+
+<p>Apologies for the dead links, and for taking so long to get this stuff cleaned up.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> June 19th, 2013 3:24pm </span>
+                                </div>
+            </body>
+        </html>
+
+        

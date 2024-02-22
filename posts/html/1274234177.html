@@ -1,0 +1,37 @@
+        <!DOCTYPE HTML>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../style.css"/>
+            </head>
+            <body>
+                
+                
+                                    <h1>Mail List, SSL</h1>
+                    <p>I&rsquo;m <em>this</em> close to having PGXN Manager ready for a limited beta. I&rsquo;ve got it running on <a href="http://kineticode.com/">Kineticode</a>&rsquo;s server, and have been tweaking things here and there, fixing some bugs and filling in a few missing bits.  In the next couple of days I&rsquo;ll get some more kinks worked out and then start inviting folks in. If you&rsquo;re interested &ndash; especially if you have an extension you&rsquo;d like to release, leave a comment here to let me know.</p>
+
+<p>Better yet, sign up for our new <a href="http://groups.google.com/group/pgxn-users">mail list</a>. I&rsquo;ve set this up so that PGXN users can have a place to meet and discuss things (naturally). I expect discussion will be about how to create proper distribution archives (hint: it&rsquo;s all about the <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"><code>META.json</code></a> file); issues with PGXN Manager or the network itself, and directions for ongoing development.</p>
+
+<p>Oh, one thing I wanted to run by you here: I currently have two sections in PGXN Manager: public and users only. Right now the only difference is that all the users-only stuff is under the <code>/auth/</code> URI, which is itself limited by a basic auth challenge. I find this setup a bit hinky, though, because the link to <code>/about</code>, for example, appears in the nav menu for both sections, and if you&rsquo;re logged in and click it, it will look like you&rsquo;re logged out.</p>
+
+<p>So I was thinking perhaps that I&rsquo;d change it so that the difference is that user-only is on port 443 (SSL) and public on port 80. That way I could have links to <code>about</code> on both and one wouldn&rsquo;t appear to be logged out by clicking it from the SSL site. Because, you know, they&rsquo;re effectively two different sites.</p>
+
+<p>Thoughts? Is using the SSL divide perhaps the most natural way to separate user-only access from public access?</p>
+
+<p>More soon.</p>
+                
+                
+                
+                
+                
+                
+                                <div id="footer">
+                <span id="timestamp"> October 9th, 2010 2:01am </span>
+                                                          <span class="tag">mail list</span>
+                                          <span class="tag">ssl</span>
+                                          <span class="tag">basic auth</span>
+                                                    </div>
+            </body>
+        </html>
+
+        
