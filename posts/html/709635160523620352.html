@@ -10,7 +10,7 @@
                                     <h1>Hello Mastodon 🐘</h1>
                     <p>Hey all you Postgres people out there! Just wanted to make a quick post regarding the PGXN <a href="https://twitter.com/pgxn">twitter bot</a>. In light of the recent announcements by Twitter to charge for API use, I udpated <a href="https://manager.pgxn.org">PGXN Manager</a> to also post to Mastodon! If youre have joined the exodus to the Fediverse, give it a follow:</p>
 
-<p><a href="https://botsin.space/@pgxn">@pgxn@botsin.space</a></p>
+<p><a href="https://mastodon.social/@pgxn">@pgxn@mastodon.social</a></p>
 
 <p>In fact, I made some time to rewrite the notification bits of the manager service. Previously there was just some code jammed into the upload controller that would make an API call to Twitter. I ripped that out, and added a trigger to the distributions table that posts a a <a href="https://www.postgresql.org/docs/current/sql-notify.html">LISTEN/NOTIFY</a> message.</p>
 
