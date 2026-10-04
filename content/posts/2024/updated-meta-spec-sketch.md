@@ -3,6 +3,7 @@ title: "Feedback Wanted: Meta Spec Sketch"
 slug: updated-meta-spec-sketch
 date:  2024-03-21T00:00:00Z
 lastMod: 2024-04-23T20:37:05Z
+aliases: [/post/745588549026447361/updated-meta-spec-sketch]
 ---
 
 New post up on Just a Theory, [RFC: PGXN Metadata Sketch], seeking feedback on

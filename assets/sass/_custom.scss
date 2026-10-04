@@ -1,0 +1,40 @@
+.author .author-avatar {
+    border-radius: 0;
+}
+
+dt {
+    padding-top: 15px;
+}
+
+.tags {
+    clear: both;
+}
+
+.tags ul { margin: 0; }
+
+.tags li {
+    white-space: pre-line;
+    display: inline-block;
+}
+
+.tags li a:before {
+   content: '#'
+}
+
+.tags li:after {
+   content: ',\00a0'
+}
+
+.tags li:last-child:after {
+    content: '';
+}
+
+nav#rels {
+    padding-top: 1em;
+}
+nav#rels .next { float: right }
+
+.post .author {
+    margin: 15px 0;
+    text-align: unset;
+}

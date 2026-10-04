@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{{- $defaultColor := .Site.Params.defaultColor | default "auto" -}}
+
+{{/* allow website developer to enforce default dark mode */}}
+{{- if eq $defaultColor "dark" -}}
+<html lang="{{ .Site.Language.Locale }}" class="dark">
+{{- else if eq $defaultColor "light" -}}
+<html lang="{{ .Site.Language.Locale }}" class="light">
+{{- else -}}
+<html lang="{{ .Site.Language.Locale }}">
+{{- end -}}
+
+{{- partial "head.html" . -}}
+
+<body data-theme="{{ $defaultColor }}" class="notransition">
+    {{- partial "scriptsBodyStart.html" . -}}
+    {{- partial "header.html" . -}}
+    <div class="wrapper">
+        {{ partial "bio" . }}
+        <main aria-label="Content">
+            {{/* create a list of posts for each month, with month as heading */}}
+            {{ $pagesToShow := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+            {{ range $pagesToShow.GroupByDate "2006" }}
+            <h2 class="post-year">{{ .Key }}</h2>
+            {{ range .Pages }}
+            {{ partial "postCard" . }}
+            {{ end }} {{/* end range .Pages */}}
+            {{ end }} {{/* end range .Pages.GroupByDate "2006-01" */}}
+        </main>
+    </div>
+    {{- partial "footer.html" . -}}
+    {{- partial "scriptsBodyEnd.html" . -}}
+</body>
+
+</html>

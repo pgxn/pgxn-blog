@@ -3,6 +3,7 @@ title: Recent PGXN Improvements
 slug: recent-work
 date:  2024-02-22T00:00:00Z
 lastMod: 2024-02-22T20:37:05Z
+aliases: [/post/743059495415119873/recent-work]
 ---
 
 One of the perks of my [new gig at Tembo](https://tembo.io/blog/welcoming-david-wheeler) is that I have more time to work on PGXN. In the last ten years I've had very little time to give, so things have stagnated. The [API](https://github.com/pgxn/pgxn-api), for example, hasn't seen a meaningful update since 2016!

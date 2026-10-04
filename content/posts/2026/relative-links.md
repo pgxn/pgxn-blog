@@ -1,8 +1,13 @@
 ---
-title: "From the Department of It’s About Time: Inter-documentation and image links now work on PGXN"
+title: Inter-documentation and image links now work on PGXN
 slug: relative-links
 date:  2026-09-08T22:12:29Z
 lastMod: 2026-09-08T22:12:29Z
+description: |
+  From the Department of It’s About Time: Inter-documentation and image links
+  now work on PGXN.
+tags: [Images, Links, Site]
+aliases: [/post/827227334118604800/from-the-department-of-its-about-time]
 ---
 
 Way back in 2015, I opened a [PGXN API issue] to allow links between documents

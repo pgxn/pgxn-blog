@@ -1,0 +1,21 @@
+{{/*  Override the comments to instead list tags.  */}}
+        <nav id="rels">
+            {{- with .PrevInSection }}
+            <a class="prev" href="{{ .RelPermalink }}">❮ Previous {{ title .Type | singularize }}</a>
+            {{- end }}
+
+            {{- with .NextInSection }}
+            <a class="next" href="{{ .RelPermalink }}">Next {{ title .Type | singularize }} ❯</a>
+            {{- end }}
+        </nav>
+{{ with .Params.tags }}
+        <footer class="tags">
+            <h5>Tags</h5>
+            <ul>
+                {{- range . }}
+                {{- $path := (delimit (slice "" "tags" (. | urlize) "") "/") }}
+                <li><a href="{{ absURL $path }}">{{ . }}</a></li>
+                {{- end }}
+            </ul>
+        </footer>
+{{- end -}}
