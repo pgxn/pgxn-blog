@@ -8,9 +8,9 @@
                 
                 
                                     <h1>Start Your Mirrors!</h1>
-                    <p>Work has finally started. We now have <a href="http://pgxn.org/mirroring.html">mirroring</a>. This was the first task for the project, and it&rsquo;s now checked off on the <a href="http://pgxn.org/status.html">status</a> page. Hurrah!</p>
+                    <p>Work has finally started. We now have <a href="https://pgxn.org/mirroring.html">mirroring</a>. This was the first task for the project, and it&rsquo;s now checked off on the <a href="https://pgxn.org/status.html">status</a> page. Hurrah!</p>
 
-<p>This turned out to be a pretty simple task, of course. For now I&rsquo;m using the <a href="http://www.kineticode.com/">Kineticode</a> (my other employer) server to host both the <a href="http://www.pgxn.org/">PGXN site</a> and the master mirror. This is temporary, just a way to get things up and going as quickly as possible. The master mirror runs <code>rsyncd</code> with read-only access to the <code>pgxn</code> path. So all you have to do to mirror it is set up a <code>cron</code> job like:</p>
+<p>This turned out to be a pretty simple task, of course. For now I&rsquo;m using the <a href="https://www.kineticode.com/">Kineticode</a> (my other employer) server to host both the <a href="https://www.pgxn.org/">PGXN site</a> and the master mirror. This is temporary, just a way to get things up and going as quickly as possible. The master mirror runs <code>rsyncd</code> with read-only access to the <code>pgxn</code> path. So all you have to do to mirror it is set up a <code>cron</code> job like:</p>
 
 <pre><code>rsync -az --delete rsync://master.pgxn.org/pgxn /path/to/pgxn
 </code></pre>

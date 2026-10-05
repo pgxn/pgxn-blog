@@ -8,9 +8,9 @@
                 
                 
                                     <h1>ALIAS Back in Vogue </h1>
-                    <p>I&rsquo;ve been hard at work on <a href="http://github.com/theory/pgxn-manager">PGXN Manager</a>, the app for users to upload distributions to PGXN. I am of course following my own dictum: &ldquo;the database <em>is</em> the model.&rdquo; As a result, I&rsquo;ve been creating an API for creating, updating, and deleting entities, as well as generating JSON (more on that later).</p>
+                    <p>I&rsquo;ve been hard at work on <a href="https://github.com/theory/pgxn-manager">PGXN Manager</a>, the app for users to upload distributions to PGXN. I am of course following my own dictum: &ldquo;the database <em>is</em> the model.&rdquo; As a result, I&rsquo;ve been creating an API for creating, updating, and deleting entities, as well as generating JSON (more on that later).</p>
 
-<p>I&rsquo;m also using PostgreSQL 9. The motivation to make the jump to 9.0 was to to try to use the <a href="https://commitfest.postgresql.org/action/patch_view?id=351">JSON data type patch</a>, but I abandoned it when I couldn&rsquo;t get it to compile. (I might come back to it later, but right now I&rsquo;m trying to practice <a href="http://en.wikipedia.org/wiki/YAGNI">YAGNI</a> and <a href="http://www.urbandictionary.com/define.php?term=JFDI">JFDI</a> so that I don&rsquo;t end up owning a yak farm). But there are other reasons to stick with 9.0, like improved <a href="http://developer.postgresql.org/pgdocs/postgres/hstore.html">hstore</a> support, the <a href="http://developer.postgresql.org/pgdocs/postgres/sql-do.html">DO</a> statement, and <a href="http://developer.postgresql.org/pgdocs/postgres/sql-syntax-calling-funcs.html#SQL-SYNTAX-CALLING-FUNCS-NAMED">named parameters</a>.</p>
+<p>I&rsquo;m also using PostgreSQL 9. The motivation to make the jump to 9.0 was to to try to use the <a href="https://commitfest.postgresql.org/action/patch_view?id=351">JSON data type patch</a>, but I abandoned it when I couldn&rsquo;t get it to compile. (I might come back to it later, but right now I&rsquo;m trying to practice <a href="https://en.wikipedia.org/wiki/YAGNI">YAGNI</a> and <a href="https://www.urbandictionary.com/define.php?term=JFDI">JFDI</a> so that I don&rsquo;t end up owning a yak farm). But there are other reasons to stick with 9.0, like improved <a href="https://developer.postgresql.org/pgdocs/postgres/hstore.html">hstore</a> support, the <a href="https://developer.postgresql.org/pgdocs/postgres/sql-do.html">DO</a> statement, and <a href="https://developer.postgresql.org/pgdocs/postgres/sql-syntax-calling-funcs.html#SQL-SYNTAX-CALLING-FUNCS-NAMED">named parameters</a>.</p>
 
 <p>Actually, this last one is very nice, as it allows me to use SQL syntax to specify function parameters instead of using an <code>hstore</code> value to hack it. For example, I have this function for update a user record:</p>
 
@@ -42,7 +42,7 @@ $$;
     nick  := 'theory',
     name  := 'David E. Wheeler',
     email := 'justatheory@pgxn.org',
-    uri   := 'http://www.justatheory.com/'
+    uri   := 'https://www.justatheory.com/'
 );
 </code></pre>
 
@@ -57,7 +57,7 @@ $$;
 
 <p>And it will just work. Nice!</p>
 
-<p>One thing I did discover, though: Now that I&rsquo;m using named parameters, I don&rsquo;t want to use <a href="http://en.wikipedia.org/wiki/Hungarian_notation">Hungarian notation</a> for the parameter names. Back before 9.0, when callers never saw argument names when calling a function, I could call them whatever I wanted. This was especially important when executing queries in PL/pgSQL, because one needs to be aware of parameter (and variable!) names that conflict with SQL identifiers, especially columns. (Another nice feature in 9.0 is that it will throw an exception if you create a PL/pgSQL function with conflicting parameter and identifier names.) But now that the parameter names are more likely to be exposed and <em>used</em> to the function caller, I want them to be meaningful.</p>
+<p>One thing I did discover, though: Now that I&rsquo;m using named parameters, I don&rsquo;t want to use <a href="https://en.wikipedia.org/wiki/Hungarian_notation">Hungarian notation</a> for the parameter names. Back before 9.0, when callers never saw argument names when calling a function, I could call them whatever I wanted. This was especially important when executing queries in PL/pgSQL, because one needs to be aware of parameter (and variable!) names that conflict with SQL identifiers, especially columns. (Another nice feature in 9.0 is that it will throw an exception if you create a PL/pgSQL function with conflicting parameter and identifier names.) But now that the parameter names are more likely to be exposed and <em>used</em> to the function caller, I want them to be meaningful.</p>
 
 <p>I messed with this for a while. I was okay with using &ldquo;nick&rdquo; for &ldquo;nickname&rdquo; and &ldquo;pass&rdquo; for &ldquo;password&rdquo;, but was annoyed with the alternatives for &ldquo;email&rdquo; and &ldquo;uri,&rdquo; especially since they&rsquo;re used with those names elsewhere (queries against the table, generated JSON). I really wanted to use parameter names that were the same as the columns. I tried just using the dollar variables (<code>$1</code>, <code>$2</code>, etc.), but got errors for them, too: they seem to be compiled into the parameter names.</p>
 
@@ -102,7 +102,7 @@ $$;
        uri        = COALESCE(update_users.uri,   users.uri),
 </code></pre>
 
-<p>No need for the aliases at all! I had no idea about this feature. Many thanks to Colin &rsquo;t Hart for the comment below about how this is available in Oracle and to Tom Lane for <a href="http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php">smacking me upside the head</a> with <a href="http://www.postgresql.org/docs/9.0/static/plpgsql-structure.html">the fine manual</a> (look for the &ldquo;note&rdquo; at the bottom) when I asked about it.</p>
+<p>No need for the aliases at all! I had no idea about this feature. Many thanks to Colin &rsquo;t Hart for the comment below about how this is available in Oracle and to Tom Lane for <a href="https://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php">smacking me upside the head</a> with <a href="https://www.postgresql.org/docs/9.0/static/plpgsql-structure.html">the fine manual</a> (look for the &ldquo;note&rdquo; at the bottom) when I asked about it.</p>
                 
                 
                 

@@ -8,7 +8,7 @@
                 
                 
                                     <h1>Using JSONP Callbacks</h1>
-                    <p>Using the new <a href="https://github.com/pgxn/pgxn-api/wiki/JSONP">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href="http://www.justatheory.com/" title="Just a Theory">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>
+                    <p>Using the new <a href="https://github.com/pgxn/pgxn-api/wiki/JSONP">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href="https://www.justatheory.com/" title="Just a Theory">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>
 
 <pre><code>&lt;div class="links"&gt;
     &lt;h2&gt;PGXN Code&lt;/h2&gt;
@@ -17,7 +17,7 @@
         document.write('&lt;dl&gt;');
         for (dist in data.releases) {
             document.write(
-                '&lt;dt&gt;&lt;a href=http://pgxn.org/dist/' + dist +
+                '&lt;dt&gt;&lt;a href=https://pgxn.org/dist/' + dist +
                 '&gt;' + dist + '&lt;/a&gt;&lt;/dt&gt;' +
                 '&lt;dd&gt;' + data.releases[dist].abstract + '&lt;/dd&gt;'
             );
@@ -26,7 +26,7 @@
     }
   &lt;/script&gt;
   &lt;script type="text/javascript"
-     src="http://api.pgxn.org/user/theory.json?callback=pgxn_distros"&gt;
+     src="https://api.pgxn.org/user/theory.json?callback=pgxn_distros"&gt;
   &lt;/script&gt;
 &lt;/div&gt;
 </code></pre>

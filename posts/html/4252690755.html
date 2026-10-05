@@ -8,11 +8,11 @@
                 
                 
                                     <h1>Thoughts on Content Localization</h1>
-                    <p>The new site is coming along <em>very</em> nicely. I&rsquo;m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this &ndash; even though I&rsquo;ve preached that very separation for years in one of my <a href="http://www.kineticode.com/">day jobs</a>.</p>
+                    <p>The new site is coming along <em>very</em> nicely. I&rsquo;m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this &ndash; even though I&rsquo;ve preached that very separation for years in one of my <a href="https://www.kineticode.com/">day jobs</a>.</p>
 
 <p>But speaking of that separation, I am running into a bit of an annoyance with content specific to the site. All the content from the network is working beautifully &ndash; I just fetch it from the API server. But the site has its own content page independent of the network, including an FAQ, a page on setting up a mirror, a list of our backers, etc. And the ugly bit has to do with localization.</p>
 
-<p>I&rsquo;ve built the site (and <a href="http://manager.pgxn.org/">PGXN Manager</a>) using the Perl standard localization library <a href="http://search.cpan.org/perldoc?Locale::Maketext">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>
+<p>I&rsquo;ve built the site (and <a href="https://manager.pgxn.org/">PGXN Manager</a>) using the Perl standard localization library <a href="https://search.cpan.org/perldoc?Locale::Maketext">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>
 
 <pre><code>our %Lexicon = (
     hometitle =&gt; 'PGXN: PostgreSQL Extension Network',
@@ -46,11 +46,11 @@
 
 <p>So I&rsquo;d like to find a better way to manage these content pages more like <em>documents,</em> in a format that&rsquo;s easy for translators to manage and isn&rsquo;t so broken up. I&rsquo;m open to suggestions. Ideally the content would still be all kept in one place for a given language, but maybe that&rsquo;s just not feasible.</p>
 
-<p>The one thing that occurs to me is to keep documents for given languages in separate <a href="http://daringfireball.net/projects/markdown/">Markdown</a>-formatted files. Each language would have a directory with the language code (&ldquo;en&rdquo;, &ldquo;en-uk&rdquo;, &ldquo;fr&rdquo;, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I&rsquo;ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>
+<p>The one thing that occurs to me is to keep documents for given languages in separate <a href="https://daringfireball.net/projects/markdown/">Markdown</a>-formatted files. Each language would have a directory with the language code (&ldquo;en&rdquo;, &ldquo;en-uk&rdquo;, &ldquo;fr&rdquo;, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I&rsquo;ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>
 
 <p>How have you solved this problem in your apps? How badly have you annoyed your translators?</p>
 
-<p>Oh, while I&rsquo;m thinking about it, where should documentation for the API server be published? I could include it in the <a href="http://github.com/theory/pgxn-api/">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that&rsquo;s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>
+<p>Oh, while I&rsquo;m thinking about it, where should documentation for the API server be published? I could include it in the <a href="https://github.com/theory/pgxn-api/">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that&rsquo;s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>
 
 <p>Thoughts?</p>
                 

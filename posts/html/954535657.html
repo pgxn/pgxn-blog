@@ -16,9 +16,9 @@
 <li>Allow for metadata to be stored to act as a Web API.</li>
 </ol>
 
-<p>The first two are a bit mutually-contradicting. Thinking scalability mainly means minimizing the chances that too many files can be put into a single directory. <a href="http://www.cpan.org/misc/ZCAN.html" title="Zen of Comprehensive Archive Networks (look for “Naming”)">CPAN</a> started out with all author directories in a single directory. Given the sheer number of CPAN contributors, this quickly got to be a bottleneck. To correct for that, they started &ldquo;hashing&rdquo; the first two letters of author names to create subdirectories. My CPAN directory, for example, is <a href="http://www.cpan.org/authors/id/D/DW/DWHEELER/"><code>D/DW/DWHEELER</code></a>. That doesn&rsquo;t quite make for an intuitive location, but it&rsquo;s not bad, and the tradeoff seems sufficient to keep things sane.</p>
+<p>The first two are a bit mutually-contradicting. Thinking scalability mainly means minimizing the chances that too many files can be put into a single directory. <a href="https://www.cpan.org/misc/ZCAN.html" title="Zen of Comprehensive Archive Networks (look for “Naming”)">CPAN</a> started out with all author directories in a single directory. Given the sheer number of CPAN contributors, this quickly got to be a bottleneck. To correct for that, they started &ldquo;hashing&rdquo; the first two letters of author names to create subdirectories. My CPAN directory, for example, is <a href="https://www.cpan.org/authors/id/D/DW/DWHEELER/"><code>D/DW/DWHEELER</code></a>. That doesn&rsquo;t quite make for an intuitive location, but it&rsquo;s not bad, and the tradeoff seems sufficient to keep things sane.</p>
 
-<p>The storage of metadata is important, too, as I plan to have the <a href="http://pgxn.org/status.html#client">client</a> send requests for JSON files to mirrors in order to find distributions. Basically, this came down to a naming convention, as well as a recipe for how to find metadata files for people and extensions. What I&rsquo;ve come up with is three directories:</p>
+<p>The storage of metadata is important, too, as I plan to have the <a href="https://pgxn.org/status.html#client">client</a> send requests for JSON files to mirrors in order to find distributions. Basically, this came down to a naming convention, as well as a recipe for how to find metadata files for people and extensions. What I&rsquo;ve come up with is three directories:</p>
 
 <ul>
 <li><code>meta</code> will contain PGXN metadata</li>
@@ -28,7 +28,7 @@
 
 <p>The <code>meta</code> directory will contain PGXN metadata (<code>mirrors.json</code>, timestamp, other detritus). If I ever create an index file that lists all distributions, it would go there, too. I&rsquo;m not going to discuss it any further here, except to note that it already has <code>mirrors.json</code>, which clients will be able to use to present users with a list of mirrors to choose from.</p>
 
-<p>The <code>dist</code> directory will be organized with directories named with &ldquo;hashes&rdquo; of the first two letters of distribution names. Let&rsquo;s say that I&rsquo;m releasing <a href="http://pgtan.org/">pgTAP</a> 0.25 on PGXN. To distribute it, the management application will create the directory (if it doesn&rsquo;t already exist):</p>
+<p>The <code>dist</code> directory will be organized with directories named with &ldquo;hashes&rdquo; of the first two letters of distribution names. Let&rsquo;s say that I&rsquo;m releasing <a href="https://pgtan.org/">pgTAP</a> 0.25 on PGXN. To distribute it, the management application will create the directory (if it doesn&rsquo;t already exist):</p>
 
 <pre><code>dist/p/pg/pgtap/
 </code></pre>
@@ -40,7 +40,7 @@ dist/p/pg/pgtap/pgtap-0.25.json
 dist/p/pg/pgtap/pgtap-0.25.readme
 </code></pre>
 
-<p>The <code>pgtap-0.25.pgz</code> file will contain the <a href="http://wiki.postgresql.org/wiki/PGXN#Distribution_Layout">zipped distribution</a> ready for download. <code>pgtap-0.25.json</code> will contain metadata about the distribution, such as the owner&rsquo;s name, the manager&rsquo;s name (more on these folks below), list of included extensions, location of the <code>.pgz</code> and <code>.readme</code>, and its SHA1. <code>pgtap-0.25.readme</code> will of course contain the <code>README</code> for the distribution (if it has one).</p>
+<p>The <code>pgtap-0.25.pgz</code> file will contain the <a href="https://wiki.postgresql.org/wiki/PGXN#Distribution_Layout">zipped distribution</a> ready for download. <code>pgtap-0.25.json</code> will contain metadata about the distribution, such as the owner&rsquo;s name, the manager&rsquo;s name (more on these folks below), list of included extensions, location of the <code>.pgz</code> and <code>.readme</code>, and its SHA1. <code>pgtap-0.25.readme</code> will of course contain the <code>README</code> for the distribution (if it has one).</p>
 
 <p>Every release of pgTAP will have these three files, so after several releases, the <code>pgtap</code> directory might have these files:</p>
 
@@ -113,7 +113,7 @@ by/extension/s/sc/schematap/schematap.json
 <pre><code>by/manager/t/th/theory.json
 </code></pre>
 
-<p>This file would contain a list of the distributions I&rsquo;ve released on PGXN. This might be exactly the same as the list in my owner file, but may not be. Perhaps for one release of pgTAP, say 0.26, <a href="http://leto.net/dukeleto.pl/">Duke Leto</a> uploaded a release. In that case, 0.26 would probably be in my owner file, but not in my manager file: it would be in Duke&rsquo;s manager file, instead.</p>
+<p>This file would contain a list of the distributions I&rsquo;ve released on PGXN. This might be exactly the same as the list in my owner file, but may not be. Perhaps for one release of pgTAP, say 0.26, <a href="https://leto.net/dukeleto.pl/">Duke Leto</a> uploaded a release. In that case, 0.26 would probably be in my owner file, but not in my manager file: it would be in Duke&rsquo;s manager file, instead.</p>
 
 <p>So these are the basics of the directory structure for the networked mirrors. Note that I haven&rsquo;t thought much about everything that will go into the JSON files (or whether or not they&rsquo;d be versioned). That will likely depend quite a lot on what the management database ends up looking like. I&rsquo;ll be working on that next.</p>
 

@@ -8,21 +8,21 @@
                 
                 
                                     <h1>Account Requests and Moderation</h1>
-                    <p>Last week I created the <a href="http://github.com/theory/pgxn-manager" title="PGXN Manager repository on GitHub">PGXN Manager</a> interface for requesting a PGXN user account. It looks like this:</p>
+                    <p>Last week I created the <a href="https://github.com/theory/pgxn-manager" title="PGXN Manager repository on GitHub">PGXN Manager</a> interface for requesting a PGXN user account. It looks like this:</p>
 
 <p><img src="../../media/1205386689_3.png" alt=""/></p>
 
-<p>I really like the placeholder support in HTML 5, here nicely rendered by Safari. I&rsquo;ve also used the jQuery <a href="http://docs.jquery.com/Plugins/Validation">Validation plugin</a> to validate the form fields. So if you try to submit an incomplete form, it will complain before submitting, like so:</p>
+<p>I really like the placeholder support in HTML 5, here nicely rendered by Safari. I&rsquo;ve also used the jQuery <a href="https://docs.jquery.com/Plugins/Validation">Validation plugin</a> to validate the form fields. So if you try to submit an incomplete form, it will complain before submitting, like so:</p>
 
 <p><img src="../../media/1205386689_3.png" alt=""/></p>
 
-<p>The back end does similar validation if you have JavaScript disabled, so it should degrade nicely. I think I might add a Twitter field so <a href="http://twitter.com/pgxn">@pgxn</a> can credit users for their uploads, but otherwise this is done.</p>
+<p>The back end does similar validation if you have JavaScript disabled, so it should degrade nicely. I think I might add a Twitter field so <a href="https://twitter.com/pgxn">@pgxn</a> can credit users for their uploads, but otherwise this is done.</p>
 
 <p>As with <a href="https://pause.perl.org/" title="The [Perl programming] Authors Upload Server">PAUSE</a>, an administrator must accept it or reject an account request. Once your account is approved (likely unless you&rsquo;re a spammer), you&rsquo;ll be able to upload distributions (I&rsquo;m going to do that part today). I finished the user admin interface yesterday. Here&rsquo;s a screen snap:</p>
 
 <p><img src="../../media/1205386689_3.png" alt="PGXN User Administration"/></p>
 
-<p>Some details. PGXN Manager will be hosted at <code><a href="http://manager.pgxn.org/">http://manager.pgxn.org/</a></code>. It uses basic auth for authentication; logged-in users will access <code><a href="https://manager.pgxn.org/auth">https://manager.pgxn.org/auth</a></code>. Administrators will have an extra menu item to this screen, which will allow them to accept or reject account requests. Its URI is <code>/auth/admin/moderate</code>. The admin can click the &ldquo;Play&rdquo; button to see the requestor&rsquo;s note explaining why he should get an account. It&rsquo;s a popover enabled by some jQuery code and looks like this:</p>
+<p>Some details. PGXN Manager will be hosted at <code><a href="https://manager.pgxn.org/">https://manager.pgxn.org/</a></code>. It uses basic auth for authentication; logged-in users will access <code><a href="https://manager.pgxn.org/auth">https://manager.pgxn.org/auth</a></code>. Administrators will have an extra menu item to this screen, which will allow them to accept or reject account requests. Its URI is <code>/auth/admin/moderate</code>. The admin can click the &ldquo;Play&rdquo; button to see the requestor&rsquo;s note explaining why he should get an account. It&rsquo;s a popover enabled by some jQuery code and looks like this:</p>
 
 <p><img src="../../media/1205386689_3.png" alt=""/></p>
 

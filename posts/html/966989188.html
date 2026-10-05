@@ -8,10 +8,10 @@
                 
                 
                                     <h1>RFC: The PGXN Metadata Specification</h1>
-                    <p>I&rsquo;ve posted a draft of the &ldquo;PGXN distribution metadata specification,&rdquo; or <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">PGXN Meta Spec</a>.&ldquo; This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>
+                    <p>I&rsquo;ve posted a draft of the &ldquo;PGXN distribution metadata specification,&rdquo; or <a href="https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">PGXN Meta Spec</a>.&ldquo; This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>
 
 <p>To create it, I&rsquo;ve ported the
-<a href="http://search.cpan.org/perldoc?CPAN::Meta::Sepc">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the &quot;required&rdquo; fields &ldquo;optional.&rdquo; At its simplest, the file might look something like this:</p>
+<a href="https://search.cpan.org/perldoc?CPAN::Meta::Sepc">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the &quot;required&rdquo; fields &ldquo;optional.&rdquo; At its simplest, the file might look something like this:</p>
 
 <pre><code>{
   "name": "pgTAP",
@@ -21,7 +21,7 @@
   "license": "postgresql",
   "meta-spec": {
     "version": "1.0.0",
-    "url": "http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+    "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
   }
 }
 </code></pre>
@@ -30,7 +30,7 @@
 site and/or the mirrors), but otherwise, I think this is pretty solid. Not too
 much work to deal with, and reasonably easy to create by hand (which is likely how we&rsquo;ll all start out).</p>
 
-<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href="http://justatheory.com/computers/databases/postgresql/key-value-pairs.html">ordered pair</a> extension, it of course would include tests written with <a href="http://pgtap.org/">pgTAP</a>. So I&rsquo;d have something like:</p>
+<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href="https://justatheory.com/computers/databases/postgresql/key-value-pairs.html">ordered pair</a> extension, it of course would include tests written with <a href="https://pgtap.org/">pgTAP</a>. So I&rsquo;d have something like:</p>
 
 <pre><code>{
   "name": "pair",
@@ -40,7 +40,7 @@ much work to deal with, and reasonably easy to create by hand (which is likely h
   license: "postgresql",
   "meta-spec": {
     "version": "1.0.0",
-    "url": "http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+    "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
   },
   "prereqs": {
     "runtime": {
@@ -80,7 +80,7 @@ much work to deal with, and reasonably easy to create by hand (which is likely h
 
 <p>And, because &ldquo;schematap&rdquo; will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the &ldquo;schematap&rdquo; extension.</p>
 
-<p>A final note. Version numbers in the Perl community are a <a href="http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/" title="Version numbers should be boring">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href="http://www.dagolden.com/">David Golden</a> &ndash; the current maintainer of the CPAN Meta Spec &ndash; pointed me to <a href="http://semver.org/">Semantic Versioning</a>, a version number specification by GitHub&rsquo;s <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>
+<p>A final note. Version numbers in the Perl community are a <a href="https://www.dagolden.com/index.php/369/version-numbers-should-be-boring/" title="Version numbers should be boring">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href="https://www.dagolden.com/">David Golden</a> &ndash; the current maintainer of the CPAN Meta Spec &ndash; pointed me to <a href="https://semver.org/">Semantic Versioning</a>, a version number specification by GitHub&rsquo;s <a href="https://tom.preston-werner.com/">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>
 
 <ul>
 <li>It closely matches how PostgreSQL itself is versioned.</li>
@@ -90,9 +90,9 @@ much work to deal with, and reasonably easy to create by hand (which is likely h
 
 <p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That&rsquo;s it. PGXN won&rsquo;t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>
 
-<p>Anyway, please review <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>
+<p>Anyway, please review <a href="https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>
 
-<p><strong>Update 2010-08-24:</strong> I&rsquo;ve just updated <a href="http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> to change &ldquo;owner&rdquo; to &ldquo;maintainer.&rdquo; I think that the latter term is much better for this purpose. And then I can use &ldquo;owner&rdquo; in PGXN to identify the person who uploads a distribution.</p>
+<p><strong>Update 2010-08-24:</strong> I&rsquo;ve just updated <a href="https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec">the spec</a> to change &ldquo;owner&rdquo; to &ldquo;maintainer.&rdquo; I think that the latter term is much better for this purpose. And then I can use &ldquo;owner&rdquo; in PGXN to identify the person who uploads a distribution.</p>
                 
                 
                 

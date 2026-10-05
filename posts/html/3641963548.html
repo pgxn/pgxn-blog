@@ -8,7 +8,7 @@
                 
                 
                                     <h1>Question: Ajax and Search Engine Indexing</h1>
-                    <p>I&rsquo;ve started working on the main (search) site in earnest now. The basic layout is done, and I&rsquo;m working on the distribution view (<a href="http://theory.github.com/pgxn/pgtapdist.html">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href="http://api.pgxn.org/">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>
+                    <p>I&rsquo;ve started working on the main (search) site in earnest now. The basic layout is done, and I&rsquo;m working on the distribution view (<a href="https://theory.github.com/pgxn/pgtapdist.html">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href="https://api.pgxn.org/">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>
 
 <p>That is, if you request <code>/dist/nonexistent/</code>, then it will load a page with the HTTP status code <code>200 OK</code>, but then, when the Ajax request 404s, it will show a &ldquo;Not found&rdquo; error message. That&rsquo;s all well and good, but I&rsquo;m wondering about the impact of two things:</p>
 

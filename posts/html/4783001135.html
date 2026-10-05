@@ -37,7 +37,7 @@ include $(PGXS)
 </ul></li>
 </ul>
 
-<p>I&rsquo;ve been trying to figure out how to modify my standard <code>Makefile</code> to support these changes, without requiring a lot of tweaking, so that other folks can easily use it in the future. Thanks to help from <a href="http://people.planetpostgresql.org/andrew/">Andrew Dunstan</a>, this is what I&rsquo;ve come up with:</p>
+<p>I&rsquo;ve been trying to figure out how to modify my standard <code>Makefile</code> to support these changes, without requiring a lot of tweaking, so that other folks can easily use it in the future. Thanks to help from <a href="https://people.planetpostgresql.org/andrew/">Andrew Dunstan</a>, this is what I&rsquo;ve come up with:</p>
 
 <pre><code>EXTENSION=semver
 EXTVERSION=0.2.2
@@ -102,7 +102,7 @@ include $(PGXS)
 
 <p>Suggestions for ways to eliminate these shortcomings would be greatly appreciated, especially if it allows use extension authors to get back to something as simple as the first example at the top of this post.</p>
 
-<p><strong>UPDATE:</strong> Added the <code>unpackaged</code> bits I didn&rsquo;t realize I needed until after I&rsquo;d released a new version of <a href="http://pgxn.org/dist/semver/">semver</a> and discovered that the &ldquo;unpackaged&rdquo; script needs to always be tied to the default version.</p>
+<p><strong>UPDATE:</strong> Added the <code>unpackaged</code> bits I didn&rsquo;t realize I needed until after I&rsquo;d released a new version of <a href="https://pgxn.org/dist/semver/">semver</a> and discovered that the &ldquo;unpackaged&rdquo; script needs to always be tied to the default version.</p>
                 
                 
                 

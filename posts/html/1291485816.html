@@ -18,7 +18,7 @@
 
 <p>Thoughts?</p>
 
-<p>I guess I could stick with absolute URLs, and then have the <a href="http://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Request.pm#L14"><code>uri_for</code></a> use <code>$req−&gt;uri−&gt;path</code> for a proxied request and <code>$req−&gt;path_info</code> for a non-proxied request.</p>
+<p>I guess I could stick with absolute URLs, and then have the <a href="https://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Request.pm#L14"><code>uri_for</code></a> use <code>$req−&gt;uri−&gt;path</code> for a proxied request and <code>$req−&gt;path_info</code> for a non-proxied request.</p>
 
 <p>Sure would be nice if there was some way to tell from the environment that a request was forwarded from an SSL connection, though. Alas, there are only three extra environment variable set by the proxy server:</p>
 
@@ -28,7 +28,7 @@
 <li>HTTP_X_FORWARDED_SERVER</li>
 </ul>
 
-<p>No HTTP_X_FORWARDED_PORT or HTTP_X_FORWARDED_SSL or SSL_ENABLED or anything like that. Maybe I&rsquo;m missing something in my reading of the <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy.html">mod_proxy documentation</a>?</p>
+<p>No HTTP_X_FORWARDED_PORT or HTTP_X_FORWARDED_SSL or SSL_ENABLED or anything like that. Maybe I&rsquo;m missing something in my reading of the <a href="https://httpd.apache.org/docs/2.2/mod/mod_proxy.html">mod_proxy documentation</a>?</p>
                 
                 
                 

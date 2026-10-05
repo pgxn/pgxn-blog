@@ -10,11 +10,11 @@
                                     <h1>Writing a client for PGXN</h1>
                     <p>By Daniele Varrazzo.</p>
 
-<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href="http://developer.postgresql.org/pgdocs/postgres/extend-extensions.html">extensions</a>. Well, actually extensions have always existed, but they didn&rsquo;t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href="http://developer.postgresql.org/pgdocs/postgres/sql-createextension.html">CREATE EXTENSION</a>, in all its uppercase glory!</p>
+<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href="https://developer.postgresql.org/pgdocs/postgres/extend-extensions.html">extensions</a>. Well, actually extensions have always existed, but they didn&rsquo;t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href="https://developer.postgresql.org/pgdocs/postgres/sql-createextension.html">CREATE EXTENSION</a>, in all its uppercase glory!</p>
 
-<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href="http://pgxn.org/">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I&rsquo;ve recently <a href="http://pgmp.projects.postgresql.org/">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href="http://manager.pgxn.org/">the infrastructure</a> is well done thanks to David&rsquo;s design, and <a href="https://github.com/pgxn/pgxn-api/wiki/index-api">the API</a> is ridiculously easy to interact with: I&rsquo;ve literally explored it using curl.</p>
+<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href="https://pgxn.org/">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I&rsquo;ve recently <a href="https://pgmp.projects.postgresql.org/">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href="https://manager.pgxn.org/">the infrastructure</a> is well done thanks to David&rsquo;s design, and <a href="https://github.com/pgxn/pgxn-api/wiki/index-api">the API</a> is ridiculously easy to interact with: I&rsquo;ve literally explored it using curl.</p>
 
-<p>There was a big piece missing in the jigsaw that&rsquo;s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href="https://github.com/dvarrazzo/pgxnclient">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it&rsquo;s already <a href="http://pypi.python.org/pypi/pgxnclient/">available on PyPI</a> and very easy to start with it: just use</p>
+<p>There was a big piece missing in the jigsaw that&rsquo;s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href="https://github.com/dvarrazzo/pgxnclient">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it&rsquo;s already <a href="https://pypi.python.org/pypi/pgxnclient/">available on PyPI</a> and very easy to start with it: just use</p>
 
 <pre><code>$ sudo easy_install pgxnclient
 </code></pre>
@@ -74,11 +74,11 @@ INFO: installing extension
 <li>work with locally downloaded packages</li>
 </ul>
 
-<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href="http://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>
+<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href="https://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>
 
 <p>Give it a try if you want: your feedback is very welcome. Meanwhile we will keep on adding features to cover the entire extensions life cycle.</p>
 
-<p><strong>Edit</strong>: the program has been <a href="http://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>
+<p><strong>Edit</strong>: the program has been <a href="https://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>
                 
                 
                 

@@ -8,7 +8,7 @@
                 
                 
                                     <h1>What Media Types for Browsing?</h1>
-                    <p>Thanks to a comment from &ldquo;Anon,&rdquo; I&rsquo;m auditing the media types used to serve files from the &ldquo;Browse&rdquo; links on the site. The browse interface is managed by <a href="http://search.cpan.org/perldoc?Plack::App::Directory">Plack::App::Directory</a>, which gets its media type mapping from <a href="https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href="https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5">this commit</a>, files are served as plain text if:</p>
+                    <p>Thanks to a comment from &ldquo;Anon,&rdquo; I&rsquo;m auditing the media types used to serve files from the &ldquo;Browse&rdquo; links on the site. The browse interface is managed by <a href="https://search.cpan.org/perldoc?Plack::App::Directory">Plack::App::Directory</a>, which gets its media type mapping from <a href="https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href="https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5">this commit</a>, files are served as plain text if:</p>
 
 <ul>
 <li>The strings &ldquo;html&rdquo;, &ldquo;x-c&rdquo;, &ldquo;xml&rdquo;, &ldquo;calendar&rdquo;, or &ldquo;vcard&rdquo; appear in the default media type; or</li>
