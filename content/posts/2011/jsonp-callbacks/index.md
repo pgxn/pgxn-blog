@@ -32,13 +32,10 @@ is simple:
 
 And the output looks like this:
 
-![PGXN Code]
+![PGXN Code](pgxn-code.png)
 
 Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files
 served by the JSON API. Try that, CPAN!
 
-
-
   [JSONP callback support]: https://github.com/pgxn/pgxn-api/wiki/JSONP
   [my personal blog]: https://www.justatheory.com/ "Just a Theory"
-  [PGXN Code]: ../../media/1205386689_3.png

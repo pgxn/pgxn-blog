@@ -9,14 +9,14 @@ tags: [Account, Request, Moderation, Accept, Reject, User, Administrator, jQuery
 Last week I created the [PGXN Manager] interface for requesting a PGXN user
 account. It looks like this:
 
-![][1]
+![Request PGXN Account](request-account.png)
 
 I really like the placeholder support in HTML 5, here nicely rendered by
 Safari. I've also used the jQuery [Validation plugin] to validate the form
 fields. So if you try to submit an incomplete form, it will complain before
 submitting, like so:
 
-![][1]
+![Incomplete PGXN Request Form](incomplete-form.png)
 
 The back end does similar validation if you have JavaScript disabled, so it
 should degrade nicely. I think I might add a Twitter field so [@pgxn] can
@@ -27,7 +27,7 @@ Once your account is approved (likely unless you're a spammer), you'll be able
 to upload distributions (I'm going to do that part today). I finished the user
 admin interface yesterday. Here's a screen snap:
 
-![PGXN User Administration][1]
+![PGXN User Administration](moderate-requests.png)
 
 Some details. PGXN Manager will be hosted at [`https://manager.pgxn.org/`]. It
 uses basic auth for authentication; logged-in users will access
@@ -37,7 +37,7 @@ Its URI is `/auth/admin/moderate`. The admin can click the "Play" button to
 see the requestor's note explaining why he should get an account. It's a
 popover enabled by some jQuery code and looks like this:
 
-![][1]
+![PGXN User Admin Why Popover](why-popover.png)
 
 Once an admin has read the request, she can accept it by clicking the blue
 checkmark icon, or reject it by clicking the red minus icon. The former links
@@ -58,11 +58,8 @@ accept/reject URLs, because they have action names in them ("accept" and
 
 Okay, on to the upload interface. Wish me luck!
 
-
-
   [PGXN Manager]: https://github.com/theory/pgxn-manager
     "PGXN Manager repository on GitHub"
-  [1]: ../../media/1205386689_3.png
   [Validation plugin]: https://docs.jquery.com/Plugins/Validation
   [@pgxn]: https://twitter.com/pgxn
   [PAUSE]: https://pause.perl.org/
