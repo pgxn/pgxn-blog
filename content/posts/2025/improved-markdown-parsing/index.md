@@ -4,7 +4,7 @@ slug: improved-markdown-parsing
 date:  2025-12-15T15:55:59Z
 lastMod: 2025-12-15T15:55:59Z
 tags: [Markdown, Discount, Tables]
-aliases: [/post/803014330152042496/improved-markdown-parsing]
+aliases: [/post/803014330152042496/improved-markdown-parsing, /post/803014330152042496]
 ---
 
 Quick announcement to say that I've replaced the ancient markdown parser with

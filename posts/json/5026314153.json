@@ -1,0 +1,173 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "uhm... nothing yet here i guess",
+        "name": "d-piro",
+        "title": "",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://d-piro.tumblr.com/",
+        "uuid": "t:A7QlYHZdTtTU3kiMHQYUMA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>By Daniele Varrazzo.</p>\n\n<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-extensions.html\">extensions</a>. Well, actually extensions have always existed, but they didn&rsquo;t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href=\"http://developer.postgresql.org/pgdocs/postgres/sql-createextension.html\">CREATE EXTENSION</a>, in all its uppercase glory!</p>\n\n<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href=\"http://pgxn.org/\">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I&rsquo;ve recently <a href=\"http://pgmp.projects.postgresql.org/\">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href=\"http://manager.pgxn.org/\">the infrastructure</a> is well done thanks to David&rsquo;s design, and <a href=\"https://github.com/pgxn/pgxn-api/wiki/index-api\">the API</a> is ridiculously easy to interact with: I&rsquo;ve literally explored it using curl.</p>\n\n<p>There was a big piece missing in the jigsaw that&rsquo;s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href=\"https://github.com/dvarrazzo/pgxnclient\">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it&rsquo;s already <a href=\"http://pypi.python.org/pypi/pgxnclient/\">available on PyPI</a> and very easy to start with it: just use</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>and in a few seconds you will have a script called <code>pgxn</code>, offering several commands that can be displayed with <code>pgxn --help</code> (and currently this is the most up-to-date documentation you can get, as new commands are getting added very quickly).</p>\n\n<p>Were you looking for a solution to store hashes? You may try:</p>\n\n<pre><code>$ pgxn search hash\nsha 1.0.0\nsession_hash_tools 1.0.0\nsemver 0.2.1\n</code></pre>\n\n<p>Uhm, is <code>sha</code> a possible solution?</p>\n\n<pre><code>$ pgxn info sha\nINFO: best version: sha 1.0.0\nname: sha\nabstract: This module provides datatypes for storing SHA-1,\nSHA-2 and MD5 hashes\nmaintainer: Alexey Klyukin &lt;a...@commandprompt.com&gt;\nlicense: postgresql\nrelease_status: stable\nversion: 1.0.0\ndate: 2011-03-16T10:33:00Z\nsha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd\nprovides: sha: 1.0.0\n</code></pre>\n\n<p>Let&rsquo;s say it is exactly what we were looking for (we could also display the readme with <code>pgxn info --readme</code>). Shall we give it a try?</p>\n\n<pre><code>$ sudo pgxn install sha\nINFO: best version: sha 1.0.0\nINFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: building extension\n[some compiler log]\nINFO: installing extension\n[files being copied]\n</code></pre>\n\n<p>Now the code is in the right place in the database directory (a specific <code>pg_config</code> can be specified to choose which one): If you want it in a specific database:</p>\n\n<pre><code>$ pgxn load -U postgres -d test sha\n</code></pre>\n\n<p>This will result in CREATE EXTENSION being invoked, if the target database supports it, or in the loading of the provided sql file for PostgreSQL versions up to 9.0.</p>\n\n<p>Easy, wasn&rsquo;t it?</p>\n\n<p>There are still a lot of features to add:</p>\n\n<ul>\n<li>drop extension from a database and uninstall from the system</li>\n<li>select the target schema</li>\n<li>work with locally downloaded packages</li>\n</ul>\n\n<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html\">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>\n\n<p>Give it a try if you want: your feedback is very welcome. Meanwhile we will keep on adding features to cover the entire extensions life cycle.</p>\n\n<p><strong>Edit</strong>: the program has been <a href=\"http://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client\">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-04-29 00:15:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 5026314153,
+    "id_string": "5026314153",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "d-piro",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn",
+    "reblog": {
+        "comment": "<p>By Daniele Varrazzo.</p>\n\n<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-extensions.html\">extensions</a>. Well, actually extensions have always existed, but they didn\u2019t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href=\"http://developer.postgresql.org/pgdocs/postgres/sql-createextension.html\">CREATE EXTENSION</a>, in all its uppercase glory!</p>\n\n<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href=\"http://pgxn.org/\">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I\u2019ve recently <a href=\"http://pgmp.projects.postgresql.org/\">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href=\"http://manager.pgxn.org/\">the infrastructure</a> is well done thanks to David\u2019s design, and <a href=\"https://github.com/pgxn/pgxn-api/wiki/index-api\">the API</a> is ridiculously easy to interact with: I\u2019ve literally explored it using curl.</p>\n\n<p>There was a big piece missing in the jigsaw that\u2019s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href=\"https://github.com/dvarrazzo/pgxnclient\">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it\u2019s already <a href=\"http://pypi.python.org/pypi/pgxnclient/\">available on PyPI</a> and very easy to start with it: just use</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>and in a few seconds you will have a script called <code>pgxn</code>, offering several commands that can be displayed with <code>pgxn --help</code> (and currently this is the most up-to-date documentation you can get, as new commands are getting added very quickly).</p>\n\n<p>Were you looking for a solution to store hashes? You may try:</p>\n\n<pre><code>$ pgxn search hash\nsha 1.0.0\nsession_hash_tools 1.0.0\nsemver 0.2.1\n</code></pre>\n\n<p>Uhm, is <code>sha</code> a possible solution?</p>\n\n<pre><code>$ pgxn info sha\nINFO: best version: sha 1.0.0\nname: sha\nabstract: This module provides datatypes for storing SHA-1,\nSHA-2 and MD5 hashes\nmaintainer: Alexey Klyukin &lt;a...@commandprompt.com&gt;\nlicense: postgresql\nrelease_status: stable\nversion: 1.0.0\ndate: 2011-03-16T10:33:00Z\nsha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd\nprovides: sha: 1.0.0\n</code></pre>\n\n<p>Let\u2019s say it is exactly what we were looking for (we could also display the readme with <code>pgxn info --readme</code>). Shall we give it a try?</p>\n\n<pre><code>$ sudo pgxn install sha\nINFO: best version: sha 1.0.0\nINFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: building extension\n[some compiler log]\nINFO: installing extension\n[files being copied]\n</code></pre>\n\n<p>Now the code is in the right place in the database directory (a specific <code>pg_config</code> can be specified to choose which one): If you want it in a specific database:</p>\n\n<pre><code>$ pgxn load -U postgres -d test sha\n</code></pre>\n\n<p>This will result in CREATE EXTENSION being invoked, if the target database supports it, or in the loading of the provided sql file for PostgreSQL versions up to 9.0.</p>\n\n<p>Easy, wasn\u2019t it?</p>\n\n<p>There are still a lot of features to add:</p>\n\n<ul>\n<li>drop extension from a database and uninstall from the system</li>\n<li>select the target schema</li>\n<li>work with locally downloaded packages</li>\n</ul>\n\n<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html\">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>\n\n<p>Give it a try if you want: your feedback is very welcome. Meanwhile we will keep on adding features to cover the entire extensions life cycle.</p>\n\n<p><strong>Edit</strong>: the program has been <a href=\"http://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client\">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "foWsHBtW",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy4hbtUf",
+    "should_open_in_legacy": false,
+    "slug": "writing-a-client-for-pgxn",
+    "state": "published",
+    "summary": "Writing a client for PGXN",
+    "tags": [],
+    "timestamp": 1304036100,
+    "title": "Writing a client for PGXN",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>By Daniele Varrazzo.</p>\n\n<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-extensions.html\">extensions</a>. Well, actually extensions have always existed, but they didn&rsquo;t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href=\"http://developer.postgresql.org/pgdocs/postgres/sql-createextension.html\">CREATE EXTENSION</a>, in all its uppercase glory!</p>\n\n<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href=\"http://pgxn.org/\">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I&rsquo;ve recently <a href=\"http://pgmp.projects.postgresql.org/\">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href=\"http://manager.pgxn.org/\">the infrastructure</a> is well done thanks to David&rsquo;s design, and <a href=\"https://github.com/pgxn/pgxn-api/wiki/index-api\">the API</a> is ridiculously easy to interact with: I&rsquo;ve literally explored it using curl.</p>\n\n<p>There was a big piece missing in the jigsaw that&rsquo;s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href=\"https://github.com/dvarrazzo/pgxnclient\">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it&rsquo;s already <a href=\"http://pypi.python.org/pypi/pgxnclient/\">available on PyPI</a> and very easy to start with it: just use</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>and in a few seconds you will have a script called <code>pgxn</code>, offering several commands that can be displayed with <code>pgxn --help</code> (and currently this is the most up-to-date documentation you can get, as new commands are getting added very quickly).</p>\n\n<p>Were you looking for a solution to store hashes? You may try:</p>\n\n<pre><code>$ pgxn search hash\nsha 1.0.0\nsession_hash_tools 1.0.0\nsemver 0.2.1\n</code></pre>\n\n<p>Uhm, is <code>sha</code> a possible solution?</p>\n\n<pre><code>$ pgxn info sha\nINFO: best version: sha 1.0.0\nname: sha\nabstract: This module provides datatypes for storing SHA-1,\nSHA-2 and MD5 hashes\nmaintainer: Alexey Klyukin &lt;a...@commandprompt.com&gt;\nlicense: postgresql\nrelease_status: stable\nversion: 1.0.0\ndate: 2011-03-16T10:33:00Z\nsha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd\nprovides: sha: 1.0.0\n</code></pre>\n\n<p>Let&rsquo;s say it is exactly what we were looking for (we could also display the readme with <code>pgxn info --readme</code>). Shall we give it a try?</p>\n\n<pre><code>$ sudo pgxn install sha\nINFO: best version: sha 1.0.0\nINFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: building extension\n[some compiler log]\nINFO: installing extension\n[files being copied]\n</code></pre>\n\n<p>Now the code is in the right place in the database directory (a specific <code>pg_config</code> can be specified to choose which one): If you want it in a specific database:</p>\n\n<pre><code>$ pgxn load -U postgres -d test sha\n</code></pre>\n\n<p>This will result in CREATE EXTENSION being invoked, if the target database supports it, or in the loading of the provided sql file for PostgreSQL versions up to 9.0.</p>\n\n<p>Easy, wasn&rsquo;t it?</p>\n\n<p>There are still a lot of features to add:</p>\n\n<ul>\n<li>drop extension from a database and uninstall from the system</li>\n<li>select the target schema</li>\n<li>work with locally downloaded packages</li>\n</ul>\n\n<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html\">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>\n\n<p>Give it a try if you want: your feedback is very welcome. Meanwhile we will keep on adding features to cover the entire extensions life cycle.</p>\n\n<p><strong>Edit</strong>: the program has been <a href=\"http://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client\">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>",
+            "content_raw": "<p>By Daniele Varrazzo.</p>\n\n<p>PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will bring a new useful feature: <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-extensions.html\">extensions</a>. Well, actually extensions have always existed, but they didn\u2019t have an identity before: what you used to get was a set of loose objects and mysterious functions in your namespace, typically getting in the way in your dump and restore. Now here it is: <a href=\"http://developer.postgresql.org/pgdocs/postgres/sql-createextension.html\">CREATE EXTENSION</a>, in all its uppercase glory!</p>\n\n<p>So, an extension will exist in your database, and this finally gives the possibility to organize them, this is what <a href=\"http://pgxn.org/\">PGXN</a> is for: a repository for metadata, documentation and code, neatly packaged and asking to be picked off the shelf. I\u2019ve recently <a href=\"http://pgmp.projects.postgresql.org/\">written an extension</a> myself so I got some original material to play with PGXN, which has resulted in quite a pleasant experience: <a href=\"http://manager.pgxn.org/\">the infrastructure</a> is well done thanks to David\u2019s design, and <a href=\"https://github.com/pgxn/pgxn-api/wiki/index-api\">the API</a> is ridiculously easy to interact with: I\u2019ve literally explored it using curl.</p>\n\n<p>There was a big piece missing in the jigsaw that\u2019s being composed: a client to make easy for database developers and administrators to download, build and install extensions, and with PGXN getting more mature and people starting packaging their work it was really <em>begging</em> to be written! So here it is: <del>pgxn.client</del> <a href=\"https://github.com/dvarrazzo/pgxnclient\">pgxnclient</a>, a command line tool to interact with PGXN. There is still a lot to be developed, but the idea is to release early, get feedback for it and improve it quickly to complete the extensions picture. So it\u2019s already <a href=\"http://pypi.python.org/pypi/pgxnclient/\">available on PyPI</a> and very easy to start with it: just use</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>and in a few seconds you will have a script called <code>pgxn</code>, offering several commands that can be displayed with <code>pgxn --help</code> (and currently this is the most up-to-date documentation you can get, as new commands are getting added very quickly).</p>\n\n<p>Were you looking for a solution to store hashes? You may try:</p>\n\n<pre><code>$ pgxn search hash\nsha 1.0.0\nsession_hash_tools 1.0.0\nsemver 0.2.1\n</code></pre>\n\n<p>Uhm, is <code>sha</code> a possible solution?</p>\n\n<pre><code>$ pgxn info sha\nINFO: best version: sha 1.0.0\nname: sha\nabstract: This module provides datatypes for storing SHA-1,\nSHA-2 and MD5 hashes\nmaintainer: Alexey Klyukin &lt;a...@commandprompt.com&gt;\nlicense: postgresql\nrelease_status: stable\nversion: 1.0.0\ndate: 2011-03-16T10:33:00Z\nsha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd\nprovides: sha: 1.0.0\n</code></pre>\n\n<p>Let\u2019s say it is exactly what we were looking for (we could also display the readme with <code>pgxn info --readme</code>). Shall we give it a try?</p>\n\n<pre><code>$ sudo pgxn install sha\nINFO: best version: sha 1.0.0\nINFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip\nINFO: building extension\n[some compiler log]\nINFO: installing extension\n[files being copied]\n</code></pre>\n\n<p>Now the code is in the right place in the database directory (a specific <code>pg_config</code> can be specified to choose which one): If you want it in a specific database:</p>\n\n<pre><code>$ pgxn load -U postgres -d test sha\n</code></pre>\n\n<p>This will result in CREATE EXTENSION being invoked, if the target database supports it, or in the loading of the provided sql file for PostgreSQL versions up to 9.0.</p>\n\n<p>Easy, wasn\u2019t it?</p>\n\n<p>There are still a lot of features to add:</p>\n\n<ul>\n<li>drop extension from a database and uninstall from the system</li>\n<li>select the target schema</li>\n<li>work with locally downloaded packages</li>\n</ul>\n\n<p>but as <code>pgxnclient</code> uses the PGXN server on a side and the <a href=\"http://developer.postgresql.org/pgdocs/postgres/extend-pgxs.html\">PGXS build infrastructure</a> on the other, the features will be easy to add and the client work is actually an easy one.</p>\n\n<p>Give it a try if you want: your feedback is very welcome. Meanwhile we will keep on adding features to cover the entire extensions life cycle.</p>\n\n<p><strong>Edit</strong>: the program has been <a href=\"http://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client\">renamed to pgxnclient</a>: the relevant URLs have been updated.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "5026314153"
+            }
+        }
+    ],
+    "type": "text"
+}

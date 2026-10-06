@@ -1,0 +1,181 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>I spent most of the time I had to work on PGXN the last two weeks creating the database for <a href=\"http://github.com/theory/pgxn-manager/\">PGXN Manager</a>. I had estimated 24 hours of work to design the database. So far I&rsquo;ve logged 34 hours. But I think that will come out in the wash, really, because I did a lot of work to generate JSON from database functions. This is code I had originally expected to do in the app layer. I&rsquo;m starting work on that this week, with an estimated 40 hours. Hope I can do it in 30. :-)</p>\n\n<p>I&rsquo;m pretty happy with how the database API is turning out. See the nifty <a href=\"http://github.com/theory/pgxn-manager/wiki/DB-API\">database API documentation</a> I whipped up using <a href=\"http://github.com/theory/pgxn-manager/blob/master/bin/gendoc\">gendoc</a> and embedded <a href=\"http://fletcherpenney.net/multimarkdown/users_guide/multimarkdown_syntax_guide/\">MultiMarkdown</a>. There are still a few tweaks I need to make. I just checked in a change to eliminate all the <code>ALIAS</code>es I <a href=\"http://blog.pgxn.org/post/1053165383/alias-in-vogue\">blogged about</a> last week. Turns out that one can just <a href=\"http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php\">function-name-qualify</a> the function parameter names. Who knew? I sure didn&rsquo;t.</p>\n\n<p>But I do have a question for you, dear readers. Right now, the database requires that extensions have unique version numbers in every distribution. So if, for example, you uploaded the distribution foo 1.2.2 with the extension bar 1.2.2, when you next uploaded foo 1.2.3, bar could not be 1.2.2. I designed this this way by following my own practice of always incrementing the version numbers of all modules included in my <a href=\"http://search.cpan.org/~dwheeler/\">CPAN distributions</a>. So all modules have unique version numbers, with never a duplicate.</p>\n\n<p>However, CPAN itself only cares that distributions have unique version numbers. It doesn&rsquo;t care about the version numbers of included modules. See, for example, <a href=\"http://search.cpan.org/dist/HTML-Mason/\">HTML::Mason</a>. Note that the various included modules have all sorts of different version numbers, and many have no version numbers at all. So while the core module has a version number (1.45 at the time of this writing), if you click to look at older versions, say <a href=\"http://search.cpan.org/~drolsky/HTML-Mason-1.44/\">Mason 1.44</a>, you&rsquo;ll see that no other modules have their version numbers changed.</p>\n\n<p>I don&rsquo;t think I want to allow extensions without version numbers on PGXN. That&rsquo;s been a recipe for many annoyances with CPAN. But maybe I should allow extension version numbers to repeat? The upside is less maintenance for multi-extension distribution authors. The downside is potentially less accuracy in the determination of prerequisites.</p>\n\n<p>For example, say that we have two versions of distribution foo:</p>\n\n<table>\n  <tr><th>Distribution</th><th>Extensions</th></tr>\n  <tr><td>foo 1.2.2</td><td>foo 1.2.2<br/>bar 1.2.2</td></tr>\n  <tr><td>foo 1.2.3</td><td>foo 1.2.3<br/>bar 1.2.2</td></tr>\n</table>\n\n<p>Note how the version number of extension bar has not changed between releases. But if I was a user of both foo and bar, and I specified that I required bar 1.2.2 but was actually using stuff in foo 1.2.3, I could end up with errors because I would only have foo 1.2.3.</p>\n\n<p>This is an issue periodically faced by Perl hackers. I might require HTML::Mason::ApacheHandler 1.69 but really what I need is HTML::Mason 1.44. Of course, as a Perl hacker, it&rsquo;s my responsibility to make sure I require exactly what I need, but sometimes it&rsquo;s not clear what&rsquo;s the primary module in a distribution. And if I don&rsquo;t realize that the version number of HTML::Mason::ApacheHandler doesn&rsquo;t change with every release, I might make mistakes.</p>\n\n<p>Maybe that&rsquo;s okay. Maybe PGXN should be less rigid like this. But I&rsquo;m leaning toward keeping things as they are and requiring new versions of every extension in every upload of a distribution. It&rsquo;s a bit tougher for those (few?) hackers who will create multi-extension distributions, but probably more reliable for everyone else.</p>\n\n<p>What do you think?</p>\n\n<p>Anyway, I&rsquo;m getting to work on the Web app this week while this issue percolates. Been studying up on <a href=\"http://plackperl.org/\">Plack</a>. So nice!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-09-07 18:46:38 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 1082188310,
+    "id_string": "1082188310",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/1082188310/db-status-update",
+    "reblog": {
+        "comment": "<p>I spent most of the time I had to work on PGXN the last two weeks creating the database for <a href=\"http://github.com/theory/pgxn-manager/\">PGXN Manager</a>. I had estimated 24 hours of work to design the database. So far I\u2019ve logged 34 hours. But I think that will come out in the wash, really, because I did a lot of work to generate JSON from database functions. This is code I had originally expected to do in the app layer. I\u2019m starting work on that this week, with an estimated 40 hours. Hope I can do it in 30. :-)</p>\n\n<p>I\u2019m pretty happy with how the database API is turning out. See the nifty <a href=\"http://github.com/theory/pgxn-manager/wiki/DB-API\">database API documentation</a> I whipped up using <a href=\"http://github.com/theory/pgxn-manager/blob/master/bin/gendoc\">gendoc</a> and embedded <a href=\"http://fletcherpenney.net/multimarkdown/users_guide/multimarkdown_syntax_guide/\">MultiMarkdown</a>. There are still a few tweaks I need to make. I just checked in a change to eliminate all the <code>ALIAS</code>es I <a href=\"http://blog.pgxn.org/post/1053165383/alias-in-vogue\">blogged about</a> last week. Turns out that one can just <a href=\"http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php\">function-name-qualify</a> the function parameter names. Who knew? I sure didn\u2019t.</p>\n\n<p>But I do have a question for you, dear readers. Right now, the database requires that extensions have unique version numbers in every distribution. So if, for example, you uploaded the distribution foo 1.2.2 with the extension bar 1.2.2, when you next uploaded foo 1.2.3, bar could not be 1.2.2. I designed this this way by following my own practice of always incrementing the version numbers of all modules included in my <a href=\"http://search.cpan.org/~dwheeler/\">CPAN distributions</a>. So all modules have unique version numbers, with never a duplicate.</p>\n\n<p>However, CPAN itself only cares that distributions have unique version numbers. It doesn\u2019t care about the version numbers of included modules. See, for example, <a href=\"http://search.cpan.org/dist/HTML-Mason/\">HTML::Mason</a>. Note that the various included modules have all sorts of different version numbers, and many have no version numbers at all. So while the core module has a version number (1.45 at the time of this writing), if you click to look at older versions, say <a href=\"http://search.cpan.org/~drolsky/HTML-Mason-1.44/\">Mason 1.44</a>, you\u2019ll see that no other modules have their version numbers changed.</p>\n\n<p>I don\u2019t think I want to allow extensions without version numbers on PGXN. That\u2019s been a recipe for many annoyances with CPAN. But maybe I should allow extension version numbers to repeat? The upside is less maintenance for multi-extension distribution authors. The downside is potentially less accuracy in the determination of prerequisites.</p>\n\n<p>For example, say that we have two versions of distribution foo:</p>\n\n<table>\n  <tr><th>Distribution</th><th>Extensions</th></tr>\n  <tr><td>foo 1.2.2</td><td>foo 1.2.2<br>bar 1.2.2</td></tr>\n  <tr><td>foo 1.2.3</td><td>foo 1.2.3<br>bar 1.2.2</td></tr>\n</table>\n\n<p>Note how the version number of extension bar has not changed between releases. But if I was a user of both foo and bar, and I specified that I required bar 1.2.2 but was actually using stuff in foo 1.2.3, I could end up with errors because I would only have foo 1.2.3.</p>\n\n<p>This is an issue periodically faced by Perl hackers. I might require HTML::Mason::ApacheHandler 1.69 but really what I need is HTML::Mason 1.44. Of course, as a Perl hacker, it\u2019s my responsibility to make sure I require exactly what I need, but sometimes it\u2019s not clear what\u2019s the primary module in a distribution. And if I don\u2019t realize that the version number of HTML::Mason::ApacheHandler doesn\u2019t change with every release, I might make mistakes.</p>\n\n<p>Maybe that\u2019s okay. Maybe PGXN should be less rigid like this. But I\u2019m leaning toward keeping things as they are and requiring new versions of every extension in every upload of a distribution. It\u2019s a bit tougher for those (few?) hackers who will create multi-extension distributions, but probably more reliable for everyone else.</p>\n\n<p>What do you think?</p>\n\n<p>Anyway, I\u2019m getting to work on the Web app this week while this issue percolates. Been studying up on <a href=\"http://plackperl.org/\">Plack</a>. So nice!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "U3IzC075",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy10WE8M",
+    "should_open_in_legacy": false,
+    "slug": "db-status-update",
+    "state": "published",
+    "summary": "Status Update: DB API, Extension Versions RFC",
+    "tags": [
+        "status update",
+        "database",
+        "api",
+        "documentation",
+        "extensions",
+        "versions",
+        "rfc"
+    ],
+    "timestamp": 1283885198,
+    "title": "Status Update: DB API, Extension Versions RFC",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>I spent most of the time I had to work on PGXN the last two weeks creating the database for <a href=\"http://github.com/theory/pgxn-manager/\">PGXN Manager</a>. I had estimated 24 hours of work to design the database. So far I&rsquo;ve logged 34 hours. But I think that will come out in the wash, really, because I did a lot of work to generate JSON from database functions. This is code I had originally expected to do in the app layer. I&rsquo;m starting work on that this week, with an estimated 40 hours. Hope I can do it in 30. :-)</p>\n\n<p>I&rsquo;m pretty happy with how the database API is turning out. See the nifty <a href=\"http://github.com/theory/pgxn-manager/wiki/DB-API\">database API documentation</a> I whipped up using <a href=\"http://github.com/theory/pgxn-manager/blob/master/bin/gendoc\">gendoc</a> and embedded <a href=\"http://fletcherpenney.net/multimarkdown/users_guide/multimarkdown_syntax_guide/\">MultiMarkdown</a>. There are still a few tweaks I need to make. I just checked in a change to eliminate all the <code>ALIAS</code>es I <a href=\"http://blog.pgxn.org/post/1053165383/alias-in-vogue\">blogged about</a> last week. Turns out that one can just <a href=\"http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php\">function-name-qualify</a> the function parameter names. Who knew? I sure didn&rsquo;t.</p>\n\n<p>But I do have a question for you, dear readers. Right now, the database requires that extensions have unique version numbers in every distribution. So if, for example, you uploaded the distribution foo 1.2.2 with the extension bar 1.2.2, when you next uploaded foo 1.2.3, bar could not be 1.2.2. I designed this this way by following my own practice of always incrementing the version numbers of all modules included in my <a href=\"http://search.cpan.org/~dwheeler/\">CPAN distributions</a>. So all modules have unique version numbers, with never a duplicate.</p>\n\n<p>However, CPAN itself only cares that distributions have unique version numbers. It doesn&rsquo;t care about the version numbers of included modules. See, for example, <a href=\"http://search.cpan.org/dist/HTML-Mason/\">HTML::Mason</a>. Note that the various included modules have all sorts of different version numbers, and many have no version numbers at all. So while the core module has a version number (1.45 at the time of this writing), if you click to look at older versions, say <a href=\"http://search.cpan.org/~drolsky/HTML-Mason-1.44/\">Mason 1.44</a>, you&rsquo;ll see that no other modules have their version numbers changed.</p>\n\n<p>I don&rsquo;t think I want to allow extensions without version numbers on PGXN. That&rsquo;s been a recipe for many annoyances with CPAN. But maybe I should allow extension version numbers to repeat? The upside is less maintenance for multi-extension distribution authors. The downside is potentially less accuracy in the determination of prerequisites.</p>\n\n<p>For example, say that we have two versions of distribution foo:</p>\n\n<p><a href=\"#\"><img src=\"https://assets.tumblr.com/images/inline_placeholder.png\" width=\"18\" height=\"14\"/></a></p>\n\n<p>Note how the version number of extension bar has not changed between releases. But if I was a user of both foo and bar, and I specified that I required bar 1.2.2 but was actually using stuff in foo 1.2.3, I could end up with errors because I would only have foo 1.2.3.</p>\n\n<p>This is an issue periodically faced by Perl hackers. I might require HTML::Mason::ApacheHandler 1.69 but really what I need is HTML::Mason 1.44. Of course, as a Perl hacker, it&rsquo;s my responsibility to make sure I require exactly what I need, but sometimes it&rsquo;s not clear what&rsquo;s the primary module in a distribution. And if I don&rsquo;t realize that the version number of HTML::Mason::ApacheHandler doesn&rsquo;t change with every release, I might make mistakes.</p>\n\n<p>Maybe that&rsquo;s okay. Maybe PGXN should be less rigid like this. But I&rsquo;m leaning toward keeping things as they are and requiring new versions of every extension in every upload of a distribution. It&rsquo;s a bit tougher for those (few?) hackers who will create multi-extension distributions, but probably more reliable for everyone else.</p>\n\n<p>What do you think?</p>\n\n<p>Anyway, I&rsquo;m getting to work on the Web app this week while this issue percolates. Been studying up on <a href=\"http://plackperl.org/\">Plack</a>. So nice!</p>",
+            "content_raw": "<p>I spent most of the time I had to work on PGXN the last two weeks creating the database for <a href=\"http://github.com/theory/pgxn-manager/\">PGXN Manager</a>. I had estimated 24 hours of work to design the database. So far I\u2019ve logged 34 hours. But I think that will come out in the wash, really, because I did a lot of work to generate JSON from database functions. This is code I had originally expected to do in the app layer. I\u2019m starting work on that this week, with an estimated 40 hours. Hope I can do it in 30. :-)</p>\n\n<p>I\u2019m pretty happy with how the database API is turning out. See the nifty <a href=\"http://github.com/theory/pgxn-manager/wiki/DB-API\">database API documentation</a> I whipped up using <a href=\"http://github.com/theory/pgxn-manager/blob/master/bin/gendoc\">gendoc</a> and embedded <a href=\"http://fletcherpenney.net/multimarkdown/users_guide/multimarkdown_syntax_guide/\">MultiMarkdown</a>. There are still a few tweaks I need to make. I just checked in a change to eliminate all the <code>ALIAS</code>es I <a href=\"http://blog.pgxn.org/post/1053165383/alias-in-vogue\">blogged about</a> last week. Turns out that one can just <a href=\"http://archives.postgresql.org/pgsql-hackers/2010-09/msg00404.php\">function-name-qualify</a> the function parameter names. Who knew? I sure didn\u2019t.</p>\n\n<p>But I do have a question for you, dear readers. Right now, the database requires that extensions have unique version numbers in every distribution. So if, for example, you uploaded the distribution foo 1.2.2 with the extension bar 1.2.2, when you next uploaded foo 1.2.3, bar could not be 1.2.2. I designed this this way by following my own practice of always incrementing the version numbers of all modules included in my <a href=\"http://search.cpan.org/~dwheeler/\">CPAN distributions</a>. So all modules have unique version numbers, with never a duplicate.</p>\n\n<p>However, CPAN itself only cares that distributions have unique version numbers. It doesn\u2019t care about the version numbers of included modules. See, for example, <a href=\"http://search.cpan.org/dist/HTML-Mason/\">HTML::Mason</a>. Note that the various included modules have all sorts of different version numbers, and many have no version numbers at all. So while the core module has a version number (1.45 at the time of this writing), if you click to look at older versions, say <a href=\"http://search.cpan.org/~drolsky/HTML-Mason-1.44/\">Mason 1.44</a>, you\u2019ll see that no other modules have their version numbers changed.</p>\n\n<p>I don\u2019t think I want to allow extensions without version numbers on PGXN. That\u2019s been a recipe for many annoyances with CPAN. But maybe I should allow extension version numbers to repeat? The upside is less maintenance for multi-extension distribution authors. The downside is potentially less accuracy in the determination of prerequisites.</p>\n\n<p>For example, say that we have two versions of distribution foo:</p>\n\n<table>\n  <tr><th>Distribution</th><th>Extensions</th></tr>\n  <tr><td>foo 1.2.2</td><td>foo 1.2.2<br>bar 1.2.2</td></tr>\n  <tr><td>foo 1.2.3</td><td>foo 1.2.3<br>bar 1.2.2</td></tr>\n</table>\n\n<p>Note how the version number of extension bar has not changed between releases. But if I was a user of both foo and bar, and I specified that I required bar 1.2.2 but was actually using stuff in foo 1.2.3, I could end up with errors because I would only have foo 1.2.3.</p>\n\n<p>This is an issue periodically faced by Perl hackers. I might require HTML::Mason::ApacheHandler 1.69 but really what I need is HTML::Mason 1.44. Of course, as a Perl hacker, it\u2019s my responsibility to make sure I require exactly what I need, but sometimes it\u2019s not clear what\u2019s the primary module in a distribution. And if I don\u2019t realize that the version number of HTML::Mason::ApacheHandler doesn\u2019t change with every release, I might make mistakes.</p>\n\n<p>Maybe that\u2019s okay. Maybe PGXN should be less rigid like this. But I\u2019m leaning toward keeping things as they are and requiring new versions of every extension in every upload of a distribution. It\u2019s a bit tougher for those (few?) hackers who will create multi-extension distributions, but probably more reliable for everyone else.</p>\n\n<p>What do you think?</p>\n\n<p>Anyway, I\u2019m getting to work on the Web app this week while this issue percolates. Been studying up on <a href=\"http://plackperl.org/\">Plack</a>. So nice!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "1082188310"
+            }
+        }
+    ],
+    "type": "text"
+}

@@ -1,0 +1,178 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "",
+        "name": "pgxner-blog",
+        "title": "Untitled",
+        "tumblrmart_accessories": {},
+        "updated": 1706887749,
+        "url": "https://pgxner-blog.tumblr.com/",
+        "uuid": "t:cjDcSRpmxGYwEDRZLMadJA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<h1>Feedback Wanted: Meta Spec Sketch</h1><p>New post up on Just a Theory, <a href=\"https://justatheory.com/2024/03/rfc-pgxn-metadata-sketch/\">RFC: PGXN Metadata Sketch</a>, seeking feedback on a slew of ideas to update the <a href=\"https://pgxn.org/spec/\">PGXN Meta Spec</a>. Help us to help make the future of PGXN and the broader extension ecosystem better!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2024-03-21 19:17:29 GMT",
+    "display_avatar": true,
+    "format": "html",
+    "id": 745588549026447361,
+    "id_string": "745588549026447361",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": true,
+    "note_count": 0,
+    "post_author": "pgxner-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/745588549026447361/updated-meta-spec-sketch",
+    "reblog": {
+        "comment": "<p><h1>Feedback Wanted: Meta Spec Sketch</h1><p>New post up on Just a Theory, <a href=\"https://justatheory.com/2024/03/rfc-pgxn-metadata-sketch/\">RFC: PGXN Metadata Sketch</a>, seeking feedback on a slew of ideas to update the <a href=\"https://pgxn.org/spec/\">PGXN Meta Spec</a>. Help us to help make the future of PGXN and the broader extension ecosystem better!</p></p>",
+        "tree_html": ""
+    },
+    "reblog_key": "B43TSt3N",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyfOtDN5KW01",
+    "should_open_in_legacy": false,
+    "slug": "updated-meta-spec-sketch",
+    "state": "published",
+    "summary": "Feedback Wanted: Meta Spec Sketch",
+    "tags": [
+        "pgxn",
+        "postgresql",
+        "extensions",
+        "rfc"
+    ],
+    "timestamp": 1711048649,
+    "title": "",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p><h1>Feedback Wanted: Meta Spec Sketch</h1><p>New post up on Just a Theory, <a href=\"https://justatheory.com/2024/03/rfc-pgxn-metadata-sketch/\">RFC: PGXN Metadata Sketch</a>, seeking feedback on a slew of ideas to update the <a href=\"https://pgxn.org/spec/\">PGXN Meta Spec</a>. Help us to help make the future of PGXN and the broader extension ecosystem better!</p></p>",
+            "content_raw": "<p><h1>Feedback Wanted: Meta Spec Sketch</h1><p>New post up on Just a Theory, <a href=\"https://justatheory.com/2024/03/rfc-pgxn-metadata-sketch/\">RFC: PGXN Metadata Sketch</a>, seeking feedback on a slew of ideas to update the <a href=\"https://pgxn.org/spec/\">PGXN Meta Spec</a>. Help us to help make the future of PGXN and the broader extension ecosystem better!</p></p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "745588549026447361"
+            }
+        }
+    ],
+    "type": "text"
+}

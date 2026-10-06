@@ -1,0 +1,178 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>The new site is coming along <em>very</em> nicely. I&rsquo;m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this &ndash; even though I&rsquo;ve preached that very separation for years in one of my <a href=\"http://www.kineticode.com/\">day jobs</a>.</p>\n\n<p>But speaking of that separation, I am running into a bit of an annoyance with content specific to the site. All the content from the network is working beautifully &ndash; I just fetch it from the API server. But the site has its own content page independent of the network, including an FAQ, a page on setting up a mirror, a list of our backers, etc. And the ugly bit has to do with localization.</p>\n\n<p>I&rsquo;ve built the site (and <a href=\"http://manager.pgxn.org/\">PGXN Manager</a>) using the Perl standard localization library <a href=\"http://search.cpan.org/perldoc?Locale::Maketext\">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>\n\n<pre><code>our %Lexicon = (\n    hometitle =&gt; 'PGXN: PostgreSQL Extension Network',\n    'PostgreSQL Extension Network' =&gt; 'PostgreSQL Extension Network',\n    'About PGXN' =&gt; 'About PGXN',\n    'User' =&gt; 'User',\n    'Recent Uploads' =&gt; 'Recent Uploads',\n    'Blog' =&gt; 'Blog',\n    'Frequently Asked Questions' =&gt; 'Frequently Asked Questions',\n    'Release It' =&gt; 'Release It',\n);\n</code></pre>\n\n<p>Translaters just have to copy this code into a subclass and change the strings on the right-hand side of the <code>=&gt;</code>s. Easy, right? It&rsquo;s also very good with variables and pluralization. I just use it in the templates like this:</p>\n\n<pre><code>title { T 'PostgreSQL Extension Network' };\n</code></pre>\n\n<p>What sucks, however, is when I need to have longer content pages, especially those that mix HTML in with the text. The FAQ is particularly relevant here: most of the answers have at least one link embedded in them. The trouble is, templating language encodes HTML entities. So I can&rsquo;t easily put HTML in the localization files, unless I put it in raw, and the output it raw. So the localization file might have a line like:</p>\n\n<pre><code>'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' =&gt;\n'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions',\n</code></pre>\n\n<p>And then the template would be told to output the text raw, without encoding HTML entities:</p>\n\n<pre><code>p { outs_raw T 'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' };\n</code></pre>\n\n<p>So now we&rsquo;ve lost the benefit of the templating, really: we have to write the raw HTML ourselves. And besides, for multi-paragraph documents, it gets annoying to have a bunch of localization lines with names like <code>about_paragraph_1</code>, <code>about_paragraph_2</code>, etc. That makes it additionally difficult for translators. There&rsquo;s just too much crap getting in the way. I&rsquo;ve always liked the idea of having all translations in one place, but I don&rsquo;t think there&rsquo;s enough of an advantage to that to overcome the annoyances.</p>\n\n<p>So I&rsquo;d like to find a better way to manage these content pages more like <em>documents,</em> in a format that&rsquo;s easy for translators to manage and isn&rsquo;t so broken up. I&rsquo;m open to suggestions. Ideally the content would still be all kept in one place for a given language, but maybe that&rsquo;s just not feasible.</p>\n\n<p>The one thing that occurs to me is to keep documents for given languages in separate <a href=\"http://daringfireball.net/projects/markdown/\">Markdown</a>-formatted files. Each language would have a directory with the language code (&ldquo;en&rdquo;, &ldquo;en-uk&rdquo;, &ldquo;fr&rdquo;, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I&rsquo;ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>\n\n<p>How have you solved this problem in your apps? How badly have you annoyed your translators?</p>\n\n<p>Oh, while I&rsquo;m thinking about it, where should documentation for the API server be published? I could include it in the <a href=\"http://github.com/theory/pgxn-api/\">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that&rsquo;s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>\n\n<p>Thoughts?</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-04-01 05:33:16 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 4252690755,
+    "id_string": "4252690755",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 18,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/4252690755/content-localization",
+    "reblog": {
+        "comment": "<p>The new site is coming along <em>very</em> nicely. I\u2019m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this \u2013 even though I\u2019ve preached that very separation for years in one of my <a href=\"http://www.kineticode.com/\">day jobs</a>.</p>\n\n<p>But speaking of that separation, I am running into a bit of an annoyance with content specific to the site. All the content from the network is working beautifully \u2013 I just fetch it from the API server. But the site has its own content page independent of the network, including an FAQ, a page on setting up a mirror, a list of our backers, etc. And the ugly bit has to do with localization.</p>\n\n<p>I\u2019ve built the site (and <a href=\"http://manager.pgxn.org/\">PGXN Manager</a>) using the Perl standard localization library <a href=\"http://search.cpan.org/perldoc?Locale::Maketext\">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>\n\n<pre><code>our %Lexicon = (\n    hometitle =&gt; 'PGXN: PostgreSQL Extension Network',\n    'PostgreSQL Extension Network' =&gt; 'PostgreSQL Extension Network',\n    'About PGXN' =&gt; 'About PGXN',\n    'User' =&gt; 'User',\n    'Recent Uploads' =&gt; 'Recent Uploads',\n    'Blog' =&gt; 'Blog',\n    'Frequently Asked Questions' =&gt; 'Frequently Asked Questions',\n    'Release It' =&gt; 'Release It',\n);\n</code></pre>\n\n<p>Translaters just have to copy this code into a subclass and change the strings on the right-hand side of the <code>=&gt;</code>s. Easy, right? It\u2019s also very good with variables and pluralization. I just use it in the templates like this:</p>\n\n<pre><code>title { T 'PostgreSQL Extension Network' };\n</code></pre>\n\n<p>What sucks, however, is when I need to have longer content pages, especially those that mix HTML in with the text. The FAQ is particularly relevant here: most of the answers have at least one link embedded in them. The trouble is, templating language encodes HTML entities. So I can\u2019t easily put HTML in the localization files, unless I put it in raw, and the output it raw. So the localization file might have a line like:</p>\n\n<pre><code>'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' =&gt;\n'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions',\n</code></pre>\n\n<p>And then the template would be told to output the text raw, without encoding HTML entities:</p>\n\n<pre><code>p { outs_raw T 'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' };\n</code></pre>\n\n<p>So now we\u2019ve lost the benefit of the templating, really: we have to write the raw HTML ourselves. And besides, for multi-paragraph documents, it gets annoying to have a bunch of localization lines with names like <code>about_paragraph_1</code>, <code>about_paragraph_2</code>, etc. That makes it additionally difficult for translators. There\u2019s just too much crap getting in the way. I\u2019ve always liked the idea of having all translations in one place, but I don\u2019t think there\u2019s enough of an advantage to that to overcome the annoyances.</p>\n\n<p>So I\u2019d like to find a better way to manage these content pages more like <em>documents,</em> in a format that\u2019s easy for translators to manage and isn\u2019t so broken up. I\u2019m open to suggestions. Ideally the content would still be all kept in one place for a given language, but maybe that\u2019s just not feasible.</p>\n\n<p>The one thing that occurs to me is to keep documents for given languages in separate <a href=\"http://daringfireball.net/projects/markdown/\">Markdown</a>-formatted files. Each language would have a directory with the language code (\u201cen\u201d, \u201cen-uk\u201d, \u201cfr\u201d, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I\u2019ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>\n\n<p>How have you solved this problem in your apps? How badly have you annoyed your translators?</p>\n\n<p>Oh, while I\u2019m thinking about it, where should documentation for the API server be published? I could include it in the <a href=\"http://github.com/theory/pgxn-api/\">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that\u2019s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>\n\n<p>Thoughts?</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "uHHYsVn8",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy3zUkb3",
+    "should_open_in_legacy": false,
+    "slug": "content-localization",
+    "state": "published",
+    "summary": "Thoughts on Content Localization",
+    "tags": [
+        "localization",
+        "internationalization",
+        "translation",
+        "Locale::Maketext"
+    ],
+    "timestamp": 1301635996,
+    "title": "Thoughts on Content Localization",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>The new site is coming along <em>very</em> nicely. I&rsquo;m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this &ndash; even though I&rsquo;ve preached that very separation for years in one of my <a href=\"http://www.kineticode.com/\">day jobs</a>.</p>\n\n<p>But speaking of that separation, I am running into a bit of an annoyance with content specific to the site. All the content from the network is working beautifully &ndash; I just fetch it from the API server. But the site has its own content page independent of the network, including an FAQ, a page on setting up a mirror, a list of our backers, etc. And the ugly bit has to do with localization.</p>\n\n<p>I&rsquo;ve built the site (and <a href=\"http://manager.pgxn.org/\">PGXN Manager</a>) using the Perl standard localization library <a href=\"http://search.cpan.org/perldoc?Locale::Maketext\">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>\n\n<pre><code>our %Lexicon = (\n    hometitle =&gt; 'PGXN: PostgreSQL Extension Network',\n    'PostgreSQL Extension Network' =&gt; 'PostgreSQL Extension Network',\n    'About PGXN' =&gt; 'About PGXN',\n    'User' =&gt; 'User',\n    'Recent Uploads' =&gt; 'Recent Uploads',\n    'Blog' =&gt; 'Blog',\n    'Frequently Asked Questions' =&gt; 'Frequently Asked Questions',\n    'Release It' =&gt; 'Release It',\n);\n</code></pre>\n\n<p>Translaters just have to copy this code into a subclass and change the strings on the right-hand side of the <code>=&gt;</code>s. Easy, right? It&rsquo;s also very good with variables and pluralization. I just use it in the templates like this:</p>\n\n<pre><code>title { T 'PostgreSQL Extension Network' };\n</code></pre>\n\n<p>What sucks, however, is when I need to have longer content pages, especially those that mix HTML in with the text. The FAQ is particularly relevant here: most of the answers have at least one link embedded in them. The trouble is, templating language encodes HTML entities. So I can&rsquo;t easily put HTML in the localization files, unless I put it in raw, and the output it raw. So the localization file might have a line like:</p>\n\n<pre><code>'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' =&gt;\n'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions',\n</code></pre>\n\n<p>And then the template would be told to output the text raw, without encoding HTML entities:</p>\n\n<pre><code>p { outs_raw T 'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' };\n</code></pre>\n\n<p>So now we&rsquo;ve lost the benefit of the templating, really: we have to write the raw HTML ourselves. And besides, for multi-paragraph documents, it gets annoying to have a bunch of localization lines with names like <code>about_paragraph_1</code>, <code>about_paragraph_2</code>, etc. That makes it additionally difficult for translators. There&rsquo;s just too much crap getting in the way. I&rsquo;ve always liked the idea of having all translations in one place, but I don&rsquo;t think there&rsquo;s enough of an advantage to that to overcome the annoyances.</p>\n\n<p>So I&rsquo;d like to find a better way to manage these content pages more like <em>documents,</em> in a format that&rsquo;s easy for translators to manage and isn&rsquo;t so broken up. I&rsquo;m open to suggestions. Ideally the content would still be all kept in one place for a given language, but maybe that&rsquo;s just not feasible.</p>\n\n<p>The one thing that occurs to me is to keep documents for given languages in separate <a href=\"http://daringfireball.net/projects/markdown/\">Markdown</a>-formatted files. Each language would have a directory with the language code (&ldquo;en&rdquo;, &ldquo;en-uk&rdquo;, &ldquo;fr&rdquo;, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I&rsquo;ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>\n\n<p>How have you solved this problem in your apps? How badly have you annoyed your translators?</p>\n\n<p>Oh, while I&rsquo;m thinking about it, where should documentation for the API server be published? I could include it in the <a href=\"http://github.com/theory/pgxn-api/\">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that&rsquo;s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>\n\n<p>Thoughts?</p>",
+            "content_raw": "<p>The new site is coming along <em>very</em> nicely. I\u2019m really excited about it. The addition of the API server has turned out to be an inspiration. I never realized how clean the separation between content and presentation could be until I did this \u2013 even though I\u2019ve preached that very separation for years in one of my <a href=\"http://www.kineticode.com/\">day jobs</a>.</p>\n\n<p>But speaking of that separation, I am running into a bit of an annoyance with content specific to the site. All the content from the network is working beautifully \u2013 I just fetch it from the API server. But the site has its own content page independent of the network, including an FAQ, a page on setting up a mirror, a list of our backers, etc. And the ugly bit has to do with localization.</p>\n\n<p>I\u2019ve built the site (and <a href=\"http://manager.pgxn.org/\">PGXN Manager</a>) using the Perl standard localization library <a href=\"http://search.cpan.org/perldoc?Locale::Maketext\">Locale::Maketext</a>. And it works great for short labels and such, like so:</p>\n\n<pre><code>our %Lexicon = (\n    hometitle =&gt; 'PGXN: PostgreSQL Extension Network',\n    'PostgreSQL Extension Network' =&gt; 'PostgreSQL Extension Network',\n    'About PGXN' =&gt; 'About PGXN',\n    'User' =&gt; 'User',\n    'Recent Uploads' =&gt; 'Recent Uploads',\n    'Blog' =&gt; 'Blog',\n    'Frequently Asked Questions' =&gt; 'Frequently Asked Questions',\n    'Release It' =&gt; 'Release It',\n);\n</code></pre>\n\n<p>Translaters just have to copy this code into a subclass and change the strings on the right-hand side of the <code>=&gt;</code>s. Easy, right? It\u2019s also very good with variables and pluralization. I just use it in the templates like this:</p>\n\n<pre><code>title { T 'PostgreSQL Extension Network' };\n</code></pre>\n\n<p>What sucks, however, is when I need to have longer content pages, especially those that mix HTML in with the text. The FAQ is particularly relevant here: most of the answers have at least one link embedded in them. The trouble is, templating language encodes HTML entities. So I can\u2019t easily put HTML in the localization files, unless I put it in raw, and the output it raw. So the localization file might have a line like:</p>\n\n<pre><code>'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' =&gt;\n'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions',\n</code></pre>\n\n<p>And then the template would be told to output the text raw, without encoding HTML entities:</p>\n\n<pre><code>p { outs_raw T 'Send us an &lt;a href=\"mailto:pgxn@example.com\"&gt;email&lt;/a&gt; with your questions' };\n</code></pre>\n\n<p>So now we\u2019ve lost the benefit of the templating, really: we have to write the raw HTML ourselves. And besides, for multi-paragraph documents, it gets annoying to have a bunch of localization lines with names like <code>about_paragraph_1</code>, <code>about_paragraph_2</code>, etc. That makes it additionally difficult for translators. There\u2019s just too much crap getting in the way. I\u2019ve always liked the idea of having all translations in one place, but I don\u2019t think there\u2019s enough of an advantage to that to overcome the annoyances.</p>\n\n<p>So I\u2019d like to find a better way to manage these content pages more like <em>documents,</em> in a format that\u2019s easy for translators to manage and isn\u2019t so broken up. I\u2019m open to suggestions. Ideally the content would still be all kept in one place for a given language, but maybe that\u2019s just not feasible.</p>\n\n<p>The one thing that occurs to me is to keep documents for given languages in separate <a href=\"http://daringfireball.net/projects/markdown/\">Markdown</a>-formatted files. Each language would have a directory with the language code (\u201cen\u201d, \u201cen-uk\u201d, \u201cfr\u201d, etc.), and then at build time they would be converted to HTML for fast serving at run-time. Or maybe at distribution-packaging time. I\u2019ve resisted something like this for a while because it means one has to find stuff to translate in two different places (the localization library for UI elements and the directory of documents for content), but maybe it would be best.</p>\n\n<p>How have you solved this problem in your apps? How badly have you annoyed your translators?</p>\n\n<p>Oh, while I\u2019m thinking about it, where should documentation for the API server be published? I could include it in the <a href=\"http://github.com/theory/pgxn-api/\">PGXN::API</a> source, which would be useful for anyone else who wanted to run an API server (which will be dead easy, by the way). But there will also be some stuff that\u2019s specific to a given installation (proxying, downtime, etc.). So maybe it should go on the main site or something? Or perhaps we need a dedicated wiki server for shit like this (and some of those content pages like the FAQ, maybe).</p>\n\n<p>Thoughts?</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "4252690755"
+            }
+        }
+    ],
+    "type": "text"
+}

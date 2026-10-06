@@ -1,0 +1,179 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>When we last looked at the <a href=\"http://blog.pgxn.org/post/988613682/restful-directory\">organization of the mirror</a>, I was pretty happy with the design except for one thing: The use of the letter hashing variables in the URI templates. It&rsquo;s just ugly and, damnit, is it really necessary anymore? I mean, sure, I had to <a href=\"http://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b\">work around this issue in Bricolage</a> back in 2005, but on modern file systems like zfs and ext3, does it really matter anymore?</p>\n\n<p>I was chatting about this with <a href=\"http://schwern.dreamhosters.com/\">Schwern</a> just now, and he thought it just didn&rsquo;t matter anymore. So I asked my fellow <a href=\"http://pgexperts.com/\">PGX</a> associate <a href=\"http://www.facebook.com/frosty996\">Jeff Frost</a> about this, and he said, &ldquo;Used to be anytime you went above 1000 entries in one directory, things would start to slow down. Certainly reiserfs, xfs, jfs, and zfs don&rsquo;t suffer that issue.&rdquo; But what about ext3?</p>\n\n<p>I happen to have a box with ext3, so I tested it. Here&rsquo;s what I found. To stat one file among 20,000, <code>time</code> says:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Not bad. And on file among 200?</p>\n\n<pre><code>real    0m0.009s\nuser    0m0.000s\nsys     0m0.010s\n</code></pre>\n\n<p>Well, you can&rsquo;t get much closer than that. What about subdirectories? To stat a file inside one of 20,000 subdirectories, <code>time</code> tells me:</p>\n\n<pre><code>real    0m0.015s\nuser    0m0.010s\nsys     0m0.000s\n</code></pre>\n\n<p>And a file inside one of 200 subdirectories:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Well, I can live with that. I suppose there are some file systems out there that still have this problem, but you know what? I&rsquo;m not going to worry about them. It&rsquo;s thinking too far in advance anyway (if PGXN has this kind of scaling problem we&rsquo;ll be lucky!), and the farther out we get, the less of a problem it is.</p>\n\n<p>So you know what? I&rsquo;m not going to use the hashing of extension, distribution, and owner names. Let the file systems worry about that performance, not me.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-09-08 23:41:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 1088721089,
+    "id_string": "1088721089",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 5,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/1088721089/legacy-file-systems",
+    "reblog": {
+        "comment": "<p>When we last looked at the <a href=\"http://blog.pgxn.org/post/988613682/restful-directory\">organization of the mirror</a>, I was pretty happy with the design except for one thing: The use of the letter hashing variables in the URI templates. It\u2019s just ugly and, damnit, is it really necessary anymore? I mean, sure, I had to <a href=\"http://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b\">work around this issue in Bricolage</a> back in 2005, but on modern file systems like zfs and ext3, does it really matter anymore?</p>\n\n<p>I was chatting about this with <a href=\"http://schwern.dreamhosters.com/\">Schwern</a> just now, and he thought it just didn\u2019t matter anymore. So I asked my fellow <a href=\"http://pgexperts.com/\">PGX</a> associate <a href=\"http://www.facebook.com/frosty996\">Jeff Frost</a> about this, and he said, \u201cUsed to be anytime you went above 1000 entries in one directory, things would start to slow down. Certainly reiserfs, xfs, jfs, and zfs don\u2019t suffer that issue.\u201d But what about ext3?</p>\n\n<p>I happen to have a box with ext3, so I tested it. Here\u2019s what I found. To stat one file among 20,000, <code>time</code> says:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Not bad. And on file among 200?</p>\n\n<pre><code>real    0m0.009s\nuser    0m0.000s\nsys     0m0.010s\n</code></pre>\n\n<p>Well, you can\u2019t get much closer than that. What about subdirectories? To stat a file inside one of 20,000 subdirectories, <code>time</code> tells me:</p>\n\n<pre><code>real    0m0.015s\nuser    0m0.010s\nsys     0m0.000s\n</code></pre>\n\n<p>And a file inside one of 200 subdirectories:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Well, I can live with that. I suppose there are some file systems out there that still have this problem, but you know what? I\u2019m not going to worry about them. It\u2019s thinking too far in advance anyway (if PGXN has this kind of scaling problem we\u2019ll be lucky!), and the farther out we get, the less of a problem it is.</p>\n\n<p>So you know what? I\u2019m not going to use the hashing of extension, distribution, and owner names. Let the file systems worry about that performance, not me.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "2dev2roi",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy10v931",
+    "should_open_in_legacy": false,
+    "slug": "legacy-file-systems",
+    "state": "published",
+    "summary": "On Legacy File Systems",
+    "tags": [
+        "uri templates",
+        "file systems",
+        "hashing",
+        "names",
+        "mirrors"
+    ],
+    "timestamp": 1283989260,
+    "title": "On Legacy File Systems",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>When we last looked at the <a href=\"http://blog.pgxn.org/post/988613682/restful-directory\">organization of the mirror</a>, I was pretty happy with the design except for one thing: The use of the letter hashing variables in the URI templates. It&rsquo;s just ugly and, damnit, is it really necessary anymore? I mean, sure, I had to <a href=\"http://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b\">work around this issue in Bricolage</a> back in 2005, but on modern file systems like zfs and ext3, does it really matter anymore?</p>\n\n<p>I was chatting about this with <a href=\"http://schwern.dreamhosters.com/\">Schwern</a> just now, and he thought it just didn&rsquo;t matter anymore. So I asked my fellow <a href=\"http://pgexperts.com/\">PGX</a> associate <a href=\"http://www.facebook.com/frosty996\">Jeff Frost</a> about this, and he said, &ldquo;Used to be anytime you went above 1000 entries in one directory, things would start to slow down. Certainly reiserfs, xfs, jfs, and zfs don&rsquo;t suffer that issue.&rdquo; But what about ext3?</p>\n\n<p>I happen to have a box with ext3, so I tested it. Here&rsquo;s what I found. To stat one file among 20,000, <code>time</code> says:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Not bad. And on file among 200?</p>\n\n<pre><code>real    0m0.009s\nuser    0m0.000s\nsys     0m0.010s\n</code></pre>\n\n<p>Well, you can&rsquo;t get much closer than that. What about subdirectories? To stat a file inside one of 20,000 subdirectories, <code>time</code> tells me:</p>\n\n<pre><code>real    0m0.015s\nuser    0m0.010s\nsys     0m0.000s\n</code></pre>\n\n<p>And a file inside one of 200 subdirectories:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Well, I can live with that. I suppose there are some file systems out there that still have this problem, but you know what? I&rsquo;m not going to worry about them. It&rsquo;s thinking too far in advance anyway (if PGXN has this kind of scaling problem we&rsquo;ll be lucky!), and the farther out we get, the less of a problem it is.</p>\n\n<p>So you know what? I&rsquo;m not going to use the hashing of extension, distribution, and owner names. Let the file systems worry about that performance, not me.</p>",
+            "content_raw": "<p>When we last looked at the <a href=\"http://blog.pgxn.org/post/988613682/restful-directory\">organization of the mirror</a>, I was pretty happy with the design except for one thing: The use of the letter hashing variables in the URI templates. It\u2019s just ugly and, damnit, is it really necessary anymore? I mean, sure, I had to <a href=\"http://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b\">work around this issue in Bricolage</a> back in 2005, but on modern file systems like zfs and ext3, does it really matter anymore?</p>\n\n<p>I was chatting about this with <a href=\"http://schwern.dreamhosters.com/\">Schwern</a> just now, and he thought it just didn\u2019t matter anymore. So I asked my fellow <a href=\"http://pgexperts.com/\">PGX</a> associate <a href=\"http://www.facebook.com/frosty996\">Jeff Frost</a> about this, and he said, \u201cUsed to be anytime you went above 1000 entries in one directory, things would start to slow down. Certainly reiserfs, xfs, jfs, and zfs don\u2019t suffer that issue.\u201d But what about ext3?</p>\n\n<p>I happen to have a box with ext3, so I tested it. Here\u2019s what I found. To stat one file among 20,000, <code>time</code> says:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Not bad. And on file among 200?</p>\n\n<pre><code>real    0m0.009s\nuser    0m0.000s\nsys     0m0.010s\n</code></pre>\n\n<p>Well, you can\u2019t get much closer than that. What about subdirectories? To stat a file inside one of 20,000 subdirectories, <code>time</code> tells me:</p>\n\n<pre><code>real    0m0.015s\nuser    0m0.010s\nsys     0m0.000s\n</code></pre>\n\n<p>And a file inside one of 200 subdirectories:</p>\n\n<pre><code>real    0m0.005s\nuser    0m0.000s\nsys     0m0.000s\n</code></pre>\n\n<p>Well, I can live with that. I suppose there are some file systems out there that still have this problem, but you know what? I\u2019m not going to worry about them. It\u2019s thinking too far in advance anyway (if PGXN has this kind of scaling problem we\u2019ll be lucky!), and the farther out we get, the less of a problem it is.</p>\n\n<p>So you know what? I\u2019m not going to use the hashing of extension, distribution, and owner names. Let the file systems worry about that performance, not me.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "1088721089"
+            }
+        }
+    ],
+    "type": "text"
+}

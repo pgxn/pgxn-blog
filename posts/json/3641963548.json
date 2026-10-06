@@ -1,0 +1,181 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>I&rsquo;ve started working on the main (search) site in earnest now. The basic layout is done, and I&rsquo;m working on the distribution view (<a href=\"http://theory.github.com/pgxn/pgtapdist.html\">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href=\"http://api.pgxn.org/\">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>\n\n<p>That is, if you request <code>/dist/nonexistent/</code>, then it will load a page with the HTTP status code <code>200 OK</code>, but then, when the Ajax request 404s, it will show a &ldquo;Not found&rdquo; error message. That&rsquo;s all well and good, but I&rsquo;m wondering about the impact of two things:</p>\n\n<ol>\n<li><p>Since the page itself won&rsquo;t 404, search engines might index links to nonexistent extensions. Of course, bad links won&rsquo;t be <em>that</em> common, but of course they do happen and then tend to live forever.</p></li>\n<li><p>If the search site uses Ajax to fetch the contents of a page via JSON (or, for documentation, as an HTML document it will put into a div), will the full content be properly indexed by search engines?</p></li>\n</ol>\n\n<p>So these are serious questions, in my mind. Do we loose good search engine indelibility when we load content dynamically?</p>\n\n<p>Of course, I can instead write it so that the back end fetches stuff from the API server (and perhaps directly from the file system) and get &lsquo;round these issues, but then it&rsquo;s less of a cool example of the use of the API server.</p>\n\n<p>What do you think? Good advice much appreciated!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-03-04 20:20:08 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 3641963548,
+    "id_string": "3641963548",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 9,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/3641963548/ajax-search-indexing",
+    "reblog": {
+        "comment": "<p>I\u2019ve started working on the main (search) site in earnest now. The basic layout is done, and I\u2019m working on the distribution view (<a href=\"http://theory.github.com/pgxn/pgtapdist.html\">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href=\"http://api.pgxn.org/\">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>\n\n<p>That is, if you request <code>/dist/nonexistent/</code>, then it will load a page with the HTTP status code <code>200 OK</code>, but then, when the Ajax request 404s, it will show a \u201cNot found\u201d error message. That\u2019s all well and good, but I\u2019m wondering about the impact of two things:</p>\n\n<ol>\n<li><p>Since the page itself won\u2019t 404, search engines might index links to nonexistent extensions. Of course, bad links won\u2019t be <em>that</em> common, but of course they do happen and then tend to live forever.</p></li>\n<li><p>If the search site uses Ajax to fetch the contents of a page via JSON (or, for documentation, as an HTML document it will put into a div), will the full content be properly indexed by search engines?</p></li>\n</ol>\n\n<p>So these are serious questions, in my mind. Do we loose good search engine indelibility when we load content dynamically?</p>\n\n<p>Of course, I can instead write it so that the back end fetches stuff from the API server (and perhaps directly from the file system) and get \u2018round these issues, but then it\u2019s less of a cool example of the use of the API server.</p>\n\n<p>What do you think? Good advice much appreciated!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "apkFtozB",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy3P4-GS",
+    "should_open_in_legacy": false,
+    "slug": "ajax-search-indexing",
+    "state": "published",
+    "summary": "Question: Ajax and Search Engine Indexing",
+    "tags": [
+        "ajax",
+        "api",
+        "search engine",
+        "indexing",
+        "indexability",
+        "response code",
+        "not found"
+    ],
+    "timestamp": 1299270008,
+    "title": "Question: Ajax and Search Engine Indexing",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>I&rsquo;ve started working on the main (search) site in earnest now. The basic layout is done, and I&rsquo;m working on the distribution view (<a href=\"http://theory.github.com/pgxn/pgtapdist.html\">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href=\"http://api.pgxn.org/\">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>\n\n<p>That is, if you request <code>/dist/nonexistent/</code>, then it will load a page with the HTTP status code <code>200 OK</code>, but then, when the Ajax request 404s, it will show a &ldquo;Not found&rdquo; error message. That&rsquo;s all well and good, but I&rsquo;m wondering about the impact of two things:</p>\n\n<ol>\n<li><p>Since the page itself won&rsquo;t 404, search engines might index links to nonexistent extensions. Of course, bad links won&rsquo;t be <em>that</em> common, but of course they do happen and then tend to live forever.</p></li>\n<li><p>If the search site uses Ajax to fetch the contents of a page via JSON (or, for documentation, as an HTML document it will put into a div), will the full content be properly indexed by search engines?</p></li>\n</ol>\n\n<p>So these are serious questions, in my mind. Do we loose good search engine indelibility when we load content dynamically?</p>\n\n<p>Of course, I can instead write it so that the back end fetches stuff from the API server (and perhaps directly from the file system) and get &lsquo;round these issues, but then it&rsquo;s less of a cool example of the use of the API server.</p>\n\n<p>What do you think? Good advice much appreciated!</p>",
+            "content_raw": "<p>I\u2019ve started working on the main (search) site in earnest now. The basic layout is done, and I\u2019m working on the distribution view (<a href=\"http://theory.github.com/pgxn/pgtapdist.html\">mockup</a>). My thinking so far has been that I would simply serve a page that requested, say, <code>/dist/pgTAP/</code>, and that page would use Ajax requests to fetch the data from the <a href=\"http://api.pgxn.org/\">API server</a> and display stuff. I think this will work pretty well except for one thing: 404s.</p>\n\n<p>That is, if you request <code>/dist/nonexistent/</code>, then it will load a page with the HTTP status code <code>200 OK</code>, but then, when the Ajax request 404s, it will show a \u201cNot found\u201d error message. That\u2019s all well and good, but I\u2019m wondering about the impact of two things:</p>\n\n<ol>\n<li><p>Since the page itself won\u2019t 404, search engines might index links to nonexistent extensions. Of course, bad links won\u2019t be <em>that</em> common, but of course they do happen and then tend to live forever.</p></li>\n<li><p>If the search site uses Ajax to fetch the contents of a page via JSON (or, for documentation, as an HTML document it will put into a div), will the full content be properly indexed by search engines?</p></li>\n</ol>\n\n<p>So these are serious questions, in my mind. Do we loose good search engine indelibility when we load content dynamically?</p>\n\n<p>Of course, I can instead write it so that the back end fetches stuff from the API server (and perhaps directly from the file system) and get \u2018round these issues, but then it\u2019s less of a cool example of the use of the API server.</p>\n\n<p>What do you think? Good advice much appreciated!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "3641963548"
+            }
+        }
+    ],
+    "type": "text"
+}

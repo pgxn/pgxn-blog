@@ -1,0 +1,178 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Using the new <a href=\"https://github.com/pgxn/pgxn-api/wiki/JSONP\">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href=\"http://www.justatheory.com/\" title=\"Just a Theory\">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>\n\n<pre><code>&lt;div class=\"links\"&gt;\n    &lt;h2&gt;PGXN Code&lt;/h2&gt;\n    &lt;script type=\"text/javascript\"&gt;\n    function pgxn_distros(data) {\n        document.write('&lt;dl&gt;');\n        for (dist in data.releases) {\n            document.write(\n                '&lt;dt&gt;&lt;a href=http://pgxn.org/dist/' + dist +\n                '&gt;' + dist + '&lt;/a&gt;&lt;/dt&gt;' +\n                '&lt;dd&gt;' + data.releases[dist].abstract + '&lt;/dd&gt;'\n            );\n        }\n        document.write('&lt;/dl&gt;');\n    }\n  &lt;/script&gt;\n  &lt;script type=\"text/javascript\"\n     src=\"http://api.pgxn.org/user/theory.json?callback=pgxn_distros\"&gt;\n  &lt;/script&gt;\n&lt;/div&gt;\n</code></pre>\n\n<p>And the output looks like this:</p>\n\n<p><img src=\"https://64.media.tumblr.com/tumblr_ll48b4u06I1qzouis.png\" alt=\"PGXN Code\"/></p>\n\n<p>Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files served by the JSON API. Try that, CPAN!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-05-13 03:58:33 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 5441748625,
+    "id_string": "5441748625",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 9,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/5441748625/jsonp-callbacks",
+    "reblog": {
+        "comment": "<p>Using the new <a href=\"https://github.com/pgxn/pgxn-api/wiki/JSONP\">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href=\"http://www.justatheory.com/\" title=\"Just a Theory\">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>\n\n<pre><code><div class=\"links\">\n    <h2>PGXN Code</h2>\n    <script type=\"text/javascript\">\n    function pgxn_distros(data) {\n        document.write('<dl>');\n        for (dist in data.releases) {\n            document.write(\n                '<dt><a href=http://pgxn.org/dist/' + dist +\n                '>' + dist + '</a></dt>' +\n                '<dd>' + data.releases[dist].abstract + '</dd>'\n            );\n        }\n        document.write('</dl>');\n    }\n  </script>\n  <script type=\"text/javascript\"\n     src=\"http://api.pgxn.org/user/theory.json?callback=pgxn_distros\">\n  </script>\n</div>\n</code></pre>\n\n<p>And the output looks like this:</p>\n\n<p><img src=\"https://64.media.tumblr.com/tumblr_ll48b4u06I1qzouis.png\" alt=\"PGXN Code\"></p>\n\n<p>Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files served by the JSON API. Try that, CPAN!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "3TA2Kv54",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy54MdwH",
+    "should_open_in_legacy": false,
+    "slug": "jsonp-callbacks",
+    "state": "published",
+    "summary": "Using JSONP Callbacks",
+    "tags": [
+        "jsonp",
+        "callback",
+        "blog",
+        "JSON"
+    ],
+    "timestamp": 1305259113,
+    "title": "Using JSONP Callbacks",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Using the new <a href=\"https://github.com/pgxn/pgxn-api/wiki/JSONP\">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href=\"http://www.justatheory.com/\" title=\"Just a Theory\">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>\n\n<pre><code>\n    PGXN Code\n    <p><a href=\"#\"><img src=\"https://assets.tumblr.com/images/inline_placeholder.png\" width=\"18\" height=\"14\"/></a></p>\n  <p><a href=\"#\"><img src=\"https://assets.tumblr.com/images/inline_placeholder.png\" width=\"18\" height=\"14\"/></a></p>\n\n</code></pre>\n\n<p>And the output looks like this:</p>\n\n<p><img src=\"https://64.media.tumblr.com/tumblr_ll48b4u06I1qzouis.png\" alt=\"PGXN Code\" title=\"Just a Theory\" class=\"toggle_inline_image inline_image constrained_image\"/></p>\n\n<p>Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files served by the JSON API. Try that, CPAN!</p>",
+            "content_raw": "<p>Using the new <a href=\"https://github.com/pgxn/pgxn-api/wiki/JSONP\">JSONP callback support</a> in the PGXN API, I just added a sidebar to <a href=\"http://www.justatheory.com/\" title=\"Just a Theory\">my personal blog</a> that shows a list of all my PGXN distributions. The code is simple:</p>\n\n<pre><code><div class=\"links\">\n    <h2>PGXN Code</h2>\n    <script type=\"text/javascript\">\n    function pgxn_distros(data) {\n        document.write('<dl>');\n        for (dist in data.releases) {\n            document.write(\n                '<dt><a href=http://pgxn.org/dist/' + dist +\n                '>' + dist + '</a></dt>' +\n                '<dd>' + data.releases[dist].abstract + '</dd>'\n            );\n        }\n        document.write('</dl>');\n    }\n  </script>\n  <script type=\"text/javascript\"\n     src=\"http://api.pgxn.org/user/theory.json?callback=pgxn_distros\">\n  </script>\n</div>\n</code></pre>\n\n<p>And the output looks like this:</p>\n\n<p><img src=\"https://64.media.tumblr.com/tumblr_ll48b4u06I1qzouis.png\" alt=\"PGXN Code\"></p>\n\n<p>Not bad, eh? AS you can see, JSONP is dead easy to use with the JSON files served by the JSON API. Try that, CPAN!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "5441748625"
+            }
+        }
+    ],
+    "type": "text"
+}

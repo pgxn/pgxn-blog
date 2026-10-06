@@ -1,0 +1,181 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Had an interesting discussion on <a href=\"irc://irc.perl.org/#plack\">#plack</a>. The upload form, which takes a POST request for an upload, sends a redirect on a successful form submission. This is known as the <a href=\"http://en.wikipedia.org/wiki/Post/Redirect/Get\">Post/Redirect/Get (RDG)</a> pattern, though I didn&rsquo;t know that before <a href=\"http://duckduckgo.com/?q=redirect+from+post\">DuckDuckGoing it</a> it today. But I realized that the code was <em>not</em> redirecting on a failed form submission, but reloading the form. I was thinking that one should always redirect on POST, and so was looking into a Rails-like <code>flash</code> pattern to cache an error message and the form contents on the redirect. But in this discussion, I learned a few things:</p>\n\n<ol>\n<li><p>One should use <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.4\">HTTP 1.1 status code 303</a> rather than <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.3\">status code 302</a> for these sorts of redirects. Apparently, this status code, called &ldquo;See Other,&rdquo; is specifically designed for use redirecting from a POST. Thanks to <a href=\"http://blog.weftsoar.net/\">counfound</a> for pointing that out.</p></li>\n<li><p>The whole point of RDG is to prevent a double form submission. But the truth is, in the case of an error, you <em>want</em> a second form submission. For errors &ndash; such as a username conflict or a malformed distribution archive &ndash; the POST failed, so you show the form again along with a message about the problem and how to fix it.</p></li>\n</ol>\n\n<p>What&rsquo;s nice about this is that it&rsquo;s already the way I was doing it! In fact, for such errors, I&rsquo;m returning <a href=\"http://tools.ietf.org/html/rfc2616#section-10.4.10\">HTTP status code 409</a>, which indicates that the request failed due to a conflict, and the user should fix it and resubmit. So no need to redirect on failure. Yay!</p>\n\n<p>Note that for XMLHttpRequests, I&rsquo;m not redirecting at all, but simply returning the proper status code (success or conflict, generally) and a fragment to be used to show an error message (or &ldquo;success&rdquo;) (in HTML, JSON, or plain text, depending on the requestor&rsquo;s preferred type).</p>\n\n<p>I think this works pretty well, and I&rsquo;m pleased to be making good use of HTTP. Does it make sense to you?</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-09-29 21:10:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 1212136083,
+    "id_string": "1212136083",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/1212136083/conflict-redirection-on-post",
+    "reblog": {
+        "comment": "<p>Had an interesting discussion on <a href=\"irc://irc.perl.org/#plack\">#plack</a>. The upload form, which takes a POST request for an upload, sends a redirect on a successful form submission. This is known as the <a href=\"http://en.wikipedia.org/wiki/Post/Redirect/Get\">Post/Redirect/Get (RDG)</a> pattern, though I didn\u2019t know that before <a href=\"http://duckduckgo.com/?q=redirect+from+post\">DuckDuckGoing it</a> it today. But I realized that the code was <em>not</em> redirecting on a failed form submission, but reloading the form. I was thinking that one should always redirect on POST, and so was looking into a Rails-like <code>flash</code> pattern to cache an error message and the form contents on the redirect. But in this discussion, I learned a few things:</p>\n\n<ol>\n<li><p>One should use <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.4\">HTTP 1.1 status code 303</a> rather than <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.3\">status code 302</a> for these sorts of redirects. Apparently, this status code, called \u201cSee Other,\u201d is specifically designed for use redirecting from a POST. Thanks to <a href=\"http://blog.weftsoar.net/\">counfound</a> for pointing that out.</p></li>\n<li><p>The whole point of RDG is to prevent a double form submission. But the truth is, in the case of an error, you <em>want</em> a second form submission. For errors \u2013 such as a username conflict or a malformed distribution archive \u2013 the POST failed, so you show the form again along with a message about the problem and how to fix it.</p></li>\n</ol>\n\n<p>What\u2019s nice about this is that it\u2019s already the way I was doing it! In fact, for such errors, I\u2019m returning <a href=\"http://tools.ietf.org/html/rfc2616#section-10.4.10\">HTTP status code 409</a>, which indicates that the request failed due to a conflict, and the user should fix it and resubmit. So no need to redirect on failure. Yay!</p>\n\n<p>Note that for XMLHttpRequests, I\u2019m not redirecting at all, but simply returning the proper status code (success or conflict, generally) and a fragment to be used to show an error message (or \u201csuccess\u201d) (in HTML, JSON, or plain text, depending on the requestor\u2019s preferred type).</p>\n\n<p>I think this works pretty well, and I\u2019m pleased to be making good use of HTTP. Does it make sense to you?</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "1uBv2qle",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy18FxgJ",
+    "should_open_in_legacy": false,
+    "slug": "conflict-redirection-on-post",
+    "state": "published",
+    "summary": "Conflict and Redirection on POST",
+    "tags": [
+        "HTTP",
+        "POST",
+        "redirect",
+        "RDG",
+        "Post/Redirect/Get",
+        "conflict",
+        "HTTP status codes"
+    ],
+    "timestamp": 1285794600,
+    "title": "Conflict and Redirection on POST",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Had an interesting discussion on <a href=\"denied:irc://irc.perl.org/#plack\">#plack</a>. The upload form, which takes a POST request for an upload, sends a redirect on a successful form submission. This is known as the <a href=\"http://en.wikipedia.org/wiki/Post/Redirect/Get\">Post/Redirect/Get (RDG)</a> pattern, though I didn&rsquo;t know that before <a href=\"http://duckduckgo.com/?q=redirect+from+post\">DuckDuckGoing it</a> it today. But I realized that the code was <em>not</em> redirecting on a failed form submission, but reloading the form. I was thinking that one should always redirect on POST, and so was looking into a Rails-like <code>flash</code> pattern to cache an error message and the form contents on the redirect. But in this discussion, I learned a few things:</p>\n\n<ol>\n<li><p>One should use <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.4\">HTTP 1.1 status code 303</a> rather than <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.3\">status code 302</a> for these sorts of redirects. Apparently, this status code, called &ldquo;See Other,&rdquo; is specifically designed for use redirecting from a POST. Thanks to <a href=\"http://blog.weftsoar.net/\">counfound</a> for pointing that out.</p></li>\n<li><p>The whole point of RDG is to prevent a double form submission. But the truth is, in the case of an error, you <em>want</em> a second form submission. For errors &ndash; such as a username conflict or a malformed distribution archive &ndash; the POST failed, so you show the form again along with a message about the problem and how to fix it.</p></li>\n</ol>\n\n<p>What&rsquo;s nice about this is that it&rsquo;s already the way I was doing it! In fact, for such errors, I&rsquo;m returning <a href=\"http://tools.ietf.org/html/rfc2616#section-10.4.10\">HTTP status code 409</a>, which indicates that the request failed due to a conflict, and the user should fix it and resubmit. So no need to redirect on failure. Yay!</p>\n\n<p>Note that for XMLHttpRequests, I&rsquo;m not redirecting at all, but simply returning the proper status code (success or conflict, generally) and a fragment to be used to show an error message (or &ldquo;success&rdquo;) (in HTML, JSON, or plain text, depending on the requestor&rsquo;s preferred type).</p>\n\n<p>I think this works pretty well, and I&rsquo;m pleased to be making good use of HTTP. Does it make sense to you?</p>",
+            "content_raw": "<p>Had an interesting discussion on <a href=\"irc://irc.perl.org/#plack\">#plack</a>. The upload form, which takes a POST request for an upload, sends a redirect on a successful form submission. This is known as the <a href=\"http://en.wikipedia.org/wiki/Post/Redirect/Get\">Post/Redirect/Get (RDG)</a> pattern, though I didn\u2019t know that before <a href=\"http://duckduckgo.com/?q=redirect+from+post\">DuckDuckGoing it</a> it today. But I realized that the code was <em>not</em> redirecting on a failed form submission, but reloading the form. I was thinking that one should always redirect on POST, and so was looking into a Rails-like <code>flash</code> pattern to cache an error message and the form contents on the redirect. But in this discussion, I learned a few things:</p>\n\n<ol>\n<li><p>One should use <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.4\">HTTP 1.1 status code 303</a> rather than <a href=\"http://tools.ietf.org/html/rfc2616#section-10.3.3\">status code 302</a> for these sorts of redirects. Apparently, this status code, called \u201cSee Other,\u201d is specifically designed for use redirecting from a POST. Thanks to <a href=\"http://blog.weftsoar.net/\">counfound</a> for pointing that out.</p></li>\n<li><p>The whole point of RDG is to prevent a double form submission. But the truth is, in the case of an error, you <em>want</em> a second form submission. For errors \u2013 such as a username conflict or a malformed distribution archive \u2013 the POST failed, so you show the form again along with a message about the problem and how to fix it.</p></li>\n</ol>\n\n<p>What\u2019s nice about this is that it\u2019s already the way I was doing it! In fact, for such errors, I\u2019m returning <a href=\"http://tools.ietf.org/html/rfc2616#section-10.4.10\">HTTP status code 409</a>, which indicates that the request failed due to a conflict, and the user should fix it and resubmit. So no need to redirect on failure. Yay!</p>\n\n<p>Note that for XMLHttpRequests, I\u2019m not redirecting at all, but simply returning the proper status code (success or conflict, generally) and a fragment to be used to show an error message (or \u201csuccess\u201d) (in HTML, JSON, or plain text, depending on the requestor\u2019s preferred type).</p>\n\n<p>I think this works pretty well, and I\u2019m pleased to be making good use of HTTP. Does it make sense to you?</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "1212136083"
+            }
+        }
+    ],
+    "type": "text"
+}

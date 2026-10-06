@@ -1,0 +1,186 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Thanks to a comment from &ldquo;Anon,&rdquo; I&rsquo;m auditing the media types used to serve files from the &ldquo;Browse&rdquo; links on the site. The browse interface is managed by <a href=\"http://search.cpan.org/perldoc?Plack::App::Directory\">Plack::App::Directory</a>, which gets its media type mapping from <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href=\"https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5\">this commit</a>, files are served as plain text if:</p>\n\n<ul>\n<li>The strings &ldquo;html&rdquo;, &ldquo;x-c&rdquo;, &ldquo;xml&rdquo;, &ldquo;calendar&rdquo;, or &ldquo;vcard&rdquo; appear in the default media type; or</li>\n<li>The file name extension is one of <code>.bat</code>, <code>.css</code>, <code>.eml</code>, <code>.js</code>, <code>.json</code>, <code>.mime</code>, or <code>.swf</code>.</li>\n</ul>\n\n<p>Are there other <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">media types</a> that should be disabled for safe browsing of user-submitted content?</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-04-21 16:56:43 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 4809393274,
+    "id_string": "4809393274",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 28,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/4809393274/safe-media-types",
+    "reblog": {
+        "comment": "<p>Thanks to a comment from \u201cAnon,\u201d I\u2019m auditing the media types used to serve files from the \u201cBrowse\u201d links on the site. The browse interface is managed by <a href=\"http://search.cpan.org/perldoc?Plack::App::Directory\">Plack::App::Directory</a>, which gets its media type mapping from <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href=\"https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5\">this commit</a>, files are served as plain text if:</p>\n\n<ul>\n<li>The strings \u201chtml\u201d, \u201cx-c\u201d, \u201cxml\u201d, \u201ccalendar\u201d, or \u201cvcard\u201d appear in the default media type; or</li>\n<li>The file name extension is one of <code>.bat</code>, <code>.css</code>, <code>.eml</code>, <code>.js</code>, <code>.json</code>, <code>.mime</code>, or <code>.swf</code>.</li>\n</ul>\n\n<p>Are there other <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">media types</a> that should be disabled for safe browsing of user-submitted content?</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "YxHLd2U8",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy4UgOHw",
+    "should_open_in_legacy": false,
+    "slug": "safe-media-types",
+    "state": "published",
+    "summary": "What Media Types for Browsing?",
+    "tags": [
+        "mime",
+        "media type",
+        "mime type",
+        "browse",
+        "source",
+        "user-submitted",
+        "content",
+        "text",
+        "plain text",
+        "html",
+        "c",
+        "json"
+    ],
+    "timestamp": 1303405003,
+    "title": "What Media Types for Browsing?",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Thanks to a comment from &ldquo;Anon,&rdquo; I&rsquo;m auditing the media types used to serve files from the &ldquo;Browse&rdquo; links on the site. The browse interface is managed by <a href=\"http://search.cpan.org/perldoc?Plack::App::Directory\">Plack::App::Directory</a>, which gets its media type mapping from <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href=\"https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5\">this commit</a>, files are served as plain text if:</p>\n\n<ul>\n<li>The strings &ldquo;html&rdquo;, &ldquo;x-c&rdquo;, &ldquo;xml&rdquo;, &ldquo;calendar&rdquo;, or &ldquo;vcard&rdquo; appear in the default media type; or</li>\n<li>The file name extension is one of <code>.bat</code>, <code>.css</code>, <code>.eml</code>, <code>.js</code>, <code>.json</code>, <code>.mime</code>, or <code>.swf</code>.</li>\n</ul>\n\n<p>Are there other <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">media types</a> that should be disabled for safe browsing of user-submitted content?</p>",
+            "content_raw": "<p>Thanks to a comment from \u201cAnon,\u201d I\u2019m auditing the media types used to serve files from the \u201cBrowse\u201d links on the site. The browse interface is managed by <a href=\"http://search.cpan.org/perldoc?Plack::App::Directory\">Plack::App::Directory</a>, which gets its media type mapping from <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">this file</a>. What PGXN::API does is simply change the mappings of some of those types to <code>text/plain</code>. As of <a href=\"https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5\">this commit</a>, files are served as plain text if:</p>\n\n<ul>\n<li>The strings \u201chtml\u201d, \u201cx-c\u201d, \u201cxml\u201d, \u201ccalendar\u201d, or \u201cvcard\u201d appear in the default media type; or</li>\n<li>The file name extension is one of <code>.bat</code>, <code>.css</code>, <code>.eml</code>, <code>.js</code>, <code>.json</code>, <code>.mime</code>, or <code>.swf</code>.</li>\n</ul>\n\n<p>Are there other <a href=\"https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm\">media types</a> that should be disabled for safe browsing of user-submitted content?</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "4809393274"
+            }
+        }
+    ],
+    "type": "text"
+}

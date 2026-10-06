@@ -1,0 +1,180 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "think doesn't hurts!",
+        "name": "guediz-blog",
+        "title": "Guedes",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://guediz-blog.tumblr.com/",
+        "uuid": "t:dlMvR_zctZvnxc5EPoA2dg"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>In this version some errors with OpenSSL was fixed (thanks @theory to report then), and now you can release an extension to <a href=\"http://pgxn.org\">PGXN</a> <a href=\"http://blog.pgxn.org/post/6883009649/pgxn-utils-0-1-2-released\">in <strong>five steps</strong></a> even using Ruby 1.8!</p>\n\n<p>Another change was the executable&rsquo;s name that changed from <code>pgxn_utils</code> to <code>pgxn-utils</code> for a close integration with next version of <a href=\"http://pgxnclient.projects.postgresql.org\">PGXN Client</a>, but some work need to be done, yet.</p>\n\n<p>I used <code>pgxn-utils</code> to release itself to <a href=\"http://pgxn.org/dist/pgxn_utils/\">PGXN</a>!</p>\n\n<pre><code>$ pgxn-utils release pgxn_utils-0.1.3.zip \nEnter your PGXN username: guedes\nEnter your PGXN password: ***********************\nTrying to release pgxn_utils-0.1.3.zip ... released successfully!\nVisit: <a href=\"http://pgxn.org/dist/pgxn_utils/0.1.3/\">http://pgxn.org/dist/pgxn_utils/0.1.3/</a>\n</code></pre>\n\n<p>Cool, eh? So, since the PGXN&rsquo;s mirrors were synced and you have <code>pgxn</code> client, you could install <code>pgxn_utils</code> using:</p>\n\n<pre><code>pgxn install pgxn_utils\n</code></pre>\n\n<p>If you don&rsquo;t have <code>pgxn</code> client you can install it using rubygems</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p>Have fun!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-09-08 06:39:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 9950473714,
+    "id_string": "9950473714",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 29,
+    "post_author": "guediz-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/9950473714/pgxn-utils-013-released",
+    "reblog": {
+        "comment": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>In this version some errors with OpenSSL was fixed (thanks @theory to report then), and now you can release an extension to <a href=\"http://pgxn.org\">PGXN</a> <a href=\"http://blog.pgxn.org/post/6883009649/pgxn-utils-0-1-2-released\">in <strong>five steps</strong></a> even using Ruby 1.8!</p>\n\n<p>Another change was the executable\u2019s name that changed from <code>pgxn_utils</code> to <code>pgxn-utils</code> for a close integration with next version of <a href=\"http://pgxnclient.projects.postgresql.org\">PGXN Client</a>, but some work need to be done, yet.</p>\n\n<p>I used <code>pgxn-utils</code> to release itself to <a href=\"http://pgxn.org/dist/pgxn_utils/\">PGXN</a>!</p>\n\n<pre><code>$ pgxn-utils release pgxn_utils-0.1.3.zip \nEnter your PGXN username: guedes\nEnter your PGXN password: ***********************\nTrying to release pgxn_utils-0.1.3.zip ... released successfully!\nVisit: <a href=\"http://pgxn.org/dist/pgxn_utils/0.1.3/\">http://pgxn.org/dist/pgxn_utils/0.1.3/</a>\n</code></pre>\n\n<p>Cool, eh? So, since the PGXN\u2019s mirrors were synced and you have <code>pgxn</code> client, you could install <code>pgxn_utils</code> using:</p>\n\n<pre><code>pgxn install pgxn_utils\n</code></pre>\n\n<p>If you don\u2019t have <code>pgxn</code> client you can install it using rubygems</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p>Have fun!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "fmIUJBWK",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy9H62to",
+    "should_open_in_legacy": false,
+    "slug": "pgxn-utils-013-released",
+    "state": "published",
+    "summary": "PGXN Utils 0.1.3 Released!",
+    "tags": [
+        "pgxn utils",
+        "develoment",
+        "utils",
+        "build",
+        "bundle extension",
+        "meta"
+    ],
+    "timestamp": 1315463940,
+    "title": "PGXN Utils 0.1.3 Released!",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>In this version some errors with OpenSSL was fixed (thanks @theory to report then), and now you can release an extension to <a href=\"http://pgxn.org\">PGXN</a> <a href=\"http://blog.pgxn.org/post/6883009649/pgxn-utils-0-1-2-released\">in <strong>five steps</strong></a> even using Ruby 1.8!</p>\n\n<p>Another change was the executable&rsquo;s name that changed from <code>pgxn_utils</code> to <code>pgxn-utils</code> for a close integration with next version of <a href=\"http://pgxnclient.projects.postgresql.org\">PGXN Client</a>, but some work need to be done, yet.</p>\n\n<p>I used <code>pgxn-utils</code> to release itself to <a href=\"http://pgxn.org/dist/pgxn_utils/\">PGXN</a>!</p>\n\n<pre><code>$ pgxn-utils release pgxn_utils-0.1.3.zip \nEnter your PGXN username: guedes\nEnter your PGXN password: ***********************\nTrying to release pgxn_utils-0.1.3.zip ... released successfully!\nVisit: <a href=\"http://pgxn.org/dist/pgxn_utils/0.1.3/\">http://pgxn.org/dist/pgxn_utils/0.1.3/</a>\n</code></pre>\n\n<p>Cool, eh? So, since the PGXN&rsquo;s mirrors were synced and you have <code>pgxn</code> client, you could install <code>pgxn_utils</code> using:</p>\n\n<pre><code>pgxn install pgxn_utils\n</code></pre>\n\n<p>If you don&rsquo;t have <code>pgxn</code> client you can install it using rubygems</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p>Have fun!</p>",
+            "content_raw": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>In this version some errors with OpenSSL was fixed (thanks @theory to report then), and now you can release an extension to <a href=\"http://pgxn.org\">PGXN</a> <a href=\"http://blog.pgxn.org/post/6883009649/pgxn-utils-0-1-2-released\">in <strong>five steps</strong></a> even using Ruby 1.8!</p>\n\n<p>Another change was the executable\u2019s name that changed from <code>pgxn_utils</code> to <code>pgxn-utils</code> for a close integration with next version of <a href=\"http://pgxnclient.projects.postgresql.org\">PGXN Client</a>, but some work need to be done, yet.</p>\n\n<p>I used <code>pgxn-utils</code> to release itself to <a href=\"http://pgxn.org/dist/pgxn_utils/\">PGXN</a>!</p>\n\n<pre><code>$ pgxn-utils release pgxn_utils-0.1.3.zip \nEnter your PGXN username: guedes\nEnter your PGXN password: ***********************\nTrying to release pgxn_utils-0.1.3.zip ... released successfully!\nVisit: <a href=\"http://pgxn.org/dist/pgxn_utils/0.1.3/\">http://pgxn.org/dist/pgxn_utils/0.1.3/</a>\n</code></pre>\n\n<p>Cool, eh? So, since the PGXN\u2019s mirrors were synced and you have <code>pgxn</code> client, you could install <code>pgxn_utils</code> using:</p>\n\n<pre><code>pgxn install pgxn_utils\n</code></pre>\n\n<p>If you don\u2019t have <code>pgxn</code> client you can install it using rubygems</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p>Have fun!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "9950473714"
+            }
+        }
+    ],
+    "type": "text"
+}

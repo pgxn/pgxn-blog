@@ -1,0 +1,176 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "uhm... nothing yet here i guess",
+        "name": "d-piro",
+        "title": "",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://d-piro.tumblr.com/",
+        "uuid": "t:A7QlYHZdTtTU3kiMHQYUMA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>By Daniele Varrazzo</p>\n\n<p>Finally, here it is. Well tested, documented, and pampered. With the <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> installing extensions from the <a href=\"http://pgxn.org/\">PGXN Network</a> is a breeze:</p>\n\n<pre><code>$ pgxn install semver\n$ pgxn load semver\n$ psql\n=# select 'foo'::semver;\nERROR:  bad semver value 'foo': expected number at foo\nLINE 1: select 'foo'::semver;\n</code></pre>\n\n<p>Error! Meaning: success!</p>\n\n<p>The number of extensions on PGXN is steadily increasing, so we hope the client will make their adoption even easier.</p>\n\n<p>The client is now extensible: either writing in Python to reuse some of the other commands implementation or writing new self-contained scripts in any language to be invoked by the pgxn commands dispatcher. The first client extensions are already available: <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> and <a href=\"https://github.com/pgxn/pgxn-meta-validator/\">PGXN:Meta:Validator</a> are targeted for easier development of new extensions.</p>\n\n<p>The client is <a href=\"http://pypi.python.org/pypi/pgxnclient\">released on PyPI</a>, so installing is just:</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>Complete documentation and further links are available from the <a href=\"http://pgxnclient.projects.postgresql.org/\">project homepage</a>.</p>\n\n<p>Any feedback is welcome; you can contact me and all the other people behind PGXN on the <a href=\"https://groups.google.com/group/pgxn-users/\">PGXN User Group</a>. See you there!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-11-28 00:34:34 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 13427961249,
+    "id_string": "13427961249",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 1,
+    "post_author": "d-piro",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/13427961249/pgxn-client-10-released",
+    "reblog": {
+        "comment": "<p>By Daniele Varrazzo</p>\n\n<p>Finally, here it is. Well tested, documented, and pampered. With the <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> installing extensions from the <a href=\"http://pgxn.org/\">PGXN Network</a> is a breeze:</p>\n\n<pre><code>$ pgxn install semver\n$ pgxn load semver\n$ psql\n=# select 'foo'::semver;\nERROR:  bad semver value 'foo': expected number at foo\nLINE 1: select 'foo'::semver;\n</code></pre>\n\n<p>Error! Meaning: success!</p>\n\n<p>The number of extensions on PGXN is steadily increasing, so we hope the client will make their adoption even easier.</p>\n\n<p>The client is now extensible: either writing in Python to reuse some of the other commands implementation or writing new self-contained scripts in any language to be invoked by the pgxn commands dispatcher. The first client extensions are already available: <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> and <a href=\"https://github.com/pgxn/pgxn-meta-validator/\">PGXN:Meta:Validator</a> are targeted for easier development of new extensions.</p>\n\n<p>The client is <a href=\"http://pypi.python.org/pypi/pgxnclient\">released on PyPI</a>, so installing is just:</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>Complete documentation and further links are available from the <a href=\"http://pgxnclient.projects.postgresql.org/\">project homepage</a>.</p>\n\n<p>Any feedback is welcome; you can contact me and all the other people behind PGXN on the <a href=\"https://groups.google.com/group/pgxn-users/\">PGXN User Group</a>. See you there!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "nPijmd9e",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyCWNcsX",
+    "should_open_in_legacy": false,
+    "slug": "pgxn-client-10-released",
+    "state": "published",
+    "summary": "PGXN Client 1.0 Released!",
+    "tags": [
+        "pgxn client",
+        "release"
+    ],
+    "timestamp": 1322440474,
+    "title": "PGXN Client 1.0 Released!",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>By Daniele Varrazzo</p>\n\n<p>Finally, here it is. Well tested, documented, and pampered. With the <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> installing extensions from the <a href=\"http://pgxn.org/\">PGXN Network</a> is a breeze:</p>\n\n<pre><code>$ pgxn install semver\n$ pgxn load semver\n$ psql\n=# select 'foo'::semver;\nERROR:  bad semver value 'foo': expected number at foo\nLINE 1: select 'foo'::semver;\n</code></pre>\n\n<p>Error! Meaning: success!</p>\n\n<p>The number of extensions on PGXN is steadily increasing, so we hope the client will make their adoption even easier.</p>\n\n<p>The client is now extensible: either writing in Python to reuse some of the other commands implementation or writing new self-contained scripts in any language to be invoked by the pgxn commands dispatcher. The first client extensions are already available: <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> and <a href=\"https://github.com/pgxn/pgxn-meta-validator/\">PGXN:Meta:Validator</a> are targeted for easier development of new extensions.</p>\n\n<p>The client is <a href=\"http://pypi.python.org/pypi/pgxnclient\">released on PyPI</a>, so installing is just:</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>Complete documentation and further links are available from the <a href=\"http://pgxnclient.projects.postgresql.org/\">project homepage</a>.</p>\n\n<p>Any feedback is welcome; you can contact me and all the other people behind PGXN on the <a href=\"https://groups.google.com/group/pgxn-users/\">PGXN User Group</a>. See you there!</p>",
+            "content_raw": "<p>By Daniele Varrazzo</p>\n\n<p>Finally, here it is. Well tested, documented, and pampered. With the <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> installing extensions from the <a href=\"http://pgxn.org/\">PGXN Network</a> is a breeze:</p>\n\n<pre><code>$ pgxn install semver\n$ pgxn load semver\n$ psql\n=# select 'foo'::semver;\nERROR:  bad semver value 'foo': expected number at foo\nLINE 1: select 'foo'::semver;\n</code></pre>\n\n<p>Error! Meaning: success!</p>\n\n<p>The number of extensions on PGXN is steadily increasing, so we hope the client will make their adoption even easier.</p>\n\n<p>The client is now extensible: either writing in Python to reuse some of the other commands implementation or writing new self-contained scripts in any language to be invoked by the pgxn commands dispatcher. The first client extensions are already available: <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> and <a href=\"https://github.com/pgxn/pgxn-meta-validator/\">PGXN:Meta:Validator</a> are targeted for easier development of new extensions.</p>\n\n<p>The client is <a href=\"http://pypi.python.org/pypi/pgxnclient\">released on PyPI</a>, so installing is just:</p>\n\n<pre><code>$ sudo easy_install pgxnclient\n</code></pre>\n\n<p>Complete documentation and further links are available from the <a href=\"http://pgxnclient.projects.postgresql.org/\">project homepage</a>.</p>\n\n<p>Any feedback is welcome; you can contact me and all the other people behind PGXN on the <a href=\"https://groups.google.com/group/pgxn-users/\">PGXN User Group</a>. See you there!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "13427961249"
+            }
+        }
+    ],
+    "type": "text"
+}

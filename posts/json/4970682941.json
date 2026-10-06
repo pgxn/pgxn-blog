@@ -1,0 +1,181 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>The <a href=\"https://github.com/pgxn/pgxn-api/wiki\">PGXN API Documentation</a> is up! I&rsquo;ve just finished writing the docs for the lightweight REST API provided by all PGXN mirrors. It also documents how the same APIs differ when provided by the <a href=\"http://api.pgxn.org/\">API server</a>. Their are four more documents to write still, APIs provided by the API server but not the mirrors (including full-text search); I should be able to get those done tomorrow.</p>\n\n<p>So if you&rsquo;re interested in use the API for various things, please <a href=\"https://github.com/pgxn/pgxn-api/wiki\">have a look</a>! I&rsquo;d appreciate any feedback or corrections.</p>\n\n<p>Speaking of users of the API, <a href=\"https://profiles.google.com/daniele.varrazzo/about\">Daniele Varrazzo</a> has started writing a <a href=\"https://github.com/dvarrazzo/pgxn-client/\">PGXN client app</a> in Python. This is so awesome! It makes me happy that people are able to just get going on this. And Daniele did it before I&rsquo;d written the docs, just from reading the PGXN source code. Nice!</p>\n\n<p>Anyway, getting these docs written was the last barrier I had to releasing various pieces of PGXN on CPAN and generally being able to get on with my life. I wanted to write these docs first so that I would have a little more freedom to change things if something struct me as especially stupid. Fortunately, as I&rsquo;ve written the <a href=\"http://pgxn.org/\">main site</a> as a thin client for the API, most of the lameness has already been excised. I think the only change I&rsquo;d like to make is to change the <code>{char}</code> URI template variable for the <a href=\"https://github.com/pgxn/pgxn-api/wiki/userlist-api\"><code>userlist</code> API</a> to <code>{letter}</code>, because only lowercased ASCII letters a-z are allowed. It&rsquo;s more accurate.</p>\n\n<p>Another thing I think I&rsquo;ll change is the file name suffix used for the distribution download files. Currently it&rsquo;s <code>.pgz</code>, but after <a href=\"http://blog.pgxn.org/post/4854707157/pgxn-manager\">Daniele complained</a> about it, I <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/1209538be03be8a4\">asked around</a> and the concensus seems to be to change it to <code>.zip</code>. I&rsquo;ll likely do that tomorrow, too. Fortunately it&rsquo;s pretty easy: Just edit the configuration file and rename the files on the master mirror. At least it <em>should</em> be that easy!</p>\n\n<p>There was one other thing in the APIs the felt a bit silly, but I don&rsquo;t remember what it was, so screw it.</p>\n\n<p>Anyway, feedback on the API docs would be greatly appreciated. And &ndash; <em>get hacking!</em>.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-04-27 00:27:55 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 4970682941,
+    "id_string": "4970682941",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 6,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/4970682941/api-docs-published",
+    "reblog": {
+        "comment": "<p>The <a href=\"https://github.com/pgxn/pgxn-api/wiki\">PGXN API Documentation</a> is up! I\u2019ve just finished writing the docs for the lightweight REST API provided by all PGXN mirrors. It also documents how the same APIs differ when provided by the <a href=\"http://api.pgxn.org/\">API server</a>. Their are four more documents to write still, APIs provided by the API server but not the mirrors (including full-text search); I should be able to get those done tomorrow.</p>\n\n<p>So if you\u2019re interested in use the API for various things, please <a href=\"https://github.com/pgxn/pgxn-api/wiki\">have a look</a>! I\u2019d appreciate any feedback or corrections.</p>\n\n<p>Speaking of users of the API, <a href=\"https://profiles.google.com/daniele.varrazzo/about\">Daniele Varrazzo</a> has started writing a <a href=\"https://github.com/dvarrazzo/pgxn-client/\">PGXN client app</a> in Python. This is so awesome! It makes me happy that people are able to just get going on this. And Daniele did it before I\u2019d written the docs, just from reading the PGXN source code. Nice!</p>\n\n<p>Anyway, getting these docs written was the last barrier I had to releasing various pieces of PGXN on CPAN and generally being able to get on with my life. I wanted to write these docs first so that I would have a little more freedom to change things if something struct me as especially stupid. Fortunately, as I\u2019ve written the <a href=\"http://pgxn.org/\">main site</a> as a thin client for the API, most of the lameness has already been excised. I think the only change I\u2019d like to make is to change the <code>{char}</code> URI template variable for the <a href=\"https://github.com/pgxn/pgxn-api/wiki/userlist-api\"><code>userlist</code> API</a> to <code>{letter}</code>, because only lowercased ASCII letters a-z are allowed. It\u2019s more accurate.</p>\n\n<p>Another thing I think I\u2019ll change is the file name suffix used for the distribution download files. Currently it\u2019s <code>.pgz</code>, but after <a href=\"http://blog.pgxn.org/post/4854707157/pgxn-manager\">Daniele complained</a> about it, I <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/1209538be03be8a4\">asked around</a> and the concensus seems to be to change it to <code>.zip</code>. I\u2019ll likely do that tomorrow, too. Fortunately it\u2019s pretty easy: Just edit the configuration file and rename the files on the master mirror. At least it <em>should</em> be that easy!</p>\n\n<p>There was one other thing in the APIs the felt a bit silly, but I don\u2019t remember what it was, so screw it.</p>\n\n<p>Anyway, feedback on the API docs would be greatly appreciated. And \u2013 <em>get hacking!</em>.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "E60Ix6wR",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy4eHfez",
+    "should_open_in_legacy": false,
+    "slug": "api-docs-published",
+    "state": "published",
+    "summary": "PGXN API Docs Published",
+    "tags": [
+        "api",
+        "documentation",
+        "docs",
+        "api docs",
+        "zip",
+        "client",
+        "Daniele Varrazzo"
+    ],
+    "timestamp": 1303864075,
+    "title": "PGXN API Docs Published",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>The <a href=\"https://github.com/pgxn/pgxn-api/wiki\">PGXN API Documentation</a> is up! I&rsquo;ve just finished writing the docs for the lightweight REST API provided by all PGXN mirrors. It also documents how the same APIs differ when provided by the <a href=\"http://api.pgxn.org/\">API server</a>. Their are four more documents to write still, APIs provided by the API server but not the mirrors (including full-text search); I should be able to get those done tomorrow.</p>\n\n<p>So if you&rsquo;re interested in use the API for various things, please <a href=\"https://github.com/pgxn/pgxn-api/wiki\">have a look</a>! I&rsquo;d appreciate any feedback or corrections.</p>\n\n<p>Speaking of users of the API, <a href=\"https://profiles.google.com/daniele.varrazzo/about\">Daniele Varrazzo</a> has started writing a <a href=\"https://github.com/dvarrazzo/pgxn-client/\">PGXN client app</a> in Python. This is so awesome! It makes me happy that people are able to just get going on this. And Daniele did it before I&rsquo;d written the docs, just from reading the PGXN source code. Nice!</p>\n\n<p>Anyway, getting these docs written was the last barrier I had to releasing various pieces of PGXN on CPAN and generally being able to get on with my life. I wanted to write these docs first so that I would have a little more freedom to change things if something struct me as especially stupid. Fortunately, as I&rsquo;ve written the <a href=\"http://pgxn.org/\">main site</a> as a thin client for the API, most of the lameness has already been excised. I think the only change I&rsquo;d like to make is to change the <code>{char}</code> URI template variable for the <a href=\"https://github.com/pgxn/pgxn-api/wiki/userlist-api\"><code>userlist</code> API</a> to <code>{letter}</code>, because only lowercased ASCII letters a-z are allowed. It&rsquo;s more accurate.</p>\n\n<p>Another thing I think I&rsquo;ll change is the file name suffix used for the distribution download files. Currently it&rsquo;s <code>.pgz</code>, but after <a href=\"http://blog.pgxn.org/post/4854707157/pgxn-manager\">Daniele complained</a> about it, I <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/1209538be03be8a4\">asked around</a> and the concensus seems to be to change it to <code>.zip</code>. I&rsquo;ll likely do that tomorrow, too. Fortunately it&rsquo;s pretty easy: Just edit the configuration file and rename the files on the master mirror. At least it <em>should</em> be that easy!</p>\n\n<p>There was one other thing in the APIs the felt a bit silly, but I don&rsquo;t remember what it was, so screw it.</p>\n\n<p>Anyway, feedback on the API docs would be greatly appreciated. And &ndash; <em>get hacking!</em>.</p>",
+            "content_raw": "<p>The <a href=\"https://github.com/pgxn/pgxn-api/wiki\">PGXN API Documentation</a> is up! I\u2019ve just finished writing the docs for the lightweight REST API provided by all PGXN mirrors. It also documents how the same APIs differ when provided by the <a href=\"http://api.pgxn.org/\">API server</a>. Their are four more documents to write still, APIs provided by the API server but not the mirrors (including full-text search); I should be able to get those done tomorrow.</p>\n\n<p>So if you\u2019re interested in use the API for various things, please <a href=\"https://github.com/pgxn/pgxn-api/wiki\">have a look</a>! I\u2019d appreciate any feedback or corrections.</p>\n\n<p>Speaking of users of the API, <a href=\"https://profiles.google.com/daniele.varrazzo/about\">Daniele Varrazzo</a> has started writing a <a href=\"https://github.com/dvarrazzo/pgxn-client/\">PGXN client app</a> in Python. This is so awesome! It makes me happy that people are able to just get going on this. And Daniele did it before I\u2019d written the docs, just from reading the PGXN source code. Nice!</p>\n\n<p>Anyway, getting these docs written was the last barrier I had to releasing various pieces of PGXN on CPAN and generally being able to get on with my life. I wanted to write these docs first so that I would have a little more freedom to change things if something struct me as especially stupid. Fortunately, as I\u2019ve written the <a href=\"http://pgxn.org/\">main site</a> as a thin client for the API, most of the lameness has already been excised. I think the only change I\u2019d like to make is to change the <code>{char}</code> URI template variable for the <a href=\"https://github.com/pgxn/pgxn-api/wiki/userlist-api\"><code>userlist</code> API</a> to <code>{letter}</code>, because only lowercased ASCII letters a-z are allowed. It\u2019s more accurate.</p>\n\n<p>Another thing I think I\u2019ll change is the file name suffix used for the distribution download files. Currently it\u2019s <code>.pgz</code>, but after <a href=\"http://blog.pgxn.org/post/4854707157/pgxn-manager\">Daniele complained</a> about it, I <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/1209538be03be8a4\">asked around</a> and the concensus seems to be to change it to <code>.zip</code>. I\u2019ll likely do that tomorrow, too. Fortunately it\u2019s pretty easy: Just edit the configuration file and rename the files on the master mirror. At least it <em>should</em> be that easy!</p>\n\n<p>There was one other thing in the APIs the felt a bit silly, but I don\u2019t remember what it was, so screw it.</p>\n\n<p>Anyway, feedback on the API docs would be greatly appreciated. And \u2013 <em>get hacking!</em>.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "4970682941"
+            }
+        }
+    ],
+    "type": "text"
+}

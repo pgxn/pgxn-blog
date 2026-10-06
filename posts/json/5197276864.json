@@ -1,0 +1,179 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Following <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/4528b2a02e8886ff\">a pgxn-users discussion</a>, I&rsquo;m looking at adding a constraint on the names distributions can have. I&rsquo;m thinking this:</p>\n\n<pre><code>CEATE DOMAIN namespace AS CITEXT\nCHECK ( VALUE ~ '^[-a-z0-9_]{2,}$' );\n</code></pre>\n\n<p>So, just ASCII numbers and letters, dash, and underscore, with a minimum length of two characters. Maybe <code>,</code> and <code>+</code> should be allowed, too? What do you think? What constraints do you expect on distribution download file names?</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-05-04 20:42:37 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 5197276864,
+    "id_string": "5197276864",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 19,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/5197276864/distribution-name-constraint",
+    "reblog": {
+        "comment": "<p>Following <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/4528b2a02e8886ff\">a pgxn-users discussion</a>, I\u2019m looking at adding a constraint on the names distributions can have. I\u2019m thinking this:</p>\n\n<pre><code>CEATE DOMAIN namespace AS CITEXT\nCHECK ( VALUE ~ '^[-a-z0-9_]{2,}$' );\n</code></pre>\n\n<p>So, just ASCII numbers and letters, dash, and underscore, with a minimum length of two characters. Maybe <code>,</code> and <code>+</code> should be allowed, too? What do you think? What constraints do you expect on distribution download file names?</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "DVzAh8wj",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy4ro2R0",
+    "should_open_in_legacy": false,
+    "slug": "distribution-name-constraint",
+    "state": "published",
+    "summary": "Distribution Name Constraint",
+    "tags": [
+        "distribution name",
+        "constraint",
+        "domain",
+        "ascii",
+        "file name"
+    ],
+    "timestamp": 1304541757,
+    "title": "Distribution Name Constraint",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Following <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/4528b2a02e8886ff\">a pgxn-users discussion</a>, I&rsquo;m looking at adding a constraint on the names distributions can have. I&rsquo;m thinking this:</p>\n\n<pre><code>CEATE DOMAIN namespace AS CITEXT\nCHECK ( VALUE ~ '^[-a-z0-9_]{2,}$' );\n</code></pre>\n\n<p>So, just ASCII numbers and letters, dash, and underscore, with a minimum length of two characters. Maybe <code>,</code> and <code>+</code> should be allowed, too? What do you think? What constraints do you expect on distribution download file names?</p>",
+            "content_raw": "<p>Following <a href=\"http://groups.google.com/group/pgxn-users/browse_thread/thread/4528b2a02e8886ff\">a pgxn-users discussion</a>, I\u2019m looking at adding a constraint on the names distributions can have. I\u2019m thinking this:</p>\n\n<pre><code>CEATE DOMAIN namespace AS CITEXT\nCHECK ( VALUE ~ '^[-a-z0-9_]{2,}$' );\n</code></pre>\n\n<p>So, just ASCII numbers and letters, dash, and underscore, with a minimum length of two characters. Maybe <code>,</code> and <code>+</code> should be allowed, too? What do you think? What constraints do you expect on distribution download file names?</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "5197276864"
+            }
+        }
+    ],
+    "type": "text"
+}

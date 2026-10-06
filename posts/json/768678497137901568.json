@@ -1,0 +1,176 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<h1>New PGXN Mastodon Account</h1><p>Sadly, the home of the PGXN Mastodon bot for the last two years, <a href=\"https://botsin.space/\">botsin.space</a> is shutting down. I&rsquo;ve created a new account, <a href=\"https://mastodon.social/@pgxn\"></a><a class=\"tumblelog\" href=\"https://tmblr.co/MjhKH7HY9hCsIHz7Wo7CIMg\">@pgxn</a>@mastodon.social and moved all the followers. Please give it a follow if you didn&rsquo;t follow the old account, and stay up-to-date on the latest PGXN releases!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2024-12-01 16:02:20 GMT",
+    "display_avatar": true,
+    "format": "html",
+    "id": 768678497137901568,
+    "id_string": "768678497137901568",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": true,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/768678497137901568/new-pgxn-mastodon-account",
+    "reblog": {
+        "comment": "<p><h1>New PGXN Mastodon Account</h1><p>Sadly, the home of the PGXN Mastodon bot for the last two years, <a href=\"https://botsin.space/\">botsin.space</a> is shutting down. I\u2019ve created a new account, <a href=\"https://mastodon.social/@pgxn\"></a><a class=\"tumblelog\" href=\"https://tmblr.co/MjhKH7HY9hCsIHz7Wo7CIMg\">@pgxn</a>@mastodon.social and moved all the followers. Please give it a follow if you didn\u2019t follow the old account, and stay up-to-date on the latest PGXN releases!</p></p>",
+        "tree_html": ""
+    },
+    "reblog_key": "pRR5UOIg",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyggvGL0Oi00",
+    "should_open_in_legacy": false,
+    "slug": "new-pgxn-mastodon-account",
+    "state": "published",
+    "summary": "New PGXN Mastodon Account",
+    "tags": [
+        "mastodon",
+        "pgxn"
+    ],
+    "timestamp": 1733068940,
+    "title": "",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p><h1>New PGXN Mastodon Account</h1><p>Sadly, the home of the PGXN Mastodon bot for the last two years, <a href=\"https://botsin.space/\">botsin.space</a> is shutting down. I&rsquo;ve created a new account, <a href=\"https://mastodon.social/@pgxn\"></a><a href=\"https://tmblr.co/MjhKH7HY9hCsIHz7Wo7CIMg\">@pgxn</a>@mastodon.social and moved all the followers. Please give it a follow if you didn&rsquo;t follow the old account, and stay up-to-date on the latest PGXN releases!</p></p>",
+            "content_raw": "<p><h1>New PGXN Mastodon Account</h1><p>Sadly, the home of the PGXN Mastodon bot for the last two years, <a href=\"https://botsin.space/\">botsin.space</a> is shutting down. I\u2019ve created a new account, <a href=\"https://mastodon.social/@pgxn\"></a><a class=\"tumblelog\" href=\"https://tmblr.co/MjhKH7HY9hCsIHz7Wo7CIMg\">@pgxn</a>@mastodon.social and moved all the followers. Please give it a follow if you didn\u2019t follow the old account, and stay up-to-date on the latest PGXN releases!</p></p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "768678497137901568"
+            }
+        }
+    ],
+    "type": "text"
+}

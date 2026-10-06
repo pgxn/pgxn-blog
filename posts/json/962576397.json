@@ -1,0 +1,182 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>I decided to get on creating the PGXN logo sooner rather that later, both to create a stronger identity for the project and to have a uniform look across the various services (the <a href=\"http://pgxn.org/\">site</a>, <a href=\"http://blog.pgxn.org/\">blog</a>, <a href=\"http://twitter.com/pgxn/\">twitter stream</a>, <a href=\"http://ident.ca/pgxn/\">identi.ca</a>, etc.). So I began hunting around for useful iconography to inspire a design direction.</p>\n\n<p><a href=\"http://www.iconfinder.com/icondetails/40094/128/data_database_seta_icon\"><img src=\"http://cdn.iconfinder.net/data/icons/database/PNG/128/Database_1.png\" alt=\"Database Icon\" style=\"float:right\"/></a></p>\n\n<p>Let me tell, you, that&rsquo;s a lot easier than it sounds. After browsing through images returned for queries such as &ldquo;pixin,&rdquo; &ldquo;pig skin,&rdquo; &ldquo;zen,&rdquo; &ldquo;zen stones,&rdquo; &ldquo;pixies,&rdquo; and god knows what else, I finally focused on &ldquo;database icon.&rdquo; This was much more useful, as I hit on images such as the one to the right. Pretty standard database icon, right? Three disks stacked up. I&rsquo;m not sure why this is the classic graphical abstraction for a database, but I&rsquo;ve seen it a zillion times. So often that it&rsquo;s a clich\u00e9.</p>\n\n<p><a href=\"http://dryicons.com/free-icons/icons-list/grace-icons-set/\"><img src=\"http://dryicons.com/images/icon_sets/grace_icons_set/png/128x128/database.png\" alt=\"Abstract Database Icon\" style=\"float:left\"/></a></p>\n\n<p>Much more interesting was stumbling onto the icon to the left. I love how three disks have been broken down to their simplest possible representation. Because I&rsquo;m familiar with the clich\u00e9, I can see at a glance exactly what this icon is supposed to be. So I thought that might be useful to use.</p>\n\n<p><a href=\"http://findicons.com/icon/920/extension_manager_cs3\"><img src=\"http://png-2.findicons.com/files/icons/33/adobe_family/128/extension_manager_cs3.png\" style=\"float:right\"/></a></p>\n\n<p>Searching for &ldquo;extension icon&rdquo; was a bust. Most of the relevant images, like the one to the right, seemed to be related to Adobe Extension Manager (try to find a link for that!). I didn&rsquo;t want to go near that, of course. But, inspired by the <a href=\"http://www.cpan.org/\">CPAN</a> logo, I searched for &ldquo;library icon.&rdquo;</p>\n\n<p><a href=\"http://www.cpan.org\"><img src=\"http://www.cpan.org/misc/jpg/cpan.jpg\" alt=\"CPAN Logo\"/></a></p>\n\n<p><a href=\"http://www.iconarchive.com/show/icons-10-bundle-icons-by-icontoaster/library-icon.html\"><img src=\"http://icons.iconarchive.com/icons/icontoaster/icons-10-bundle/128/library-icon.png\" style=\"float:right\"/></a></p>\n\n<p>Bingo! I hit on the amazing icon at right. <em>Of course!</em> Gears make a great icon for extensions, don&rsquo;t you think? This folder is like an extension library folder. So then I thought, how can I combine these two icons, the abstract database and the gear?</p>\n\n<p>Well it&rsquo;s simple, isn&rsquo;t it? The database icon can be the holes in the extension gear. It&rsquo;s punched out, right? PGXN will offer loads of database extensions to download (we hope), and when you use one in your database, PostgreSQL will, you know: <em>turn the gear.</em> It just fits.</p>\n\n<p><a href=\"http://pgxn.org/\"><img src=\"http://pgxn.org/images/icon.png\" height=\"128\" style=\"float:left; height:128px; padding-right: 15px;\"/></a></p>\n\n<p><a href=\"http://strongrrl.com/\">Strongrrl</a> created the logo and type treatment based on these ideas, adding the tilt and the figure/ground reversal, and I really love it. It&rsquo;s a really great logo for a database extension site. I imagine I can use variants of this throughout the final design.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-08-16 13:00:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 962576397,
+    "id_string": "962576397",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/962576397/about-the-logo",
+    "reblog": {
+        "comment": "<p>I decided to get on creating the PGXN logo sooner rather that later, both to create a stronger identity for the project and to have a uniform look across the various services (the <a href=\"http://pgxn.org/\">site</a>, <a href=\"http://blog.pgxn.org/\">blog</a>, <a href=\"http://twitter.com/pgxn/\">twitter stream</a>, <a href=\"http://ident.ca/pgxn/\">identi.ca</a>, etc.). So I began hunting around for useful iconography to inspire a design direction.</p>\n\n<p><a href=\"http://www.iconfinder.com/icondetails/40094/128/data_database_seta_icon\"><img src=\"http://cdn.iconfinder.net/data/icons/database/PNG/128/Database_1.png\" alt=\"Database Icon\" style=\"float:right\"></a></p>\n\n<p>Let me tell, you, that\u2019s a lot easier than it sounds. After browsing through images returned for queries such as \u201cpixin,\u201d \u201cpig skin,\u201d \u201czen,\u201d \u201czen stones,\u201d \u201cpixies,\u201d and god knows what else, I finally focused on \u201cdatabase icon.\u201d This was much more useful, as I hit on images such as the one to the right. Pretty standard database icon, right? Three disks stacked up. I\u2019m not sure why this is the classic graphical abstraction for a database, but I\u2019ve seen it a zillion times. So often that it\u2019s a clich\u00e9.</p>\n\n<p><a href=\"http://dryicons.com/free-icons/icons-list/grace-icons-set/\"><img src=\"http://dryicons.com/images/icon_sets/grace_icons_set/png/128x128/database.png\" alt=\"Abstract Database Icon\" style=\"float:left\"></a></p>\n\n<p>Much more interesting was stumbling onto the icon to the left. I love how three disks have been broken down to their simplest possible representation. Because I\u2019m familiar with the clich\u00e9, I can see at a glance exactly what this icon is supposed to be. So I thought that might be useful to use.</p>\n\n<p><a href=\"http://findicons.com/icon/920/extension_manager_cs3\"><img src=\"http://png-2.findicons.com/files/icons/33/adobe_family/128/extension_manager_cs3.png\" style=\"float:right\"></a></p>\n\n<p>Searching for \u201cextension icon\u201d was a bust. Most of the relevant images, like the one to the right, seemed to be related to Adobe Extension Manager (try to find a link for that!). I didn\u2019t want to go near that, of course. But, inspired by the <a href=\"http://www.cpan.org/\">CPAN</a> logo, I searched for \u201clibrary icon.\u201d</p>\n\n<p><a href=\"http://www.cpan.org\"><img src=\"http://www.cpan.org/misc/jpg/cpan.jpg\" alt=\"CPAN Logo\"></a></p>\n\n<p><a href=\"http://www.iconarchive.com/show/icons-10-bundle-icons-by-icontoaster/library-icon.html\"><img src=\"http://icons.iconarchive.com/icons/icontoaster/icons-10-bundle/128/library-icon.png\" style=\"float:right\"></a></p>\n\n<p>Bingo! I hit on the amazing icon at right. <em>Of course!</em> Gears make a great icon for extensions, don\u2019t you think? This folder is like an extension library folder. So then I thought, how can I combine these two icons, the abstract database and the gear?</p>\n\n<p>Well it\u2019s simple, isn\u2019t it? The database icon can be the holes in the extension gear. It\u2019s punched out, right? PGXN will offer loads of database extensions to download (we hope), and when you use one in your database, PostgreSQL will, you know: <em>turn the gear.</em> It just fits.</p>\n\n<p><a href=\"http://pgxn.org/\"><img src=\"http://pgxn.org/images/icon.png\" height=\"128\" style=\"float:left; height:128px; padding-right: 15px;\"></a></p>\n\n<p><a href=\"http://strongrrl.com/\">Strongrrl</a> created the logo and type treatment based on these ideas, adding the tilt and the figure/ground reversal, and I really love it. It\u2019s a really great logo for a database extension site. I imagine I can use variants of this throughout the final design.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "OMYk8uMc",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyvNy0D",
+    "should_open_in_legacy": false,
+    "slug": "about-the-logo",
+    "state": "published",
+    "summary": "About the Logo",
+    "tags": [
+        "logo",
+        "gear",
+        "database",
+        "icon",
+        "iconography",
+        "design",
+        "graphic design",
+        "identity"
+    ],
+    "timestamp": 1281963600,
+    "title": "About the Logo",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>I decided to get on creating the PGXN logo sooner rather that later, both to create a stronger identity for the project and to have a uniform look across the various services (the <a href=\"http://pgxn.org/\">site</a>, <a href=\"http://blog.pgxn.org/\">blog</a>, <a href=\"http://twitter.com/pgxn/\">twitter stream</a>, <a href=\"http://ident.ca/pgxn/\">identi.ca</a>, etc.). So I began hunting around for useful iconography to inspire a design direction.</p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://cdn.iconfinder.net/data/icons/database/PNG/128/Database_1.png\">External image</div></p>\n\n<p>Let me tell, you, that&rsquo;s a lot easier than it sounds. After browsing through images returned for queries such as &ldquo;pixin,&rdquo; &ldquo;pig skin,&rdquo; &ldquo;zen,&rdquo; &ldquo;zen stones,&rdquo; &ldquo;pixies,&rdquo; and god knows what else, I finally focused on &ldquo;database icon.&rdquo; This was much more useful, as I hit on images such as the one to the right. Pretty standard database icon, right? Three disks stacked up. I&rsquo;m not sure why this is the classic graphical abstraction for a database, but I&rsquo;ve seen it a zillion times. So often that it&rsquo;s a clich&eacute;.</p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://dryicons.com/images/icon_sets/grace_icons_set/png/128x128/database.png\">External image</div></p>\n\n<p>Much more interesting was stumbling onto the icon to the left. I love how three disks have been broken down to their simplest possible representation. Because I&rsquo;m familiar with the clich&eacute;, I can see at a glance exactly what this icon is supposed to be. So I thought that might be useful to use.</p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://png-2.findicons.com/files/icons/33/adobe_family/128/extension_manager_cs3.png\">External image</div></p>\n\n<p>Searching for &ldquo;extension icon&rdquo; was a bust. Most of the relevant images, like the one to the right, seemed to be related to Adobe Extension Manager (try to find a link for that!). I didn&rsquo;t want to go near that, of course. But, inspired by the <a href=\"http://www.cpan.org/\">CPAN</a> logo, I searched for &ldquo;library icon.&rdquo;</p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://www.cpan.org/misc/jpg/cpan.jpg\">External image</div></p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://icons.iconarchive.com/icons/icontoaster/icons-10-bundle/128/library-icon.png\">External image</div></p>\n\n<p>Bingo! I hit on the amazing icon at right. <em>Of course!</em> Gears make a great icon for extensions, don&rsquo;t you think? This folder is like an extension library folder. So then I thought, how can I combine these two icons, the abstract database and the gear?</p>\n\n<p>Well it&rsquo;s simple, isn&rsquo;t it? The database icon can be the holes in the extension gear. It&rsquo;s punched out, right? PGXN will offer loads of database extensions to download (we hope), and when you use one in your database, PostgreSQL will, you know: <em>turn the gear.</em> It just fits.</p>\n\n<p><div class=\"external-image-wrapper\" data-loading-text=\"Loading...\" data-src=\"http://pgxn.org/images/icon.png\">External image</div></p>\n\n<p><a href=\"http://strongrrl.com/\">Strongrrl</a> created the logo and type treatment based on these ideas, adding the tilt and the figure/ground reversal, and I really love it. It&rsquo;s a really great logo for a database extension site. I imagine I can use variants of this throughout the final design.</p>",
+            "content_raw": "<p>I decided to get on creating the PGXN logo sooner rather that later, both to create a stronger identity for the project and to have a uniform look across the various services (the <a href=\"http://pgxn.org/\">site</a>, <a href=\"http://blog.pgxn.org/\">blog</a>, <a href=\"http://twitter.com/pgxn/\">twitter stream</a>, <a href=\"http://ident.ca/pgxn/\">identi.ca</a>, etc.). So I began hunting around for useful iconography to inspire a design direction.</p>\n\n<p><a href=\"http://www.iconfinder.com/icondetails/40094/128/data_database_seta_icon\"><img src=\"http://cdn.iconfinder.net/data/icons/database/PNG/128/Database_1.png\" alt=\"Database Icon\" style=\"float:right\"></a></p>\n\n<p>Let me tell, you, that\u2019s a lot easier than it sounds. After browsing through images returned for queries such as \u201cpixin,\u201d \u201cpig skin,\u201d \u201czen,\u201d \u201czen stones,\u201d \u201cpixies,\u201d and god knows what else, I finally focused on \u201cdatabase icon.\u201d This was much more useful, as I hit on images such as the one to the right. Pretty standard database icon, right? Three disks stacked up. I\u2019m not sure why this is the classic graphical abstraction for a database, but I\u2019ve seen it a zillion times. So often that it\u2019s a clich\u00e9.</p>\n\n<p><a href=\"http://dryicons.com/free-icons/icons-list/grace-icons-set/\"><img src=\"http://dryicons.com/images/icon_sets/grace_icons_set/png/128x128/database.png\" alt=\"Abstract Database Icon\" style=\"float:left\"></a></p>\n\n<p>Much more interesting was stumbling onto the icon to the left. I love how three disks have been broken down to their simplest possible representation. Because I\u2019m familiar with the clich\u00e9, I can see at a glance exactly what this icon is supposed to be. So I thought that might be useful to use.</p>\n\n<p><a href=\"http://findicons.com/icon/920/extension_manager_cs3\"><img src=\"http://png-2.findicons.com/files/icons/33/adobe_family/128/extension_manager_cs3.png\" style=\"float:right\"></a></p>\n\n<p>Searching for \u201cextension icon\u201d was a bust. Most of the relevant images, like the one to the right, seemed to be related to Adobe Extension Manager (try to find a link for that!). I didn\u2019t want to go near that, of course. But, inspired by the <a href=\"http://www.cpan.org/\">CPAN</a> logo, I searched for \u201clibrary icon.\u201d</p>\n\n<p><a href=\"http://www.cpan.org\"><img src=\"http://www.cpan.org/misc/jpg/cpan.jpg\" alt=\"CPAN Logo\"></a></p>\n\n<p><a href=\"http://www.iconarchive.com/show/icons-10-bundle-icons-by-icontoaster/library-icon.html\"><img src=\"http://icons.iconarchive.com/icons/icontoaster/icons-10-bundle/128/library-icon.png\" style=\"float:right\"></a></p>\n\n<p>Bingo! I hit on the amazing icon at right. <em>Of course!</em> Gears make a great icon for extensions, don\u2019t you think? This folder is like an extension library folder. So then I thought, how can I combine these two icons, the abstract database and the gear?</p>\n\n<p>Well it\u2019s simple, isn\u2019t it? The database icon can be the holes in the extension gear. It\u2019s punched out, right? PGXN will offer loads of database extensions to download (we hope), and when you use one in your database, PostgreSQL will, you know: <em>turn the gear.</em> It just fits.</p>\n\n<p><a href=\"http://pgxn.org/\"><img src=\"http://pgxn.org/images/icon.png\" height=\"128\" style=\"float:left; height:128px; padding-right: 15px;\"></a></p>\n\n<p><a href=\"http://strongrrl.com/\">Strongrrl</a> created the logo and type treatment based on these ideas, adding the tilt and the figure/ground reversal, and I really love it. It\u2019s a really great logo for a database extension site. I imagine I can use variants of this throughout the final design.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "962576397"
+            }
+        }
+    ],
+    "type": "text"
+}

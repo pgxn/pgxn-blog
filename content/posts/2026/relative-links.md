@@ -7,7 +7,7 @@ description: |
   From the Department of It’s About Time: Inter-documentation and image links
   now work on PGXN.
 tags: [Images, Links, Site]
-aliases: [/post/827227334118604800/from-the-department-of-its-about-time]
+aliases: [/post/827227334118604800/from-the-department-of-its-about-time, /post/827227334118604800]
 ---
 
 Way back in 2015, I opened a [PGXN API issue] to allow links between documents

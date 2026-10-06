@@ -1,0 +1,183 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>I&rsquo;ve posted a draft of the &ldquo;PGXN distribution metadata specification,&rdquo; or <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">PGXN Meta Spec</a>.&ldquo; This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>\n\n<p>To create it, I&rsquo;ve ported the\n<a href=\"http://search.cpan.org/perldoc?CPAN::Meta::Sepc\">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the &quot;required&rdquo; fields &ldquo;optional.&rdquo; At its simplest, the file might look something like this:</p>\n\n<pre><code>{\n  \"name\": \"pgTAP\",\n  \"abstract\": \"Unit testing for PostgreSQL\",\n  \"version\": \"0.25.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  \"license\": \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  }\n}\n</code></pre>\n\n<p>Not too bad, eh? The URL for the spec might change (might move it to the main\nsite and/or the mirrors), but otherwise, I think this is pretty solid. Not too\nmuch work to deal with, and reasonably easy to create by hand (which is likely how we&rsquo;ll all start out).</p>\n\n<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href=\"http://justatheory.com/computers/databases/postgresql/key-value-pairs.html\">ordered pair</a> extension, it of course would include tests written with <a href=\"http://pgtap.org/\">pgTAP</a>. So I&rsquo;d have something like:</p>\n\n<pre><code>{\n  \"name\": \"pair\",\n  \"abstract\": \"An ordered pair data type\",\n  \"version\": \"0.1.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  license: \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  },\n  \"prereqs\": {\n    \"runtime\": {\n      \"requires\": {\n        \"PostgreSQL\": \"8.0.0\"\n      },\n      \"recommends\": {\n        \"PostgreSQL\": \"8.4.0\"\n      }\n    },\n    \"test\": {\n      \"requires\": {\n        \"pgTAP\": 0\n      }\n    }\n  }\n}\n</code></pre>\n\n<p>That&rsquo;s saying that the &ldquo;pair&rdquo; distribution requires PostgreSQL 8.0.0 or higher and any version of pgTAP to run the test suite. I&rsquo;ve also recommended PostgreSQL 8.4, as that&rsquo;s where it will run best.</p>\n\n<p>Of course, to get the real power of PGXN, you&rsquo;ll also want to use the <code>provides</code> key, which allows you to identify the extensions included in your distribution. Say that I finally got around to breaking out the schema testing assertions from the logical testing assertions in pgTAP. I might call the second module &ldquo;schematap.&rdquo; So to spell it out, I&rsquo;d add this to the first example above:</p>\n\n<pre><code>  \"pgtap\": {\n    \"file\": \"sql/pgtap.sql.in\",\n    \"version\": \"0.25.0\"\n  },\n  \"schematap\": {\n    \"file\": \"sql/schematap.sql.in\"\n  }\n</code></pre>\n\n<p>So now the indexer will know that the &ldquo;pgtap&rdquo; extension is in <code>sql/pgtap.sql.in</code> and the &ldquo;schematap&rdquo; extension is in <code>sql/schematap.sql.in</code>. This is important because it allows other distributions to specify &ldquo;schematap&rdquo; as a prerequisite. It also means that, in the PGXN client, you can type something like:</p>\n\n<pre><code>PGXN&gt; install schematap\n</code></pre>\n\n<p>And, because &ldquo;schematap&rdquo; will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the &ldquo;schematap&rdquo; extension.</p>\n\n<p>A final note. Version numbers in the Perl community are a <a href=\"http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/\" title=\"Version numbers should be boring\">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href=\"http://www.dagolden.com/\">David Golden</a> &ndash; the current maintainer of the CPAN Meta Spec &ndash; pointed me to <a href=\"http://semver.org/\">Semantic Versioning</a>, a version number specification by GitHub&rsquo;s <a href=\"http://tom.preston-werner.com/\">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>\n\n<ul>\n<li>It closely matches how PostgreSQL itself is versioned.</li>\n<li>It&rsquo;s very easy to compare version strings.</li>\n<li>Someone else has already dealt with the pain of writing a spec</li>\n</ul>\n\n<p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That&rsquo;s it. PGXN won&rsquo;t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>\n\n<p>Anyway, please review <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>\n\n<p><strong>Update 2010-08-24:</strong> I&rsquo;ve just updated <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> to change &ldquo;owner&rdquo; to &ldquo;maintainer.&rdquo; I think that the latter term is much better for this purpose. And then I can use &ldquo;owner&rdquo; in PGXN to identify the person who uploads a distribution.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-08-17 13:00:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 966989188,
+    "id_string": "966989188",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/966989188/meta-spec-rfc",
+    "reblog": {
+        "comment": "<p>I\u2019ve posted a draft of the \u201cPGXN distribution metadata specification,\u201d or <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">PGXN Meta Spec</a>.\u201c This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>\n\n<p>To create it, I\u2019ve ported the\n<a href=\"http://search.cpan.org/perldoc?CPAN::Meta::Sepc\">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the \"required\u201d fields \u201coptional.\u201d At its simplest, the file might look something like this:</p>\n\n<pre><code>{\n  \"name\": \"pgTAP\",\n  \"abstract\": \"Unit testing for PostgreSQL\",\n  \"version\": \"0.25.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  \"license\": \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  }\n}\n</code></pre>\n\n<p>Not too bad, eh? The URL for the spec might change (might move it to the main\nsite and/or the mirrors), but otherwise, I think this is pretty solid. Not too\nmuch work to deal with, and reasonably easy to create by hand (which is likely how we\u2019ll all start out).</p>\n\n<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href=\"http://justatheory.com/computers/databases/postgresql/key-value-pairs.html\">ordered pair</a> extension, it of course would include tests written with <a href=\"http://pgtap.org/\">pgTAP</a>. So I\u2019d have something like:</p>\n\n<pre><code>{\n  \"name\": \"pair\",\n  \"abstract\": \"An ordered pair data type\",\n  \"version\": \"0.1.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  license: \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  },\n  \"prereqs\": {\n    \"runtime\": {\n      \"requires\": {\n        \"PostgreSQL\": \"8.0.0\"\n      },\n      \"recommends\": {\n        \"PostgreSQL\": \"8.4.0\"\n      }\n    },\n    \"test\": {\n      \"requires\": {\n        \"pgTAP\": 0\n      }\n    }\n  }\n}\n</code></pre>\n\n<p>That\u2019s saying that the \u201cpair\u201d distribution requires PostgreSQL 8.0.0 or higher and any version of pgTAP to run the test suite. I\u2019ve also recommended PostgreSQL 8.4, as that\u2019s where it will run best.</p>\n\n<p>Of course, to get the real power of PGXN, you\u2019ll also want to use the <code>provides</code> key, which allows you to identify the extensions included in your distribution. Say that I finally got around to breaking out the schema testing assertions from the logical testing assertions in pgTAP. I might call the second module \u201cschematap.\u201d So to spell it out, I\u2019d add this to the first example above:</p>\n\n<pre><code>  \"pgtap\": {\n    \"file\": \"sql/pgtap.sql.in\",\n    \"version\": \"0.25.0\"\n  },\n  \"schematap\": {\n    \"file\": \"sql/schematap.sql.in\"\n  }\n</code></pre>\n\n<p>So now the indexer will know that the \u201cpgtap\u201d extension is in <code>sql/pgtap.sql.in</code> and the \u201cschematap\u201d extension is in <code>sql/schematap.sql.in</code>. This is important because it allows other distributions to specify \u201cschematap\u201d as a prerequisite. It also means that, in the PGXN client, you can type something like:</p>\n\n<pre><code>PGXN&gt; install schematap\n</code></pre>\n\n<p>And, because \u201cschematap\u201d will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the \u201cschematap\u201d extension.</p>\n\n<p>A final note. Version numbers in the Perl community are a <a href=\"http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/\" title=\"Version numbers should be boring\">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href=\"http://www.dagolden.com/\">David Golden</a> \u2013 the current maintainer of the CPAN Meta Spec \u2013 pointed me to <a href=\"http://semver.org/\">Semantic Versioning</a>, a version number specification by GitHub\u2019s <a href=\"http://tom.preston-werner.com/\">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>\n\n<ul>\n<li>It closely matches how PostgreSQL itself is versioned.</li>\n<li>It\u2019s very easy to compare version strings.</li>\n<li>Someone else has already dealt with the pain of writing a spec</li>\n</ul>\n\n<p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That\u2019s it. PGXN won\u2019t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>\n\n<p>Anyway, please review <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>\n\n<p><strong>Update 2010-08-24:</strong> I\u2019ve just updated <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> to change \u201cowner\u201d to \u201cmaintainer.\u201d I think that the latter term is much better for this purpose. And then I can use \u201cowner\u201d in PGXN to identify the person who uploads a distribution.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "7FjbTZ0t",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyvenM4",
+    "should_open_in_legacy": false,
+    "slug": "meta-spec-rfc",
+    "state": "published",
+    "summary": "RFC: The PGXN Metadata Specification",
+    "tags": [
+        "meta",
+        "meta spec",
+        "metadata",
+        "json",
+        "cpan meta spec",
+        "david golden",
+        "version numbers",
+        "prerequisites",
+        "license"
+    ],
+    "timestamp": 1282050000,
+    "title": "RFC: The PGXN Metadata Specification",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>I&rsquo;ve posted a draft of the &ldquo;PGXN distribution metadata specification,&rdquo; or <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">PGXN Meta Spec</a>.&ldquo; This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>\n\n<p>To create it, I&rsquo;ve ported the\n<a href=\"http://search.cpan.org/perldoc?CPAN::Meta::Sepc\">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the \"required&rdquo; fields &ldquo;optional.&rdquo; At its simplest, the file might look something like this:</p>\n\n<pre><code>{\n  \"name\": \"pgTAP\",\n  \"abstract\": \"Unit testing for PostgreSQL\",\n  \"version\": \"0.25.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  \"license\": \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  }\n}\n</code></pre>\n\n<p>Not too bad, eh? The URL for the spec might change (might move it to the main\nsite and/or the mirrors), but otherwise, I think this is pretty solid. Not too\nmuch work to deal with, and reasonably easy to create by hand (which is likely how we&rsquo;ll all start out).</p>\n\n<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href=\"http://justatheory.com/computers/databases/postgresql/key-value-pairs.html\">ordered pair</a> extension, it of course would include tests written with <a href=\"http://pgtap.org/\">pgTAP</a>. So I&rsquo;d have something like:</p>\n\n<pre><code>{\n  \"name\": \"pair\",\n  \"abstract\": \"An ordered pair data type\",\n  \"version\": \"0.1.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  license: \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  },\n  \"prereqs\": {\n    \"runtime\": {\n      \"requires\": {\n        \"PostgreSQL\": \"8.0.0\"\n      },\n      \"recommends\": {\n        \"PostgreSQL\": \"8.4.0\"\n      }\n    },\n    \"test\": {\n      \"requires\": {\n        \"pgTAP\": 0\n      }\n    }\n  }\n}\n</code></pre>\n\n<p>That&rsquo;s saying that the &ldquo;pair&rdquo; distribution requires PostgreSQL 8.0.0 or higher and any version of pgTAP to run the test suite. I&rsquo;ve also recommended PostgreSQL 8.4, as that&rsquo;s where it will run best.</p>\n\n<p>Of course, to get the real power of PGXN, you&rsquo;ll also want to use the <code>provides</code> key, which allows you to identify the extensions included in your distribution. Say that I finally got around to breaking out the schema testing assertions from the logical testing assertions in pgTAP. I might call the second module &ldquo;schematap.&rdquo; So to spell it out, I&rsquo;d add this to the first example above:</p>\n\n<pre><code>  \"pgtap\": {\n    \"file\": \"sql/pgtap.sql.in\",\n    \"version\": \"0.25.0\"\n  },\n  \"schematap\": {\n    \"file\": \"sql/schematap.sql.in\"\n  }\n</code></pre>\n\n<p>So now the indexer will know that the &ldquo;pgtap&rdquo; extension is in <code>sql/pgtap.sql.in</code> and the &ldquo;schematap&rdquo; extension is in <code>sql/schematap.sql.in</code>. This is important because it allows other distributions to specify &ldquo;schematap&rdquo; as a prerequisite. It also means that, in the PGXN client, you can type something like:</p>\n\n<pre><code>PGXN&gt; install schematap\n</code></pre>\n\n<p>And, because &ldquo;schematap&rdquo; will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the &ldquo;schematap&rdquo; extension.</p>\n\n<p>A final note. Version numbers in the Perl community are a <a href=\"http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/\" title=\"Version numbers should be boring\">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href=\"http://www.dagolden.com/\">David Golden</a> &ndash; the current maintainer of the CPAN Meta Spec &ndash; pointed me to <a href=\"http://semver.org/\">Semantic Versioning</a>, a version number specification by GitHub&rsquo;s <a href=\"http://tom.preston-werner.com/\">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>\n\n<ul>\n<li>It closely matches how PostgreSQL itself is versioned.</li>\n<li>It&rsquo;s very easy to compare version strings.</li>\n<li>Someone else has already dealt with the pain of writing a spec</li>\n</ul>\n\n<p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That&rsquo;s it. PGXN won&rsquo;t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>\n\n<p>Anyway, please review <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>\n\n<p><strong>Update 2010-08-24:</strong> I&rsquo;ve just updated <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> to change &ldquo;owner&rdquo; to &ldquo;maintainer.&rdquo; I think that the latter term is much better for this purpose. And then I can use &ldquo;owner&rdquo; in PGXN to identify the person who uploads a distribution.</p>",
+            "content_raw": "<p>I\u2019ve posted a draft of the \u201cPGXN distribution metadata specification,\u201d or <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">PGXN Meta Spec</a>.\u201c This document specifies the structure and format of the <code>META.json</code> file that PGXN will require in every distribution. In fact, this is the <em>only</em> required file in a distribution. Its job is to describe the distribution, its extensions, and its dependencies, among other things. This file is key to the whole thing.</p>\n\n<p>To create it, I\u2019ve ported the\n<a href=\"http://search.cpan.org/perldoc?CPAN::Meta::Sepc\">CPAN Meta Spec</a>, version 2, but with all deprecated fields removed, and some of the more complex stuff taken out. I also made a couple of the \"required\u201d fields \u201coptional.\u201d At its simplest, the file might look something like this:</p>\n\n<pre><code>{\n  \"name\": \"pgTAP\",\n  \"abstract\": \"Unit testing for PostgreSQL\",\n  \"version\": \"0.25.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  \"license\": \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  }\n}\n</code></pre>\n\n<p>Not too bad, eh? The URL for the spec might change (might move it to the main\nsite and/or the mirrors), but otherwise, I think this is pretty solid. Not too\nmuch work to deal with, and reasonably easy to create by hand (which is likely how we\u2019ll all start out).</p>\n\n<p>And additional key that will be really important for the PGXN client is <code>prereqs</code>. This key allows you to identify the prerequisites (from PGXN or the PostgreSQL core contrib extensions) required to build, test, and/or use a distribution. For example, if I were to release an <a href=\"http://justatheory.com/computers/databases/postgresql/key-value-pairs.html\">ordered pair</a> extension, it of course would include tests written with <a href=\"http://pgtap.org/\">pgTAP</a>. So I\u2019d have something like:</p>\n\n<pre><code>{\n  \"name\": \"pair\",\n  \"abstract\": \"An ordered pair data type\",\n  \"version\": \"0.1.0\",\n  \"owner\": \"David E. Wheeler &lt;theory@pgxn.org&gt;\",\n  license: \"postgresql\",\n  \"meta-spec\": {\n    \"version\": \"1.0.0\",\n    \"url\": \"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\"\n  },\n  \"prereqs\": {\n    \"runtime\": {\n      \"requires\": {\n        \"PostgreSQL\": \"8.0.0\"\n      },\n      \"recommends\": {\n        \"PostgreSQL\": \"8.4.0\"\n      }\n    },\n    \"test\": {\n      \"requires\": {\n        \"pgTAP\": 0\n      }\n    }\n  }\n}\n</code></pre>\n\n<p>That\u2019s saying that the \u201cpair\u201d distribution requires PostgreSQL 8.0.0 or higher and any version of pgTAP to run the test suite. I\u2019ve also recommended PostgreSQL 8.4, as that\u2019s where it will run best.</p>\n\n<p>Of course, to get the real power of PGXN, you\u2019ll also want to use the <code>provides</code> key, which allows you to identify the extensions included in your distribution. Say that I finally got around to breaking out the schema testing assertions from the logical testing assertions in pgTAP. I might call the second module \u201cschematap.\u201d So to spell it out, I\u2019d add this to the first example above:</p>\n\n<pre><code>  \"pgtap\": {\n    \"file\": \"sql/pgtap.sql.in\",\n    \"version\": \"0.25.0\"\n  },\n  \"schematap\": {\n    \"file\": \"sql/schematap.sql.in\"\n  }\n</code></pre>\n\n<p>So now the indexer will know that the \u201cpgtap\u201d extension is in <code>sql/pgtap.sql.in</code> and the \u201cschematap\u201d extension is in <code>sql/schematap.sql.in</code>. This is important because it allows other distributions to specify \u201cschematap\u201d as a prerequisite. It also means that, in the PGXN client, you can type something like:</p>\n\n<pre><code>PGXN&gt; install schematap\n</code></pre>\n\n<p>And, because \u201cschematap\u201d will have been indexed on the network, the client will be able to find the pgTAP distribution and install it, complete with the \u201cschematap\u201d extension.</p>\n\n<p>A final note. Version numbers in the Perl community are a <a href=\"http://www.dagolden.com/index.php/369/version-numbers-should-be-boring/\" title=\"Version numbers should be boring\">disaster</a>. Wanting to avoid that whole morass, I had originally intended to require numeric version numbers. But <a href=\"http://www.dagolden.com/\">David Golden</a> \u2013 the current maintainer of the CPAN Meta Spec \u2013 pointed me to <a href=\"http://semver.org/\">Semantic Versioning</a>, a version number specification by GitHub\u2019s <a href=\"http://tom.preston-werner.com/\">Tom Preston-Werner</a>. This style of version numbering is great for PGXN for a few reasons:</p>\n\n<ul>\n<li>It closely matches how PostgreSQL itself is versioned.</li>\n<li>It\u2019s very easy to compare version strings.</li>\n<li>Someone else has already dealt with the pain of writing a spec</li>\n</ul>\n\n<p>So this is the standard that PGXN will require. Every version number will be dotted-integer with three integers (X.Y.Z) and an optional ASCII string at the end. That\u2019s it. PGXN won\u2019t invest any special meaning in the version string the way CPAN does. It will just compare version numbers.</p>\n\n<p>Anyway, please review <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> itself and leave any comments or questions below. I expect to start hacking on this stuff this week!</p>\n\n<p><strong>Update 2010-08-24:</strong> I\u2019ve just updated <a href=\"http://github.com/theory/pgxn/wiki/PGXN-Meta-Spec\">the spec</a> to change \u201cowner\u201d to \u201cmaintainer.\u201d I think that the latter term is much better for this purpose. And then I can use \u201cowner\u201d in PGXN to identify the person who uploads a distribution.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "966989188"
+            }
+        }
+    ],
+    "type": "text"
+}

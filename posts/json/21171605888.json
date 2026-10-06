@@ -1,0 +1,178 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "think doesn't hurts!",
+        "name": "guediz-blog",
+        "title": "Guedes",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://guediz-blog.tumblr.com/",
+        "uuid": "t:dlMvR_zctZvnxc5EPoA2dg"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p><em>by Dickson S. Guedes</em></p>\n\n<p>Hi everybody!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> was released with this new features:</p>\n\n<ul>\n<li>Git support</li>\n<li>Templates and custom templates</li>\n<li><a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> integration</li>\n</ul>\n\n<h2>Git support</h2>\n\n<p>You can start a new extension with or without version control. By default <code>pgxn-utils</code>\nsupports <a href=\"http://git-scm.org\">git</a> but it will not create a repository unless you\nuse <code>--git</code> option in the skeleton task.</p>\n\n<p>You can try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_versioned_extension --git\n</code></pre>\n\n<p>When you create a new extension with git support in addition to creating the skeleton,\n<code>pgxn-utils</code> will initialize a git repository and create the initial commit.</p>\n\n<p>Once you have your extension in a git repository your <code>bundle</code> will use only the\ncommitted files to create the archive, but if your repository is dirty then <code>pgxn-utils</code>\nwill suggest that you to commit or stash your changes before bundling.</p>\n\n<p>You must be careful with new files not added to repository, because they will <strong>not</strong>\nbe archived.</p>\n\n<h2>Default templates</h2>\n\n<p>There are three default templates: <code>sql</code>, <code>c</code> and <code>fdw</code>. If you call <code>skeleton</code> without\nspecifying a template, <code>sql</code> is the default. But if your extension will supply some C\nmodules or you will create a FDW, you can create the extension calling <code>skeleton</code> with a\n<code>--template</code> option.</p>\n\n<p>Try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_c_extension --template=c\n$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw\n</code></pre>\n\n<p>The templates contain example code and some links to PostgreSQL documentation\nthat will try to help you to start coding. SQL and C templates contains some test\nexamples, and the example code will compile and pass <code>make installcheck</code>.\nHowever, this code is intended to be an example, and you must write your own\ntests and code.</p>\n\n<h2>Custom templates</h2>\n\n<p>If you don&rsquo;t like the templates provided by <code>pgxn-utils</code> you can create you own.\nJust create a directory with at least a <code>META.json</code> or\n<code>META.json.tt</code> file and then use your directory as argument to the <code>--template</code>\noption.</p>\n\n<p>To know how create your own template, see the examples in the\n<a href=\"https://github.com/guedes/pgxn-utils/tree/master/lib/pgxn_utils/templates\">templates directory</a>.</p>\n\n<h2>PGXN Client integration</h2>\n\n<p>If you have <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN client</a> installed you\ncan change the command line from <code>pgxn-utils some_task</code> to <code>pgxn some_task</code> and this\nwill save you some typing.</p>\n\n<p>See:</p>\n\n<pre><code>$ cd /tmp\n$ pgxn skeleton --help\nPGXN Utils version: 0.1.4\nUsage:\n  pgxn skeleton extension_name\n\nOptions:\n      [--git]                            # Initialize a git repository after create the extension\n  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract\n  -p, [--target=TARGET]                  # Define the target directory\n                                         # Default: .\n      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw\n                                         # Default: sql\n  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status\n  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension\n  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator\n  -l, [--license=LICENSE]                # The extension license\n  -t, [--tags=one two three]             # Defines extension's tags\n  -v, [--version=VERSION]                # Initial version\n  -m, [--maintainer=MAINTAINER]          # Maintainer's name &lt;maintainer@email&gt;\n\nCreates an extension skeleton in current directory\n\n$ pgxn skeleton test\n      create  test\n      create  test/test.control\n      create  test/.gitignore\n      create  test/.template\n      create  test/META.json\n      create  test/Makefile\n      create  test/README.md\n      create  test/doc/test.md\n      create  test/sql/test.sql\n      create  test/sql/uninstall_test.sql\n      create  test/test/expected/base.out\n      create  test/test/sql/base.sql\n\n$ cd test/\n$ pgxn bundle\n         run  make distclean from \".\"\n      create  /tmp/test-0.0.1.zip\n</code></pre>\n\n<p>I hope you enjoy this version. &ldquo;:)</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2012-04-15 21:44:12 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 21171605888,
+    "id_string": "21171605888",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 8,
+    "post_author": "guediz-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/21171605888/pgxn-utils-014-is-out",
+    "reblog": {
+        "comment": "<p><em>by Dickson S. Guedes</em></p>\n\n<p>Hi everybody!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> was released with this new features:</p>\n\n<ul>\n<li>Git support</li>\n<li>Templates and custom templates</li>\n<li><a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> integration</li>\n</ul>\n\n<h2>Git support</h2>\n\n<p>You can start a new extension with or without version control. By default <code>pgxn-utils</code>\nsupports <a href=\"http://git-scm.org\">git</a> but it will not create a repository unless you\nuse <code>--git</code> option in the skeleton task.</p>\n\n<p>You can try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_versioned_extension --git\n</code></pre>\n\n<p>When you create a new extension with git support in addition to creating the skeleton,\n<code>pgxn-utils</code> will initialize a git repository and create the initial commit.</p>\n\n<p>Once you have your extension in a git repository your <code>bundle</code> will use only the\ncommitted files to create the archive, but if your repository is dirty then <code>pgxn-utils</code>\nwill suggest that you to commit or stash your changes before bundling.</p>\n\n<p>You must be careful with new files not added to repository, because they will <strong>not</strong>\nbe archived.</p>\n\n<h2>Default templates</h2>\n\n<p>There are three default templates: <code>sql</code>, <code>c</code> and <code>fdw</code>. If you call <code>skeleton</code> without\nspecifying a template, <code>sql</code> is the default. But if your extension will supply some C\nmodules or you will create a FDW, you can create the extension calling <code>skeleton</code> with a\n<code>--template</code> option.</p>\n\n<p>Try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_c_extension --template=c\n$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw\n</code></pre>\n\n<p>The templates contain example code and some links to PostgreSQL documentation\nthat will try to help you to start coding. SQL and C templates contains some test\nexamples, and the example code will compile and pass <code>make installcheck</code>.\nHowever, this code is intended to be an example, and you must write your own\ntests and code.</p>\n\n<h2>Custom templates</h2>\n\n<p>If you don\u2019t like the templates provided by <code>pgxn-utils</code> you can create you own.\nJust create a directory with at least a <code>META.json</code> or\n<code>META.json.tt</code> file and then use your directory as argument to the <code>--template</code>\noption.</p>\n\n<p>To know how create your own template, see the examples in the\n<a href=\"https://github.com/guedes/pgxn-utils/tree/master/lib/pgxn_utils/templates\">templates directory</a>.</p>\n\n<h2>PGXN Client integration</h2>\n\n<p>If you have <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN client</a> installed you\ncan change the command line from <code>pgxn-utils some_task</code> to <code>pgxn some_task</code> and this\nwill save you some typing.</p>\n\n<p>See:</p>\n\n<pre><code>$ cd /tmp\n$ pgxn skeleton --help\nPGXN Utils version: 0.1.4\nUsage:\n  pgxn skeleton extension_name\n\nOptions:\n      [--git]                            # Initialize a git repository after create the extension\n  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract\n  -p, [--target=TARGET]                  # Define the target directory\n                                         # Default: .\n      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw\n                                         # Default: sql\n  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status\n  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension\n  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator\n  -l, [--license=LICENSE]                # The extension license\n  -t, [--tags=one two three]             # Defines extension's tags\n  -v, [--version=VERSION]                # Initial version\n  -m, [--maintainer=MAINTAINER]          # Maintainer's name &lt;maintainer@email&gt;\n\nCreates an extension skeleton in current directory\n\n$ pgxn skeleton test\n      create  test\n      create  test/test.control\n      create  test/.gitignore\n      create  test/.template\n      create  test/META.json\n      create  test/Makefile\n      create  test/README.md\n      create  test/doc/test.md\n      create  test/sql/test.sql\n      create  test/sql/uninstall_test.sql\n      create  test/test/expected/base.out\n      create  test/test/sql/base.sql\n\n$ cd test/\n$ pgxn bundle\n         run  make distclean from \".\"\n      create  /tmp/test-0.0.1.zip\n</code></pre>\n\n<p>I hope you enjoy this version. \u201c:)</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "C8zsXfIe",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyJjxH60",
+    "should_open_in_legacy": false,
+    "slug": "pgxn-utils-014-is-out",
+    "state": "published",
+    "summary": "pgxn-utils 0.1.4 is out!",
+    "tags": [
+        "pgxn",
+        "utils",
+        "automation",
+        "release"
+    ],
+    "timestamp": 1334526252,
+    "title": "pgxn-utils 0.1.4 is out!",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p><em>by Dickson S. Guedes</em></p>\n\n<p>Hi everybody!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> was released with this new features:</p>\n\n<ul>\n<li>Git support</li>\n<li>Templates and custom templates</li>\n<li><a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> integration</li>\n</ul>\n\n<h2>Git support</h2>\n\n<p>You can start a new extension with or without version control. By default <code>pgxn-utils</code>\nsupports <a href=\"http://git-scm.org\">git</a> but it will not create a repository unless you\nuse <code>--git</code> option in the skeleton task.</p>\n\n<p>You can try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_versioned_extension --git\n</code></pre>\n\n<p>When you create a new extension with git support in addition to creating the skeleton,\n<code>pgxn-utils</code> will initialize a git repository and create the initial commit.</p>\n\n<p>Once you have your extension in a git repository your <code>bundle</code> will use only the\ncommitted files to create the archive, but if your repository is dirty then <code>pgxn-utils</code>\nwill suggest that you to commit or stash your changes before bundling.</p>\n\n<p>You must be careful with new files not added to repository, because they will <strong>not</strong>\nbe archived.</p>\n\n<h2>Default templates</h2>\n\n<p>There are three default templates: <code>sql</code>, <code>c</code> and <code>fdw</code>. If you call <code>skeleton</code> without\nspecifying a template, <code>sql</code> is the default. But if your extension will supply some C\nmodules or you will create a FDW, you can create the extension calling <code>skeleton</code> with a\n<code>--template</code> option.</p>\n\n<p>Try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_c_extension --template=c\n$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw\n</code></pre>\n\n<p>The templates contain example code and some links to PostgreSQL documentation\nthat will try to help you to start coding. SQL and C templates contains some test\nexamples, and the example code will compile and pass <code>make installcheck</code>.\nHowever, this code is intended to be an example, and you must write your own\ntests and code.</p>\n\n<h2>Custom templates</h2>\n\n<p>If you don&rsquo;t like the templates provided by <code>pgxn-utils</code> you can create you own.\nJust create a directory with at least a <code>META.json</code> or\n<code>META.json.tt</code> file and then use your directory as argument to the <code>--template</code>\noption.</p>\n\n<p>To know how create your own template, see the examples in the\n<a href=\"https://github.com/guedes/pgxn-utils/tree/master/lib/pgxn_utils/templates\">templates directory</a>.</p>\n\n<h2>PGXN Client integration</h2>\n\n<p>If you have <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN client</a> installed you\ncan change the command line from <code>pgxn-utils some_task</code> to <code>pgxn some_task</code> and this\nwill save you some typing.</p>\n\n<p>See:</p>\n\n<pre><code>$ cd /tmp\n$ pgxn skeleton --help\nPGXN Utils version: 0.1.4\nUsage:\n  pgxn skeleton extension_name\n\nOptions:\n      [--git]                            # Initialize a git repository after create the extension\n  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract\n  -p, [--target=TARGET]                  # Define the target directory\n                                         # Default: .\n      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw\n                                         # Default: sql\n  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status\n  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension\n  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator\n  -l, [--license=LICENSE]                # The extension license\n  -t, [--tags=one two three]             # Defines extension's tags\n  -v, [--version=VERSION]                # Initial version\n  -m, [--maintainer=MAINTAINER]          # Maintainer's name &lt;maintainer@email&gt;\n\nCreates an extension skeleton in current directory\n\n$ pgxn skeleton test\n      create  test\n      create  test/test.control\n      create  test/.gitignore\n      create  test/.template\n      create  test/META.json\n      create  test/Makefile\n      create  test/README.md\n      create  test/doc/test.md\n      create  test/sql/test.sql\n      create  test/sql/uninstall_test.sql\n      create  test/test/expected/base.out\n      create  test/test/sql/base.sql\n\n$ cd test/\n$ pgxn bundle\n         run  make distclean from \".\"\n      create  /tmp/test-0.0.1.zip\n</code></pre>\n\n<p>I hope you enjoy this version. &ldquo;:)</p>",
+            "content_raw": "<p><em>by Dickson S. Guedes</em></p>\n\n<p>Hi everybody!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">PGXN Utils</a> was released with this new features:</p>\n\n<ul>\n<li>Git support</li>\n<li>Templates and custom templates</li>\n<li><a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN Client</a> integration</li>\n</ul>\n\n<h2>Git support</h2>\n\n<p>You can start a new extension with or without version control. By default <code>pgxn-utils</code>\nsupports <a href=\"http://git-scm.org\">git</a> but it will not create a repository unless you\nuse <code>--git</code> option in the skeleton task.</p>\n\n<p>You can try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_versioned_extension --git\n</code></pre>\n\n<p>When you create a new extension with git support in addition to creating the skeleton,\n<code>pgxn-utils</code> will initialize a git repository and create the initial commit.</p>\n\n<p>Once you have your extension in a git repository your <code>bundle</code> will use only the\ncommitted files to create the archive, but if your repository is dirty then <code>pgxn-utils</code>\nwill suggest that you to commit or stash your changes before bundling.</p>\n\n<p>You must be careful with new files not added to repository, because they will <strong>not</strong>\nbe archived.</p>\n\n<h2>Default templates</h2>\n\n<p>There are three default templates: <code>sql</code>, <code>c</code> and <code>fdw</code>. If you call <code>skeleton</code> without\nspecifying a template, <code>sql</code> is the default. But if your extension will supply some C\nmodules or you will create a FDW, you can create the extension calling <code>skeleton</code> with a\n<code>--template</code> option.</p>\n\n<p>Try:</p>\n\n<pre><code>$ pgxn-utils skeleton my_cool_c_extension --template=c\n$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw\n</code></pre>\n\n<p>The templates contain example code and some links to PostgreSQL documentation\nthat will try to help you to start coding. SQL and C templates contains some test\nexamples, and the example code will compile and pass <code>make installcheck</code>.\nHowever, this code is intended to be an example, and you must write your own\ntests and code.</p>\n\n<h2>Custom templates</h2>\n\n<p>If you don\u2019t like the templates provided by <code>pgxn-utils</code> you can create you own.\nJust create a directory with at least a <code>META.json</code> or\n<code>META.json.tt</code> file and then use your directory as argument to the <code>--template</code>\noption.</p>\n\n<p>To know how create your own template, see the examples in the\n<a href=\"https://github.com/guedes/pgxn-utils/tree/master/lib/pgxn_utils/templates\">templates directory</a>.</p>\n\n<h2>PGXN Client integration</h2>\n\n<p>If you have <a href=\"http://pgxnclient.projects.postgresql.org/\">PGXN client</a> installed you\ncan change the command line from <code>pgxn-utils some_task</code> to <code>pgxn some_task</code> and this\nwill save you some typing.</p>\n\n<p>See:</p>\n\n<pre><code>$ cd /tmp\n$ pgxn skeleton --help\nPGXN Utils version: 0.1.4\nUsage:\n  pgxn skeleton extension_name\n\nOptions:\n      [--git]                            # Initialize a git repository after create the extension\n  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract\n  -p, [--target=TARGET]                  # Define the target directory\n                                         # Default: .\n      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw\n                                         # Default: sql\n  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status\n  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension\n  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator\n  -l, [--license=LICENSE]                # The extension license\n  -t, [--tags=one two three]             # Defines extension's tags\n  -v, [--version=VERSION]                # Initial version\n  -m, [--maintainer=MAINTAINER]          # Maintainer's name &lt;maintainer@email&gt;\n\nCreates an extension skeleton in current directory\n\n$ pgxn skeleton test\n      create  test\n      create  test/test.control\n      create  test/.gitignore\n      create  test/.template\n      create  test/META.json\n      create  test/Makefile\n      create  test/README.md\n      create  test/doc/test.md\n      create  test/sql/test.sql\n      create  test/sql/uninstall_test.sql\n      create  test/test/expected/base.out\n      create  test/test/sql/base.sql\n\n$ cd test/\n$ pgxn bundle\n         run  make distclean from \".\"\n      create  /tmp/test-0.0.1.zip\n</code></pre>\n\n<p>I hope you enjoy this version. \u201c:)</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "21171605888"
+            }
+        }
+    ],
+    "type": "text"
+}

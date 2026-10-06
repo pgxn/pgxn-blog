@@ -3,69 +3,202 @@ title: Recent PGXN Improvements
 slug: recent-work
 date:  2024-02-22T00:00:00Z
 lastMod: 2024-02-22T20:37:05Z
-aliases: [/post/743059495415119873/recent-work]
+aliases: [/post/743059495415119873/recent-work, /post/743059495415119873]
 ---
 
-One of the perks of my [new gig at Tembo](https://tembo.io/blog/welcoming-david-wheeler) is that I have more time to work on PGXN. In the last ten years I've had very little time to give, so things have stagnated. The [API](https://github.com/pgxn/pgxn-api), for example, hasn't seen a meaningful update since 2016!
+One of the perks of my [new gig at Tembo] is that I have more time to work on
+PGXN. In the last ten years I've had very little time to give, so things have
+stagnated. The [API], for example, hasn't seen a meaningful update since 2016!
 
-But that's all changed now, and every bit of the PGXN architecture has experienced a fair bit of TLC in the last few weeks. A quick review.
+But that's all changed now, and every bit of the PGXN architecture has
+experienced a fair bit of TLC in the last few weeks. A quick review.
 
 ## PGXN Manager
 
-[PGXN Manager](https://manager.pgxn.org) provides user registration and extension release services. It maintains the root registry of the project, ensuring the consistency of download formatting and naming (`$extension-$version.zip` if you're wondering). [Last year](https://blog.pgxn.org/post/709635160523620352/hello-mastodon) I added a [LISTEN/NOTIFY](https://www.postgresql.org/docs/current/sql-notify.html) queue for publishing new releases to Twitter and Mastodon, replacing the old Twitter posting on upload. It has worked quite well (although Twitter killed the API so we no longer post [there](https://twitter.com/pgxn)), but has sometimes disappeared for days or weeks at a time. I've futzed with it over the past year, but last weekend I think I finally got to the bottom of the problem.
+[PGXN Manager] provides user registration and extension release services. It
+maintains the root registry of the project, ensuring the consistency of
+download formatting and naming (`$extension-$version.zip` if you're
+wondering). [Last year] I added a [LISTEN/NOTIFY] queue for publishing new
+releases to Twitter and Mastodon, replacing the old Twitter posting on upload.
+It has worked quite well (although Twitter killed the API so we no longer post
+[there]), but has sometimes disappeared for days or weeks at a time. I've
+futzed with it over the past year, but last weekend I think I finally got to
+the bottom of the problem.
 
-As a result, the [PGXN Mastodon account](https://mastodon.social/@pgxn) should say much more up-to-date than it sometimes has. I've also added additional logging capability, because sometimes the posts fail and I need better clarity into what failed and how so it, too, can be fixed. So messaging should continue to become more reliable. Oh, and testing and unstable releases are now prominently marked as such in the posts (or will be, next time someone uploads a non-stable release).
+As a result, the [PGXN Mastodon account] should say much more up-to-date than
+it sometimes has. I've also added additional logging capability, because
+sometimes the posts fail and I need better clarity into what failed and how so
+it, too, can be fixed. So messaging should continue to become more reliable.
+Oh, and testing and unstable releases are now prominently marked as such in
+the posts (or will be, next time someone uploads a non-stable release).
 
-I also did a little work on the formatting of the [How To](https://manager.pgxn.org/howto) doc, upgrading to [MultiMarkdown](https://fletcherpenney.net/multimarkdown/) 6 and removing some post-processing that appended [unwanted backslashes](https://github.com/pgxn/pgxn-manager/issues/76) to the ends of code lines.
+I also did a little work on the formatting of the [How To] doc, upgrading to
+[MultiMarkdown] 6 and removing some post-processing that appended [unwanted
+backslashes] to the ends of code lines.
 
 ## PGXN API
 
-PGXN API ([docs](https://github.com/pgxn/pgxn-api/wiki)) has been the least loved part of the architecture, but all that changed in the last couple weeks. I finally got over my trepidation and got it working where I could hack on it again. Turns out, the pending issues and to-dos — some dating back to 2011! — weren't so difficult to take on as I had feared. In the last few weeks, API has finally come unstuck and evolved:
+PGXN API ([docs]) has been the least loved part of the architecture, but all
+that changed in the last couple weeks. I finally got over my trepidation and
+got it working where I could hack on it again. Turns out, the pending issues
+and to-dos — some dating back to 2011! — weren't so difficult to take on as I
+had feared. In the last few weeks, API has finally come unstuck and evolved:
 
-*   Switched the parsing of Markdown documents from the quite old [Text::Markdown](https://metacpan.org/pod/Text::Markdown) module to [CommonMark](https://metacpan.org/pod/CommonMark), which is a thin wrapper around the well-maintained and modern [cmark library](https://github.com/commonmark/cmark/). The main way in which this change will be visible is in the support for fenced code blocks. Compare the [pg_later 0.0.14 README](https://pgxn.org/dist/pg_later/0.0.14/README.html), formatted with the old parser, with [pg_later 0.1.0 README](https://pgxn.org/dist/pg_later/0.1.0/README.html), formatted with the new parser.
+*   Switched the parsing of Markdown documents from the quite old
+    [Text::Markdown] module to [CommonMark], which is a thin wrapper around
+    the well-maintained and modern [cmark library]. The main way in which this
+    change will be visible is in the support for fenced code blocks. Compare
+    the [pg_later 0.0.14 README], formatted with the old parser, with
+    [pg_later 0.1.0 README], formatted with the new parser.
 
-*   Updated the full text indexer to index the file identified in the `META.json` as the documentation for an extension even if the file name is different from the extension ([issue 10](https://github.com/pgxn/pgxn-api/issues/10)), including the README.
+*   Updated the full text indexer to index the file identified in the
+    `META.json` as the documentation for an extension even if the file name is
+    different from the extension ([issue 10]), including the README.
 
-    Furthermore, if the indexer finds no documentation for the extension, either in its metadata or an appropriately-named file, it falls back on the README ([issue 12](https://github.com/pgxn/pgxn-api/issues/12)).
+    Furthermore, if the indexer finds no documentation for the extension,
+    either in its metadata or an appropriately-named file, it falls back on
+    the README ([issue 12]).
 
-    These two fixes, the oldest and most significant of the whole system, greatly increase the accuracy of documentation search, because so many extensions have no docs other than the README. Prior to this fix, for example, a [search for "later"](https://pgxn.org/search?q=later&in=docs) failed to turn up [pg_later](https://pgxn.org/dist/pg_later/), and now it's appropriately the first result.
+    These two fixes, the oldest and most significant of the whole system,
+    greatly increase the accuracy of documentation search, because so many
+    extensions have no docs other than the README. Prior to this fix, for
+    example, a [search for "later"] failed to turn up [pg_later], and now it's
+    appropriately the first result.
 
-*   The indexer now indexes releases marked "testing" or "unstable" in the metadata if there is no stable release ([issue 2](https://github.com/pgxn/pgxn-api/issues/2)!). This makes new extensions under development easier to find on the site than previously, when only stable releases were indexed. However, once a stable release is made, no more testing or unstable releases will be indexed. I believe this is more intuitive behavior.
+*   The indexer now indexes releases marked "testing" or "unstable" in the
+    metadata if there is no stable release ([issue 2]!). This makes new
+    extensions under development easier to find on the site than previously,
+    when only stable releases were indexed. However, once a stable release is
+    made, no more testing or unstable releases will be indexed. I believe this
+    is more intuitive behavior.
 
-*   Also fixed some permissions issue, ensuring that source code unzipped for browsing is accessible to the app. In other words, a zip file without READ permission would trigger a not found response; the API now ensures that all files and directories are accessible to the application.
+*   Also fixed some permissions issue, ensuring that source code unzipped for
+    browsing is accessible to the app. In other words, a zip file without READ
+    permission would trigger a not found response; the API now ensures that
+    all files and directories are accessible to the application.
 
-*   As a bonus, the API now also recognizes plain text files (`.txt` and `.text`) as documentation and indexes their contents and adds links for display on the site. Previously plain text files other than READMEs were ignored ([issue 13](https://github.com/pgxn/pgxn-api/issues/13)).
+*   As a bonus, the API now also recognizes plain text files (`.txt` and
+    `.text`) as documentation and indexes their contents and adds links for
+    display on the site. Previously plain text files other than READMEs were
+    ignored ([issue 13]).
 
-I'm quite pleased with some of these fixes, and relieved to have finally cleared out the karmic overhang of the backlog. But the indexing and HTML rendering changes, in particular, are tactical: until the entire registry can be re-indexed, only new uploads will benefit from the indexing improvements. I hope to find time to work on the indexing project soon.
+I'm quite pleased with some of these fixes, and relieved to have finally
+cleared out the karmic overhang of the backlog. But the indexing and HTML
+rendering changes, in particular, are tactical: until the entire registry can
+be re-indexed, only new uploads will benefit from the indexing improvements. I
+hope to find time to work on the indexing project soon.
 
 ## PGXN Site
 
-The [pgxn-site](https://github.com/pgxn/pgxn-site) project powers the main site, [pgxn.org](https://pgxn.org), and has seen 7 new releases since the beginning of the year! Notable changes:
+The [pgxn-site] project powers the main site, [pgxn.org], and has seen 7 new
+releases since the beginning of the year! Notable changes:
 
-*   Changed the default search index from Documentation too Distributions, because most release include no docs other than a READMe, which was indexed as part of the distribution and not the extension contained in a distribution. As a result, searches return more relevant and comprehensive results. However, I say "was indexed" because, as described above, the PGXN API has since been updated to appropriately identify and index READMEs as extension documentation. So this change might get reverted at some point, but not before the entire registry can be re-indexed.
 
-*   Changed the link to the How To in the footer from the somewhat opaque "Release It!" to "Release on PGXN". Should make it clearer what it is. Also, have you considered releasing your extension on PGXN? You should!
+*   Changed the default search index from Documentation too Distributions,
+    because most release include no docs other than a READMe, which was
+    indexed as part of the distribution and not the extension contained in a
+    distribution. As a result, searches return more relevant and comprehensive
+    results. However, I say "was indexed" because, as described above, the
+    PGXN API has since been updated to appropriately identify and index
+    READMEs as extension documentation. So this change might get reverted at
+    some point, but not before the entire registry can be re-indexed.
 
-*   Fixed "not found" errors for links to files with uppercase letters, such as [/dist/vectorize/vector-serve/README.html](https://pgxn.org/dist/vectorize/vector-serve/README.html).
+*   Changed the link to the How To in the footer from the somewhat opaque
+    "Release It!" to "Release on PGXN". Should make it clearer what it is.
+    Also, have you considered releasing your extension on PGXN? You should!
 
-*   Tweaked the CSS a bit to improve list item alignment in the "Contents" of doc pages (like [semver](https://pgxn.org/extension/semver)), as well as the spacing between definition lists, as in the [FAQ](https://pgxn.org/faq/).
+*   Fixed "not found" errors for links to files with uppercase letters, such
+    as [/dist/vectorize/vector-serve/README.html].
 
-*   Switched the parsing and formatting of the static pages ([about](https://pgxn.org/about/), [art](https://pgxn.org/art/), [FAQ](https://pgxn.org/faq/), [feedback](https://pgxn.org/feedback/), and [mirroring](https://pgxn.org/mirroring/)) from the quite ancient [Text::MultiMarkdown](https://metacpan.org/pod/Text::MultiMarkdown) module to [MultiMarkdown](https://fletcherpenney.net/multimarkdown/) 6.
+*   Tweaked the CSS a bit to improve list item alignment in the "Contents" of
+    doc pages (like [semver]), as well as the spacing between definition
+    lists, as in the [FAQ].
 
-*   Oh, and I fixed or removed a bunch of outdated links from those pages, and replaced all relevant HTTP URLs with HTTPS URLs. Then had to revert those changes from a bunch of SVG files, where `xmlns="http://www.w3.org/2000/svg"` is relevant but `xmlns="https://www.w3.org/2000/svg"` is not. 🤦🏻‍♂️
+*   Switched the parsing and formatting of the static pages ([about], [art],
+    [FAQ], [feedback], and [mirroring]) from the quite ancient
+    [Text::MultiMarkdown] module to [MultiMarkdown] 6.
+
+*   Oh, and I fixed or removed a bunch of outdated links from those pages, and
+    replaced all relevant HTTP URLs with HTTPS URLs. Then had to revert those
+    changes from a bunch of SVG files, where
+    `xmlns="http://www.w3.org/2000/svg"` is relevant but
+    `xmlns="https://www.w3.org/2000/svg"` is not. 🤦🏻‍♂️
 
 ## Grab Bag
 
-I've made a number of more iterative improvements, as well, mostly to the maintainability of PGXN projects:
+I've made a number of more iterative improvements, as well, mostly to the
+maintainability of PGXN projects:
 
-*   The GitHub repositories for all of these projects have been updated with comprehensive test and release workflows, as well as improved Perl release configuration.
+*   The GitHub repositories for all of these projects have been updated with
+    comprehensive test and release workflows, as well as improved Perl release
+    configuration.
 
-*   The [WWW::PGXN](https://metacpan.org/dist/WWW-PGXN), [PGXN::API::Searcher](https://metacpan.org/dist/PGXN-API-Searcher) Perl modules have been updated with test and release workflows and improved Perl release configuration, as well.
+*   The [WWW::PGXN], [PGXN::API::Searcher] Perl modules have been updated with
+    test and release workflows and improved Perl release configuration, as
+    well.
 
-*   The `libexec` configuration of the [PGXN Client Homebrew formula](https://formulae.brew.sh/formula/pgxnclient) has been [fixed](https://github.com/Homebrew/homebrew-core/pull/163685), allowing [PGXN::Meta::Validator](https://metacpan.org/dist/PGXN-Meta-Validator) to install itself in the proper place to allow `pgxn validate-meta` to work properly on Homebrew managed-systems (like mine!)
+*   The `libexec` configuration of the [PGXN Client Homebrew formula] has been
+    [fixed], allowing [PGXN::Meta::Validator] to install itself in the proper
+    place to allow `pgxn validate-meta` to work properly on Homebrew
+    managed-systems (like mine!)
 
-*   The [pgxn/pgxn-tools Docker image](https://github.com/pgxn/docker-pgxn-tools/), which saw some fixes and improvements [last month](https://blog.pgxn.org/post/741049567045468160/pgxn-tools-v4), has continued to evolve, as well. Recent improvements include support for [PostgreSQL TAP tests](https://www.postgresql.org/docs/current/regress-tap.html) (not to be confused with [pgTAP](https://pgtap.org/), already supported), finer control over managing the Postgres cluster — or multiple clusters — by setting `NO_CLUSTER=` to prevent `pg-start` from creating the cluster. Both these improvements better enable multi-cluster testing.
+*   The [pgxn/pgxn-tools Docker image], which saw some fixes and improvements
+    [last month], has continued to evolve, as well. Recent improvements
+    include support for [PostgreSQL TAP tests] (not to be confused with
+    [pgTAP], already supported), finer control over managing the Postgres
+    cluster — or multiple clusters — by setting `NO_CLUSTER=` to prevent
+    `pg-start` from creating the cluster. Both these improvements better
+    enable multi-cluster testing.
 
 ## The End
 
-I think that about covers it. Although I'm [thinking](https://justatheory.com/2024/02/extension-metadata-typology/) and [writing](https://tembo.io/blog/pgxn-ecosystem-jobs) quite a lot about what's next for the Postgres extension ecosystem, I expect to continue tending to the care and feeding and improvement of PGXN as well. To the future!
+I think that about covers it. Although I'm [thinking] and [writing] quite a
+lot about what's next for the Postgres extension ecosystem, I expect to
+continue tending to the care and feeding and improvement of PGXN as well. To
+the future!
+
+  [new gig at Tembo]: https://tembo.io/blog/welcoming-david-wheeler
+  [API]: https://github.com/pgxn/pgxn-api
+  [PGXN Manager]: https://manager.pgxn.org
+  [Last year]: https://blog.pgxn.org/post/709635160523620352/hello-mastodon
+  [LISTEN/NOTIFY]: https://www.postgresql.org/docs/current/sql-notify.html
+  [there]: https://twitter.com/pgxn
+  [PGXN Mastodon account]: https://mastodon.social/@pgxn
+  [How To]: https://manager.pgxn.org/howto
+  [MultiMarkdown]: https://fletcherpenney.net/multimarkdown/
+  [unwanted backslashes]: https://github.com/pgxn/pgxn-manager/issues/76
+  [docs]: https://github.com/pgxn/pgxn-api/wiki
+  [Text::Markdown]: https://metacpan.org/pod/Text::Markdown
+  [CommonMark]: https://metacpan.org/pod/CommonMark
+  [cmark library]: https://github.com/commonmark/cmark/
+  [pg_later 0.0.14 README]: https://pgxn.org/dist/pg_later/0.0.14/README.html
+  [pg_later 0.1.0 README]: https://pgxn.org/dist/pg_later/0.1.0/README.html
+  [issue 10]: https://github.com/pgxn/pgxn-api/issues/10
+  [issue 12]: https://github.com/pgxn/pgxn-api/issues/12
+  [search for "later"]: https://pgxn.org/search?q=later&in=docs
+  [pg_later]: https://pgxn.org/dist/pg_later/
+  [issue 2]: https://github.com/pgxn/pgxn-api/issues/2
+  [issue 13]: https://github.com/pgxn/pgxn-api/issues/13
+  [pgxn-site]: https://github.com/pgxn/pgxn-site
+  [pgxn.org]: https://pgxn.org
+  [/dist/vectorize/vector-serve/README.html]: https://pgxn.org/dist/vectorize/vector-serve/README.html
+  [semver]: https://pgxn.org/extension/semver
+  [FAQ]: https://pgxn.org/faq/
+  [about]: https://pgxn.org/about/
+  [art]: https://pgxn.org/art/
+  [FAQ]: https://pgxn.org/faq/
+  [feedback]: https://pgxn.org/feedback/
+  [mirroring]: https://pgxn.org/mirroring/
+  [Text::MultiMarkdown]: https://metacpan.org/pod/Text::MultiMarkdown
+  [MultiMarkdown]: https://fletcherpenney.net/multimarkdown/
+  [WWW::PGXN]: https://metacpan.org/dist/WWW-PGXN
+  [PGXN::API::Searcher]: https://metacpan.org/dist/PGXN-API-Searcher
+  [PGXN Client Homebrew formula]: https://formulae.brew.sh/formula/pgxnclient
+  [fixed]: https://github.com/Homebrew/homebrew-core/pull/163685
+  [PGXN::Meta::Validator]: https://metacpan.org/dist/PGXN-Meta-Validator
+  [pgxn/pgxn-tools Docker image]: https://github.com/pgxn/docker-pgxn-tools/
+  [last month]: https://blog.pgxn.org/post/741049567045468160/pgxn-tools-v4
+  [PostgreSQL TAP tests]: https://www.postgresql.org/docs/current/regress-tap.html
+  [pgTAP]: https://pgtap.org/
+  [thinking]: https://justatheory.com/2024/02/extension-metadata-typology/
+  [writing]: https://tembo.io/blog/pgxn-ecosystem-jobs

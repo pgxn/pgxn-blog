@@ -1,0 +1,180 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Traditionally, folks have created extensions for PostgreSQL by copying one of the <a href=\"http://www.postgresql.org/docs/current/static/contrib.html\">contrib modules</a> and hacking it into something new. One of the things that comes along for the ride is the <code>Makefile</code> (<a href=\"http://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD\">example</a>). As a result, there are a lot of third-party extensions that use the <code>USE_PGXS</code> variable.</p>\n\n<p>A bit of background. The core contrib extensions generally rely on a relative path to include the core <code>Makefile</code>s needed to build the extension. Because they ship with the core distribution, they can generally expect that the core has already been compiled, the necessary <code>Makefile</code>s have been created, and that they should be built against them. All the assumptions are that the extensions should be built against the source tree in which they are distributed. So there is no need to use <a href=\"http://www.postgresql.org/docs/current/static/app-pgconfig.html\"><code>pg_config</code></a> to find  <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a>; it already knows where to find what it needs.</p>\n\n<p>But as extensions, there is still the possibility that one might want to build them against an existing installation of PostgreSQL, or an older version than the source with which they&rsquo;re distributed. So the core hackers provided the <code>USE_PGXS</code> variable so that one can in effect tell <code>make</code>, &ldquo;Don&rsquo;t build against the local source tree, but find PGXS for some other install and build against that, instead.&rdquo; It was expected to be exceptional, since most folks would build against the local source tree, and not a big deal to make anyone else build it with:</p>\n\n<pre><code>make USE_PGXS=1\n</code></pre>\n\n<p>Today things are different. There is a growing ecosystem of third party extensions on <a href=\"http://pgxn.org/\">PGXN</a>, <a href=\"http://pgfoundry.org/\">pgFoundry</a>, <a href=\"http://github.com/\">GitHub</a>, and <a href=\"https://bitbucket.org/\">Bitbucket</a>, and obviously they&rsquo;re not distributed with the PostgreSQL core. For these extensions, there is no surrounding PostgreSQL source code to automatically include, so they <em>must</em> use <code>pg_config</code> to find PGXS in order build.</p>\n\n<p>Yet, there are quite a few third-party extensions that nevertheless assume that they are in the <code>contrib</code> directory of the PostgreSQL source code distribution, and so still have the <code>USE_PGXS</code> variable. The <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.0/Makefile\">twitter_ftw 1.0.0 <code>Makefile</code></a> is a recent example. Just like core extensions, it has this code:</p>\n\n<pre><code>ifdef USE_PGXS\nPG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\nelse\nsubdir = contrib/twitter_fdw\ntop_builddir = ../..\ninclude $(top_builddir)/src/Makefile.global\ninclude $(top_srcdir)/contrib/contrib-global.mk\nendif\n</code></pre>\n\n<p>Because Hitoshi-san originally copied the <code>Makefile</code> from a core extension, it still assumes it will be distributed in core by default. And as I said, there are quite a few third-party extensions that exhibit this pattern.</p>\n\n<p>And now the <a href=\"http://en.wikipedia.org/wiki/Public_service_announcement\">PSA</a>: <strong>Please don&rsquo;t use <code>USE_PGXS</code> in PostgreSQL extension <code>Makefile</code>s.</strong></p>\n\n<p>Not only is it unnecessary, it makes no sense for third-party extensions. They should <em>always</em> assume that they need to use <code>pg_config</code> to find PGXS. If you have an extension <code>Makefile</code> with <code>USE_PGXS</code> like twitter_ftw 1.0.0 did, you should change it to something like this (as Hitoshi-san did in the <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.1/Makefile\">twitter_ftw 1.0.1 <code>Makefile</code></a>):</p>\n\n<pre><code>PG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\n</code></pre>\n\n<p>That&rsquo;s it. I am asking you to <em>make your <code>Makefile</code> simpler.</em></p>\n\n<hr>\n\n<p><em>An Aside</em></p>\n\n<p>There is <em>one</em> situation in which you might need to include the core contrib <code>Makefile</code>s. And it&rsquo;s pretty unusual. If you need to support PostgreSQL 8.1 or earlier, <code>pg_config</code> will not be able to tell you where to find PGXS. So users will have to copy the exension source directory into the PostgreSQL source <code>contrib/</code> directory and build from there. They will need a way to tell <code>make</code> <em>not</em> to use PGXS. In this one unusual case, I suggest you add a <code>NO_PGXS</code> variable. <a href=\"http://api.pgxn.org/src/pgtap/pgtap-0.90.0/Makefile\">pgTAP&rsquo;s <code>Makefile</code></a> provides an example. But honestly, very few extensions need to support PostgreSQL 8.1 (the oldest release currently supported by the core hackers is <em>8.3!</em>), so make use of this pattern only if absolutely necessary.</p>\n\n<p>Otherwise, please don&rsquo;t use <code>USE_PGXS</code>.</p>\n\n<hr>\n\n<p>If you want a complete guide to creating your extension <code>Makefile</code>, have a look at the <a href=\"http://manager.pgxn.org/howto\">PGXN Howto</a>, which includes some detailed examples that include support for pre- and post-<a href=\"http://www.postgresql.org/docs/current/static/sql-createextension.html\"><code>CREATE EXTENSION</code></a> support. The <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a> docs contain additional details about all the <code>Makefile</code> variables you can use to simplify extension configuration and installation. Check \u2019em out.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2012-04-11 16:36:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 20908326485,
+    "id_string": "20908326485",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 2,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/20908326485/lose-use-pgxs",
+    "reblog": {
+        "comment": "<p>Traditionally, folks have created extensions for PostgreSQL by copying one of the <a href=\"http://www.postgresql.org/docs/current/static/contrib.html\">contrib modules</a> and hacking it into something new. One of the things that comes along for the ride is the <code>Makefile</code> (<a href=\"http://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD\">example</a>). As a result, there are a lot of third-party extensions that use the <code>USE_PGXS</code> variable.</p>\n\n<p>A bit of background. The core contrib extensions generally rely on a relative path to include the core <code>Makefile</code>s needed to build the extension. Because they ship with the core distribution, they can generally expect that the core has already been compiled, the necessary <code>Makefile</code>s have been created, and that they should be built against them. All the assumptions are that the extensions should be built against the source tree in which they are distributed. So there is no need to use <a href=\"http://www.postgresql.org/docs/current/static/app-pgconfig.html\"><code>pg_config</code></a> to find  <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a>; it already knows where to find what it needs.</p>\n\n<p>But as extensions, there is still the possibility that one might want to build them against an existing installation of PostgreSQL, or an older version than the source with which they\u2019re distributed. So the core hackers provided the <code>USE_PGXS</code> variable so that one can in effect tell <code>make</code>, \u201cDon\u2019t build against the local source tree, but find PGXS for some other install and build against that, instead.\u201d It was expected to be exceptional, since most folks would build against the local source tree, and not a big deal to make anyone else build it with:</p>\n\n<pre><code>make USE_PGXS=1\n</code></pre>\n\n<p>Today things are different. There is a growing ecosystem of third party extensions on <a href=\"http://pgxn.org/\">PGXN</a>, <a href=\"http://pgfoundry.org/\">pgFoundry</a>, <a href=\"http://github.com/\">GitHub</a>, and <a href=\"https://bitbucket.org/\">Bitbucket</a>, and obviously they\u2019re not distributed with the PostgreSQL core. For these extensions, there is no surrounding PostgreSQL source code to automatically include, so they <em>must</em> use <code>pg_config</code> to find PGXS in order build.</p>\n\n<p>Yet, there are quite a few third-party extensions that nevertheless assume that they are in the <code>contrib</code> directory of the PostgreSQL source code distribution, and so still have the <code>USE_PGXS</code> variable. The <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.0/Makefile\">twitter_ftw 1.0.0 <code>Makefile</code></a> is a recent example. Just like core extensions, it has this code:</p>\n\n<pre><code>ifdef USE_PGXS\nPG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\nelse\nsubdir = contrib/twitter_fdw\ntop_builddir = ../..\ninclude $(top_builddir)/src/Makefile.global\ninclude $(top_srcdir)/contrib/contrib-global.mk\nendif\n</code></pre>\n\n<p>Because Hitoshi-san originally copied the <code>Makefile</code> from a core extension, it still assumes it will be distributed in core by default. And as I said, there are quite a few third-party extensions that exhibit this pattern.</p>\n\n<p>And now the <a href=\"http://en.wikipedia.org/wiki/Public_service_announcement\">PSA</a>: <strong>Please don\u2019t use <code>USE_PGXS</code> in PostgreSQL extension <code>Makefile</code>s.</strong></p>\n\n<p>Not only is it unnecessary, it makes no sense for third-party extensions. They should <em>always</em> assume that they need to use <code>pg_config</code> to find PGXS. If you have an extension <code>Makefile</code> with <code>USE_PGXS</code> like twitter_ftw 1.0.0 did, you should change it to something like this (as Hitoshi-san did in the <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.1/Makefile\">twitter_ftw 1.0.1 <code>Makefile</code></a>):</p>\n\n<pre><code>PG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\n</code></pre>\n\n<p>That\u2019s it. I am asking you to <em>make your <code>Makefile</code> simpler.</em></p>\n\n<hr>\n\n<p><em>An Aside</em></p>\n\n<p>There is <em>one</em> situation in which you might need to include the core contrib <code>Makefile</code>s. And it\u2019s pretty unusual. If you need to support PostgreSQL 8.1 or earlier, <code>pg_config</code> will not be able to tell you where to find PGXS. So users will have to copy the exension source directory into the PostgreSQL source <code>contrib/</code> directory and build from there. They will need a way to tell <code>make</code> <em>not</em> to use PGXS. In this one unusual case, I suggest you add a <code>NO_PGXS</code> variable. <a href=\"http://api.pgxn.org/src/pgtap/pgtap-0.90.0/Makefile\">pgTAP\u2019s <code>Makefile</code></a> provides an example. But honestly, very few extensions need to support PostgreSQL 8.1 (the oldest release currently supported by the core hackers is <em>8.3!</em>), so make use of this pattern only if absolutely necessary.</p>\n\n<p>Otherwise, please don\u2019t use <code>USE_PGXS</code>.</p>\n\n<hr>\n\n<p>If you want a complete guide to creating your extension <code>Makefile</code>, have a look at the <a href=\"http://manager.pgxn.org/howto\">PGXN Howto</a>, which includes some detailed examples that include support for pre- and post-<a href=\"http://www.postgresql.org/docs/current/static/sql-createextension.html\"><code>CREATE EXTENSION</code></a> support. The <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a> docs contain additional details about all the <code>Makefile</code> variables you can use to simplify extension configuration and installation. Check \u2019em out.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "P2jLzYqJ",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyJUExvL",
+    "should_open_in_legacy": false,
+    "slug": "lose-use-pgxs",
+    "state": "published",
+    "summary": "Lose USE_PGXS in your Makefiles",
+    "tags": [
+        "extension",
+        "USE_PGXS",
+        "Makefile",
+        "make",
+        "pg_config",
+        "contrib"
+    ],
+    "timestamp": 1334162160,
+    "title": "Lose USE_PGXS in your Makefiles",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Traditionally, folks have created extensions for PostgreSQL by copying one of the <a href=\"http://www.postgresql.org/docs/current/static/contrib.html\">contrib modules</a> and hacking it into something new. One of the things that comes along for the ride is the <code>Makefile</code> (<a href=\"http://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD\">example</a>). As a result, there are a lot of third-party extensions that use the <code>USE_PGXS</code> variable.</p>\n\n<p>A bit of background. The core contrib extensions generally rely on a relative path to include the core <code>Makefile</code>s needed to build the extension. Because they ship with the core distribution, they can generally expect that the core has already been compiled, the necessary <code>Makefile</code>s have been created, and that they should be built against them. All the assumptions are that the extensions should be built against the source tree in which they are distributed. So there is no need to use <a href=\"http://www.postgresql.org/docs/current/static/app-pgconfig.html\"><code>pg_config</code></a> to find  <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a>; it already knows where to find what it needs.</p>\n\n<p>But as extensions, there is still the possibility that one might want to build them against an existing installation of PostgreSQL, or an older version than the source with which they&rsquo;re distributed. So the core hackers provided the <code>USE_PGXS</code> variable so that one can in effect tell <code>make</code>, &ldquo;Don&rsquo;t build against the local source tree, but find PGXS for some other install and build against that, instead.&rdquo; It was expected to be exceptional, since most folks would build against the local source tree, and not a big deal to make anyone else build it with:</p>\n\n<pre><code>make USE_PGXS=1\n</code></pre>\n\n<p>Today things are different. There is a growing ecosystem of third party extensions on <a href=\"http://pgxn.org/\">PGXN</a>, <a href=\"http://pgfoundry.org/\">pgFoundry</a>, <a href=\"http://github.com/\">GitHub</a>, and <a href=\"https://bitbucket.org/\">Bitbucket</a>, and obviously they&rsquo;re not distributed with the PostgreSQL core. For these extensions, there is no surrounding PostgreSQL source code to automatically include, so they <em>must</em> use <code>pg_config</code> to find PGXS in order build.</p>\n\n<p>Yet, there are quite a few third-party extensions that nevertheless assume that they are in the <code>contrib</code> directory of the PostgreSQL source code distribution, and so still have the <code>USE_PGXS</code> variable. The <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.0/Makefile\">twitter_ftw 1.0.0 <code>Makefile</code></a> is a recent example. Just like core extensions, it has this code:</p>\n\n<pre><code>ifdef USE_PGXS\nPG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\nelse\nsubdir = contrib/twitter_fdw\ntop_builddir = ../..\ninclude $(top_builddir)/src/Makefile.global\ninclude $(top_srcdir)/contrib/contrib-global.mk\nendif\n</code></pre>\n\n<p>Because Hitoshi-san originally copied the <code>Makefile</code> from a core extension, it still assumes it will be distributed in core by default. And as I said, there are quite a few third-party extensions that exhibit this pattern.</p>\n\n<p>And now the <a href=\"http://en.wikipedia.org/wiki/Public_service_announcement\">PSA</a>: <strong>Please don&rsquo;t use <code>USE_PGXS</code> in PostgreSQL extension <code>Makefile</code>s.</strong></p>\n\n<p>Not only is it unnecessary, it makes no sense for third-party extensions. They should <em>always</em> assume that they need to use <code>pg_config</code> to find PGXS. If you have an extension <code>Makefile</code> with <code>USE_PGXS</code> like twitter_ftw 1.0.0 did, you should change it to something like this (as Hitoshi-san did in the <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.1/Makefile\">twitter_ftw 1.0.1 <code>Makefile</code></a>):</p>\n\n<pre><code>PG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\n</code></pre>\n\n<p>That&rsquo;s it. I am asking you to <em>make your <code>Makefile</code> simpler.</em></p>\n\n<hr />\n\n<p><em>An Aside</em></p>\n\n<p>There is <em>one</em> situation in which you might need to include the core contrib <code>Makefile</code>s. And it&rsquo;s pretty unusual. If you need to support PostgreSQL 8.1 or earlier, <code>pg_config</code> will not be able to tell you where to find PGXS. So users will have to copy the exension source directory into the PostgreSQL source <code>contrib/</code> directory and build from there. They will need a way to tell <code>make</code> <em>not</em> to use PGXS. In this one unusual case, I suggest you add a <code>NO_PGXS</code> variable. <a href=\"http://api.pgxn.org/src/pgtap/pgtap-0.90.0/Makefile\">pgTAP&rsquo;s <code>Makefile</code></a> provides an example. But honestly, very few extensions need to support PostgreSQL 8.1 (the oldest release currently supported by the core hackers is <em>8.3!</em>), so make use of this pattern only if absolutely necessary.</p>\n\n<p>Otherwise, please don&rsquo;t use <code>USE_PGXS</code>.</p>\n\n<hr />\n\n<p>If you want a complete guide to creating your extension <code>Makefile</code>, have a look at the <a href=\"http://manager.pgxn.org/howto\">PGXN Howto</a>, which includes some detailed examples that include support for pre- and post-<a href=\"http://www.postgresql.org/docs/current/static/sql-createextension.html\"><code>CREATE EXTENSION</code></a> support. The <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a> docs contain additional details about all the <code>Makefile</code> variables you can use to simplify extension configuration and installation. Check &rsquo;em out.</p>",
+            "content_raw": "<p>Traditionally, folks have created extensions for PostgreSQL by copying one of the <a href=\"http://www.postgresql.org/docs/current/static/contrib.html\">contrib modules</a> and hacking it into something new. One of the things that comes along for the ride is the <code>Makefile</code> (<a href=\"http://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD\">example</a>). As a result, there are a lot of third-party extensions that use the <code>USE_PGXS</code> variable.</p>\n\n<p>A bit of background. The core contrib extensions generally rely on a relative path to include the core <code>Makefile</code>s needed to build the extension. Because they ship with the core distribution, they can generally expect that the core has already been compiled, the necessary <code>Makefile</code>s have been created, and that they should be built against them. All the assumptions are that the extensions should be built against the source tree in which they are distributed. So there is no need to use <a href=\"http://www.postgresql.org/docs/current/static/app-pgconfig.html\"><code>pg_config</code></a> to find  <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a>; it already knows where to find what it needs.</p>\n\n<p>But as extensions, there is still the possibility that one might want to build them against an existing installation of PostgreSQL, or an older version than the source with which they\u2019re distributed. So the core hackers provided the <code>USE_PGXS</code> variable so that one can in effect tell <code>make</code>, \u201cDon\u2019t build against the local source tree, but find PGXS for some other install and build against that, instead.\u201d It was expected to be exceptional, since most folks would build against the local source tree, and not a big deal to make anyone else build it with:</p>\n\n<pre><code>make USE_PGXS=1\n</code></pre>\n\n<p>Today things are different. There is a growing ecosystem of third party extensions on <a href=\"http://pgxn.org/\">PGXN</a>, <a href=\"http://pgfoundry.org/\">pgFoundry</a>, <a href=\"http://github.com/\">GitHub</a>, and <a href=\"https://bitbucket.org/\">Bitbucket</a>, and obviously they\u2019re not distributed with the PostgreSQL core. For these extensions, there is no surrounding PostgreSQL source code to automatically include, so they <em>must</em> use <code>pg_config</code> to find PGXS in order build.</p>\n\n<p>Yet, there are quite a few third-party extensions that nevertheless assume that they are in the <code>contrib</code> directory of the PostgreSQL source code distribution, and so still have the <code>USE_PGXS</code> variable. The <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.0/Makefile\">twitter_ftw 1.0.0 <code>Makefile</code></a> is a recent example. Just like core extensions, it has this code:</p>\n\n<pre><code>ifdef USE_PGXS\nPG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\nelse\nsubdir = contrib/twitter_fdw\ntop_builddir = ../..\ninclude $(top_builddir)/src/Makefile.global\ninclude $(top_srcdir)/contrib/contrib-global.mk\nendif\n</code></pre>\n\n<p>Because Hitoshi-san originally copied the <code>Makefile</code> from a core extension, it still assumes it will be distributed in core by default. And as I said, there are quite a few third-party extensions that exhibit this pattern.</p>\n\n<p>And now the <a href=\"http://en.wikipedia.org/wiki/Public_service_announcement\">PSA</a>: <strong>Please don\u2019t use <code>USE_PGXS</code> in PostgreSQL extension <code>Makefile</code>s.</strong></p>\n\n<p>Not only is it unnecessary, it makes no sense for third-party extensions. They should <em>always</em> assume that they need to use <code>pg_config</code> to find PGXS. If you have an extension <code>Makefile</code> with <code>USE_PGXS</code> like twitter_ftw 1.0.0 did, you should change it to something like this (as Hitoshi-san did in the <a href=\"http://api.pgxn.org/src/twitter_fdw/twitter_fdw-1.0.1/Makefile\">twitter_ftw 1.0.1 <code>Makefile</code></a>):</p>\n\n<pre><code>PG_CONFIG = pg_config\nPGXS := $(shell $(PG_CONFIG) --pgxs)\ninclude $(PGXS)\n</code></pre>\n\n<p>That\u2019s it. I am asking you to <em>make your <code>Makefile</code> simpler.</em></p>\n\n<hr>\n\n<p><em>An Aside</em></p>\n\n<p>There is <em>one</em> situation in which you might need to include the core contrib <code>Makefile</code>s. And it\u2019s pretty unusual. If you need to support PostgreSQL 8.1 or earlier, <code>pg_config</code> will not be able to tell you where to find PGXS. So users will have to copy the exension source directory into the PostgreSQL source <code>contrib/</code> directory and build from there. They will need a way to tell <code>make</code> <em>not</em> to use PGXS. In this one unusual case, I suggest you add a <code>NO_PGXS</code> variable. <a href=\"http://api.pgxn.org/src/pgtap/pgtap-0.90.0/Makefile\">pgTAP\u2019s <code>Makefile</code></a> provides an example. But honestly, very few extensions need to support PostgreSQL 8.1 (the oldest release currently supported by the core hackers is <em>8.3!</em>), so make use of this pattern only if absolutely necessary.</p>\n\n<p>Otherwise, please don\u2019t use <code>USE_PGXS</code>.</p>\n\n<hr>\n\n<p>If you want a complete guide to creating your extension <code>Makefile</code>, have a look at the <a href=\"http://manager.pgxn.org/howto\">PGXN Howto</a>, which includes some detailed examples that include support for pre- and post-<a href=\"http://www.postgresql.org/docs/current/static/sql-createextension.html\"><code>CREATE EXTENSION</code></a> support. The <a href=\"http://www.postgresql.org/docs/current/static/extend-pgxs.html\">PGXS</a> docs contain additional details about all the <code>Makefile</code> variables you can use to simplify extension configuration and installation. Check \u2019em out.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "20908326485"
+            }
+        }
+    ],
+    "type": "text"
+}

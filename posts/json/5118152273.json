@@ -1,0 +1,180 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "uhm... nothing yet here i guess",
+        "name": "d-piro",
+        "title": "",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://d-piro.tumblr.com/",
+        "uuid": "t:A7QlYHZdTtTU3kiMHQYUMA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>By Daniele Varrazzo</p>\n\n<p>During the last days I&rsquo;ve done some lightweight hacking on the PGXN client, and I&rsquo;ve just released the last package on PyPI, with the still very shy version number of 0.1a4.</p>\n\n<p>First change: the package name. The package is now called <code>pgxnclient</code>, without the point. As <a href=\"http://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn#dsq-comments\">Marti has commented</a>, the point in the name could create problems to some distributions which may have needed to munge it into a shape fitting their naming constraints. So, in order to install the last release you will need the command:</p>\n\n<pre><code>$ easy_install pgxnclient\n</code></pre>\n\n<p>The name of the entry point script is still <code>pgxn</code> and it shouldn&rsquo;t change.</p>\n\n<p>One of the new features in this release is the addition of commands <code>drop</code>, to remove the the extensions of a distribution from a database (opposite of the <code>load</code> command) and <code>uninstall</code>, to remove installed files from the system (opposite of <code>install</code>).</p>\n\n<p>Another change is the ability to work on a local zip or directory instead of using the API to get metadata and package from PGXN. The main goal of this feature is to help the packagers to test their packages with the client before submission, verifying that the data uploaded can be used in an automatized way.</p>\n\n<p>A third change is in the <code>install</code> command: it previously required to be run as root if, as likely, the PostgreSQL directories are system ones. I was feeling this need slightly scary as download and build phases would have been run as root too, so now <code>sudo</code> is invoked by the script only when installing, with command line options allowing its customization.</p>\n\n<p>What I feel mostly missing now is documentation: I know that adding it will force a big review of the code, adding missing comments, add tests to enforce what documented&hellip; so it&rsquo;s something I will start tomorrow. Once documentation and code have converged there will also be a more sound basis to discuss about the client features. And dare version 0.2, maybe :)</p>\n\n<p>Thanks everybody for the feedback. If you want to have a chat about the client or PGXN in general, the best place is <a href=\"http://groups.google.com/group/pgxn-users\">the PGXN group</a>. See you there!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-05-02 00:59:37 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 5118152273,
+    "id_string": "5118152273",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 10,
+    "post_author": "d-piro",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7d963267be8a_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/5118152273/new-release-for-the-pgxn-client",
+    "reblog": {
+        "comment": "<p>By Daniele Varrazzo</p>\n\n<p>During the last days I\u2019ve done some lightweight hacking on the PGXN client, and I\u2019ve just released the last package on PyPI, with the still very shy version number of 0.1a4.</p>\n\n<p>First change: the package name. The package is now called <code>pgxnclient</code>, without the point. As <a href=\"http://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn#dsq-comments\">Marti has commented</a>, the point in the name could create problems to some distributions which may have needed to munge it into a shape fitting their naming constraints. So, in order to install the last release you will need the command:</p>\n\n<pre><code>$ easy_install pgxnclient\n</code></pre>\n\n<p>The name of the entry point script is still <code>pgxn</code> and it shouldn\u2019t change.</p>\n\n<p>One of the new features in this release is the addition of commands <code>drop</code>, to remove the the extensions of a distribution from a database (opposite of the <code>load</code> command) and <code>uninstall</code>, to remove installed files from the system (opposite of <code>install</code>).</p>\n\n<p>Another change is the ability to work on a local zip or directory instead of using the API to get metadata and package from PGXN. The main goal of this feature is to help the packagers to test their packages with the client before submission, verifying that the data uploaded can be used in an automatized way.</p>\n\n<p>A third change is in the <code>install</code> command: it previously required to be run as root if, as likely, the PostgreSQL directories are system ones. I was feeling this need slightly scary as download and build phases would have been run as root too, so now <code>sudo</code> is invoked by the script only when installing, with command line options allowing its customization.</p>\n\n<p>What I feel mostly missing now is documentation: I know that adding it will force a big review of the code, adding missing comments, add tests to enforce what documented\u2026 so it\u2019s something I will start tomorrow. Once documentation and code have converged there will also be a more sound basis to discuss about the client features. And dare version 0.2, maybe :)</p>\n\n<p>Thanks everybody for the feedback. If you want to have a chat about the client or PGXN in general, the best place is <a href=\"http://groups.google.com/group/pgxn-users\">the PGXN group</a>. See you there!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "o8gNKxnw",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy4n4CvH",
+    "should_open_in_legacy": false,
+    "slug": "new-release-for-the-pgxn-client",
+    "state": "published",
+    "summary": "New release for the PGXN client",
+    "tags": [
+        "pgxn",
+        "client",
+        "release",
+        "uninstall",
+        "drop",
+        "sudo"
+    ],
+    "timestamp": 1304297977,
+    "title": "New release for the PGXN client",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>By Daniele Varrazzo</p>\n\n<p>During the last days I&rsquo;ve done some lightweight hacking on the PGXN client, and I&rsquo;ve just released the last package on PyPI, with the still very shy version number of 0.1a4.</p>\n\n<p>First change: the package name. The package is now called <code>pgxnclient</code>, without the point. As <a href=\"http://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn#dsq-comments\">Marti has commented</a>, the point in the name could create problems to some distributions which may have needed to munge it into a shape fitting their naming constraints. So, in order to install the last release you will need the command:</p>\n\n<pre><code>$ easy_install pgxnclient\n</code></pre>\n\n<p>The name of the entry point script is still <code>pgxn</code> and it shouldn&rsquo;t change.</p>\n\n<p>One of the new features in this release is the addition of commands <code>drop</code>, to remove the the extensions of a distribution from a database (opposite of the <code>load</code> command) and <code>uninstall</code>, to remove installed files from the system (opposite of <code>install</code>).</p>\n\n<p>Another change is the ability to work on a local zip or directory instead of using the API to get metadata and package from PGXN. The main goal of this feature is to help the packagers to test their packages with the client before submission, verifying that the data uploaded can be used in an automatized way.</p>\n\n<p>A third change is in the <code>install</code> command: it previously required to be run as root if, as likely, the PostgreSQL directories are system ones. I was feeling this need slightly scary as download and build phases would have been run as root too, so now <code>sudo</code> is invoked by the script only when installing, with command line options allowing its customization.</p>\n\n<p>What I feel mostly missing now is documentation: I know that adding it will force a big review of the code, adding missing comments, add tests to enforce what documented&hellip; so it&rsquo;s something I will start tomorrow. Once documentation and code have converged there will also be a more sound basis to discuss about the client features. And dare version 0.2, maybe :)</p>\n\n<p>Thanks everybody for the feedback. If you want to have a chat about the client or PGXN in general, the best place is <a href=\"http://groups.google.com/group/pgxn-users\">the PGXN group</a>. See you there!</p>",
+            "content_raw": "<p>By Daniele Varrazzo</p>\n\n<p>During the last days I\u2019ve done some lightweight hacking on the PGXN client, and I\u2019ve just released the last package on PyPI, with the still very shy version number of 0.1a4.</p>\n\n<p>First change: the package name. The package is now called <code>pgxnclient</code>, without the point. As <a href=\"http://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn#dsq-comments\">Marti has commented</a>, the point in the name could create problems to some distributions which may have needed to munge it into a shape fitting their naming constraints. So, in order to install the last release you will need the command:</p>\n\n<pre><code>$ easy_install pgxnclient\n</code></pre>\n\n<p>The name of the entry point script is still <code>pgxn</code> and it shouldn\u2019t change.</p>\n\n<p>One of the new features in this release is the addition of commands <code>drop</code>, to remove the the extensions of a distribution from a database (opposite of the <code>load</code> command) and <code>uninstall</code>, to remove installed files from the system (opposite of <code>install</code>).</p>\n\n<p>Another change is the ability to work on a local zip or directory instead of using the API to get metadata and package from PGXN. The main goal of this feature is to help the packagers to test their packages with the client before submission, verifying that the data uploaded can be used in an automatized way.</p>\n\n<p>A third change is in the <code>install</code> command: it previously required to be run as root if, as likely, the PostgreSQL directories are system ones. I was feeling this need slightly scary as download and build phases would have been run as root too, so now <code>sudo</code> is invoked by the script only when installing, with command line options allowing its customization.</p>\n\n<p>What I feel mostly missing now is documentation: I know that adding it will force a big review of the code, adding missing comments, add tests to enforce what documented\u2026 so it\u2019s something I will start tomorrow. Once documentation and code have converged there will also be a more sound basis to discuss about the client features. And dare version 0.2, maybe :)</p>\n\n<p>Thanks everybody for the feedback. If you want to have a chat about the client or PGXN in general, the best place is <a href=\"http://groups.google.com/group/pgxn-users\">the PGXN group</a>. See you there!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "5118152273"
+            }
+        }
+    ],
+    "type": "text"
+}

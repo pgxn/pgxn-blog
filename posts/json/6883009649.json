@@ -1,0 +1,180 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "think doesn't hurts!",
+        "name": "guediz-blog",
+        "title": "Guedes",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://guediz-blog.tumblr.com/",
+        "uuid": "t:dlMvR_zctZvnxc5EPoA2dg"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>Now you can release a distribution to <a href=\"http://pgxn.org\">PGXN</a> in <strong>five steps</strong>!</p>\n\n<p><strong>First</strong>, install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p><strong>Second</strong>, create your extension, optionally overwrite some defaults:</p>\n\n<pre><code>mkdir $HOME/extensions\ncd $HOME/extensions\npgxn_utils skeleton my_extension --maintainer \"Dickson S. Guedes\"\n</code></pre>\n\n<p><strong>Third</strong>, code!</p>\n\n<p><strong>Fourth</strong>, bundle it:</p>\n\n<pre><code>pgxn_utils bundle my_extension\nExtension generated at: /home/guedes/extensions/my_extension-0.0.1.zip\n</code></pre>\n\n<p><strong>Fifth</strong>, release it:</p>\n\n<pre><code>pgxn_utils release my_extension-0.0.1.zip\nEnter your PGXN username: guedes\nEnter your PGXN password: ******\nTrying to release my_cool_extension-0.0.1.zip ... released successfully!\nVisit: <a href=\"http://manager.pgxn.org/distributions/my_cool_extension/0.0.1\">http://manager.pgxn.org/distributions/my_cool_extension/0.0.1</a>\n</code></pre>\n\n<p>Ah, you can export <code>PGXN_USER</code> and <code>PGXN_PASSWORD</code> if you are tired to type your username and password everytime.</p>\n\n<p><a href=\"https://github.com/guedes/pgxn-utils\">Check this out!</a>.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-06-24 23:53:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 6883009649,
+    "id_string": "6883009649",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 12,
+    "post_author": "guediz-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/6883009649/pgxn-utils-012-released",
+    "reblog": {
+        "comment": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>Now you can release a distribution to <a href=\"http://pgxn.org\">PGXN</a> in <strong>five steps</strong>!</p>\n\n<p><strong>First</strong>, install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p><strong>Second</strong>, create your extension, optionally overwrite some defaults:</p>\n\n<pre><code>mkdir $HOME/extensions\ncd $HOME/extensions\npgxn_utils skeleton my_extension --maintainer \"Dickson S. Guedes\"\n</code></pre>\n\n<p><strong>Third</strong>, code!</p>\n\n<p><strong>Fourth</strong>, bundle it:</p>\n\n<pre><code>pgxn_utils bundle my_extension\nExtension generated at: /home/guedes/extensions/my_extension-0.0.1.zip\n</code></pre>\n\n<p><strong>Fifth</strong>, release it:</p>\n\n<pre><code>pgxn_utils release my_extension-0.0.1.zip\nEnter your PGXN username: guedes\nEnter your PGXN password: ******\nTrying to release my_cool_extension-0.0.1.zip ... released successfully!\nVisit: <a href=\"http://manager.pgxn.org/distributions/my_cool_extension/0.0.1\">http://manager.pgxn.org/distributions/my_cool_extension/0.0.1</a>\n</code></pre>\n\n<p>Ah, you can export <code>PGXN_USER</code> and <code>PGXN_PASSWORD</code> if you are tired to type your username and password everytime.</p>\n\n<p><a href=\"https://github.com/guedes/pgxn-utils\">Check this out!</a>.</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "kGxV2Ql4",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy6QGcHn",
+    "should_open_in_legacy": false,
+    "slug": "pgxn-utils-012-released",
+    "state": "published",
+    "summary": "PGXN Utils 0.1.2 Released!",
+    "tags": [
+        "build",
+        "create extension",
+        "utils",
+        "meta",
+        "release",
+        "bundle"
+    ],
+    "timestamp": 1308959580,
+    "title": "PGXN Utils 0.1.2 Released!",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I&rsquo;m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>Now you can release a distribution to <a href=\"http://pgxn.org\">PGXN</a> in <strong>five steps</strong>!</p>\n\n<p><strong>First</strong>, install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p><strong>Second</strong>, create your extension, optionally overwrite some defaults:</p>\n\n<pre><code>mkdir $HOME/extensions\ncd $HOME/extensions\npgxn_utils skeleton my_extension --maintainer \"Dickson S. Guedes\"\n</code></pre>\n\n<p><strong>Third</strong>, code!</p>\n\n<p><strong>Fourth</strong>, bundle it:</p>\n\n<pre><code>pgxn_utils bundle my_extension\nExtension generated at: /home/guedes/extensions/my_extension-0.0.1.zip\n</code></pre>\n\n<p><strong>Fifth</strong>, release it:</p>\n\n<pre><code>pgxn_utils release my_extension-0.0.1.zip\nEnter your PGXN username: guedes\nEnter your PGXN password: ******\nTrying to release my_cool_extension-0.0.1.zip ... released successfully!\nVisit: <a href=\"http://manager.pgxn.org/distributions/my_cool_extension/0.0.1\">http://manager.pgxn.org/distributions/my_cool_extension/0.0.1</a>\n</code></pre>\n\n<p>Ah, you can export <code>PGXN_USER</code> and <code>PGXN_PASSWORD</code> if you are tired to type your username and password everytime.</p>\n\n<p><a href=\"https://github.com/guedes/pgxn-utils\">Check this out!</a>.</p>",
+            "content_raw": "<p>by Dickson S. Guedes</p>\n\n<p>Hello everyone!</p>\n\n<p>I\u2019m proud to tell you that a new version of <a href=\"https://github.com/guedes/pgxn-utils\">pgxn_utils</a> was released!</p>\n\n<p>Now you can release a distribution to <a href=\"http://pgxn.org\">PGXN</a> in <strong>five steps</strong>!</p>\n\n<p><strong>First</strong>, install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre>\n\n<p><strong>Second</strong>, create your extension, optionally overwrite some defaults:</p>\n\n<pre><code>mkdir $HOME/extensions\ncd $HOME/extensions\npgxn_utils skeleton my_extension --maintainer \"Dickson S. Guedes\"\n</code></pre>\n\n<p><strong>Third</strong>, code!</p>\n\n<p><strong>Fourth</strong>, bundle it:</p>\n\n<pre><code>pgxn_utils bundle my_extension\nExtension generated at: /home/guedes/extensions/my_extension-0.0.1.zip\n</code></pre>\n\n<p><strong>Fifth</strong>, release it:</p>\n\n<pre><code>pgxn_utils release my_extension-0.0.1.zip\nEnter your PGXN username: guedes\nEnter your PGXN password: ******\nTrying to release my_cool_extension-0.0.1.zip ... released successfully!\nVisit: <a href=\"http://manager.pgxn.org/distributions/my_cool_extension/0.0.1\">http://manager.pgxn.org/distributions/my_cool_extension/0.0.1</a>\n</code></pre>\n\n<p>Ah, you can export <code>PGXN_USER</code> and <code>PGXN_PASSWORD</code> if you are tired to type your username and password everytime.</p>\n\n<p><a href=\"https://github.com/guedes/pgxn-utils\">Check this out!</a>.</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "6883009649"
+            }
+        }
+    ],
+    "type": "text"
+}

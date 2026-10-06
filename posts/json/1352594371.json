@@ -1,0 +1,182 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>Yesterday was a busy day. In addition to making the <a href=\"http://blog.pgxn.org/post/1352326020/first-upload\">first PGXN release</a>, I updated the fundraising spreadsheet and then the thermometer displayed on the <a href=\"http://pgxn.org/contributors.html\">main site</a>. The good news is that things are coming along nicely. Thanks to recent contributions from <a href=\"http://www.commandprompt.com/\">Command Prompt</a>, <a href=\"http://www.marchex.com/\">Marchex</a>, Hitoshi Harada, and <a href=\"http://www.25th-floor.com/\">25th-floor</a>, we are now just $2500 short of our goal of $25,000. Thank you all!</p>\n\n<p>Can you help us get to our goal in time for <a href=\"https://www.postgresqlconference.org/2010/west/\">PgWest 2010</a>, which is November 2-4 in San Francisco? I&rsquo;ll be giving a talk there, &ldquo;<a href=\"https://www.postgresqlconference.org/content/building-and-distributing-postgresql-extensions-without-learning-c\">Building and Distributing PostgreSQL Extensions Without Learning C</a>&rdquo;, in which PGXN will of course be featured. Would be great to announce that the fundraising was successful.</p>\n\n<p>As for the time I&rsquo;ve put in so far, I&rsquo;m happy to have PGXN Manager up and working, but of course it has taken more hours than I expected. 76.5 so far. I&rsquo;d estimated 40. Meanwhile, the database design is up to 43 hours from the estimated 24. And that doesn&rsquo;t count the hours I spent chasing shiny yaks and shaving them, like <a href=\"http://search.cpan.org/perldoc?SemVer\">SemVer</a> and <a href=\"http://search.cpan.org/perldoc?Router::Resource\">Router::Resource</a>. Those of you who estimate development projects, take heed! I clearly need to double all my estimates before I submit them.</p>\n\n<p>Still, with the fundraising nearly done, I&rsquo;m committed to finishing this project. I view it as a project budget, and so that&rsquo;s what it will be, whether or not it takes me twice or four times as many hours as I&rsquo;d estimated.</p>\n\n<p>That said, you could help. Right? PGXN Manager is in good shape, but it&rsquo;s not done. If you&rsquo;d like to roll up your sleeves and contribute some code, please <a href=\"http://github.com/theory/pgxn-manager/\">fork it</a>, build it, and hack what you can. A few things on the to-do list:</p>\n\n<ul>\n<li>Add user admin interface. Should include checkbox to make and remove administrative permission</li>\n<li>Add mirror admin interface</li>\n<li>Add extension ownership permissions interface</li>\n</ul>\n\n<p>The database API is there for these bits already; the code would mainly be in Perl. Hit me on #pgxn on <a href=\"http://webchat.freenode.net/\">Freenode</a> if you want to help.</p>\n\n<p>If documentation is your thing, contributions there would be appreciated, as well. In particular, the <a href=\"http://manager.pgxn.org/about\">About PGXN</a> page is a bit thin. Other interfaces will need help, too. More on that as we add users.</p>\n\n<p>Thanks everyone for your support!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-10-19 18:43:57 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 1352594371,
+    "id_string": "1352594371",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/1352594371/fundraising-development-update",
+    "reblog": {
+        "comment": "<p>Yesterday was a busy day. In addition to making the <a href=\"http://blog.pgxn.org/post/1352326020/first-upload\">first PGXN release</a>, I updated the fundraising spreadsheet and then the thermometer displayed on the <a href=\"http://pgxn.org/contributors.html\">main site</a>. The good news is that things are coming along nicely. Thanks to recent contributions from <a href=\"http://www.commandprompt.com/\">Command Prompt</a>, <a href=\"http://www.marchex.com/\">Marchex</a>, Hitoshi Harada, and <a href=\"http://www.25th-floor.com/\">25th-floor</a>, we are now just $2500 short of our goal of $25,000. Thank you all!</p>\n\n<p>Can you help us get to our goal in time for <a href=\"https://www.postgresqlconference.org/2010/west/\">PgWest 2010</a>, which is November 2-4 in San Francisco? I\u2019ll be giving a talk there, \u201c<a href=\"https://www.postgresqlconference.org/content/building-and-distributing-postgresql-extensions-without-learning-c\">Building and Distributing PostgreSQL Extensions Without Learning C</a>\u201d, in which PGXN will of course be featured. Would be great to announce that the fundraising was successful.</p>\n\n<p>As for the time I\u2019ve put in so far, I\u2019m happy to have PGXN Manager up and working, but of course it has taken more hours than I expected. 76.5 so far. I\u2019d estimated 40. Meanwhile, the database design is up to 43 hours from the estimated 24. And that doesn\u2019t count the hours I spent chasing shiny yaks and shaving them, like <a href=\"http://search.cpan.org/perldoc?SemVer\">SemVer</a> and <a href=\"http://search.cpan.org/perldoc?Router::Resource\">Router::Resource</a>. Those of you who estimate development projects, take heed! I clearly need to double all my estimates before I submit them.</p>\n\n<p>Still, with the fundraising nearly done, I\u2019m committed to finishing this project. I view it as a project budget, and so that\u2019s what it will be, whether or not it takes me twice or four times as many hours as I\u2019d estimated.</p>\n\n<p>That said, you could help. Right? PGXN Manager is in good shape, but it\u2019s not done. If you\u2019d like to roll up your sleeves and contribute some code, please <a href=\"http://github.com/theory/pgxn-manager/\">fork it</a>, build it, and hack what you can. A few things on the to-do list:</p>\n\n<ul>\n<li>Add user admin interface. Should include checkbox to make and remove administrative permission</li>\n<li>Add mirror admin interface</li>\n<li>Add extension ownership permissions interface</li>\n</ul>\n\n<p>The database API is there for these bits already; the code would mainly be in Perl. Hit me on #pgxn on <a href=\"http://webchat.freenode.net/\">Freenode</a> if you want to help.</p>\n\n<p>If documentation is your thing, contributions there would be appreciated, as well. In particular, the <a href=\"http://manager.pgxn.org/about\">About PGXN</a> page is a bit thin. Other interfaces will need help, too. More on that as we add users.</p>\n\n<p>Thanks everyone for your support!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "xe8c0PqJ",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy1GdlF3",
+    "should_open_in_legacy": false,
+    "slug": "fundraising-development-update",
+    "state": "published",
+    "summary": "Fundraising and Development Update",
+    "tags": [
+        "Fundraising",
+        "develoment",
+        "pgxn",
+        "contribute",
+        "perl",
+        "database",
+        "PgWest",
+        "conference"
+    ],
+    "timestamp": 1287513837,
+    "title": "Fundraising and Development Update",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>Yesterday was a busy day. In addition to making the <a href=\"http://blog.pgxn.org/post/1352326020/first-upload\">first PGXN release</a>, I updated the fundraising spreadsheet and then the thermometer displayed on the <a href=\"http://pgxn.org/contributors.html\">main site</a>. The good news is that things are coming along nicely. Thanks to recent contributions from <a href=\"http://www.commandprompt.com/\">Command Prompt</a>, <a href=\"http://www.marchex.com/\">Marchex</a>, Hitoshi Harada, and <a href=\"http://www.25th-floor.com/\">25th-floor</a>, we are now just $2500 short of our goal of $25,000. Thank you all!</p>\n\n<p>Can you help us get to our goal in time for <a href=\"https://www.postgresqlconference.org/2010/west/\">PgWest 2010</a>, which is November 2-4 in San Francisco? I&rsquo;ll be giving a talk there, &ldquo;<a href=\"https://www.postgresqlconference.org/content/building-and-distributing-postgresql-extensions-without-learning-c\">Building and Distributing PostgreSQL Extensions Without Learning C</a>&rdquo;, in which PGXN will of course be featured. Would be great to announce that the fundraising was successful.</p>\n\n<p>As for the time I&rsquo;ve put in so far, I&rsquo;m happy to have PGXN Manager up and working, but of course it has taken more hours than I expected. 76.5 so far. I&rsquo;d estimated 40. Meanwhile, the database design is up to 43 hours from the estimated 24. And that doesn&rsquo;t count the hours I spent chasing shiny yaks and shaving them, like <a href=\"http://search.cpan.org/perldoc?SemVer\">SemVer</a> and <a href=\"http://search.cpan.org/perldoc?Router::Resource\">Router::Resource</a>. Those of you who estimate development projects, take heed! I clearly need to double all my estimates before I submit them.</p>\n\n<p>Still, with the fundraising nearly done, I&rsquo;m committed to finishing this project. I view it as a project budget, and so that&rsquo;s what it will be, whether or not it takes me twice or four times as many hours as I&rsquo;d estimated.</p>\n\n<p>That said, you could help. Right? PGXN Manager is in good shape, but it&rsquo;s not done. If you&rsquo;d like to roll up your sleeves and contribute some code, please <a href=\"http://github.com/theory/pgxn-manager/\">fork it</a>, build it, and hack what you can. A few things on the to-do list:</p>\n\n<ul>\n<li>Add user admin interface. Should include checkbox to make and remove administrative permission</li>\n<li>Add mirror admin interface</li>\n<li>Add extension ownership permissions interface</li>\n</ul>\n\n<p>The database API is there for these bits already; the code would mainly be in Perl. Hit me on #pgxn on <a href=\"http://webchat.freenode.net/\">Freenode</a> if you want to help.</p>\n\n<p>If documentation is your thing, contributions there would be appreciated, as well. In particular, the <a href=\"http://manager.pgxn.org/about\">About PGXN</a> page is a bit thin. Other interfaces will need help, too. More on that as we add users.</p>\n\n<p>Thanks everyone for your support!</p>",
+            "content_raw": "<p>Yesterday was a busy day. In addition to making the <a href=\"http://blog.pgxn.org/post/1352326020/first-upload\">first PGXN release</a>, I updated the fundraising spreadsheet and then the thermometer displayed on the <a href=\"http://pgxn.org/contributors.html\">main site</a>. The good news is that things are coming along nicely. Thanks to recent contributions from <a href=\"http://www.commandprompt.com/\">Command Prompt</a>, <a href=\"http://www.marchex.com/\">Marchex</a>, Hitoshi Harada, and <a href=\"http://www.25th-floor.com/\">25th-floor</a>, we are now just $2500 short of our goal of $25,000. Thank you all!</p>\n\n<p>Can you help us get to our goal in time for <a href=\"https://www.postgresqlconference.org/2010/west/\">PgWest 2010</a>, which is November 2-4 in San Francisco? I\u2019ll be giving a talk there, \u201c<a href=\"https://www.postgresqlconference.org/content/building-and-distributing-postgresql-extensions-without-learning-c\">Building and Distributing PostgreSQL Extensions Without Learning C</a>\u201d, in which PGXN will of course be featured. Would be great to announce that the fundraising was successful.</p>\n\n<p>As for the time I\u2019ve put in so far, I\u2019m happy to have PGXN Manager up and working, but of course it has taken more hours than I expected. 76.5 so far. I\u2019d estimated 40. Meanwhile, the database design is up to 43 hours from the estimated 24. And that doesn\u2019t count the hours I spent chasing shiny yaks and shaving them, like <a href=\"http://search.cpan.org/perldoc?SemVer\">SemVer</a> and <a href=\"http://search.cpan.org/perldoc?Router::Resource\">Router::Resource</a>. Those of you who estimate development projects, take heed! I clearly need to double all my estimates before I submit them.</p>\n\n<p>Still, with the fundraising nearly done, I\u2019m committed to finishing this project. I view it as a project budget, and so that\u2019s what it will be, whether or not it takes me twice or four times as many hours as I\u2019d estimated.</p>\n\n<p>That said, you could help. Right? PGXN Manager is in good shape, but it\u2019s not done. If you\u2019d like to roll up your sleeves and contribute some code, please <a href=\"http://github.com/theory/pgxn-manager/\">fork it</a>, build it, and hack what you can. A few things on the to-do list:</p>\n\n<ul>\n<li>Add user admin interface. Should include checkbox to make and remove administrative permission</li>\n<li>Add mirror admin interface</li>\n<li>Add extension ownership permissions interface</li>\n</ul>\n\n<p>The database API is there for these bits already; the code would mainly be in Perl. Hit me on #pgxn on <a href=\"http://webchat.freenode.net/\">Freenode</a> if you want to help.</p>\n\n<p>If documentation is your thing, contributions there would be appreciated, as well. In particular, the <a href=\"http://manager.pgxn.org/about\">About PGXN</a> page is a bit thin. Other interfaces will need help, too. More on that as we add users.</p>\n\n<p>Thanks everyone for your support!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "1352594371"
+            }
+        }
+    ],
+    "type": "text"
+}

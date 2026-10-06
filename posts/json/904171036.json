@@ -1,0 +1,182 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "David E. Wheeler is a Perl and PostgreSQL hacker, US politics junkie, Webapp developer, Portvangelist, and profane iconoclast. See also PGXN Blog.",
+        "name": "justatheory",
+        "title": "Just a Theory",
+        "tumblrmart_accessories": {},
+        "updated": 1558275800,
+        "url": "https://justatheory.tumblr.com/",
+        "uuid": "t:h995f5nGEtX1KKXj9fdWrA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>This project started when I wrote up the <a href=\"http://wiki.postgresql.org/wiki/PGXN\">specification</a> and got general approval from <a href=\"http://www.mail-archive.com/pgsql-hackers@postgresql.org/msg143645.html\" title=\"RFC: PostgreSQL Add-On Network\">pgsql-hackers</a>. Then, at <a href=\"http://www.pgcon.org/2010/\">PGCon</a>, it made the list of <a href=\"http://wiki.postgresql.org/wiki/PgCon_2010_Developer_Meeting#Development_Priorities_for_9.1\">development priorities for PostgreSQL 9.1</a> (when I was then calling it \u201cPGAN\u201d). It was when <a href=\"http://www.myyearbook.com/\">MyYearbook.com</a>\u2019s Gavin Roy pledged a founding contribution of $5,000 (also at PGCon) that I was able to put in the time to create the fundraising site and start soliciting donations. I\u2019m really grateful to Gavin for stepping up like that, putting his money on the line on the assumption that I would be as good as my word and get the work done.</p>\n\n<p>Since then, we\u2019ve done quite well, and are getting closer to our goal every day. <a href=\"http://www.pgexperts.com/\">PostgreSQL Experts</a> soon committed to cover $5,000 in expenses, <a href=\"http://www.dalibo.org/en/\">Dalibo</a> pledged \u20ac5,000 last month, and just yesterday <a href=\"http://www.etsy.com/\">Etsy</a> promised $1,000. We\u2019ve also received contributions from:</p>\n\n<ul>\n<li>Richard Broersma ($250)</li>\n<li><a href=\"http://tigerlead.com/\">TigerLead</a> ($250)</li>\n<li><a href=\"http://www.hubbellgrp.com/\">Hubbell Group Inc.</a> ($100)</li>\n<li>John S. Gage ($100)</li>\n<li>Damian Soto-Renou ($100)</li>\n<li>Thom Brown ($100)</li>\n<li><a href=\"http://www.kineticode.com/\">Kineticode, Inc.</a> ($25)</li>\n<li><a href=\"http://www.cxnet.cl/\">CxNet (Chile)</a> ($25)</li>\n<li><a href=\"http://www.schemaverse.com/\">Schemaverse</a> ($25)</li>\n</ul>\n\n<p>So far, we\u2019ve raised $18,359. Yay! I\u2019m really happy with how well this is going. But we still need to raise another $6,641 to meet our goal. I\u2019m hoping to get that done in the next couple of weeks. Can you <a href=\"http://pgxn.org/contributors.html\">help out</a>?</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2010-08-04 19:50:24 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 904171036,
+    "id_string": "904171036",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 0,
+    "post_author": "justatheory",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_0d81ceb5e1f7_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/904171036/fundraising-update",
+    "reblog": {
+        "comment": "<p>This project started when I wrote up the <a href=\"http://wiki.postgresql.org/wiki/PGXN\">specification</a> and got general approval from <a href=\"http://www.mail-archive.com/pgsql-hackers@postgresql.org/msg143645.html\" title=\"RFC: PostgreSQL Add-On Network\">pgsql-hackers</a>. Then, at <a href=\"http://www.pgcon.org/2010/\">PGCon</a>, it made the list of <a href=\"http://wiki.postgresql.org/wiki/PgCon_2010_Developer_Meeting#Development_Priorities_for_9.1\">development priorities for PostgreSQL 9.1</a> (when I was then calling it \u201cPGAN\u201d). It was when <a href=\"http://www.myyearbook.com/\">MyYearbook.com</a>\u2019s Gavin Roy pledged a founding contribution of $5,000 (also at PGCon) that I was able to put in the time to create the fundraising site and start soliciting donations. I\u2019m really grateful to Gavin for stepping up like that, putting his money on the line on the assumption that I would be as good as my word and get the work done.</p>\n\n<p>Since then, we\u2019ve done quite well, and are getting closer to our goal every day. <a href=\"http://www.pgexperts.com/\">PostgreSQL Experts</a> soon committed to cover $5,000 in expenses, <a href=\"http://www.dalibo.org/en/\">Dalibo</a> pledged \u20ac5,000 last month, and just yesterday <a href=\"http://www.etsy.com/\">Etsy</a> promised $1,000. We\u2019ve also received contributions from:</p>\n\n<ul>\n<li>Richard Broersma ($250)</li>\n<li><a href=\"http://tigerlead.com/\">TigerLead</a> ($250)</li>\n<li><a href=\"http://www.hubbellgrp.com/\">Hubbell Group Inc.</a> ($100)</li>\n<li>John S. Gage ($100)</li>\n<li>Damian Soto-Renou ($100)</li>\n<li>Thom Brown ($100)</li>\n<li><a href=\"http://www.kineticode.com/\">Kineticode, Inc.</a> ($25)</li>\n<li><a href=\"http://www.cxnet.cl/\">CxNet (Chile)</a> ($25)</li>\n<li><a href=\"http://www.schemaverse.com/\">Schemaverse</a> ($25)</li>\n</ul>\n\n<p>So far, we\u2019ve raised $18,359. Yay! I\u2019m really happy with how well this is going. But we still need to raise another $6,641 to meet our goal. I\u2019m hoping to get that done in the next couple of weeks. Can you <a href=\"http://pgxn.org/contributors.html\">help out</a>?</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "jlNRBFt8",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCyrv8uS",
+    "should_open_in_legacy": false,
+    "slug": "fundraising-update",
+    "state": "published",
+    "summary": "Fundraising Update",
+    "tags": [
+        "Fundraising",
+        "totals",
+        "update",
+        "MyYearbook",
+        "Dalibo",
+        "Etsy",
+        "TigerLead",
+        "Richard Broersma"
+    ],
+    "timestamp": 1280951424,
+    "title": "Fundraising Update",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>This project started when I wrote up the <a href=\"http://wiki.postgresql.org/wiki/PGXN\">specification</a> and got general approval from <a href=\"http://www.mail-archive.com/pgsql-hackers@postgresql.org/msg143645.html\" title=\"RFC: PostgreSQL Add-On Network\">pgsql-hackers</a>. Then, at <a href=\"http://www.pgcon.org/2010/\">PGCon</a>, it made the list of <a href=\"http://wiki.postgresql.org/wiki/PgCon_2010_Developer_Meeting#Development_Priorities_for_9.1\">development priorities for PostgreSQL 9.1</a> (when I was then calling it &ldquo;PGAN&rdquo;). It was when <a href=\"http://www.myyearbook.com/\">MyYearbook.com</a>&rsquo;s Gavin Roy pledged a founding contribution of $5,000 (also at PGCon) that I was able to put in the time to create the fundraising site and start soliciting donations. I&rsquo;m really grateful to Gavin for stepping up like that, putting his money on the line on the assumption that I would be as good as my word and get the work done.</p>\n\n<p>Since then, we&rsquo;ve done quite well, and are getting closer to our goal every day. <a href=\"http://www.pgexperts.com/\">PostgreSQL Experts</a> soon committed to cover $5,000 in expenses, <a href=\"http://www.dalibo.org/en/\">Dalibo</a> pledged &euro;5,000 last month, and just yesterday <a href=\"http://www.etsy.com/\">Etsy</a> promised $1,000. We&rsquo;ve also received contributions from:</p>\n\n<ul>\n<li>Richard Broersma ($250)</li>\n<li><a href=\"http://tigerlead.com/\">TigerLead</a> ($250)</li>\n<li><a href=\"http://www.hubbellgrp.com/\">Hubbell Group Inc.</a> ($100)</li>\n<li>John S. Gage ($100)</li>\n<li>Damian Soto-Renou ($100)</li>\n<li>Thom Brown ($100)</li>\n<li><a href=\"http://www.kineticode.com/\">Kineticode, Inc.</a> ($25)</li>\n<li><a href=\"http://www.cxnet.cl/\">CxNet (Chile)</a> ($25)</li>\n<li><a href=\"http://www.schemaverse.com/\">Schemaverse</a> ($25)</li>\n</ul>\n\n<p>So far, we&rsquo;ve raised $18,359. Yay! I&rsquo;m really happy with how well this is going. But we still need to raise another $6,641 to meet our goal. I&rsquo;m hoping to get that done in the next couple of weeks. Can you <a href=\"http://pgxn.org/contributors.html\">help out</a>?</p>",
+            "content_raw": "<p>This project started when I wrote up the <a href=\"http://wiki.postgresql.org/wiki/PGXN\">specification</a> and got general approval from <a href=\"http://www.mail-archive.com/pgsql-hackers@postgresql.org/msg143645.html\" title=\"RFC: PostgreSQL Add-On Network\">pgsql-hackers</a>. Then, at <a href=\"http://www.pgcon.org/2010/\">PGCon</a>, it made the list of <a href=\"http://wiki.postgresql.org/wiki/PgCon_2010_Developer_Meeting#Development_Priorities_for_9.1\">development priorities for PostgreSQL 9.1</a> (when I was then calling it \u201cPGAN\u201d). It was when <a href=\"http://www.myyearbook.com/\">MyYearbook.com</a>\u2019s Gavin Roy pledged a founding contribution of $5,000 (also at PGCon) that I was able to put in the time to create the fundraising site and start soliciting donations. I\u2019m really grateful to Gavin for stepping up like that, putting his money on the line on the assumption that I would be as good as my word and get the work done.</p>\n\n<p>Since then, we\u2019ve done quite well, and are getting closer to our goal every day. <a href=\"http://www.pgexperts.com/\">PostgreSQL Experts</a> soon committed to cover $5,000 in expenses, <a href=\"http://www.dalibo.org/en/\">Dalibo</a> pledged \u20ac5,000 last month, and just yesterday <a href=\"http://www.etsy.com/\">Etsy</a> promised $1,000. We\u2019ve also received contributions from:</p>\n\n<ul>\n<li>Richard Broersma ($250)</li>\n<li><a href=\"http://tigerlead.com/\">TigerLead</a> ($250)</li>\n<li><a href=\"http://www.hubbellgrp.com/\">Hubbell Group Inc.</a> ($100)</li>\n<li>John S. Gage ($100)</li>\n<li>Damian Soto-Renou ($100)</li>\n<li>Thom Brown ($100)</li>\n<li><a href=\"http://www.kineticode.com/\">Kineticode, Inc.</a> ($25)</li>\n<li><a href=\"http://www.cxnet.cl/\">CxNet (Chile)</a> ($25)</li>\n<li><a href=\"http://www.schemaverse.com/\">Schemaverse</a> ($25)</li>\n</ul>\n\n<p>So far, we\u2019ve raised $18,359. Yay! I\u2019m really happy with how well this is going. But we still need to raise another $6,641 to meet our goal. I\u2019m hoping to get that done in the next couple of weeks. Can you <a href=\"http://pgxn.org/contributors.html\">help out</a>?</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "904171036"
+            }
+        }
+    ],
+    "type": "text"
+}

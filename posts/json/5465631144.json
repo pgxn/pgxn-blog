@@ -1,0 +1,182 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "think doesn't hurts!",
+        "name": "guediz-blog",
+        "title": "Guedes",
+        "tumblrmart_accessories": {},
+        "updated": 0,
+        "url": "https://guediz-blog.tumblr.com/",
+        "uuid": "t:dlMvR_zctZvnxc5EPoA2dg"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<p>by Dickson S. Guedes</p>\n\n<p>Do you ever have problems with copy and paste? I often did, and that is why I create custom templates for often used files that match certain patterns.</p>\n\n<p>With files from the structure of PostgreSQL&rsquo;s extensions was the same thing.</p>\n\n<p>I was tired of creating the files and edit the META, controlfile, READMEs, etc. every time I start a new extension and felt that I need something that made me more productive, so I decided to create an automatic generator and share it with the world.</p>\n\n<p>I called it <a href=\"https://github.com/guedes/pgxn-utils/\">pgxn-utils</a>, and you should give it a try: it is easy to install, easy to use and will help you to start hacking quickly!</p>\n\n<p><strong>How?</strong></p>\n\n<ol>\n<li><p>First install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre></li>\n<li><p>Then start a new extension:</p>\n\n<pre><code>pgxn_utils skeleton my_cool_extension\n</code></pre></li>\n</ol>\n\n<p>Thats all! It will create the initial skeleton for you and you can start coding! But, if you don&rsquo;t want to install it, <a href=\"http://pgcasts.com/media/pgxn_utils-usage-example.mpeg\">see it in action</a></p>\n\n<p>Good hack!</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2011-05-14 01:05:00 GMT",
+    "display_avatar": true,
+    "format": "markdown",
+    "id": 5465631144,
+    "id_string": "5465631144",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": false,
+    "note_count": 2,
+    "post_author": "guediz-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_7a051b3a1888_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/5465631144/pgxn-utils",
+    "reblog": {
+        "comment": "<p>by Dickson S. Guedes</p>\n\n<p>Do you ever have problems with copy and paste? I often did, and that is why I create custom templates for often used files that match certain patterns.</p>\n\n<p>With files from the structure of PostgreSQL\u2019s extensions was the same thing.</p>\n\n<p>I was tired of creating the files and edit the META, controlfile, READMEs, etc. every time I start a new extension and felt that I need something that made me more productive, so I decided to create an automatic generator and share it with the world.</p>\n\n<p>I called it <a href=\"https://github.com/guedes/pgxn-utils/\">pgxn-utils</a>, and you should give it a try: it is easy to install, easy to use and will help you to start hacking quickly!</p>\n\n<p><strong>How?</strong></p>\n\n<ol>\n<li><p>First install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre></li>\n<li><p>Then start a new extension:</p>\n\n<pre><code>pgxn_utils skeleton my_cool_extension\n</code></pre></li>\n</ol>\n\n<p>Thats all! It will create the initial skeleton for you and you can start coding! But, if you don\u2019t want to install it, <a href=\"http://pgcasts.com/media/pgxn_utils-usage-example.mpeg\">see it in action</a></p>\n\n<p>Good hack!</p>",
+        "tree_html": ""
+    },
+    "reblog_key": "XwYCul69",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCy55nkce",
+    "should_open_in_legacy": false,
+    "slug": "pgxn-utils",
+    "state": "published",
+    "summary": "PGXN Utils",
+    "tags": [
+        "build",
+        "makefile",
+        "control file",
+        "readme",
+        "meta",
+        "create extension",
+        "skeleton",
+        "generator"
+    ],
+    "timestamp": 1305335100,
+    "title": "PGXN Utils",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p>by Dickson S. Guedes</p>\n\n<p>Do you ever have problems with copy and paste? I often did, and that is why I create custom templates for often used files that match certain patterns.</p>\n\n<p>With files from the structure of PostgreSQL&rsquo;s extensions was the same thing.</p>\n\n<p>I was tired of creating the files and edit the META, controlfile, READMEs, etc. every time I start a new extension and felt that I need something that made me more productive, so I decided to create an automatic generator and share it with the world.</p>\n\n<p>I called it <a href=\"https://github.com/guedes/pgxn-utils/\">pgxn-utils</a>, and you should give it a try: it is easy to install, easy to use and will help you to start hacking quickly!</p>\n\n<p><strong>How?</strong></p>\n\n<ol>\n<li><p>First install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre></li>\n<li><p>Then start a new extension:</p>\n\n<pre><code>pgxn_utils skeleton my_cool_extension\n</code></pre></li>\n</ol>\n\n<p>Thats all! It will create the initial skeleton for you and you can start coding! But, if you don&rsquo;t want to install it, <a href=\"http://pgcasts.com/media/pgxn_utils-usage-example.mpeg\">see it in action</a></p>\n\n<p>Good hack!</p>",
+            "content_raw": "<p>by Dickson S. Guedes</p>\n\n<p>Do you ever have problems with copy and paste? I often did, and that is why I create custom templates for often used files that match certain patterns.</p>\n\n<p>With files from the structure of PostgreSQL\u2019s extensions was the same thing.</p>\n\n<p>I was tired of creating the files and edit the META, controlfile, READMEs, etc. every time I start a new extension and felt that I need something that made me more productive, so I decided to create an automatic generator and share it with the world.</p>\n\n<p>I called it <a href=\"https://github.com/guedes/pgxn-utils/\">pgxn-utils</a>, and you should give it a try: it is easy to install, easy to use and will help you to start hacking quickly!</p>\n\n<p><strong>How?</strong></p>\n\n<ol>\n<li><p>First install it:</p>\n\n<pre><code>gem install pgxn_utils\n</code></pre></li>\n<li><p>Then start a new extension:</p>\n\n<pre><code>pgxn_utils skeleton my_cool_extension\n</code></pre></li>\n</ol>\n\n<p>Thats all! It will create the initial skeleton for you and you can start coding! But, if you don\u2019t want to install it, <a href=\"http://pgcasts.com/media/pgxn_utils-usage-example.mpeg\">see it in action</a></p>\n\n<p>Good hack!</p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "5465631144"
+            }
+        }
+    ],
+    "type": "text"
+}

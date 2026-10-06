@@ -1,0 +1,178 @@
+{
+    "author_blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": true,
+        "description": "",
+        "name": "pgxner-blog",
+        "title": "Untitled",
+        "tumblrmart_accessories": {},
+        "updated": 1706887749,
+        "url": "https://pgxner-blog.tumblr.com/",
+        "uuid": "t:cjDcSRpmxGYwEDRZLMadJA"
+    },
+    "blog": {
+        "avatar": [
+            {
+                "accessories": [],
+                "height": 512,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_512.png",
+                "width": 512
+            },
+            {
+                "accessories": [],
+                "height": 128,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_128.png",
+                "width": 128
+            },
+            {
+                "accessories": [],
+                "height": 96,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_96.png",
+                "width": 96
+            },
+            {
+                "accessories": [],
+                "height": 64,
+                "url": "https://64.media.tumblr.com/avatar_7f404d139c60_64.png",
+                "width": 64
+            }
+        ],
+        "can_show_badges": false,
+        "description": "News and updates from the PostgreSQL Extension Network",
+        "name": "pgxn",
+        "title": "PGXN Blog",
+        "tumblrmart_accessories": {},
+        "updated": 1788905462,
+        "url": "https://blog.pgxn.org/",
+        "uuid": "t:ClBjCzc_fG-V-30HC0uPgg"
+    },
+    "blog_name": "pgxn",
+    "body": "<h1>A Few Belated PGXN Updates</h1><p>The last couple weeks I&rsquo;ve returned to PGXN and made a few updates. Nothing huge, but all long overdue.</p><p>First up, <a href=\"https://manager.pgxn.org\">PGXN Manager</a> is all TSL now. No public HTTP-only site. What started as a convenient division of labor (http for the public site and https for the authenticated site) turned out to be quite irksome \u2014 especially since some browsers wouldn&rsquo;t load the non-TLS site at all anymore. So I did away with it, and now it&rsquo;s all TLS, authenticated and not. (The API and search sites have been TLS for a while now.)</p><p>I also fixed a few long-standing bugs in PGXN Manager, most of which weren&rsquo;t visible to end-users, but have annoyed me over the years. A few silly server errors, some instances of uploads failing for anything other than zip files, that sort of thing.</p><p>Oh, and if you&rsquo;re a extension author, PGXN Manger now allows updates to old distribution versions to be uploaded. Previously it only allowed a new version to be greater than all previous versions. Now it will allow a new X.Y.Z version if X.Y previously existed and the new .Z is greater, and a new X.Y version if X previously existed and the new .Y is greater than any previous X.Y. To get this to work properly, I also dropped the check for versions of extensions in the uploaded files. It would just be too complicated to add a bunch of rules more likely to annoy than not. So it now only enforces patterns for distribution release versions. I trust extension authors not to then lower extension versions on new releases \u2014 that would just be silly, and not helpful to your users.</p><p>As part of this work, I also revamped the management of the PGXN server. Back in 2010 I wrote Capistrano files to manage the server, but have long ceased to use them, as they ceased to work. I&rsquo;ve now removed all that detritus from the PGXN Manager, API, and Site repositories, and replaced them all with a single new repository, <a href=\"https://github.com/pgxn/pgxn-ops\">pgxn-ops</a>, which contains Ansible playbooks to manage all the services. They don&rsquo;t deal with a lot of the server-side stuff, which depsz handles separately, but they now make it much easier to build and deploy a new release, restart it remotely, manage passwords, etc.</p><p>And finally, I&rsquo;ve updated the <a href=\"https://pgxn.org/\">PGXN search site</a>. In addition to fixing a few long-standing minor annoyances (borders around images linked in documentation, broken links, etc.), I also updated most of the graphics to be retina-friendly. So it should look a lot sharper on your hi-res screens now. Check it out!</p><p>Next up I think I&rsquo;d like to make the search site more mobile-friendly, and then perhaps I&rsquo;ll finally go back and attack the terrible search provided by the API. I&rsquo;ll try to do it in less than five years this time.</p>",
+    "can_blaze": false,
+    "can_like": false,
+    "can_reblog": false,
+    "can_reply": false,
+    "can_send_in_message": true,
+    "date": "2021-05-15 03:16:44 GMT",
+    "display_avatar": true,
+    "format": "html",
+    "id": 651216661677064192,
+    "id_string": "651216661677064192",
+    "interactability_blaze": "everyone",
+    "interactability_reblog": "everyone",
+    "is_blaze_pending": false,
+    "is_blazed": false,
+    "is_blocks_post_format": true,
+    "note_count": 0,
+    "post_author": "pgxner-blog",
+    "post_author_avatar": [
+        {
+            "accessories": [],
+            "height": 512,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_512.png",
+            "width": 512
+        },
+        {
+            "accessories": [],
+            "height": 128,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_128.png",
+            "width": 128
+        },
+        {
+            "accessories": [],
+            "height": 96,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_96.png",
+            "width": 96
+        },
+        {
+            "accessories": [],
+            "height": 64,
+            "url": "https://64.media.tumblr.com/avatar_160572e5d4ae_64.png",
+            "width": 64
+        }
+    ],
+    "post_url": "https://blog.pgxn.org/post/651216661677064192/a-few-belated-pgxn-updates",
+    "reblog": {
+        "comment": "<p><h1>A Few Belated PGXN Updates</h1><p>The last couple weeks I\u2019ve returned to PGXN and made a few updates. Nothing huge, but all long overdue.</p><p>First up, <a href=\"https://manager.pgxn.org\">PGXN Manager</a> is all TSL now. No public HTTP-only site. What started as a convenient division of labor (http for the public site and https for the authenticated site) turned out to be quite irksome \u2014 especially since some browsers wouldn\u2019t load the non-TLS site at all anymore. So I did away with it, and now it\u2019s all TLS, authenticated and not. (The API and search sites have been TLS for a while now.)</p><p>I also fixed a few long-standing bugs in PGXN Manager, most of which weren\u2019t visible to end-users, but have annoyed me over the years. A few silly server errors, some instances of uploads failing for anything other than zip files, that sort of thing.</p><p>Oh, and if you\u2019re a extension author, PGXN Manger now allows updates to old distribution versions to be uploaded. Previously it only allowed a new version to be greater than all previous versions. Now it will allow a new X.Y.Z version if X.Y previously existed and the new .Z is greater, and a new X.Y version if X previously existed and the new .Y is greater than any previous X.Y. To get this to work properly, I also dropped the check for versions of extensions in the uploaded files. It would just be too complicated to add a bunch of rules more likely to annoy than not. So it now only enforces patterns for distribution release versions. I trust extension authors not to then lower extension versions on new releases \u2014 that would just be silly, and not helpful to your users.</p><p>As part of this work, I also revamped the management of the PGXN server. Back in 2010 I wrote Capistrano files to manage the server, but have long ceased to use them, as they ceased to work. I\u2019ve now removed all that detritus from the PGXN Manager, API, and Site repositories, and replaced them all with a single new repository, <a href=\"https://github.com/pgxn/pgxn-ops\">pgxn-ops</a>, which contains Ansible playbooks to manage all the services. They don\u2019t deal with a lot of the server-side stuff, which depsz handles separately, but they now make it much easier to build and deploy a new release, restart it remotely, manage passwords, etc.</p><p>And finally, I\u2019ve updated the <a href=\"https://pgxn.org/\">PGXN search site</a>. In addition to fixing a few long-standing minor annoyances (borders around images linked in documentation, broken links, etc.), I also updated most of the graphics to be retina-friendly. So it should look a lot sharper on your hi-res screens now. Check it out!</p><p>Next up I think I\u2019d like to make the search site more mobile-friendly, and then perhaps I\u2019ll finally go back and attack the terrible search provided by the API. I\u2019ll try to do it in less than five years this time.</p></p>",
+        "tree_html": ""
+    },
+    "reblog_key": "V9AUutRX",
+    "recommended_color": null,
+    "recommended_source": null,
+    "short_url": "https://tmblr.co/ZWDHCya9bXf-4y00",
+    "should_open_in_legacy": false,
+    "slug": "a-few-belated-pgxn-updates",
+    "state": "published",
+    "summary": "A Few Belated PGXN Updates",
+    "tags": [
+        "pgxn",
+        "upgrade",
+        "tls",
+        "retina"
+    ],
+    "timestamp": 1621048604,
+    "title": "",
+    "trail": [
+        {
+            "blog": {
+                "active": true,
+                "can_be_followed": true,
+                "name": "pgxn",
+                "share_following": false,
+                "share_likes": false,
+                "theme": {
+                    "avatar_shape": "square",
+                    "background_color": "#FAFAFA",
+                    "body_font": "Helvetica Neue",
+                    "header_bounds": 0,
+                    "header_image": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_focused": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_image_poster": "",
+                    "header_image_scaled": "https://assets.tumblr.com/images/default_header/optica_pattern_11.png?_v=4275fa0865b78225d79970023dde05a1",
+                    "header_stretch": true,
+                    "link_color": "#529ECC",
+                    "show_avatar": true,
+                    "show_description": true,
+                    "show_header_image": true,
+                    "show_title": true,
+                    "title_color": "#444444",
+                    "title_font": "Gibson",
+                    "title_font_weight": "bold"
+                }
+            },
+            "content": "<p><h1>A Few Belated PGXN Updates</h1><p>The last couple weeks I&rsquo;ve returned to PGXN and made a few updates. Nothing huge, but all long overdue.</p><p>First up, <a href=\"https://manager.pgxn.org\">PGXN Manager</a> is all TSL now. No public HTTP-only site. What started as a convenient division of labor (http for the public site and https for the authenticated site) turned out to be quite irksome &mdash; especially since some browsers wouldn&rsquo;t load the non-TLS site at all anymore. So I did away with it, and now it&rsquo;s all TLS, authenticated and not. (The API and search sites have been TLS for a while now.)</p><p>I also fixed a few long-standing bugs in PGXN Manager, most of which weren&rsquo;t visible to end-users, but have annoyed me over the years. A few silly server errors, some instances of uploads failing for anything other than zip files, that sort of thing.</p><p>Oh, and if you&rsquo;re a extension author, PGXN Manger now allows updates to old distribution versions to be uploaded. Previously it only allowed a new version to be greater than all previous versions. Now it will allow a new X.Y.Z version if X.Y previously existed and the new .Z is greater, and a new X.Y version if X previously existed and the new .Y is greater than any previous X.Y. To get this to work properly, I also dropped the check for versions of extensions in the uploaded files. It would just be too complicated to add a bunch of rules more likely to annoy than not. So it now only enforces patterns for distribution release versions. I trust extension authors not to then lower extension versions on new releases &mdash; that would just be silly, and not helpful to your users.</p><p>As part of this work, I also revamped the management of the PGXN server. Back in 2010 I wrote Capistrano files to manage the server, but have long ceased to use them, as they ceased to work. I&rsquo;ve now removed all that detritus from the PGXN Manager, API, and Site repositories, and replaced them all with a single new repository, <a href=\"https://github.com/pgxn/pgxn-ops\">pgxn-ops</a>, which contains Ansible playbooks to manage all the services. They don&rsquo;t deal with a lot of the server-side stuff, which depsz handles separately, but they now make it much easier to build and deploy a new release, restart it remotely, manage passwords, etc.</p><p>And finally, I&rsquo;ve updated the <a href=\"https://pgxn.org/\">PGXN search site</a>. In addition to fixing a few long-standing minor annoyances (borders around images linked in documentation, broken links, etc.), I also updated most of the graphics to be retina-friendly. So it should look a lot sharper on your hi-res screens now. Check it out!</p><p>Next up I think I&rsquo;d like to make the search site more mobile-friendly, and then perhaps I&rsquo;ll finally go back and attack the terrible search provided by the API. I&rsquo;ll try to do it in less than five years this time.</p></p>",
+            "content_raw": "<p><h1>A Few Belated PGXN Updates</h1><p>The last couple weeks I\u2019ve returned to PGXN and made a few updates. Nothing huge, but all long overdue.</p><p>First up, <a href=\"https://manager.pgxn.org\">PGXN Manager</a> is all TSL now. No public HTTP-only site. What started as a convenient division of labor (http for the public site and https for the authenticated site) turned out to be quite irksome \u2014 especially since some browsers wouldn\u2019t load the non-TLS site at all anymore. So I did away with it, and now it\u2019s all TLS, authenticated and not. (The API and search sites have been TLS for a while now.)</p><p>I also fixed a few long-standing bugs in PGXN Manager, most of which weren\u2019t visible to end-users, but have annoyed me over the years. A few silly server errors, some instances of uploads failing for anything other than zip files, that sort of thing.</p><p>Oh, and if you\u2019re a extension author, PGXN Manger now allows updates to old distribution versions to be uploaded. Previously it only allowed a new version to be greater than all previous versions. Now it will allow a new X.Y.Z version if X.Y previously existed and the new .Z is greater, and a new X.Y version if X previously existed and the new .Y is greater than any previous X.Y. To get this to work properly, I also dropped the check for versions of extensions in the uploaded files. It would just be too complicated to add a bunch of rules more likely to annoy than not. So it now only enforces patterns for distribution release versions. I trust extension authors not to then lower extension versions on new releases \u2014 that would just be silly, and not helpful to your users.</p><p>As part of this work, I also revamped the management of the PGXN server. Back in 2010 I wrote Capistrano files to manage the server, but have long ceased to use them, as they ceased to work. I\u2019ve now removed all that detritus from the PGXN Manager, API, and Site repositories, and replaced them all with a single new repository, <a href=\"https://github.com/pgxn/pgxn-ops\">pgxn-ops</a>, which contains Ansible playbooks to manage all the services. They don\u2019t deal with a lot of the server-side stuff, which depsz handles separately, but they now make it much easier to build and deploy a new release, restart it remotely, manage passwords, etc.</p><p>And finally, I\u2019ve updated the <a href=\"https://pgxn.org/\">PGXN search site</a>. In addition to fixing a few long-standing minor annoyances (borders around images linked in documentation, broken links, etc.), I also updated most of the graphics to be retina-friendly. So it should look a lot sharper on your hi-res screens now. Check it out!</p><p>Next up I think I\u2019d like to make the search site more mobile-friendly, and then perhaps I\u2019ll finally go back and attack the terrible search provided by the API. I\u2019ll try to do it in less than five years this time.</p></p>",
+            "is_current_item": true,
+            "is_root_item": true,
+            "post": {
+                "id": "651216661677064192"
+            }
+        }
+    ],
+    "type": "text"
+}
