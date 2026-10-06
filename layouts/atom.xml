@@ -1,0 +1,65 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+{{- $pages = $pctx.RegularPages -}}
+{{- else -}}
+{{- $pages = $pctx.Pages -}}
+{{- end -}}
+{{- $pages = where $pages "Params.exclude_from_feed" "!=" true -}}
+{{- $pages = where $pages "Title" "like" `[^ⓣ]$`}}{{/* Ignore Tweets */}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+{{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- $feedDescription := .Site.Params.feedDescription | default "summary" -}}
+{{ "<" | safeHTML }}?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<feed xmlns="http://www.w3.org/2005/Atom"{{ with .Site.Language.Locale }} xml:lang="{{ . }}"{{ end }}>
+	<id>{{ .Permalink }}</id>
+	<title>{{ .Title }}</title>{{ with (or .Description .Description .Summary )}}
+	<subtitle>{{ . }}</subtitle>{{ end }}
+	<updated>{{ .Date.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}</updated>{{ with .OutputFormats.Get "atom" }}
+	<link rel="self" type="application/atom+xml" href="{{ .Permalink }}"/>{{ end }}
+	{{- range where .AlternativeOutputFormats "Name" "ne" "atom" }}
+	<link rel="alternate" type="{{ .MediaType.Type }}{{ if eq .MediaType.FirstSuffix.Suffix "xml" }}+xml{{ end }}" href="{{ .Permalink }}"/>
+	{{- end }}{{ with .Site.Params.Author }}
+	<author>{{ with .name }}
+		<name>{{ . }}</name>{{ end }}{{ with .email }}
+		<email>{{ . }}</email>{{ end }}{{ with .url }}
+		<uri>{{ . }}</uri>{{ end }}
+	</author>{{ end }}
+	<generator uri="https://gohugo.io/" version="{{ hugo.Version }}">Hugo</generator>{{ with .Site.Params.icon }}
+	<icon>{{ . | absURL }}</icon>{{ end }}{{ with .Site.Copyright }}
+	<rights>{{.}}</rights>{{ end }}{{ $params := . }}
+	{{- range $pages }}
+	<entry>
+		<id>{{ if hasPrefix (index .Aliases 1) "/post/" }}https://blog.pgxn.org{{ index .Aliases 1 }}{{ else }}{{ .Permalink }}{{end}}</id>
+		{{ printf `<title type="html">%s</title>` (markdownify .Title | printf "<![CDATA[%s]]>" | safeHTML) | safeHTML }}
+		{{- if .Params.link }}{{ with .Params.link }}
+		<link rel="alternate" type="text/html" href="{{ . }}"/>{{ end }}
+		<link rel="related" type="text/html" href="{{ .Permalink }}"/>
+		{{- else }}
+		<link rel="alternate" type="text/html" href="{{ .Permalink }}"/>
+		{{- end }}{{ with .Params.via }}
+		<link rel="via" type="text/html" href="{{ .href }}" title="{{ .name }}"/>{{ end }}
+		<updated>{{ .Lastmod.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}</updated>
+		<published>{{ .Date.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}</published>
+{{- if (eq .Type "tags") }}
+		<summary type="html">{{ printf "Posts about %s" (markdownify .Title) | printf "<![CDATA[%s]]>" . | safeHTML }}</summary>
+{{- else -}}
+		{{ with (or .Params.author .Site.Params.Author) }}
+		<author>{{ with .name }}
+			<name>{{ . }}</name>{{ end }}{{ with .email }}
+			<email>{{ . }}</email>{{ end }}{{ with .url }}
+			<uri>{{ . }}</uri>{{ end }}
+		</author>{{ end }}
+		{{- $params := .Params }}
+		{{- range $term, $tax := .Site.Taxonomies }}{{ range (index $params $term) }}
+		<category scheme="{{ absURL $term }}" term="{{ . | urlize }}" label="{{ . }}"/>
+		{{- end }}{{ end }}{{ with (or .Description .Summary )}}
+		<summary type="html">{{ markdownify . | printf "<![CDATA[%s]]>" | safeHTML }}</summary>{{ end }}
+		<content type="html" xml:base="{{ .Site.BaseURL }}" xml:space="preserve">{{ markdownify .Content | printf "<![CDATA[%s]]>" | safeHTML }}</content>
+{{- end }}
+	</entry>
+	{{- end }}
+</feed>

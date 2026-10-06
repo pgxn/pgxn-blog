@@ -18,8 +18,18 @@ enableGitInfo = true
 		endLevel = 4 # ToC ends at H4
 		ordered = false # generates <ul> instead of <ol>
 
+[mediaTypes]
+  [mediaTypes.'application/atom+xml']
+    suffixes = ['xml']
+
+[outputFormats]
+  [outputFormats.atom]
+    mediaType = 'application/atom+xml'
+    noUgly = true
+
 [outputs]
-  home = [ "HTML", "RSS" ] # Generate RSS
+  home = [ "HTML", "Atom" ]
+  term = [ "HTML", "Atom" ]
 
 [permalinks]
 posts = "/:year/:slug/"
