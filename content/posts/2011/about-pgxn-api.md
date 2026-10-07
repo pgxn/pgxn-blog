@@ -82,8 +82,6 @@ enhance the value of PGXN overall. Some ideas:
 But I think we need to build up some momentum on the foundation that's in
 place. Have you submitted your extensions, yet?
 
-
-
   [PGXN Maanager]: https://blog.pgxn.org/post/4854707157/pgxn-manager
     "About the Infrastructure: PGXN Manager"
   [PGXN API Server]: https://api.pgxn.org/

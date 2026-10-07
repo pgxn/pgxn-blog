@@ -83,8 +83,6 @@ underway include
 My thanks to you all! Watch this space for further developments. I aim to have
 the project complete this winter, with a formal launch no later than [PGCon].
 
-
-
   [Enova Financial]: https://www.enovafinancial.com/
   [a spec]: https://wiki.postgresql.org/wiki/PGXN
   [project plan]: https://pgxn.org/status.html

@@ -17,31 +17,35 @@ via email, as a possible bottleneck).
 First, the `/dist` directory will be the same as before. Releases of pgTAP
 would be in:
 
-    dist/p/pg/pgtap/pgtap-0.23.pgz
-    dist/p/pg/pgtap/pgtap-0.23.json
-    dist/p/pg/pgtap/pgtap-0.23.readme
-    dist/p/pg/pgtap/pgtap-0.24.pgz
-    dist/p/pg/pgtap/pgtap-0.24.json
-    dist/p/pg/pgtap/pgtap-0.24.readme
-    dist/p/pg/pgtap/pgtap-0.25.pgz
-    dist/p/pg/pgtap/pgtap-0.25.json
-    dist/p/pg/pgtap/pgtap-0.25.readme
+```
+dist/p/pg/pgtap/pgtap-0.23.pgz
+dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.23.readme
+dist/p/pg/pgtap/pgtap-0.24.pgz
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.24.readme
+dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+```
 
 The only change is that the `pgtap.json` symlink is gone.
 
 Now, the new stuff. In the root directory will be a file, `index.json`, that
 contains templates for URIs. It will look something like this:
 
-    {
-        "dist":   "/dist/$a/$ab/$dist/$dist-$version.pgz",
-        "readme": "/dist/$a/$ab/$dist/$dist-$version.readme",
-        "meta":   "/dist/$a/$ab/$dist/$dist-$version.json",
+```json
+{
+    "dist":   "/dist/$a/$ab/$dist/$dist-$version.pgz",
+    "readme": "/dist/$a/$ab/$dist/$dist-$version.readme",
+    "meta":   "/dist/$a/$ab/$dist/$dist-$version.json",
 
-        "by-dist":      "/by/dist/$a/$ab/$dist.json",
-        "by-extension": "/by/extension/$a/$ab/$extension.json",
-        "by-owner":     "/by/owner/$a/$ab/$owner.json",
-        "by-manager":   "/by/manager/$a/$ab/$manager.json",
-    }
+    "by-dist":      "/by/dist/$a/$ab/$dist.json",
+    "by-extension": "/by/extension/$a/$ab/$extension.json",
+    "by-owner":     "/by/owner/$a/$ab/$owner.json",
+    "by-manager":   "/by/manager/$a/$ab/$manager.json",
+}
+```
 
 The PGXN client will always fetch this file before it does anything else,
 because the file tells it how to find stuff. The advantage here is that the
@@ -72,23 +76,25 @@ From the URI templates, you can now see where the other metadata will be
 stored. For extension names, a hypothetical pgTAP distribution with two
 extensions will have a JSON file for each extension:
 
-    /by/extension/p/pg/pgtap.json
-    /by/extension/s/sc/schematap.json
-
-
+```
+/by/extension/p/pg/pgtap.json
+/by/extension/s/sc/schematap.json
+```
 
 The `pgtap.json` file will look something like this:
 
-    "stable":   "0.25.0",
-    "testing":  "0.26.0b1",
-    "unstable": "0.30.0u",
-    "versions": {
-        "0.26.0b1": { "dist": "pgtap", "version": "0.26.0b1", "status": "testing" },
-        "0.30.0u":  { "dist": "pgtap", "version": "0.30.0u",  "status": "unstable" },
-        "0.25.0":   { "dist": "pgtap", "version": "0.25.0",   "status": "stable" },
-        "0.24.0":   { "dist": "pgtap", "version": "0.24.0",   "status": "stable" },
-        "0.25.0":   { "dist": "pgtap", "version": "0.23.0",   "status": "stable"  }
-    }
+```json
+"stable":   "0.25.0",
+"testing":  "0.26.0b1",
+"unstable": "0.30.0u",
+"versions": {
+    "0.26.0b1": { "dist": "pgtap", "version": "0.26.0b1", "status": "testing" },
+    "0.30.0u":  { "dist": "pgtap", "version": "0.30.0u",  "status": "unstable" },
+    "0.25.0":   { "dist": "pgtap", "version": "0.25.0",   "status": "stable" },
+    "0.24.0":   { "dist": "pgtap", "version": "0.24.0",   "status": "stable" },
+    "0.25.0":   { "dist": "pgtap", "version": "0.23.0",   "status": "stable"  }
+}
+```
 
 Right at the top, it would always list the most recent stable, testing, and
 unstable version number, and then it would have a list metadata for all
@@ -97,7 +103,9 @@ version, and release status.
 
 Here's how it would work. Say I ask the client to install pgtap:
 
-    PGXN> install extension pgtap
+```
+PGXN> install extension pgtap
+```
 
 The client would first fetch `/index.json`, then look for the URI template for
 "by-extension", which is `/by/extension/$a/$ab/$extension.json`. Filling in
@@ -119,33 +127,41 @@ The structure of the other `/by` files would be similar. For
 the client would use the "by-dist" URI template to construct the URL
 `/by/dist/p/pg/pgtap.json`. That file would have something like:
 
-    "stable":   "0.25.0",
-    "testing":  "0.26.0b1",
-    "unstable": "0.30.0u",
-    "versions": {
-        "0.26.0b1": "testing",
-        "0.30.0u":  "unstable",
-        "0.25.0":   "stable",
-        "0.24.0":   "stable" ,
-        "0.23.0":   "stable"
-    }
+```json
+"stable":   "0.25.0",
+"testing":  "0.26.0b1",
+"unstable": "0.30.0u",
+"versions": {
+    "0.26.0b1": "testing",
+    "0.30.0u":  "unstable",
+    "0.25.0":   "stable",
+    "0.24.0":   "stable" ,
+    "0.23.0":   "stable"
+}
+```
 
 So then the client would know that "0.25.0" was the most recent version, and
 use the `dist` URI template to request `/dist/p/pg/pgtap/pgtap-0.25.0.pgz`.
 
 If The client command had been:
 
-    PGXN> readme dist pgtap
+```
+PGXN> readme dist pgtap
+```
 
 It would use the `readme` URI template. And the command:
 
-    PGXN> meta dist pgtap
+```
+PGXN> meta dist pgtap
+```
 
 Would use the `meta` URI template to fetch the metadata for the distribution.
 
 If the client had requested a specific version:
 
-        PGXN> install dist 0.23.0
+```
+PGXN> install dist 0.23.0
+```
 
 It could either use the `by-dist` URI template to download the list of all
 versions to see if 0.23.0 was valid, or just use the `dist` URI template to
@@ -153,17 +169,21 @@ try to download the distribution itself.
 
 And finally, the owner and manager JSON files, such as
 
-    /owner/t/th/theory.json
+```
+/owner/t/th/theory.json
+```
 
 Would look something like:
 
-    "full_name": "David Wheeler",
-    "email": "theory@pgxn.org",
-    "uri": "https://justatheory.com",
-    "distributions": {
-        "pgtap": [ "0.25.0", "0.24.0", "0.23.0" ]
-        "pair": [ "0.2.0", "0.1.0", "0.0.5" ]
-    }
+```json
+"full_name": "David Wheeler",
+"email": "theory@pgxn.org",
+"uri": "https://justatheory.com",
+"distributions": {
+    "pgtap": [ "0.25.0", "0.24.0", "0.23.0" ]
+    "pair": [ "0.2.0", "0.1.0", "0.0.5" ]
+}
+```
 
 With that, the client can be asked to fetch metadata for a given owner name
 and use it to figure out what distributions and versions the the owner, um,
@@ -176,8 +196,6 @@ elegant that the prefix-staggering/hashing stuff, it would be just about
 perfect.
 
 Thoughts?
-
-
 
   [directory structure]: https://blog.pgxn.org/post/954535657/thoughts-on-the-network-directory-structure
   [Aristotle Pagaltzis]: https://plasmasturm.org/

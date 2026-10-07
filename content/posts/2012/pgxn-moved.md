@@ -75,8 +75,6 @@ to blog and work on PGXN going forward. Please leave your thoughts and ideas in
 the comments. This thing is wide open to any kind of idea, and I would greatly
 appreciate your feedback.
 
-
-
   [PGXN]: https://pgxn.org/
   [Kineticode]: https://kineticode.com/
   [Command Prompt]: https://commandprompt.com/

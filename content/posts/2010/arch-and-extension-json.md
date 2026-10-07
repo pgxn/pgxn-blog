@@ -37,44 +37,48 @@ change.
 Here's an example of what I'm thinking. Say that there are three versions of
 an extension named "trip", and that they appear in distributions as follows:
 
-    trip 0.2.6
-      pair-0.3.0
+```
+trip 0.2.6
+  pair-0.3.0
 
-    trip 0.2.5
-      trip-0.2.2
-      pair-0.2.2rc
-      pair-0.2.1
-      trip-0.1.1
+trip 0.2.5
+  trip-0.2.2
+  pair-0.2.2rc
+  pair-0.2.1
+  trip-0.1.1
 
-    trip 0.2.4
-      pair-0.1.1rc
-      pair-0.1.0
+trip 0.2.4
+  pair-0.1.1rc
+  pair-0.1.0
+```
 
 So sometimes it's in the "trip" distribution and other times it's in the
 "pair" distribution. My thought is that, for a given version, it would list
 the distributions it's in in reverse chronological order (by upload date). So
 the format would be:
 
-    {
-        "latest": "stable",
-        "stable": { "dist": "pair", "version": "0.3.0" },
-        "testing": { "dist": "pair", "version": "0.2.2rc" },
-        "distributions": {
-           "0.2.6": [
-              { "dist": "pair", "version": "0.3.0" }
-           ],
-           "0.2.5": [
-              { "dist": "trip", "version": "0.2.2" },
-              { "dist": "pair", "version": "0.2.2rc", "status": "testing" },
-              { "dist": "pair", "version": "0.2.1" },
-              { "dist": "trip", "version": "0.1.1" }
-           ],
-           "0.2.4": [
-              { "dist": "pair", "version": "0.1.1rc", "status": "testing" },
-              { "dist": "pair", "version": "0.1.0" }
-           ]
-        }
-    }
+```json
+{
+   "latest": "stable",
+   "stable": { "dist": "pair", "version": "0.3.0" },
+   "testing": { "dist": "pair", "version": "0.2.2rc" },
+   "distributions": {
+      "0.2.6": [
+         { "dist": "pair", "version": "0.3.0" }
+      ],
+      "0.2.5": [
+         { "dist": "trip", "version": "0.2.2" },
+         { "dist": "pair", "version": "0.2.2rc", "status": "testing" },
+         { "dist": "pair", "version": "0.2.1" },
+         { "dist": "trip", "version": "0.1.1" }
+      ],
+      "0.2.4": [
+         { "dist": "pair", "version": "0.1.1rc", "status": "testing" },
+         { "dist": "pair", "version": "0.1.0" }
+      ]
+   }
+}
+```
 
 This way, every distribution it's included in is listed, and clients can
 quickly tell where to find the latest stable, testing, and unstable versions,
@@ -86,8 +90,6 @@ Unless you can think of a better format, this is what I'm going with.
 Comments?
 
 Look for a post next week announcing an alpha program!
-
-
 
   [PGXN Manager]: https://github.com/theory/pgxn-manager
   [previously]: https://blog.pgxn.org/post/1082188310/db-status-update

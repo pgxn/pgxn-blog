@@ -48,8 +48,6 @@ will need help, too. More on that as we add users.
 
 Thanks everyone for your support!
 
-
-
   [first PGXN release]: https://blog.pgxn.org/post/1352326020/first-upload
   [main site]: https://pgxn.org/contributors.html
   [Command Prompt]: https://www.commandprompt.com/

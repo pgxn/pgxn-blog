@@ -23,45 +23,51 @@ Actually, this last one is very nice, as it allows me to use SQL syntax to
 specify function parameters instead of using an `hstore` value to hack it. For
 example, I have this function for update a user record:
 
-    CREATE OR REPLACE FUNCTION update_user(
-        nick  LABEL,
-        name  TEXT  DEFAULT NULL,
-        email EMAIL DEFAULT NULL,
-        uri   URI   DEFAULT NULL
-    ) RETURNS BOOLEAN LANGUAGE plpgsql SECURITY DEFINER AS $$
-    DECLARE
-        _email ALIAS FOR email;
-        _uri   ALIAS FOR uri;
-    BEGIN
-        UPDATE users
-           SET full_name  = COALESCE(name,   full_name),
-               email      = COALESCE(_email, users.email),
-               uri        = COALESCE(_uri,   users.uri),
-               updated_at = NOW()
-         WHERE nickname   = nick
-           AND status     = 'active';
-        RETURN FOUND;
-    END;
-    $$;
+```sql
+CREATE OR REPLACE FUNCTION update_user(
+    nick  LABEL,
+    name  TEXT  DEFAULT NULL,
+    email EMAIL DEFAULT NULL,
+    uri   URI   DEFAULT NULL
+) RETURNS BOOLEAN LANGUAGE plpgsql SECURITY DEFINER AS $$
+DECLARE
+    _email ALIAS FOR email;
+    _uri   ALIAS FOR uri;
+BEGIN
+    UPDATE users
+        SET full_name  = COALESCE(name,   full_name),
+            email      = COALESCE(_email, users.email),
+            uri        = COALESCE(_uri,   users.uri),
+            updated_at = NOW()
+        WHERE nickname   = nick
+        AND status     = 'active';
+    RETURN FOUND;
+END;
+$$;
+```
 
 The nice thing about named parameters is that I can call this function like
 so:
 
-    SELECT update_user(
-        nick  := 'theory',
-        name  := 'David E. Wheeler',
-        email := 'justatheory@pgxn.org',
-        uri   := 'https://www.justatheory.com/'
-    );
+```sql
+SELECT update_user(
+    nick  := 'theory',
+    name  := 'David E. Wheeler',
+    email := 'justatheory@pgxn.org',
+    uri   := 'https://www.justatheory.com/'
+);
+```
 
 Hell, since the parameters are named, I can specify them in any order. And
 because there are defaults, I can omit one or more of them:
 
-    SELECT update_user(
-        name  := 'David E. Wheeler',
-        email := 'justatheory@pgxn.org',
-        nick  := 'theory'
-    );
+```sql
+SELECT update_user(
+    name  := 'David E. Wheeler',
+    email := 'justatheory@pgxn.org',
+    nick  := 'theory'
+);
+```
 
 And it will just work. Nice!
 
@@ -87,8 +93,10 @@ into the parameter names.
 Then, on a guess, I tried creating aliases for the variables. From the example
 above, its:
 
-        _email ALIAS FOR email;
-        _uri   ALIAS FOR uri;
+```sql
+    _email ALIAS FOR email;
+    _uri   ALIAS FOR uri;
+```
 
 Then I used `_email` and `_uri` in my `UPDATE` statement. And what do you
 know, it worked! I found this somewhat humorous, given the history of `ALIAS`.
@@ -108,17 +116,21 @@ Well, almost. It seems that `ALIAS` means what it says: the parameter names
 are still around can can be used. So sometimes you might run into an error
 like
 
-    ERROR:  column reference "email" is ambiguous
+```
+ERROR:  column reference "email" is ambiguous
+```
 
 Even though you're not using the variable. I ran into this in the update
 function where I was using the column names in the left-hand side of the `SET`
 expressions. The solution, fortunately, is simple: table-qualify the column
 names as appropriate:
 
-    UPDATE users
-       SET full_name  = COALESCE(name,   full_name),
-           email      = COALESCE(_email, users.email),
-           uri        = COALESCE(_uri,   users.uri),
+```sql
+UPDATE users
+   SET full_name  = COALESCE(name,   full_name),
+       email      = COALESCE(_email, users.email),
+       uri        = COALESCE(_uri,   users.uri),
+```
 
 Note the use of `users.email` instead of just `email` in the `COALESCE()`
 function. Seems like a reasonable workaround in exchange for the ability to
@@ -132,23 +144,21 @@ More next week. I've been doing lots of hacking and have much to share, but
 have another project that will take up my time between now and Monday, so I'll
 have to come back to it.
 
-
-
 **Update 2010-08-07:** I turns out that there is a much better way to do this:
 Just function-name-qualify parameter names where they might conflict with
 database object names:
 
-    UPDATE users
-       SET full_name  = COALESCE(name,   full_name),
-           email      = COALESCE(update_users.email, users.email),
-           uri        = COALESCE(update_users.uri,   users.uri),
+```sql
+UPDATE users
+   SET full_name  = COALESCE(name,   full_name),
+       email      = COALESCE(update_users.email, users.email),
+       uri        = COALESCE(update_users.uri,   users.uri),
+```
 
 No need for the aliases at all! I had no idea about this feature. Many thanks
 to Colin 't Hart for the comment below about how this is available in Oracle
 and to Tom Lane for [smacking me upside the head] with [the fine manual] (look
 for the "note" at the bottom) when I asked about it.
-
-
 
   [PGXN Manager]: https://github.com/theory/pgxn-manager
   [JSON data type patch]: https://commitfest.postgresql.org/action/patch_view?id=351

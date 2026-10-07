@@ -16,8 +16,6 @@ Before I talk about that, though, I realize that I forgot to post the link to
 my slides from [PGWest]. I actually posted them *before* the talk, I just
 never got round to mentioning it here. So, here it is:
 
-
-
 I'm pretty happy with how it came out. The organizers shot video of it, too;
 I'll post a link or embed when it drops.
 
@@ -48,8 +46,6 @@ Oh, and if you want to see *your* extensions on this site, please do [register
 a PGXN Manager account]. Once your account is approved (and we're pretty quick
 to do so), have a look at the [how to] and release your extensions on PGXN
 today!
-
-
 
   [PGWest]: https://www.postgresqlconference.org/2010/west/
   [Building and Distributing PostgreSQL Extensions Without Learning C]: https://www.slideshare.net/justatheory/building-and-distributing-postgresql-extensions-without-learning-c

@@ -33,8 +33,6 @@ page for [PGXN], rather than a separate search.pgxn.org site. Thoughts?
 
 I'll post the slides tomorrow.
 
-
-
   [PostgreSQL Conference West presentation]: https://www.postgresqlconference.org/content/building-and-distributing-postgresql-extensions-without-learning-c
   [PGWest]: https://www.postgresqlconference.org/2010/west/
   [`CREATE EXTENSION`]: https://s.coop/pgext

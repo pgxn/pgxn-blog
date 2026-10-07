@@ -32,8 +32,6 @@ post length was extended to 280 characters sometime after the original bot. I
 have in mind to make a little library that allows the customization of
 messages via configuration.
 
-
-
   [twitter bot]: https://twitter.com/pgxn
   [PGXN Manager]: https://manager.pgxn.org
   [@pgxn@mastodon.social]: https://mastodon.social/@pgxn

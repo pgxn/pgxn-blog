@@ -28,10 +28,8 @@ approach?
 5.  Same as 4, but actually upload the PostgreSQL source
 
 I'm leaning towards #2, perhaps having it automatically maintain a list in the
-database and a metdata file on the mirrors.
+database and a metadata file on the mirrors.
 
 But what do you think? Opinions wanted!
-
-
 
   [contributed modules]: https://www.postgresql.org/docs/current/static/contrib.html

@@ -39,8 +39,6 @@ plain text, depending on the requestor's preferred type).
 I think this works pretty well, and I'm pleased to be making good use of HTTP.
 Does it make sense to you?
 
-
-
   [#plack]: irc://irc.perl.org/#plack
   [Post/Redirect/Get (RDG)]: https://en.wikipedia.org/wiki/Post/Redirect/Get
   [DuckDuckGoing it]: https://duckduckgo.com/?q=redirect+from+post

@@ -35,7 +35,5 @@ issues, but then it's less of a cool example of the use of the API server.
 
 What do you think? Good advice much appreciated!
 
-
-
   [mockup]: https://theory.github.com/pgxn/pgtapdist.html
   [API server]: https://api.pgxn.org/

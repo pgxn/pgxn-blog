@@ -45,6 +45,7 @@ accuracy in the determination of prerequisites.
 
 For example, say that we have two versions of distribution foo:
 
+```
   -----------------------------------------------------------------------------
   Distribution                           Extensions
   -------------------------------------- --------------------------------------
@@ -54,6 +55,7 @@ For example, say that we have two versions of distribution foo:
   foo 1.2.3                              foo 1.2.3\
                                          bar 1.2.2
   -----------------------------------------------------------------------------
+```
 
 Note how the version number of extension bar has not changed between releases.
 But if I was a user of both foo and bar, and I specified that I required bar
@@ -78,8 +80,6 @@ What do you think?
 
 Anyway, I'm getting to work on the Web app this week while this issue
 percolates. Been studying up on [Plack]. So nice!
-
-
 
   [PGXN Manager]: https://github.com/theory/pgxn-manager/
   [database API documentation]: https://github.com/theory/pgxn-manager/wiki/DB-API

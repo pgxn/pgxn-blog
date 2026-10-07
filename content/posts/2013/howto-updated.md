@@ -28,8 +28,6 @@ The main changes:
 Have a look at the [resulting diff for semver] to get an idea how you might
 want to update your own `Makefile`s.
 
-
-
   [Manager]: https://manager.pgxn.org/
   [How To]: https://manager.pgxn.org/howto
   [Cédric Villemain]: https://www.linkedin.com/in/cedricvillemain

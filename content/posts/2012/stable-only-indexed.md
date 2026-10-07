@@ -36,8 +36,6 @@ omitted from the index if there was an existing stable release.
 
 Thoughts?
 
-
-
   [PGXN]: https://pgxn.org/
   [search for "distinct"]: https://pgxn.org/search?q=distinct&in=docs
   [OmniPITR]: https://pgxn.org/dist/omnipitr/doc/internals.html

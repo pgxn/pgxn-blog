@@ -45,17 +45,19 @@ the distribution (and I expect this would be common), then you can make it
 pretty simple. For example, the `pair` distribution has only one SQL file. So
 the `META.json` could be:
 
-    {
-       "name": "pair",
-       "abstract": "A key/value pair data type",
-       "version": "0.1.0",
-       "maintainer": "David E. Wheeler <david@justatheory.com>",
-       "license": "postgresql",
-       "meta-spec": {
-          "version": "1.0.0",
-          "url": "https://pgxn.org/meta/spec.txt"
-       },
-    }
+```json
+{
+    "name": "pair",
+    "abstract": "A key/value pair data type",
+    "version": "0.1.0",
+    "maintainer": "David E. Wheeler <david@justatheory.com>",
+    "license": "postgresql",
+    "meta-spec": {
+      "version": "1.0.0",
+      "url": "https://pgxn.org/meta/spec.txt"
+    },
+}
+```
 
 That's it. The only thing that may not be obvious from this example is that
 all version numbers in a `META.json` *must* be [semantic versions]. If they're
@@ -108,21 +110,23 @@ be organized into subdirectories:
 I've tried to make the `pair` distribution a good [example of this]. To make
 it all work, The [Makefile] is written like so:
 
-    DATA = sql/pair.sql sql/uninstall_pair.sql
-    TESTS = $(wildcard test/sql/*.sql)
-    REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
-    REGRESS_OPTS = --inputdir=test
-    DOCS = doc/pair.txt
+```makefile
+DATA = sql/pair.sql sql/uninstall_pair.sql
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test
+DOCS = doc/pair.txt
 
-    ifdef NO_PGXS
-    top_builddir = ../..
-    include $(top_builddir)/src/Makefile.global
-    include $(top_srcdir)/contrib/contrib-global.mk
-    else
-    PG_CONFIG = pg_config
-    PGXS := $(shell $(PG_CONFIG) --pgxs)
-    include $(PGXS)
-    endif
+ifdef NO_PGXS
+top_builddir = ../..
+include $(top_builddir)/src/Makefile.global
+include $(top_srcdir)/contrib/contrib-global.mk
+else
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+endif
+```
 
 The `DATA` variable identifies the files containing the extension, while
 `TESTS` loads a list of all the tests, which are in the `test/sql` directory.
@@ -153,10 +157,12 @@ it's time to upload the distribution to PGXN. What you want to do is to zip it
 up to create a distribution archive. Here's what I did for `pair`, exporting
 it from Git:
 
-    git checkout-index -af --prefix ~/Desktop/pair-0.1.0/
-    cd ~/Desktop/
-    rm pair-0.1.0/.gitignore
-    zip -r pair-0.1.0.zip pair-0.1.0
+```sh
+git checkout-index -af --prefix ~/Desktop/pair-0.1.0/
+cd ~/Desktop/
+rm pair-0.1.0/.gitignore
+zip -r pair-0.1.0.zip pair-0.1.0
+```
 
 Then the `pair-0.1.0.zip` file was ready to upload. Simple, eh?
 
@@ -183,8 +189,6 @@ So be careful out there, and good luck!
 Oh, and if you have an extension that you'd like to release on PGXN now, I am
 running a limited beta for interested extension developers. Please hit the
 [mail list] for the details to be posted shortly.
-
-
 
   [upload of `pair`]: https://blog.pgxn.org/post/1352326020/first-upload
   [pgTAP]: https://pgtap.org/

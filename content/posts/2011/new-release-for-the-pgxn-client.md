@@ -18,7 +18,9 @@ create problems to some distributions which may have needed to munge it into a
 shape fitting their naming constraints. So, in order to install the last
 release you will need the command:
 
-    $ easy_install pgxnclient
+```console
+$ easy_install pgxnclient
+```
 
 The name of the entry point script is still `pgxn` and it shouldn't change.
 
@@ -47,8 +49,6 @@ the client features. And dare version 0.2, maybe :)
 
 Thanks everybody for the feedback. If you want to have a chat about the client
 or PGXN in general, the best place is [the PGXN group]. See you there!
-
-
 
   [Marti has commented]: https://blog.pgxn.org/post/5026314153/writing-a-client-for-pgxn#dsq-comments
   [the PGXN group]: https://groups.google.com/group/pgxn-users

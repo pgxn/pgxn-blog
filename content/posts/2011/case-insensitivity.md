@@ -43,8 +43,6 @@ of files. So if you look at the [pgTAP distribution page][pgTAP], you'll see
 that "This Release" is labeled "pgTAP 0.25.0" (I need to fix the `<h1>`
 element still).
 
-
-
   [italian_fts]: https://pgxn.org/dist/italian_fts/
   [Italian tag]: https://pgxn.org/tag/italian/
   [pgTAP]: https://pgxn.org/dist/pgtap/

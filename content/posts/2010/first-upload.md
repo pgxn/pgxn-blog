@@ -50,8 +50,6 @@ inviting folks to get an account and start uploading.
 But first, a blog post on how to create a PGXN-friendly distribution archive.
 Coming up shortly.
 
-
-
   [PGXN::Manager]: https://github.com/theory/pgxn-manager/
   [pair]: https://master.pgxn.org/dist/pair/
   [`pair-0.1.0.json`]: https://master.pgxn.org/dist/pair/pair-0.1.0.json

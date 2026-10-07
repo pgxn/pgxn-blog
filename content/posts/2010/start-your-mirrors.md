@@ -16,7 +16,9 @@ quickly as possible. The master mirror runs `rsyncd` with read-only access to
 the `pgxn` path. So all you have to do to mirror it is set up a `cron` job
 like:
 
-    rsync -az --delete rsync://master.pgxn.org/pgxn /path/to/pgxn
+```sh
+rsync -az --delete rsync://master.pgxn.org/pgxn /path/to/pgxn
+```
 
 If the destination directory is under an HTTP root, you're done. Otherwise,
 throw a web server over it and *then* you're done.
@@ -27,8 +29,6 @@ now, the mirrors just have two files in them (a `README` and an `index.html`).
 This is just the start of things. The next step is to figure out the directory
 structure for the mirrors. I'm working on that right now and will soon be
 asking for feedback. Watch this space for details!
-
-
 
   [mirroring]: https://pgxn.org/mirroring.html
   [status]: https://pgxn.org/status.html

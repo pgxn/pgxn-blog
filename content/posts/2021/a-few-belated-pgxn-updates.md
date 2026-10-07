@@ -53,8 +53,6 @@ Next up I think I'd like to make the search site more mobile-friendly, and
 then perhaps I'll finally go back and attack the terrible search provided by
 the API. I'll try to do it in less than five years this time.
 
-
-
   [PGXN Manager]: https://manager.pgxn.org
   [pgxn-ops]: https://github.com/pgxn/pgxn-ops
   [PGXN search site]: https://pgxn.org/

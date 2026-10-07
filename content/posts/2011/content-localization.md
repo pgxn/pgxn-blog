@@ -23,22 +23,26 @@ I've built the site (and [PGXN Manager]) using the Perl standard localization
 library [Locale::Maketext]. And it works great for short labels and such, like
 so:
 
-    our %Lexicon = (
-        hometitle => 'PGXN: PostgreSQL Extension Network',
-        'PostgreSQL Extension Network' => 'PostgreSQL Extension Network',
-        'About PGXN' => 'About PGXN',
-        'User' => 'User',
-        'Recent Uploads' => 'Recent Uploads',
-        'Blog' => 'Blog',
-        'Frequently Asked Questions' => 'Frequently Asked Questions',
-        'Release It' => 'Release It',
-    );
+```perl
+our %Lexicon = (
+    'hometitle' => 'PGXN: PostgreSQL Extension Network',
+    'PostgreSQL Extension Network' => 'PostgreSQL Extension Network',
+    'About PGXN' => 'About PGXN',
+    'User' => 'User',
+    'Recent Uploads' => 'Recent Uploads',
+    'Blog' => 'Blog',
+    'Frequently Asked Questions' => 'Frequently Asked Questions',
+    'Release It' => 'Release It',
+);
+```
 
-Translaters just have to copy this code into a subclass and change the strings
+Translators just have to copy this code into a subclass and change the strings
 on the right-hand side of the `=>`s. Easy, right? It's also very good with
 variables and pluralization. I just use it in the templates like this:
 
-    title { T 'PostgreSQL Extension Network' };
+```perl
+title { T 'PostgreSQL Extension Network' };
+```
 
 What sucks, however, is when I need to have longer content pages, especially
 those that mix HTML in with the text. The FAQ is particularly relevant here:
@@ -47,13 +51,17 @@ templating language encodes HTML entities. So I can't easily put HTML in the
 localization files, unless I put it in raw, and the output it raw. So the
 localization file might have a line like:
 
-    'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions' =>
-    'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions',
+```perl
+'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions' =>
+'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions',
+```
 
 And then the template would be told to output the text raw, without encoding
 HTML entities:
 
-    p { outs_raw T 'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions' };
+```perl
+p { outs_raw T 'Send us an <a href="mailto:pgxn@example.com">email</a> with your questions' };
+```
 
 So now we've lost the benefit of the templating, really: we have to write the
 raw HTML ourselves. And besides, for multi-paragraph documents, it gets
@@ -89,8 +97,6 @@ main site or something? Or perhaps we need a dedicated wiki server for shit
 like this (and some of those content pages like the FAQ, maybe).
 
 Thoughts?
-
-
 
   [day jobs]: https://www.kineticode.com/
   [PGXN Manager]: https://manager.pgxn.org/

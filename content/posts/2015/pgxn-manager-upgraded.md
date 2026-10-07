@@ -31,8 +31,6 @@ be handled.
 
 So what are you going to release on PGXN today? [Get to it!][How To].
 
-
-
   [PGXN Manager]: https://manager.pgxn.org/
   [master repository]: https://master.pgxn.org/
   [How To]: https://manager.pgxn.org/howto

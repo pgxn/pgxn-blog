@@ -48,7 +48,9 @@ generates. The design is flexible--but designed with a command-line client in
 mind. As such, many commands executed in a command-line client would likely
 requires multiple requests to a mirror. For example:
 
-    > install pgtap
+```console
+> install pgtap
+```
 
 This would request `/by/extension/pgtap.json` from the server. It would then
 parse that file and see that the latest stable version of pgTAP is in the
@@ -116,15 +118,19 @@ include:
 Of course. This is the big one, really. I think it makes sense to have the
 `/by` URI respond to search requests. Thus, a request for
 
-    /by?q=testing
+```
+/by?q=testing
+```
 
 would search everything. If you only want to search a certain category of
 object, you'd hit the appropriate URI:
 
-    /by/dist?q=tap
-    /by/owner?q=clochard
-    /by/tag?q=test
-    /by/extension?q=gis
+```
+/by/dist?q=tap
+/by/owner?q=clochard
+/by/tag?q=test
+/by/extension?q=gis
+```
 
 The nice thing about this is that it retains the existing entity URLs. The
 directory level determines which entities you get.
@@ -136,9 +142,7 @@ earnest tomorrow, and perhaps next week I can get a very early version out
 (basically just another mirror to start with).
 
 But what do you think? Seem like a sane approach? Am I missing anything
-obvious or doing anything clearly stupid? Please let me know in the commments!
-
-
+obvious or doing anything clearly stupid? Please let me know in the comments!
 
   [little side project]: https://www.designsceneapp.com/
   [main site]: https://pgxn.org/

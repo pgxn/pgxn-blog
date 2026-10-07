@@ -23,8 +23,6 @@ work.
 If you'e like to learn more, tune in! The whole conference will be
 live-streamed. Check [the site] on Wednesday to get hooked up.
 
-
-
   [Postgres Open]: https://www.postgresopen.org/
   [Get Your Preferred Feature Developed!]: https://postgresopen.org/2011/schedule/presentations/83/
   [the site]: https://www.postgresopen.org/ "Postgres Open"

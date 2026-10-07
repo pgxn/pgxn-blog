@@ -43,8 +43,6 @@ remember what it was, so screw it.
 Anyway, feedback on the API docs would be greatly appreciated. And -- *get
 hacking!*.
 
-
-
   [PGXN API Documentation]: https://github.com/pgxn/pgxn-api/wiki
   [API server]: https://api.pgxn.org/
   [Daniele Varrazzo]: https://profiles.google.com/daniele.varrazzo/about

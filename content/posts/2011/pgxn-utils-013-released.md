@@ -22,24 +22,28 @@ some work need to be done, yet.
 
 I used `pgxn-utils` to release itself to [PGXN][1]!
 
-    $ pgxn-utils release pgxn_utils-0.1.3.zip 
-    Enter your PGXN username: guedes
-    Enter your PGXN password: ***********************
-    Trying to release pgxn_utils-0.1.3.zip ... released successfully!
-    Visit: https://pgxn.org/dist/pgxn_utils/0.1.3/
+```console
+$ pgxn-utils release pgxn_utils-0.1.3.zip 
+Enter your PGXN username: guedes
+Enter your PGXN password: ***********************
+Trying to release pgxn_utils-0.1.3.zip ... released successfully!
+Visit: https://pgxn.org/dist/pgxn_utils/0.1.3/
+```
 
 Cool, eh? So, since the PGXN's mirrors were synced and you have `pgxn` client,
 you could install `pgxn_utils` using:
 
-    pgxn install pgxn_utils
+```sh
+pgxn install pgxn_utils
+```
 
 If you don't have `pgxn` client you can install it using rubygems
 
-    gem install pgxn_utils
+```sh
+gem install pgxn_utils
+```
 
 Have fun!
-
-
 
   [pgxn_utils]: https://github.com/guedes/pgxn-utils
   [PGXN]: https://pgxn.org

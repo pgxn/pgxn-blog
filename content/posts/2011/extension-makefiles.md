@@ -9,16 +9,18 @@ tags: [Extension, Makefile, make, Pgxs, pg_config]
 In order to keep distribution packaging as simple as possible, I worked up
 this `Makefile` some time ago:
 
-    DATA = $(wildcard sql/*.sql)
-    DOCS = $(wildcard doc/*.txt)
-    TESTS = $(wildcard test/sql/*.sql)
-    REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
-    REGRESS_OPTS = --inputdir=test --load-language=plpgsql
-    MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
+```makefile
+DATA = $(wildcard sql/*.sql)
+DOCS = $(wildcard doc/*.txt)
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test --load-language=plpgsql
+MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
 
-    PG_CONFIG = pg_config
-    PGXS := $(shell $(PG_CONFIG) --pgxs)
-    include $(PGXS)
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+```
 
 The nice thing about this code is that it has nothing specific to a
 distribution in it. It figures out what SQL files there are, what doc files
@@ -57,39 +59,41 @@ these changes, without requiring a lot of tweaking, so that other folks can
 easily use it in the future. Thanks to help from [Andrew Dunstan], this is
 what I've come up with:
 
-    EXTENSION=semver
-    EXTVERSION=0.2.2
+```makefile
+EXTENSION=semver
+EXTVERSION=0.2.2
 
-    DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
-    DOCS = $(wildcard doc/*.txt)
-    TESTS = $(wildcard test/sql/*.sql)
-    REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
-    REGRESS_OPTS = --inputdir=test --load-language=plpgsql
-    MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
+DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
+DOCS = $(wildcard doc/*.txt)
+TESTS = $(wildcard test/sql/*.sql)
+REGRESS = $(patsubst test/sql/%.sql,%,$(TESTS))
+REGRESS_OPTS = --inputdir=test --load-language=plpgsql
+MODULES = $(patsubst %.c,%,$(wildcard src/*.c))
 
-    PG_CONFIG = pg_config
+PG_CONFIG = pg_config
 
-    VERSION     = $(shell $(PG_CONFIG) --version | awk '{print $$2}')
-    PGVER_MAJOR = $(shell echo $(VERSION) | awk -F. '{ print ($$1 + 0) }')
-    PGVER_MINOR = $(shell echo $(VERSION) | awk -F. '{ print ($$2 + 0) }')
+VERSION     = $(shell $(PG_CONFIG) --version | awk '{print $$2}')
+PGVER_MAJOR = $(shell echo $(VERSION) | awk -F. '{ print ($$1 + 0) }')
+PGVER_MINOR = $(shell echo $(VERSION) | awk -F. '{ print ($$2 + 0) }')
 
-    ifeq ($(PGVER_MAJOR), 9)
-    ifneq ($(PGVER_MINOR), 0)
-    all: sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
+ifeq ($(PGVER_MAJOR), 9)
+ifneq ($(PGVER_MINOR), 0)
+all: sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
 
-    sql/$(EXTENSION)--$(EXTVERSION).sql: sql/$(EXTENSION).sql
-        cp $< $@
+sql/$(EXTENSION)--$(EXTVERSION).sql: sql/$(EXTENSION).sql
+    cp $< $@
 
-    sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql: sql/$(EXTENSION)--unpackaged.sql
-        cp $< $@
+sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql: sql/$(EXTENSION)--unpackaged.sql
+    cp $< $@
 
-    DATA = $(filter-out sql/$(EXTENSION)--unpackaged.sql,$(wildcard sql/*--*.sql)) sql/$(EXTENSION)--$(EXTVERSION).sql
-    EXTRA_CLEAN = sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
-    endif
-    endif
+DATA = $(filter-out sql/$(EXTENSION)--unpackaged.sql,$(wildcard sql/*--*.sql)) sql/$(EXTENSION)--$(EXTVERSION).sql
+EXTRA_CLEAN = sql/$(EXTENSION)--$(EXTVERSION).sql sql/$(EXTENSION)--unpackaged--$(EXTVERSION).sql
+endif
+endif
 
-    PGXS := $(shell $(PG_CONFIG) --pgxs)
-    include $(PGXS)
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+```
 
 This is not exactly ideal, but not *too* bad. It's not quite the drop-in
 version we had before, because now the first line needs to name the extension
@@ -101,8 +105,9 @@ rest of the file (mostly). Here's how it addresses the above requirements:
 - To exclude files with `--` in them on  9.1, the first `DATA` line filters
   them out:
 
-      DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
-
+```makefile
+DATA = $(filter-out $(wildcard sql/*--*.sql),$(wildcard sql/*.sql))
+```
 - Next, we need to know if we're on 9.1 or higher. So we use
   `pg_config --version` to get the version number and some `awk` stuff to get
   the major and minor parts. Then, if the major version is 9 and the minor is
@@ -141,8 +146,6 @@ something as simple as the first example at the top of this post.
 **UPDATE:** Added the `unpackaged` bits I didn't realize I needed until after
 I'd released a new version of [semver] and discovered that the "unpackaged"
 script needs to always be tied to the default version.
-
-
 
   [Andrew Dunstan]: https://people.planetpostgresql.org/andrew/
   [pgTAP Makefile]: https://github.com/theory/pgtap/blob/master/Makefile

@@ -25,18 +25,20 @@ easy to use and will help you to start hacking quickly!
 
 1.  First install it:
 
-        gem install pgxn_utils
+    ```sh
+    gem install pgxn_utils
+    ```
 
 2.  Then start a new extension:
 
-        pgxn_utils skeleton my_cool_extension
+    ```sh
+    pgxn_utils skeleton my_cool_extension
+    ```
 
 Thats all! It will create the initial skeleton for you and you can start
 coding! But, if you don't want to install it, [see it in action]
 
 Good hack!
-
-
 
   [pgxn-utils]: https://github.com/guedes/pgxn-utils/
   [see it in action]: https://pgcasts.com/media/pgxn_utils-usage-example.mpeg

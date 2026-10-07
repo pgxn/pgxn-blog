@@ -50,8 +50,6 @@ decent search results ASAP.
 
 Comments?
 
-
-
   [CPAN Search]: https://http//search.cpan.org
   [almost nothing]: https://master.pgxn.org/dist/countnulls/1.0.0/README.txt
   [like this]: https://theory.github.com/pgxn/pgtap.html

@@ -188,8 +188,6 @@ Next week, I plan to blog about
 But given how these things go, and how I need to start writing mirror API and
 API server documentation, it might take me a longer to get to them all.
 
-
-
   [mirrors]: https://api.pgxn.org/mirror/meta/mirrors.json
   [master mirror]: https://master.pgxn.org/
   [host a mirror]: https://pgxn.org/mirroring/

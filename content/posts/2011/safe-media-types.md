@@ -20,8 +20,6 @@ What PGXN::API does is simply change the mappings of some of those types to
 Are there other [media types][this file] that should be disabled for safe
 browsing of user-submitted content?
 
-
-
   [Plack::App::Directory]: https://search.cpan.org/perldoc?Plack::App::Directory
   [this file]: https://github.com/miyagawa/Plack/blob/master/lib/Plack/MIME.pm
   [this commit]: https://github.com/pgxn/pgxn-api/commit/0157c18cbc0835b627fa2e42b2433337f5f3fff5

@@ -56,8 +56,6 @@ Watch this space, and thanks for your patience!
 Oh, and if you want to help out, please do fork [PGXN::Manager][PGXN Manager]
 and ping me in #pgxn on Freenode for the deets on getting it built.
 
-
-
   [PGXN Manager]: https://github.com/theory/pgxn-manager
     "PGXN Manager repository on GitHub"
   [SemVer]: https://search.cpan.org/perldoc?SemVer

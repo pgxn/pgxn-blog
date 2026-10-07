@@ -11,12 +11,14 @@ By Daniele Varrazzo
 Finally, here it is. Well tested, documented, and pampered. With the [PGXN
 Client] installing extensions from the [PGXN Network] is a breeze:
 
-    $ pgxn install semver
-    $ pgxn load semver
-    $ psql
-    =# select 'foo'::semver;
-    ERROR:  bad semver value 'foo': expected number at foo
-    LINE 1: select 'foo'::semver;
+```console
+$ pgxn install semver
+$ pgxn load semver
+$ psql
+=# select 'foo'::semver;
+ERROR:  bad semver value 'foo': expected number at foo
+LINE 1: select 'foo'::semver;
+```
 
 Error! Meaning: success!
 
@@ -31,15 +33,15 @@ targeted for easier development of new extensions.
 
 The client is [released on PyPI], so installing is just:
 
-    $ sudo easy_install pgxnclient
+```console
+$ sudo easy_install pgxnclient
+```
 
 Complete documentation and further links are available from the [project
 homepage][PGXN Client].
 
 Any feedback is welcome; you can contact me and all the other people behind
 PGXN on the [PGXN User Group]. See you there!
-
-
 
   [PGXN Client]: https://pgxnclient.projects.postgresql.org/
   [PGXN Network]: https://pgxn.org/

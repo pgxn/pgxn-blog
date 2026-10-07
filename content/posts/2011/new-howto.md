@@ -30,8 +30,6 @@ comment!
 
 Oh, and check out [pgxn-utils] and simplify your extension-development life.
 
-
-
   [howto]: https://manager.pgxn.org/
   [PGXN]: https://pgxn.org/
   [`META.json`]: https://pgxn.org/spec/

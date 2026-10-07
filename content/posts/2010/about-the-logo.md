@@ -57,8 +57,6 @@ the tilt and the figure/ground reversal, and I really love it. It's a really
 great logo for a database extension site. I imagine I can use variants of this
 throughout the final design.
 
-
-
   [site]: https://pgxn.org/
   [blog]: https://blog.pgxn.org/
   [twitter stream]: https://twitter.com/pgxn/

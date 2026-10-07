@@ -19,8 +19,6 @@ I'm pleased to announce two things:
 
 Thank you for your support! More news to come, so stay tuned!
 
-
-
   [This blog]: https://blog.pgxn.org/
   [PGXN]: https://pgxn.org/
   [the feed]: https://blog.pgxn.org/rss

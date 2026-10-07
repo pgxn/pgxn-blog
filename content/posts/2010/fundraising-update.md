@@ -34,8 +34,6 @@ So far, we've raised $18,359. Yay! I'm really happy with how well this is
 going. But we still need to raise another $6,641 to meet our goal. I'm hoping
 to get that done in the next couple of weeks. Can you [help out]?
 
-
-
   [specification]: https://wiki.postgresql.org/wiki/PGXN
   [pgsql-hackers]: https://www.mail-archive.com/pgsql-hackers@postgresql.org/msg143645.html
     "RFC: PostgreSQL Add-On Network"

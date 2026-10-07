@@ -15,7 +15,5 @@ enter your username or email address, and check your mail for a reset link.
 Once you update your password, it will be stored in the new, more secure
 format.
 
-
-
   [PGXN Manager]: https://manager.pgxn.org/
   [password reset]: https://manager.pgxn.org/account/forgotten

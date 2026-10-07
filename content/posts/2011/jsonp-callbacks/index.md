@@ -10,25 +10,27 @@ Using the new [JSONP callback support] in the PGXN API, I just added a sidebar
 to [my personal blog] that shows a list of all my PGXN distributions. The code
 is simple:
 
-    <div class="links">
-        <h2>PGXN Code</h2>
-        <script type="text/javascript">
-        function pgxn_distros(data) {
-            document.write('<dl>');
-            for (dist in data.releases) {
-                document.write(
-                    '<dt><a href=https://pgxn.org/dist/' + dist +
-                    '>' + dist + '</a></dt>' +
-                    '<dd>' + data.releases[dist].abstract + '</dd>'
-                );
-            }
-            document.write('</dl>');
+```html
+<div class="links">
+    <h2>PGXN Code</h2>
+    <script type="text/javascript">
+    function pgxn_distros(data) {
+        document.write('<dl>');
+        for (dist in data.releases) {
+            document.write(
+                '<dt><a href=https://pgxn.org/dist/' + dist +
+                '>' + dist + '</a></dt>' +
+                '<dd>' + data.releases[dist].abstract + '</dd>'
+            );
         }
-      </script>
-      <script type="text/javascript"
-         src="https://api.pgxn.org/user/theory.json?callback=pgxn_distros">
-      </script>
-    </div>
+        document.write('</dl>');
+    }
+    </script>
+    <script type="text/javascript"
+        src="https://api.pgxn.org/user/theory.json?callback=pgxn_distros">
+    </script>
+</div>
+```
 
 And the output looks like this:
 

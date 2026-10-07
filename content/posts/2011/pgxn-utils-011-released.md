@@ -20,10 +20,12 @@ easy way to archive your extension in a zip file well named.
 
 To install it just type:
 
-    gem install pgxn_utils
+```sh
+gem install pgxn_utils
+```
 
-Or, if you don't want to install it yet, see it in action on this
-[screencast][] 3:05.
+Or, if you don't want to install it yet, see it in action on this [screencast]
+3:05.
 
 **Work in progress...**
 
@@ -34,8 +36,6 @@ There are a lot of work to do yet so, please, [tell me] if you found a bug or
 have suggestions.
 
 Have a nice code! ":)
-
-
 
   [pgxn_utils]: https://github.com/guedes/pgxn-utils
   [screencast]: https://blip.tv/pgcasts/pgxn_utils-0-1-1-released-5194610

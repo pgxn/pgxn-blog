@@ -32,7 +32,9 @@ is still a lot to be developed, but the idea is to release early, get feedback
 for it and improve it quickly to complete the extensions picture. So it's
 already [available on PyPI] and very easy to start with it: just use
 
-    $ sudo easy_install pgxnclient
+```console
+$ sudo easy_install pgxnclient
+```
 
 and in a few seconds you will have a script called `pgxn`, offering several
 commands that can be displayed with `pgxn --help` (and currently this is the
@@ -41,43 +43,51 @@ very quickly).
 
 Were you looking for a solution to store hashes? You may try:
 
-    $ pgxn search hash
-    sha 1.0.0
-    session_hash_tools 1.0.0
-    semver 0.2.1
+```console
+$ pgxn search hash
+sha 1.0.0
+session_hash_tools 1.0.0
+semver 0.2.1
+```
 
 Uhm, is `sha` a possible solution?
 
-    $ pgxn info sha
-    INFO: best version: sha 1.0.0
-    name: sha
-    abstract: This module provides datatypes for storing SHA-1,
-    SHA-2 and MD5 hashes
-    maintainer: Alexey Klyukin <a...@commandprompt.com>
-    license: postgresql
-    release_status: stable
-    version: 1.0.0
-    date: 2011-03-16T10:33:00Z
-    sha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd
-    provides: sha: 1.0.0
+```console
+$ pgxn info sha
+INFO: best version: sha 1.0.0
+name: sha
+abstract: This module provides datatypes for storing SHA-1,
+SHA-2 and MD5 hashes
+maintainer: Alexey Klyukin <a...@commandprompt.com>
+license: postgresql
+release_status: stable
+version: 1.0.0
+date: 2011-03-16T10:33:00Z
+sha1: 0187b0d261d302605bf8d0a15cdbd809deb245dd
+provides: sha: 1.0.0
+```
 
 Let's say it is exactly what we were looking for (we could also display the
 readme with `pgxn info --readme`). Shall we give it a try?
 
-    $ sudo pgxn install sha
-    INFO: best version: sha 1.0.0
-    INFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip
-    INFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip
-    INFO: building extension
-    [some compiler log]
-    INFO: installing extension
-    [files being copied]
+```console
+$ sudo pgxn install sha
+INFO: best version: sha 1.0.0
+INFO: saving /tmp/tmpj8G6kM/sha-1.0.0.zip
+INFO: unpacking: /tmp/tmpj8G6kM/sha-1.0.0.zip
+INFO: building extension
+[some compiler log]
+INFO: installing extension
+[files being copied]
+```
 
 Now the code is in the right place in the database directory (a specific
 `pg_config` can be specified to choose which one): If you want it in a
 specific database:
 
-    $ pgxn load -U postgres -d test sha
+```console
+$ pgxn load -U postgres -d test sha
+```
 
 This will result in CREATE EXTENSION being invoked, if the target database
 supports it, or in the loading of the provided sql file for PostgreSQL
@@ -100,8 +110,6 @@ keep on adding features to cover the entire extensions life cycle.
 
 **Edit**: the program has been [renamed to pgxnclient][]: the relevant URLs
 have been updated.
-
-
 
   [extensions]: https://developer.postgresql.org/pgdocs/postgres/extend-extensions.html
   [CREATE EXTENSION]: https://developer.postgresql.org/pgdocs/postgres/sql-createextension.html

@@ -22,28 +22,36 @@ zfs don't suffer that issue." But what about ext3?
 I happen to have a box with ext3, so I tested it. Here's what I found. To stat
 one file among 20,000, `time` says:
 
-    real    0m0.005s
-    user    0m0.000s
-    sys     0m0.000s
+```
+real    0m0.005s
+user    0m0.000s
+sys     0m0.000s
+```
 
 Not bad. And on file among 200?
 
-    real    0m0.009s
-    user    0m0.000s
-    sys     0m0.010s
+```
+real    0m0.009s
+user    0m0.000s
+sys     0m0.010s
+```
 
 Well, you can't get much closer than that. What about subdirectories? To stat
 a file inside one of 20,000 subdirectories, `time` tells me:
 
-    real    0m0.015s
-    user    0m0.010s
-    sys     0m0.000s
+```
+real    0m0.015s
+user    0m0.010s
+sys     0m0.000s
+```
 
 And a file inside one of 200 subdirectories:
 
-    real    0m0.005s
-    user    0m0.000s
-    sys     0m0.000s
+```
+real    0m0.005s
+user    0m0.000s
+sys     0m0.000s
+```
 
 Well, I can live with that. I suppose there are some file systems out there
 that still have this problem, but you know what? I'm not going to worry about
@@ -53,8 +61,6 @@ problem it is.
 
 So you know what? I'm not going to use the hashing of extension, distribution,
 and owner names. Let the file systems worry about that performance, not me.
-
-
 
   [organization of the mirror]: https://blog.pgxn.org/post/988613682/restful-directory
   [work around this issue in Bricolage]: https://github.com/bricoleurs/bricolage/commit/37c3ac85006503bde4240f642a315ff4c3fb425b

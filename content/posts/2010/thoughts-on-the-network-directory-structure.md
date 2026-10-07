@@ -44,13 +44,17 @@ the first two letters of distribution names. Let's say that I'm releasing
 [pgTAP] 0.25 on PGXN. To distribute it, the management application will create
 the directory (if it doesn't already exist):
 
-    dist/p/pg/pgtap/
+```
+dist/p/pg/pgtap/
+```
 
 Then, for the 0.25 release, it will add three files to that directory:
 
-    dist/p/pg/pgtap/pgtap-0.25.pgz
-    dist/p/pg/pgtap/pgtap-0.25.json
-    dist/p/pg/pgtap/pgtap-0.25.readme
+```
+dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+```
 
 The `pgtap-0.25.pgz` file will contain the [zipped distribution] ready for
 download. `pgtap-0.25.json` will contain metadata about the distribution, such
@@ -62,16 +66,18 @@ included extensions, location of the `.pgz` and `.readme`, and its SHA1.
 Every release of pgTAP will have these three files, so after several releases,
 the `pgtap` directory might have these files:
 
-    dist/p/pg/pgtap/pgtap-0.23.pgz
-    dist/p/pg/pgtap/pgtap-0.23.json
-    dist/p/pg/pgtap/pgtap-0.23.readme
-    dist/p/pg/pgtap/pgtap-0.24.pgz
-    dist/p/pg/pgtap/pgtap-0.24.json
-    dist/p/pg/pgtap/pgtap-0.24.readme
-    dist/p/pg/pgtap/pgtap-0.25.pgz
-    dist/p/pg/pgtap/pgtap-0.25.json
-    dist/p/pg/pgtap/pgtap-0.25.readme
-    dist/p/pg/pgtap/pgtap.json
+```
+dist/p/pg/pgtap/pgtap-0.23.pgz
+dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.23.readme
+dist/p/pg/pgtap/pgtap-0.24.pgz
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.24.readme
+dist/p/pg/pgtap/pgtap-0.25.pgz
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap-0.25.readme
+dist/p/pg/pgtap/pgtap.json
+```
 
 The last file there, `pgtap.json`, will actually be a symlink to the JSON file
 for latest production release of pgTAP. In this case, it would link to
@@ -84,34 +90,42 @@ The `by` directory will also contain JSON files for clients to request. The
 idea is that you want to find information "by" something. To start with, there
 will be three subdirectories:
 
-    by/extension/
-    by/manager/
-    by/owner/
+```
+by/extension/
+by/manager/
+by/owner/
+```
 
 The first directory, `by/extension/`, will contain links to JSON files for
 extensions. Say that the pgTAP distribution offers two extensions to
 PostgreSQL named "pgtap" and "schematap". The links would be:
 
-    by/extension/p/pg/pgtap/pgtap-0.23.json
-    by/extension/p/pg/pgtap/pgtap-0.24.json
-    by/extension/p/pg/pgtap/pgtap-0.25.json
-    by/extension/p/pg/pgtap/pgtap.json
+```
+by/extension/p/pg/pgtap/pgtap-0.23.json
+by/extension/p/pg/pgtap/pgtap-0.24.json
+by/extension/p/pg/pgtap/pgtap-0.25.json
+by/extension/p/pg/pgtap/pgtap.json
+```
 
 Each of these will simply be symlinks pointing to the appropriate distribution
 files:
 
-    dist/p/pg/pgtap/pgtap-0.23.json
-    dist/p/pg/pgtap/pgtap-0.24.json
-    dist/p/pg/pgtap/pgtap-0.25.json
-    dist/p/pg/pgtap/pgtap.json
+```
+dist/p/pg/pgtap/pgtap-0.23.json
+dist/p/pg/pgtap/pgtap-0.24.json
+dist/p/pg/pgtap/pgtap-0.25.json
+dist/p/pg/pgtap/pgtap.json
+```
 
 Yes, the last one is a symlink to a symlink. Similarly, these files for
 "schematap":
 
-    by/extension/s/sc/schematap/schematap-0.23.json
-    by/extension/s/sc/schematap/schematap-0.24.json
-    by/extension/s/sc/schematap/schematap-0.25.json
-    by/extension/s/sc/schematap/schematap.json
+```
+by/extension/s/sc/schematap/schematap-0.23.json
+by/extension/s/sc/schematap/schematap-0.24.json
+by/extension/s/sc/schematap/schematap-0.25.json
+by/extension/s/sc/schematap/schematap.json
+```
 
 Point to exactly the same files. Essentially, this is a way for extensions to
 point to the distributions that contain them.
@@ -143,7 +157,9 @@ distributions are free to describe their contributors however they wish).
 
 As the *owner* of a few extensions on PGXN, I'd have this file:
 
-    by/owner/t/th/theory.json
+```
+by/owner/t/th/theory.json
+```
 
 This file would contain a list of my distributions and perhaps some other
 information (like my full name and blog URL).
@@ -151,7 +167,9 @@ information (like my full name and blog URL).
 As the *manager* of extensions on PGXN (that is, I actually uploaded them), I
 would also have:
 
-    by/manager/t/th/theory.json
+```
+by/manager/t/th/theory.json
+```
 
 This file would contain a list of the distributions I've released on PGXN.
 This might be exactly the same as the list in my owner file, but may not be.
@@ -167,8 +185,6 @@ that next.
 
 But other than that, comments? Questions? Criticisms? Recommendations? Leave a
 comment and let me know!
-
-
 
   [CPAN]: https://www.cpan.org/misc/ZCAN.html
     "Zen of Comprehensive Archive Networks (look for “Naming”)"

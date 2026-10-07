@@ -49,7 +49,5 @@ No HTTP_X_FORWARDED_PORT or HTTP_X_FORWARDED_SSL or SSL_ENABLED or anything
 like that. Maybe I'm missing something in my reading of the [mod_proxy
 documentation]?
 
-
-
   [`uri_for`]: https://github.com/theory/pgxn-manager/blob/master/lib/PGXN/Manager/Request.pm#L14
   [mod_proxy documentation]: https://httpd.apache.org/docs/2.2/mod/mod_proxy.html

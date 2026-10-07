@@ -29,7 +29,9 @@ against that, instead." It was expected to be exceptional, since most folks
 would build against the local source tree, and not a big deal to make anyone
 else build it with:
 
-    make USE_PGXS=1
+```sh
+make USE_PGXS=1
+```
 
 Today things are different. There is a growing ecosystem of third party
 extensions on [PGXN], [pgFoundry], [GitHub], and [Bitbucket], and obviously
@@ -43,16 +45,18 @@ distribution, and so still have the `USE_PGXS` variable. The [twitter_ftw
 1.0.0 `Makefile`] is a recent example. Just like core extensions, it has this
 code:
 
-    ifdef USE_PGXS
-    PG_CONFIG = pg_config
-    PGXS := $(shell $(PG_CONFIG) --pgxs)
-    include $(PGXS)
-    else
-    subdir = contrib/twitter_fdw
-    top_builddir = ../..
-    include $(top_builddir)/src/Makefile.global
-    include $(top_srcdir)/contrib/contrib-global.mk
-    endif
+```makefile
+ifdef USE_PGXS
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+else
+subdir = contrib/twitter_fdw
+top_builddir = ../..
+include $(top_builddir)/src/Makefile.global
+include $(top_srcdir)/contrib/contrib-global.mk
+endif
+```
 
 Because Hitoshi-san originally copied the `Makefile` from a core extension, it
 still assumes it will be distributed in core by default. And as I said, there
@@ -67,9 +71,11 @@ have an extension `Makefile` with `USE_PGXS` like twitter_ftw 1.0.0 did, you
 should change it to something like this (as Hitoshi-san did in the
 [twitter_ftw 1.0.1 `Makefile`]):
 
-    PG_CONFIG = pg_config
-    PGXS := $(shell $(PG_CONFIG) --pgxs)
-    include $(PGXS)
+```makefile
+PG_CONFIG = pg_config
+PGXS := $(shell $(PG_CONFIG) --pgxs)
+include $(PGXS)
+```
 
 That's it. I am asking you to *make your `Makefile` simpler.*
 
@@ -97,8 +103,6 @@ look at the [PGXN Howto], which includes some detailed examples that include
 support for pre- and post-[`CREATE EXTENSION`] support. The [PGXS] docs
 contain additional details about all the `Makefile` variables you can use to
 simplify extension configuration and installation. Check 'em out.
-
-
 
   [contrib modules]: https://www.postgresql.org/docs/current/static/contrib.html
   [example]: https://git.postgresql.org/gitweb/?p=postgresql.git;a=blob;f=contrib/isn/Makefile;hb=HEAD

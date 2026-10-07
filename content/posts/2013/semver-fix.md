@@ -53,8 +53,6 @@ here's a list of the changed distributions:
 Apologies for the dead links, and for taking so long to get this stuff cleaned
 up.
 
-
-
   [Semantic Version]: https://semver.org/
   [updated]: https://github.com/mojombo/semver/commit/05a00df02db3d4ba83e0caaff6b31c10c77f7d3d
   [here]: https://github.com/mojombo/semver/issues/49#issuecomment-19705479

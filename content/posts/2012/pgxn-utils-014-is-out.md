@@ -25,7 +25,9 @@ You can start a new extension with or without version control. By default
 
 You can try:
 
-    $ pgxn-utils skeleton my_cool_versioned_extension --git
+```console
+$ pgxn-utils skeleton my_cool_versioned_extension --git
+```
 
 When you create a new extension with git support in addition to creating the
 skeleton, `pgxn-utils` will initialize a git repository and create the initial
@@ -48,8 +50,10 @@ the extension calling `skeleton` with a `--template` option.
 
 Try:
 
-    $ pgxn-utils skeleton my_cool_c_extension --template=c
-    $ pgxn-utils skeleton my_cool_fdw_extension --template=fdw
+```console
+$ pgxn-utils skeleton my_cool_c_extension --template=c
+$ pgxn-utils skeleton my_cool_fdw_extension --template=fdw
+```
 
 The templates contain example code and some links to PostgreSQL documentation
 that will try to help you to start coding. SQL and C templates contains some
@@ -73,51 +77,51 @@ If you have [PGXN client] installed you can change the command line from
 
 See:
 
-    $ cd /tmp
-    $ pgxn skeleton --help
-    PGXN Utils version: 0.1.4
-    Usage:
-      pgxn skeleton extension_name
+```console
+$ cd /tmp
+$ pgxn skeleton --help
+PGXN Utils version: 0.1.4
+Usage:
+  pgxn skeleton extension_name
 
-    Options:
-          [--git]                            # Initialize a git repository after create the extension
-      -a, [--abstract=ABSTRACT]              # Defines a short description to abstract
-      -p, [--target=TARGET]                  # Define the target directory
-                                             # Default: .
-          [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw
-                                             # Default: sql
-      -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status
-      -d, [--description=DESCRIPTION]        # A long text that contains more information about extension
-      -b, [--generated-by=GENERATED_BY]      # Name of extension's generator
-      -l, [--license=LICENSE]                # The extension license
-      -t, [--tags=one two three]             # Defines extension's tags
-      -v, [--version=VERSION]                # Initial version
-      -m, [--maintainer=MAINTAINER]          # Maintainer's name <maintainer@email>
+Options:
+      [--git]                            # Initialize a git repository after create the extension
+  -a, [--abstract=ABSTRACT]              # Defines a short description to abstract
+  -p, [--target=TARGET]                  # Define the target directory
+                                          # Default: .
+      [--template=TEMPLATE]              # The template that will be used to create the extension. Expected values are: sql, c, fdw
+                                          # Default: sql
+  -r, [--release-status=RELEASE_STATUS]  # Initial extension's release status
+  -d, [--description=DESCRIPTION]        # A long text that contains more information about extension
+  -b, [--generated-by=GENERATED_BY]      # Name of extension's generator
+  -l, [--license=LICENSE]                # The extension license
+  -t, [--tags=one two three]             # Defines extension's tags
+  -v, [--version=VERSION]                # Initial version
+  -m, [--maintainer=MAINTAINER]          # Maintainer's name <maintainer@email>
 
-    Creates an extension skeleton in current directory
+Creates an extension skeleton in current directory
 
-    $ pgxn skeleton test
-          create  test
-          create  test/test.control
-          create  test/.gitignore
-          create  test/.template
-          create  test/META.json
-          create  test/Makefile
-          create  test/README.md
-          create  test/doc/test.md
-          create  test/sql/test.sql
-          create  test/sql/uninstall_test.sql
-          create  test/test/expected/base.out
-          create  test/test/sql/base.sql
+$ pgxn skeleton test
+      create  test
+      create  test/test.control
+      create  test/.gitignore
+      create  test/.template
+      create  test/META.json
+      create  test/Makefile
+      create  test/README.md
+      create  test/doc/test.md
+      create  test/sql/test.sql
+      create  test/sql/uninstall_test.sql
+      create  test/test/expected/base.out
+      create  test/test/sql/base.sql
 
-    $ cd test/
-    $ pgxn bundle
-             run  make distclean from "."
-          create  /tmp/test-0.0.1.zip
+$ cd test/
+$ pgxn bundle
+          run  make distclean from "."
+      create  /tmp/test-0.0.1.zip
+```
 
 I hope you enjoy this version. ":)
-
-
 
   [PGXN Utils]: https://github.com/guedes/pgxn-utils
   [PGXN Client]: https://pgxnclient.projects.postgresql.org/

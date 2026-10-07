@@ -22,7 +22,9 @@ You've no doubt seem similar badges for Ruby, Perl, and Python modules. Now
 the fun comes to PGXN. Want in? Assuming you have a distribution named
 `pgfoo`, just put code like this into the README file:
 
-    [![PGXN version](https://badge.fury.io/pg/pgfoo.svg)](https://badge.fury.io/pg/pgfoo)
+```md
+[![PGXN version](https://badge.fury.io/pg/pgfoo.svg)](https://badge.fury.io/pg/pgfoo)
+```
 
 This is [Markdown] format; use the syntax appropriate to your preferred README
 format to get the badge to show up on GitHub and PGXN.
@@ -35,7 +37,9 @@ Use [Travis CI]? You can badge your build status, too, as I've done for
 
 [![Build Status]][2]
 
-    [![Build Status](https://travis-ci.org/theory/pgtap.png)](https://travis-ci.org/theory/pgtap)
+```md
+[![Build Status](https://travis-ci.org/theory/pgtap.png)](https://travis-ci.org/theory/pgtap)
+```
 
 [Coveralls] provides patches, too. I've used them for [Sqitch], though I've
 not yet taken the time figure out how to do coverage testing with PostgreSQL
@@ -43,11 +47,11 @@ extensions. If you have, you can badge your current coverage like so:
 
 [![Coverage Status]][3]
 
-    [![Coverage Status](https://coveralls.io/repos/theory/sqitch/badge.svg)](https://coveralls.io/r/theory/sqitch)
+```md
+[![Coverage Status](https://coveralls.io/repos/theory/sqitch/badge.svg)](https://coveralls.io/r/theory/sqitch)
+```
 
 So get badging, and show off your PGXN distributions GitHub and elsewhere!
-
-
 
   [Version Badge]: https://badge.fury.io
   [Gemfury]: https://gemfury.com/

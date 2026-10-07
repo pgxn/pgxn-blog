@@ -18,17 +18,19 @@ deprecated fields removed, and some of the more complex stuff taken out. I
 also made a couple of the "required" fields "optional." At its simplest, the
 file might look something like this:
 
-    {
-      "name": "pgTAP",
-      "abstract": "Unit testing for PostgreSQL",
-      "version": "0.25.0",
-      "owner": "David E. Wheeler <theory@pgxn.org>",
-      "license": "postgresql",
-      "meta-spec": {
-        "version": "1.0.0",
-        "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
-      }
-    }
+```json
+{
+  "name": "pgTAP",
+  "abstract": "Unit testing for PostgreSQL",
+  "version": "0.25.0",
+  "owner": "David E. Wheeler <theory@pgxn.org>",
+  "license": "postgresql",
+  "meta-spec": {
+    "version": "1.0.0",
+    "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+  }
+}
+```
 
 Not too bad, eh? The URL for the spec might change (might move it to the main
 site and/or the mirrors), but otherwise, I think this is pretty solid. Not too
@@ -42,32 +44,34 @@ distribution. For example, if I were to release an [ordered pair] extension,
 it of course would include tests written with [pgTAP]. So I'd have something
 like:
 
-    {
-      "name": "pair",
-      "abstract": "An ordered pair data type",
-      "version": "0.1.0",
-      "owner": "David E. Wheeler <theory@pgxn.org>",
-      license: "postgresql",
-      "meta-spec": {
-        "version": "1.0.0",
-        "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+```json
+{
+  "name": "pair",
+  "abstract": "An ordered pair data type",
+  "version": "0.1.0",
+  "owner": "David E. Wheeler <theory@pgxn.org>",
+  license: "postgresql",
+  "meta-spec": {
+    "version": "1.0.0",
+    "url": "https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec"
+  },
+  "prereqs": {
+    "runtime": {
+      "requires": {
+        "PostgreSQL": "8.0.0"
       },
-      "prereqs": {
-        "runtime": {
-          "requires": {
-            "PostgreSQL": "8.0.0"
-          },
-          "recommends": {
-            "PostgreSQL": "8.4.0"
-          }
-        },
-        "test": {
-          "requires": {
-            "pgTAP": 0
-          }
-        }
+      "recommends": {
+        "PostgreSQL": "8.4.0"
+      }
+    },
+    "test": {
+      "requires": {
+        "pgTAP": 0
       }
     }
+  }
+}
+```
 
 That's saying that the "pair" distribution requires PostgreSQL 8.0.0 or higher
 and any version of pgTAP to run the test suite. I've also recommended
@@ -80,21 +84,24 @@ assertions from the logical testing assertions in pgTAP. I might call the
 second module "schematap." So to spell it out, I'd add this to the first
 example above:
 
-      "pgtap": {
-        "file": "sql/pgtap.sql.in",
-        "version": "0.25.0"
-      },
-      "schematap": {
-        "file": "sql/schematap.sql.in"
-      }
-
+```json
+  "pgtap": {
+    "file": "sql/pgtap.sql.in",
+    "version": "0.25.0"
+  },
+  "schematap": {
+    "file": "sql/schematap.sql.in"
+  }
+```
 So now the indexer will know that the "pgtap" extension is in
 `sql/pgtap.sql.in` and the "schematap" extension is in `sql/schematap.sql.in`.
 This is important because it allows other distributions to specify "schematap"
 as a prerequisite. It also means that, in the PGXN client, you can type
 something like:
 
-    PGXN> install schematap
+```
+PGXN> install schematap
+```
 
 And, because "schematap" will have been indexed on the network, the client
 will be able to find the pgTAP distribution and install it, complete with the
@@ -123,8 +130,6 @@ or questions below. I expect to start hacking on this stuff this week!
 "owner" to "maintainer." I think that the latter term is much better for this
 purpose. And then I can use "owner" in PGXN to identify the person who uploads
 a distribution.
-
-
 
   [PGXN Meta Spec]: https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec
   [CPAN Meta Spec]: https://search.cpan.org/perldoc?CPAN::Meta::Sepc

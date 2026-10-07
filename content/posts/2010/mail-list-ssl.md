@@ -37,8 +37,6 @@ user-only access from public access?
 
 More soon.
 
-
-
   [Kineticode]: https://kineticode.com/
   [mail list]: https://groups.google.com/group/pgxn-users
   [`META.json`]: https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec

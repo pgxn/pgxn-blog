@@ -51,8 +51,6 @@ is entirely my own. More eyes will be a huge help!
 Tomorrow I'll blog a bit about the architecture for the network. I'm quite
 happy with it.
 
-
-
   [PGXN SITE]: https://pgxn.org/
   [example]: https://pgxn.org/user/alexk
   [1]: https://pgxn.org/dist/explanation/
