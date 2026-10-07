@@ -1,0 +1,4 @@
+    {{- with .OutputFormats.Get "atom" }}
+    <link href="{{ .RelPermalink }}" rel="alternate" type="application/atom+xml" title="{{ $.Site.Title }}">
+    <link href="{{ .RelPermalink }}" rel="feed" type="application/atom+xml" title="{{ $.Site.Title }}">
+    {{- end }}
