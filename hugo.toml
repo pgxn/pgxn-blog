@@ -38,12 +38,12 @@ posts = "/:year/:slug/"
 [menu]
   [[menu.main]]
     pageRef="posts"
-    name = 'PGXN'
+    name = '⚙️ PGXN'
     url = 'https://pgxn.org'
     weight = 10
   [[menu.main]]
     pageRef="tags"
-    name = 'Tags'
+    name = '🏷️ Tags'
     url = '/tags/'
     weight = 20
 
@@ -55,7 +55,7 @@ posts = "/:year/:slug/"
 
 [params.author]
   avatar = "gear.svg"
-  intro = "The PGXN Blog"
+  intro = "⚙️ The PGXN Blog"
   name = "The PGXN Maintainers"
   description = "Updates from the PostgreSQL Extension Network"
 
