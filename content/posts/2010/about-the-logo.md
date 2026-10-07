@@ -50,7 +50,7 @@ extension gear. It's punched out, right? PGXN will offer loads of database
 extensions to download (we hope), and when you use one in your database,
 PostgreSQL will, you know: *turn the gear.* It just fits.
 
-[![][8]][site]
+[![PGXN Logo](/gear.svg)][site]
 
 [Strongrrl] created the logo and type treatment based on these ideas, adding
 the tilt and the figure/ground reversal, and I really love it. It's a really
@@ -72,5 +72,4 @@ throughout the final design.
   [5]: https://www.cpan.org
   [6]: https://icons.iconarchive.com/icons/icontoaster/icons-10-bundle/128/library-icon.png
   [7]: https://www.iconarchive.com/show/icons-10-bundle-icons-by-icontoaster/library-icon.html
-  [8]: https://pgxn.org/images/icon.png
   [Strongrrl]: https://strongrrl.com/
