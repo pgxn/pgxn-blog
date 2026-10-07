@@ -4,9 +4,9 @@ slug: pgxn-utils-012-released
 date: 2011-06-24T23:53:00Z
 aliases: [/post/6883009649/pgxn-utils-012-released, /post/6883009649]
 tags: [Build, Create Extension, Utils, Meta, Release, Bundle]
+author:
+  name: Dickson S. Guedes
 ---
-
-by Dickson S. Guedes
 
 Hello everyone!
 

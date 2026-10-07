@@ -4,9 +4,9 @@ slug: pgxn-utils
 date: 2011-05-14T01:05:00Z
 aliases: [/post/5465631144/pgxn-utils, /post/5465631144]
 tags: [Build, Makefile, Control File, README, Meta, Create Extension, Skeleton, Generator]
+author:
+  name: Dickson S. Guedes
 ---
-
-by Dickson S. Guedes
 
 Do you ever have problems with copy and paste? I often did, and that is why I
 create custom templates for often used files that match certain patterns.

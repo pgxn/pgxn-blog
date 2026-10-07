@@ -4,9 +4,9 @@ slug: pgxn-utils-011-released
 date: 2011-05-23T04:53:30Z
 aliases: [/post/5758832725/pgxn-utils-011-released, /post/5758832725]
 tags: [Build, Create Extension, Utils, Bundle Extension, Meta, README, Skeleton]
+author:
+  name: Dickson S. Guedes
 ---
-
-by Dickson S. Guedes
 
 Hello everyone!
 

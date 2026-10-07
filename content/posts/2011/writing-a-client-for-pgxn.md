@@ -4,9 +4,9 @@ slug: writing-a-client-for-pgxn
 date: 2011-04-29T00:15:00Z
 aliases: [/post/5026314153/writing-a-client-for-pgxn, /post/5026314153]
 tags: []
+author:
+  name: Daniele Varrazzo
 ---
-
-By Daniele Varrazzo.
 
 PostgreSQL 9.1 is quickly rolling to the beta phase, and the release will
 bring a new useful feature: [extensions]. Well, actually extensions have

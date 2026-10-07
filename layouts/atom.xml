@@ -47,7 +47,7 @@
 {{- if (eq .Type "tags") }}
 		<summary type="html">{{ printf "Posts about %s" (markdownify .Title) | printf "<![CDATA[%s]]>" . | safeHTML }}</summary>
 {{- else -}}
-		{{ with (or .Params.author .Site.Params.Author) }}
+		{{ with (or .Params.author .Site.Params.PostAuthor) }}
 		<author>{{ with .name }}
 			<name>{{ . }}</name>{{ end }}{{ with .email }}
 			<email>{{ . }}</email>{{ end }}{{ with .url }}

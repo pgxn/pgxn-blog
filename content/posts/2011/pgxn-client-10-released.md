@@ -4,9 +4,9 @@ slug: pgxn-client-10-released
 date: 2011-11-28T00:34:34Z
 aliases: [/post/13427961249/pgxn-client-10-released, /post/13427961249]
 tags: [PGXN Client, Release]
+author:
+  name: Daniele Varrazzo
 ---
-
-By Daniele Varrazzo
 
 Finally, here it is. Well tested, documented, and pampered. With the [PGXN
 Client] installing extensions from the [PGXN Network] is a breeze:

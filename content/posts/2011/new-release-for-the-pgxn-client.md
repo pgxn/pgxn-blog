@@ -4,9 +4,9 @@ slug: new-release-for-the-pgxn-client
 date: 2011-05-02T00:59:37Z
 aliases: [/post/5118152273/new-release-for-the-pgxn-client, /post/5118152273]
 tags: [PGXN, Client, Release, Uninstall, Drop, sudo]
+author:
+  name: Daniele Varrazzo
 ---
-
-By Daniele Varrazzo
 
 During the last days I've done some lightweight hacking on the PGXN client,
 and I've just released the last package on PyPI, with the still very shy

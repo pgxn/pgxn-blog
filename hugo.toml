@@ -25,6 +25,7 @@ enableGitInfo = true
 [outputFormats]
   [outputFormats.atom]
     mediaType = 'application/atom+xml'
+    baseName = "feed"
     noUgly = true
 
 [outputs]
@@ -54,9 +55,12 @@ posts = "/:year/:slug/"
 
 [params.author]
   avatar = "gear.svg"
-  intro = "The PGXN BLog"
-  name = "David E. Wheeler"
+  intro = "The PGXN Blog"
+  name = "The PGXN Maintainers"
   description = "Updates from the PostgreSQL Extension Network"
+
+[params.postAuthor]
+  name = "David E. Wheeler"
 
 [[params.socialIcons]]
 name = "github"
@@ -68,7 +72,7 @@ url = "https://mastodon.social/@pgxn"
 
 [[params.socialIcons]]
 name = "RSS"
-url = "/index.xml"
+url = "/feed.xml"
 
 [markup.goldmark.renderHooks.image]
 useEmbedded = "fallback"
