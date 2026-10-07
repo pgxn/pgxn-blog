@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Trying to meet our fundraising goal by the end of the week, and some folks are
 stepping up. Have you?
-
-

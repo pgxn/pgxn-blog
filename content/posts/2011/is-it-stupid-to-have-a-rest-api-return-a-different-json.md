@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Is it stupid to have a REST API return a different JSON structure based on the
 value of a query parameter?
-
-

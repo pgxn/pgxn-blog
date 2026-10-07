@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Changed "owner" to maintainer in the meta spec
 <https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec>
-
-

@@ -9,5 +9,3 @@ tags: [Tweet]
 Fixing Foreign Key Deadlocks in PostgreSQL
 <https://www.justatheory.com/computers/databases/postgresql/fk-locks-project.html>
 #help #community
-
-

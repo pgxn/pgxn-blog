@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Just deployed new versions. Download files are now .zip instead of .pgz.
 <https://pgxn.org/>
-
-

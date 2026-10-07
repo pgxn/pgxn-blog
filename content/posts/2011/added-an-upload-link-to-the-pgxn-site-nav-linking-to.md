@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Added an "Upload" link to the PGXN site nav, linking to PGXN manager, the web
 app for releasing extensions to PGXN.
-
-

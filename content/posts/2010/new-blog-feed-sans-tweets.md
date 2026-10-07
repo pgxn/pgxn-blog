@@ -8,5 +8,3 @@ tags: [Tweet]
 
 New Blog feed sans Tweets:
 <https://feedrinse.com/services/rinse/?rinsedurl=1be2d432150dc8f60f15ce3e4d521b64>
-
-

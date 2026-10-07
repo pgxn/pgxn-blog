@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Hacking furiously, hope to have something to show off by tomorrow.
-
-

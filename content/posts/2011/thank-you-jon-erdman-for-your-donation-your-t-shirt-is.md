@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Thank you Jon Erdman for your donation! Your t-shirt is in the mail. #pgxn
 #fundraising
-
-

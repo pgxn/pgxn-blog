@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Validate your META.json: cpan PGXN::Meta::Validator; validate_pgxn_meta
 META.json META.json is OK
-
-

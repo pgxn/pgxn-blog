@@ -9,5 +9,3 @@ tags: [Tweet]
 PGXN Manager now has users and admins.
 <https://github.com/theory/pgxn-manager/commit/0be7dd7d819e8bb622bfbe7415f1647aeede8dfa>
 #progress
-
-

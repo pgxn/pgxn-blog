@@ -8,5 +8,3 @@ tags: [Tweet]
 
 No site feed for uploads, but I just realized that the Twitter feed provides
 exactly that. <https://twitter.com/statuses/user_timeline/pgxn.atom>
-
-

@@ -9,5 +9,3 @@ tags: [Tweet]
 Turns out you don't need ALIAS after all. Updated post:
 <https://blog.pgxn.org/post/1053165383/alias-in-vogue#update-20100907>
 #plpgsql
-
-

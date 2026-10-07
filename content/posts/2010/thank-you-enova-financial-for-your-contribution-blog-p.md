@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Thank you Enova Financial for your contribution! Blog post soon.
-
-

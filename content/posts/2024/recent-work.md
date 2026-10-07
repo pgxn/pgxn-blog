@@ -92,8 +92,6 @@ hope to find time to work on the indexing project soon.
 
 The [pgxn-site] project powers the main site, [pgxn.org], and has seen 7 new
 releases since the beginning of the year! Notable changes:
-
-
 *   Changed the default search index from Documentation too Distributions,
     because most release include no docs other than a READMe, which was
     indexed as part of the distribution and not the extension contained in a

@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Updating the API server, might be some instability over the next few minutes.
-
-

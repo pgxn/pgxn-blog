@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Thank you August Zajonc for your contribution!
-
-

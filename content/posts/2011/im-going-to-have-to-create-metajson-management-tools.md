@@ -8,5 +8,3 @@ tags: [Tweet]
 
 I'm going to have to create META.json-management tools soon; I just fixed a
 broken META.json of my own -- the second time I've had to do so.
-
-

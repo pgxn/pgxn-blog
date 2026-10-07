@@ -8,5 +8,3 @@ tags: [Tweet]
 
 RT @theory Hrm... Free GoDaddy OSS SSL cert (<https://bit.ly/9Ek7ea>) or Free
 StartSSL cert (<https://www.startssl.com/?app=32>)? #ssl #pgxn
-
-

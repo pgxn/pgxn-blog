@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Next Thursday: PDXPUG: Distributing Extensions on PGXN
 <https://calagator.org/events/1250460492>
-
-

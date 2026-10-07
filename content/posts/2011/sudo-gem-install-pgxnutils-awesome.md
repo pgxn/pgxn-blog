@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 sudo gem install pgxn_utils <https://github.com/guedes/pgxn-utils> #Awesome
-
-

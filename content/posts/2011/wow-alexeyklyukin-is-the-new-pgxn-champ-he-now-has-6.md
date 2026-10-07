@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Wow, @alexeyklyukin is the new PGXN champ! He now has 6 distributions!
 <https://master.pgxn.org/by/user/alexk.json>
-
-

@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Slides from #pgWest:
 <https://www.slideshare.net/justatheory/building-and-distributing-postgresql-extensions-without-learning-c>
-
-

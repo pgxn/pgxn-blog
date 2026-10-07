@@ -8,5 +8,3 @@ tags: [Tweet]
 
 The PGCon PGXN talk starts in 17 minutes.
 <https://www.pgcon.org/2011/schedule/events/291.en.html>
-
-

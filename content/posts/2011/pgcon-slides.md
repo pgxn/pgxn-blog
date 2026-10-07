@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 PGCon slides: <https://www.pgcon.org/2011/schedule/events/291.en.html>
-
-

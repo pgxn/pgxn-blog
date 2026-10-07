@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Know Perl? Interested in PGXN? @-message me for an offer you cannot refuse.
-
-

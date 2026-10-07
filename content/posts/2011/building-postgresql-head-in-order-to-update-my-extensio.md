@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Building PostgreSQL HEAD in order to update my extensions for the 9.1
 extensions support. Will update the HOWTO with details soon.
-
-

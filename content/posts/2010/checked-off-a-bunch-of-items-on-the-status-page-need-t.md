@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Checked off a bunch of items on the status page. Need to keep it more
 up-to-date. <https://pgxn.org/status.html>
-
-

@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Thank you @darkixion for your latest donation!
 <https://pgxn.org/contributors.html> #sponsors
-
-

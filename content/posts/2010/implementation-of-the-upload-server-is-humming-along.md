@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Implementation of the upload server is humming along.
 <https://github.com/theory/pgxn-manager/>
-
-

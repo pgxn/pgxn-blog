@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Would appreciate feedback on the format of the API docs. So far only "index"
 and "download" are documented. <https://github.com/pgxn/pgxn-api/wiki>
-
-

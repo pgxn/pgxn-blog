@@ -8,5 +8,3 @@ tags: [Tweet]
 
 <https://manager.pgxn.org/> is back up and the issue has been fixed. Thank you
 for your patience!
-
-

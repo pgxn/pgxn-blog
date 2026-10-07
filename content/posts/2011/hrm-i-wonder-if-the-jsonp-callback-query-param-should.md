@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Hrm. I wonder if the JSONP callback query param should be called "jsonp" or
 "callback"?
-
-

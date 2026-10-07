@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Started documenting admin stuff in the wiki.
 <https://github.com/theory/pgxn/wiki>
-
-

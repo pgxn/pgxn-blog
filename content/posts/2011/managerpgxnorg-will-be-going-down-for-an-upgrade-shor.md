@@ -8,5 +8,3 @@ tags: [Tweet]
 
 manager.pgxn.org will be going down for an upgrade shortly. Will holler when
 it's back.
-
-

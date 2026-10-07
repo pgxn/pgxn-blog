@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Thank you depesz for your contribution! <https://pgxn.org/contributors.html>
-
-

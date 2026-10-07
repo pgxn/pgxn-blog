@@ -8,5 +8,3 @@ tags: [Tweet]
 
 PGXN Manager will be back up as soon as your DNS records update. All the PGXN
 sites are on their new server.
-
-

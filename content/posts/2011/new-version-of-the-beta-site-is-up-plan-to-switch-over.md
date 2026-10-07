@@ -8,5 +8,3 @@ tags: [Tweet]
 
 New version of the beta site is up. Plan to switch over tomorrow.
 <https://beta.pgxn.org/>
-
-

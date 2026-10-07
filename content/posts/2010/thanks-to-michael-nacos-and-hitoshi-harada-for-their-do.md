@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Thanks to Michael Nacos and Hitoshi Harada for their donations. We're getting
 closer to our goal!
-
-

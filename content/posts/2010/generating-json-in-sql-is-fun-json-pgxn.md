@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Generating JSON in SQL is fun! <https://bit.ly/dolkKb> #json #pgxn
-
-

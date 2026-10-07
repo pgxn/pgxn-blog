@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Will be deploying a released candidate for the new site tomorrow. Getting
 close!
-
-

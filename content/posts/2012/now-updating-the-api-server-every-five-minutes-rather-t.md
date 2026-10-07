@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Now updating the API server every five minutes rather than hourly. New uploads
 will appear on pgxn.org more quickly.
-
-

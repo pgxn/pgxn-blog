@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Thank you @xdg for your contribution! <https://pgxn.org/contributors.html>
-
-

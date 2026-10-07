@@ -12,5 +12,3 @@ create useful extensions to PostgreSQL and distribute them on PGXN---without
 needing to learn C.
 </figcaption>
 </figure>
-
-

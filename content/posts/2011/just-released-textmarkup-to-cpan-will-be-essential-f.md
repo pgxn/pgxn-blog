@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Just released Text::Markup to CPAN. Will be essential for parsing doc files
 for PGXN. <https://p3rl.org/Text::Markup>
-
-

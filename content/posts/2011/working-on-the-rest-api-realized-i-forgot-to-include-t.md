@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Working on the REST API, realized I forgot to include the release date in
 distribution metadata. Now added and all distributions updated.
-
-

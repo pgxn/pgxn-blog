@@ -8,5 +8,3 @@ tags: [Tweet]
 
 First draft of the PGXN Meta Spec.
 <https://github.com/theory/pgxn/wiki/PGXN-Meta-Spec>
-
-

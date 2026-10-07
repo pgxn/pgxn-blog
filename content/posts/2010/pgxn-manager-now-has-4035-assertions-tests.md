@@ -8,5 +8,3 @@ tags: [Tweet]
 
 PGXN Manager now has 4035 assertions. Tests:
 <https://github.com/theory/pgxn-manager/tree/master/t/>
-
-

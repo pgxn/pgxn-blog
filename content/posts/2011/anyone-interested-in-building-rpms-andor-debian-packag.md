@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Anyone interested in building RPMs and/or Debian packages for the various
 parts of the PGXN infrastruture?
-
-

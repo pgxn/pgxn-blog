@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Want to use the PGXN logo in a presentation paper? Get the artwork under the
 CC BY-SA license here: <https://pgxn.org/art/> /thanks @strongrrl
-
-

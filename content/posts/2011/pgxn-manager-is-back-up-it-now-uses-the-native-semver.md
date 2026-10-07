@@ -8,5 +8,3 @@ tags: [Tweet]
 
 PGXN Manager is back up. It now uses the native semver data type:
 <https://master.pgxn.org/dist/semver/>
-
-

@@ -8,5 +8,3 @@ tags: [Tweet]
 
 If a search requires a query, what status code should be returned if there is
 no query? 404 not found doesn't seem right.
-
-

@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 Deployment done, sites are back up. Blog post tomorrow.
-
-

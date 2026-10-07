@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Updated <https://manager.pgxn.org/> to add the abstract key to provides and
 updated existing distributions.
-
-

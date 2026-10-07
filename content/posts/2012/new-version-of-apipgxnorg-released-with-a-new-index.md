@@ -8,5 +8,3 @@ tags: [Tweet]
 
 New version of api.pgxn.org released, with a new index generated. Better
 parsing of reST docs thanks to @dvarrazzo.
-
-

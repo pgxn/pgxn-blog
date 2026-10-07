@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Fixed the internal server error in the How To page. Check it out.
 <https://manager.pgxn.org/howto>
-
-

@@ -8,5 +8,3 @@ tags: [Tweet]
 
 The PGXN API documentation is complete.
 <https://github.com/pgxn/pgxn-api/wiki> Have a look!
-
-

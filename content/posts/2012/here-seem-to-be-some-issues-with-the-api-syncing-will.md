@@ -8,5 +8,3 @@ tags: [Tweet]
 
 here seem to be some issues with the API syncing; will get them fixed today.
 Sorry for the lack up site updates in the meantime.
-
-

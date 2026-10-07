@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Want to create a PGXN distribution? Dickson Guedes shows you how.
 <https://pgcasts.com/media/pgxn_utils-usage-example.mpeg> #SoAwesome
-
-

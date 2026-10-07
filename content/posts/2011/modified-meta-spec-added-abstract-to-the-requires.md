@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Modified Meta spec; added `abstract` to the `requires` object. Markdown:
 <https://pgxn.org/meta/spec.txt;> HTML: <https://pgxn.org/meta/spec.html>
-
-

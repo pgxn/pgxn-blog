@@ -5,8 +5,6 @@ date: 2021-05-15T03:16:44Z
 aliases: [/post/651216661677064192/a-few-belated-pgxn-updates, /post/651216661677064192]
 tags: [PGXN, Upgrade, TLS, Retina]
 ---
-
-
 The last couple weeks I've returned to PGXN and made a few updates. Nothing
 huge, but all long overdue.
 

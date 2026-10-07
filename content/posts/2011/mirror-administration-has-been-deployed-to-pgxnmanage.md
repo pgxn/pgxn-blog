@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Mirror administration has been deployed to PGXN::Manager. Check out the
 newly-generated list: <https://master.pgxn.org/meta/mirrors.json>
-
-

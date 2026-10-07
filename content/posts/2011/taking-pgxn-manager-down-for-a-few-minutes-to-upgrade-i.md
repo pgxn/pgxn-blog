@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Taking PGXN Manager down for a few minutes to upgrade it to use the new semver
 data type.
-
-

@@ -7,5 +7,3 @@ tags: [Tweet]
 ---
 
 And thew new PGXN is live! <https://pgxn.org/> #woo
-
-

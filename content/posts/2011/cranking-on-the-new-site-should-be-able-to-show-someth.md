@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Cranking on the new site. Should be able to show something off late next week
 or early the following.
-
-

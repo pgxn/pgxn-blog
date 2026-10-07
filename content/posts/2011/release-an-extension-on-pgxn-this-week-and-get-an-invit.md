@@ -8,5 +8,3 @@ tags: [Tweet]
 
 Release an extension on PGXN this week and get an invite to the launch party
 Friday night at #pgcon.
-
-
