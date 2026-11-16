@@ -38,3 +38,42 @@ nav#rels .next { float: right }
     margin: 15px 0;
     text-align: unset;
 }
+
+.float-right {
+    float: right;
+    margin-left: 1em
+}
+
+.float-left {
+    float: left;
+    margin-right: 2em
+}
+
+.float-left > img {
+    display: inline !important;
+}
+
+.quarter {
+    width: 25%;
+}
+
+figure {
+    margin-top: 15px
+}
+
+pre, .chroma, .lntable {
+    font-size: 14px;
+    overflow: scroll; overflow-y: hidden; overflow-x: auto;
+}
+
+pre.chroma {
+    padding: 8px;
+}
+
+article ul {
+    margin-left: 0;
+}
+
+article li {
+    margin-left: 1.1em;
+}
